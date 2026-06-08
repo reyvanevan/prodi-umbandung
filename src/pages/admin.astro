@@ -1,0 +1,16 @@
+---
+import '../index.css';
+import { AdminPanel } from '@/components/AdminPanel';
+import { PRODI_CONFIG } from '../config/prodi.config';
+---
+
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin | {PRODI_CONFIG.name.id}</title>
+  </head>
+  <body>
+    <AdminPanel client:load />
+  </body>
+</html>

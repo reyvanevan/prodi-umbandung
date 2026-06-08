@@ -1,0 +1,22 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { HeroSection } from '../../sections/HeroSection';
+import { SambutanKaprodi } from '../../sections/SambutanKaprodi';
+import { NewsEventsSection } from '../../sections/NewsEventsSection';
+import { ProgramsSection } from '../../sections/ProgramsSection';
+import { ArchiveSection } from '../../sections/ArchiveSection';
+import { EditorialSection } from '../../sections/EditorialSection';
+import { PartnersSection } from '../../sections/PartnersSection';
+import { StaggerTestimonials } from '../../components/ui/stagger-testimonials';
+---
+
+<Layout lang="en">
+  <HeroSection lang="en" client:load />
+  <SambutanKaprodi lang="en" client:load />
+  <NewsEventsSection lang="en" client:load />
+  <ProgramsSection lang="en" client:load />
+  <ArchiveSection lang="en" client:load />
+  <EditorialSection lang="en" client:load />
+  <PartnersSection lang="en" client:load />
+  <StaggerTestimonials lang="en" client:load />
+</Layout>
