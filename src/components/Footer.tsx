@@ -1,5 +1,5 @@
-import { Mail, Instagram, Youtube, MessageSquare, Linkedin, Globe, ArrowUp } from 'lucide-react';
-import { PRODI_CONFIG } from '../config/prodi.config';
+import { Mail, Instagram, Youtube, MessageSquare, Linkedin, Globe, ArrowUp, Phone, MapPin, Clock } from 'lucide-react';
+import { PRODI_CONFIG } from '@/config/prodi.config';
 
 interface FooterProps {
   lang?: 'id' | 'en';
@@ -21,43 +21,40 @@ export function Footer({ lang = 'id' }: FooterProps) {
             id: 'about',
             name: 'ABOUT US',
             items: [
-              { name: 'Vision & Mission', href: '#profil' },
-              { name: 'Program History', href: '#sejarah' },
-              { name: 'Accreditation', href: '#akreditasi' },
-              { name: 'Faculty Activities', href: '#aktivitas-dosen' },
-              { name: 'Faculty & Staff', href: '#dosen-staff' },
-              { name: 'Organizational Structure', href: '#struktur-organisasi' },
-              { name: 'News & Announcements', href: '#berita-agenda' },
+              { name: 'Vision', href: '/en/#profil' },
+              { name: 'Mission', href: '/en/#profil' },
+              { name: 'Program History', href: '/en/#sejarah' },
+              { name: 'Accreditation', href: '/en/#akreditasi' },
+              { name: 'Faculty Activities', href: '/en/#aktivitas-dosen' },
+              { name: 'Faculty & Staff', href: '/en/#dosen-staff' },
+              { name: 'Organizational Structure', href: '/en/#struktur-organisasi' },
+              { name: 'Faculty Publications', href: '/en/tulisan-dosen' },
             ],
           },
           {
-            id: 'academics',
-            name: 'ACADEMIC PLAN',
+            id: 'statistics',
+            name: 'STATISTICS',
             items: [
-              { name: 'Educational Objectives (PEO)', href: '#peo' },
-              { name: 'Learning Outcomes (PLO)', href: '#plo' },
-              { name: 'Curriculum Structure', href: '#program' },
-              { name: 'Admission (PMB)', href: 'https://pmb.umbandung.ac.id/', isExternal: true },
+              { name: 'New Students Average', href: '/en/statistik#rata-maba' },
+              { name: 'Lecturer Ratio', href: '/en/statistik#rasio-dosen' },
+              { name: 'Study Duration Ratio', href: '/en/statistik#rasio-studi' },
             ],
           },
           {
             id: 'students',
             name: 'STUDENTS & ALUMNI',
             items: [
-              { name: 'Activities & Achievements', href: '#aktivitas-prestasi' },
-              { name: 'Final Project Gallery', href: '#tugas-akhir' },
-              { name: 'Achievement Gallery', href: '#archive' },
-              { name: 'Student Association (SERAT)', href: '#serat' },
+              { name: 'Student Achievements', href: '/en/#aktivitas-prestasi' },
+              { name: 'Final Project', href: '/en/#tugas-akhir' },
+              { name: 'Alumni', href: '/en/alumni' },
             ],
           },
           {
-            id: 'portals',
-            name: 'CAMPUS PORTAL',
+            id: 'gallery',
+            name: 'ACTIVITY GALLERY',
             items: [
-              { name: 'Main UMB Website', href: 'https://umbandung.ac.id/', isExternal: true },
-              { name: 'IGRACIAS Portal', href: '#igracias' },
-              { name: `E-Journal ${PRODI_CONFIG.acronym}`, href: '#journal' },
-              { name: 'Digital Library', href: '#library' },
+              { name: 'Faculty Activities', href: '/en/kegiatan-dosen' },
+              { name: 'Student Activities', href: '/en/kegiatan-mahasiswa' },
             ],
           },
         ] : [
@@ -65,43 +62,40 @@ export function Footer({ lang = 'id' }: FooterProps) {
             id: 'about',
             name: 'TENTANG KAMI',
             items: [
-              { name: 'Visi & Misi', href: '#profil' },
-              { name: 'Sejarah Prodi', href: '#sejarah' },
-              { name: 'Akreditasi Prodi', href: '#akreditasi' },
-              { name: 'Aktivitas Dosen', href: '#aktivitas-dosen' },
-              { name: 'Dosen & Staff', href: '#dosen-staff' },
-              { name: 'Struktur Organisasi', href: '#struktur-organisasi' },
-              { name: 'Berita & Agenda', href: '#berita-agenda' },
+              { name: 'Visi', href: '/#profil' },
+              { name: 'Misi', href: '/#profil' },
+              { name: 'Sejarah Prodi', href: '/#sejarah' },
+              { name: 'Akreditasi', href: '/#akreditasi' },
+              { name: 'Aktivitas Dosen', href: '/#aktivitas-dosen' },
+              { name: 'Dosen dan Staff', href: '/#dosen-staff' },
+              { name: 'Struktur Organisasi', href: '/#struktur-organisasi' },
+              { name: 'Tulisan Dosen', href: '/tulisan-dosen' },
             ],
           },
           {
-            id: 'academics',
-            name: 'RENCANA AKADEMIK',
+            id: 'statistics',
+            name: 'STATISTIK',
             items: [
-              { name: 'Tujuan Pendidikan (PEO)', href: '#peo' },
-              { name: 'Tujuan Pembelajaran (PLO)', href: '#plo' },
-              { name: 'Struktur Kurikulum', href: '#program' },
-              { name: 'Pendaftaran (PMB)', href: 'https://pmb.umbandung.ac.id/', isExternal: true },
+              { name: 'Rata Mahasiswa Baru', href: '/statistik#rata-maba' },
+              { name: 'Rasio Dosen', href: '/statistik#rasio-dosen' },
+              { name: 'Rasio Masa studi', href: '/statistik#rasio-studi' },
             ],
           },
           {
             id: 'students',
             name: 'MAHASISWA & ALUMNI',
             items: [
-              { name: 'Aktivitas & Prestasi', href: '#aktivitas-prestasi' },
-              { name: 'Galeri Tugas Akhir', href: '#tugas-akhir' },
-              { name: 'Galeri Prestasi Karya', href: '#archive' },
-              { name: 'Himpunan Mahasiswa (SERAT)', href: '#serat' },
+              { name: 'Prestasi Mahasiswa', href: '/#aktivitas-prestasi' },
+              { name: 'Tugas Akhir', href: '/#tugas-akhir' },
+              { name: 'Alumni', href: '/alumni' },
             ],
           },
           {
-            id: 'portals',
-            name: 'PORTAL KAMPUS',
+            id: 'gallery',
+            name: 'GALERI KEGIATAN',
             items: [
-              { name: 'Website Utama UMB', href: 'https://umbandung.ac.id/', isExternal: true },
-              { name: 'Portal IGRACIAS', href: '#igracias' },
-              { name: `E-Journal ${PRODI_CONFIG.acronym}`, href: '#journal' },
-              { name: 'Perpustakaan Digital', href: '#library' },
+              { name: 'Kegiatan Dosen', href: '/kegiatan-dosen' },
+              { name: 'Kegiatan Mahasiswa', href: '/kegiatan-mahasiswa' },
             ],
           },
         ],
@@ -113,60 +107,140 @@ export function Footer({ lang = 'id' }: FooterProps) {
 
   return (
     <footer className="w-full bg-white border-t border-mono-black/10 py-16 px-6 lg:px-12">
-      {/* Top Description Area */}
-      <div className="relative mx-auto grid max-w-7xl items-center justify-center gap-6 pb-6 md:flex">
-        <div className="flex flex-col shrink-0 md:text-left text-center">
-          <span className="font-serif text-2xl tracking-wide text-mono-black">{PRODI_CONFIG.degree} {PRODI_CONFIG.acronym} {PRODI_CONFIG.universityShort}</span>
-          <span className="tech-tag text-mono-yellow font-bold mt-1">
-            {lang === 'en' ? PRODI_CONFIG.name.en.toUpperCase() : PRODI_CONFIG.name.id.toUpperCase()}
-          </span>
+      {/* Top Description Area with Logo */}
+      <div className="relative mx-auto max-w-7xl pb-10 border-b border-dotted border-mono-black/20">
+        <div className="flex flex-col md:flex-row gap-8 items-start md:items-center justify-between">
+          <div className="flex items-center gap-4">
+            <img 
+              src="/assets/logo-umb.png" 
+              alt={`Logo ${PRODI_CONFIG.universityShort}`} 
+              className="h-16 w-auto object-contain"
+              onError={(e) => {
+                (e.target as HTMLElement).style.display = 'none';
+              }}
+            />
+            <div className="flex flex-col">
+              <span className="font-serif text-2xl tracking-wide text-mono-black">
+                {PRODI_CONFIG.degree} {PRODI_CONFIG.acronym} {PRODI_CONFIG.universityShort}
+              </span>
+              <span className="tech-tag text-mono-yellow font-bold mt-1 text-[10px] tracking-wider">
+                {lang === 'en' ? PRODI_CONFIG.name.en.toUpperCase() : PRODI_CONFIG.name.id.toUpperCase()}
+              </span>
+            </div>
+          </div>
+          
+          <p className="bg-transparent text-xs leading-5 text-mono-black/60 max-w-3xl md:ml-8 border-l-0 md:border-l md:border-mono-black/15 md:pl-8 py-1 m-0">
+            {lang === 'en' ? (
+              <>
+                Academic Portal of the Bachelor Program in {PRODI_CONFIG.name.en}, {PRODI_CONFIG.university}. 
+                We educate future designers who combine the rich local culture of Nusantara with modern fashion technology innovations.
+              </>
+            ) : (
+              <>
+                Portal Akademik Program Studi {PRODI_CONFIG.degree} {PRODI_CONFIG.name.id}, {PRODI_CONFIG.university}. 
+                Kami mendidik desainer masa depan yang memadukan kekayaan budaya lokal Nusantara dengan inovasi teknologi fesyen modern.
+              </>
+            )}
+          </p>
         </div>
-        <p className="bg-transparent text-center text-xs leading-5 text-mono-black/60 md:text-left max-w-4xl md:ml-8 border-l-0 md:border-l md:border-mono-black/15 md:pl-8">
-          {lang === 'en' ? (
-            <>
-              Academic Portal of the Bachelor Program in {PRODI_CONFIG.name.en}, {PRODI_CONFIG.university}. 
-              Dedicated to educating future innovators who combine the rich local heritage of Nusantara with modern design technology and research.
-            </>
-          ) : (
-            <>
-              Portal Akademik Program Studi {PRODI_CONFIG.degree} {PRODI_CONFIG.name.id}, {PRODI_CONFIG.university}. 
-              Didedikasikan untuk mendidik inovator masa depan yang memadukan kekayaan budaya lokal Nusantara dengan teknologi desain modern dan riset material.
-            </>
-          )}
-        </p>
       </div>
 
-      <div className="mx-auto max-w-7xl">
-        <div className="border-b border-dotted border-mono-black/20 my-8"></div>
+      <div className="mx-auto max-w-7xl pt-10">
+        {/* Main Footer Content Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+          
+          {/* Contact Details (Left Column) */}
+          <div className="lg:col-span-4 flex flex-col gap-6">
+            <p className="tech-tag text-mono-black/40 tracking-wider">CONTACT & INFO</p>
+            
+            <div className="flex flex-col gap-4 font-sans text-xs text-mono-black/70">
+              <div className="flex items-start gap-3.5">
+                <Mail className="h-4 w-4 text-mono-yellow shrink-0 mt-0.5" strokeWidth={2} />
+                <div className="flex flex-col">
+                  <span className="font-bold text-mono-black mb-0.5">Email</span>
+                  <a href={`mailto:${PRODI_CONFIG.contact.email}`} className="hover:text-mono-yellow transition-colors no-underline">
+                    {PRODI_CONFIG.contact.email}
+                  </a>
+                </div>
+              </div>
 
-        {/* Links Grid */}
-        <div className="py-8">
-          {navigation.categories.map((category, catIdx) => (
-            <div
-              key={catIdx}
-              className="grid grid-cols-2 md:grid-cols-4 gap-8 leading-6"
-            >
-              {category.sections.map((section) => (
-                <div key={section.id}>
-                  <p className="tech-tag text-mono-black/40 mb-4 tracking-wider">{section.name}</p>
+              <div className="flex items-start gap-3.5">
+                <Phone className="h-4 w-4 text-mono-yellow shrink-0 mt-0.5" strokeWidth={2} />
+                <div className="flex flex-col">
+                  <span className="font-bold text-mono-black mb-0.5">{lang === 'en' ? 'Phone' : 'Telepon'}</span>
+                  <span>{PRODI_CONFIG.contact.phone} ({PRODI_CONFIG.acronym} Helpdesk)</span>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3.5">
+                <MapPin className="h-4 w-4 text-mono-yellow shrink-0 mt-0.5" strokeWidth={2} />
+                <div className="flex flex-col">
+                  <span className="font-bold text-mono-black mb-0.5">{lang === 'en' ? 'Address' : 'Lokasi'}</span>
+                  <span className="leading-relaxed">
+                    {PRODI_CONFIG.contact.address}
+                  </span>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3.5">
+                <Clock className="h-4 w-4 text-mono-yellow shrink-0 mt-0.5" strokeWidth={2} />
+                <div className="flex flex-col">
+                  <span className="font-bold text-mono-black mb-0.5">{lang === 'en' ? 'Working Hours' : 'Jam Operasional'}</span>
+                  <span>Senin - Jumat | 08:00 - 16:00 WIB</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Links Grid (Right Columns) */}
+          <div className="lg:col-span-8">
+            {navigation.categories.map((category, catIdx) => (
+              <div
+                key={catIdx}
+                className="grid grid-cols-2 md:grid-cols-4 gap-8 leading-6"
+              >
+                {category.sections.map((section) => (
+                  <div key={section.id}>
+                    <p className="tech-tag text-mono-black/40 mb-4 tracking-wider">{section.name}</p>
+                    <ul role="list" className="flex flex-col space-y-2.5 p-0 m-0 list-none">
+                      {section.items.map((item) => (
+                        <li key={item.name} className="flow-root">
+                          <a
+                            href={item.href}
+                            className="font-sans text-xs text-mono-black/65 hover:text-mono-yellow transition-colors no-underline tracking-wide"
+                          >
+                            {item.name}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+                
+                {/* Extra Portal Column */}
+                <div>
+                  <p className="tech-tag text-mono-black/40 mb-4 tracking-wider">PORTALS</p>
                   <ul role="list" className="flex flex-col space-y-2.5 p-0 m-0 list-none">
-                    {section.items.map((item) => (
-                      <li key={item.name} className="flow-root">
-                        <a
-                          href={item.href}
-                          target={item.isExternal ? '_blank' : undefined}
-                          rel={item.isExternal ? 'noopener noreferrer' : undefined}
-                          className="font-sans text-xs text-mono-black/65 hover:text-mono-yellow transition-colors no-underline tracking-wide"
-                        >
-                          {item.name}
-                        </a>
-                      </li>
-                    ))}
+                    <li className="flow-root">
+                      <a href="https://umbandung.ac.id" target="_blank" rel="noopener noreferrer" className="font-sans text-xs text-mono-black/65 hover:text-mono-yellow transition-colors no-underline tracking-wide">
+                        Main UMB Website
+                      </a>
+                    </li>
+                    <li className="flow-root">
+                      <a href="https://sinta.kemdiktisaintek.go.id/departments/authors/4508/B1E2C1BA-7DA9-4D94-AD8D-03A55689849E/00F7C6DB-046D-499C-B6A9-4EBE970BB955" target="_blank" rel="noopener noreferrer" className="font-sans text-xs text-mono-black/65 hover:text-mono-yellow transition-colors no-underline tracking-wide">
+                        SINTA KTF UMB
+                      </a>
+                    </li>
+                    <li className="flow-root">
+                      <a href="https://pmb.umbandung.ac.id" target="_blank" rel="noopener noreferrer" className="font-sans text-xs text-mono-black/65 hover:text-mono-yellow transition-colors no-underline tracking-wide">
+                        PMB Portal
+                      </a>
+                    </li>
                   </ul>
                 </div>
-              ))}
-            </div>
-          ))}
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className="border-b border-dotted border-mono-black/20 my-8"></div>
@@ -194,7 +268,7 @@ export function Footer({ lang = 'id' }: FooterProps) {
           </a>
           <a
             aria-label="YouTube Channel"
-            href={PRODI_CONFIG.contact.youtube ? `https://youtube.com/${PRODI_CONFIG.contact.youtube}` : 'https://youtube.com/'}
+            href={PRODI_CONFIG.videoProfileUrl || "https://youtube.com/"}
             target="_blank"
             rel="noopener noreferrer"
             className={socialItemClass}
@@ -202,8 +276,8 @@ export function Footer({ lang = 'id' }: FooterProps) {
             <Youtube className="h-5 w-5" strokeWidth={1.5} />
           </a>
           <a
-            aria-label="WhatsApp Hotline"
-            href={`https://wa.me/${PRODI_CONFIG.contact.phone.replace(/[^0-9]/g, '')}`}
+            aria-label="WhatsApp Group"
+            href="https://wa.me/"
             target="_blank"
             rel="noopener noreferrer"
             className={socialItemClass}
@@ -247,7 +321,7 @@ export function Footer({ lang = 'id' }: FooterProps) {
         <p>
           {lang === 'en' ? (
             <>
-              © {new Date().getFullYear()} {PRODI_CONFIG.degree} {PRODI_CONFIG.name.en} — {PRODI_CONFIG.university}. All Rights Reserved.
+              © {new Date().getFullYear()} Bachelor Program in {PRODI_CONFIG.name.en} — {PRODI_CONFIG.university}. All Rights Reserved.
             </>
           ) : (
             <>

@@ -5,6 +5,11 @@ export interface ProdiConfig {
     en: string;
   };
   degree: string;
+  degreeTitle: string;
+  degreeTitleFull: {
+    id: string;
+    en: string;
+  };
   faculty: {
     id: string;
     en: string;
@@ -28,6 +33,7 @@ export interface ProdiConfig {
     photoSrc?: string;
   };
   videoProfileUrl?: string;
+  sintaUrl?: string;
   portals: {
     id: { label: string; href: string }[];
     en: { label: string; href: string }[];
@@ -41,6 +47,11 @@ export const PRODI_CONFIG: ProdiConfig = {
     en: 'Textile Craft & Fashion',
   },
   degree: 'S1',
+  degreeTitle: 'S.Ds.',
+  degreeTitleFull: {
+    id: 'Sarjana Desain',
+    en: 'Bachelor of Design',
+  },
   faculty: {
     id: 'Fakultas Sains dan Teknologi',
     en: 'Faculty of Science and Technology',
@@ -62,7 +73,8 @@ export const PRODI_CONFIG: ProdiConfig = {
     name: 'Dr. Budi Hermawan',
     degree: 'M.Sn',
   },
-  videoProfileUrl: 'https://youtube.com/',
+  videoProfileUrl: 'https://www.youtube.com/watch?v=9KGQkYJcwXM',
+  sintaUrl: 'https://sinta.kemdiktisaintek.go.id/departments/authors/4508/B1E2C1BA-7DA9-4D94-AD8D-03A55689849E/00F7C6DB-046D-499C-B6A9-4EBE970BB955',
   portals: {
     id: [
       { label: 'PORTAL IGRACIAS', href: 'https://igracias.umbandung.ac.id' },

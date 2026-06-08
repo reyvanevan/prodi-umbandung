@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { PRODI_CONFIG } from '../config/prodi.config';
+import { PRODI_CONFIG } from '@/config/prodi.config';
 
 interface NavigationProps {
   lang: 'id' | 'en';
@@ -26,73 +26,99 @@ export function Navigation({ lang, onOpenMenu }: NavigationProps) {
       label: 'ABOUT US',
       href: '#',
       submenu: [
-        { label: 'Vision & Mission', href: '#profil' },
-        { label: 'History', href: '#sejarah' },
-        { label: 'Accreditation', href: '#akreditasi' },
-        { label: 'Faculty Activities', href: '#aktivitas-dosen' },
-        { label: 'Faculty & Staff', href: '#dosen-staff' },
-        { label: 'Organizational Structure', href: '#struktur-organisasi' },
-        { label: 'News & Announcements', href: '#berita-agenda' },
+        { label: 'Vision', href: '/en/#profil' },
+        { label: 'Mission', href: '/en/#profil' },
+        { label: 'Program History', href: '/en/#sejarah' },
+        { label: 'Accreditation', href: '/en/#akreditasi' },
+        { label: 'Faculty Activities', href: '/en/#aktivitas-dosen' },
+        { label: 'Faculty & Staff', href: '/en/#dosen-staff' },
+        { label: 'Organizational Structure', href: '/en/#struktur-organisasi' },
+        { label: 'Faculty Publications', href: '/en/tulisan-dosen' },
       ],
     },
+    { label: 'ADMISSIONS', href: 'https://pmb.umbandung.ac.id/', isExternal: true },
     {
-      label: 'ACADEMIC PLAN',
+      label: 'STATISTICS',
       href: '#',
       submenu: [
-        { label: 'Program Educational Objectives (PEO)', href: '#peo' },
-        { label: 'Program Learning Outcomes (PLO)', href: '#plo' },
-        { label: 'Curriculum Structure', href: '#program' },
+        { label: 'New Students Average', href: '/en/statistik#rata-maba' },
+        { label: 'Lecturer Ratio', href: '/en/statistik#rasio-dosen' },
+        { label: 'Study Duration Ratio', href: '/en/statistik#rasio-studi' },
       ],
     },
-    { label: 'ADMISSION', href: 'https://pmb.umbandung.ac.id/', isExternal: true },
-    { label: 'STATISTICS', href: '#statistik' },
     {
       label: 'STUDENTS & ALUMNI',
       href: '#',
       submenu: [
-        { label: 'Student Activities & Achievements', href: '#aktivitas-prestasi' },
-        { label: 'Final Project Archive', href: '#tugas-akhir' },
+        { label: 'Student Achievements', href: '/en/#aktivitas-prestasi' },
+        { label: 'Final Project', href: '/en/#tugas-akhir' },
+        { label: 'Alumni', href: '/en/alumni' },
       ],
     },
-    { label: 'ARCHIVE GALLERY', href: '#archive' },
+    {
+      label: 'ACTIVITY GALLERY',
+      href: '#',
+      submenu: [
+        { label: 'Faculty Activities', href: '/en/kegiatan-dosen' },
+        { label: 'Student Activities', href: '/en/kegiatan-mahasiswa' },
+      ],
+    },
+    ...(PRODI_CONFIG.sintaUrl ? [{ 
+      label: 'SINTA PRODI', 
+      href: PRODI_CONFIG.sintaUrl, 
+      isExternal: true 
+    }] : []),
   ] : [
     { label: 'HOME', href: '/' },
     {
       label: 'TENTANG KAMI',
       href: '#',
       submenu: [
-        { label: 'Visi & Misi', href: '#profil' },
-        { label: 'Sejarah Prodi', href: '#sejarah' },
-        { label: 'Akreditasi', href: '#akreditasi' },
-        { label: 'Aktivitas Dosen', href: '#aktivitas-dosen' },
-        { label: 'Dosen & Staff', href: '#dosen-staff' },
-        { label: 'Struktur Organisasi', href: '#struktur-organisasi' },
-        { label: 'Berita', href: '#berita-agenda' },
+        { label: 'Visi', href: '/#profil' },
+        { label: 'Misi', href: '/#profil' },
+        { label: 'Sejarah Prodi', href: '/#sejarah' },
+        { label: 'Akreditasi', href: '/#akreditasi' },
+        { label: 'Aktivitas Dosen', href: '/#aktivitas-dosen' },
+        { label: 'Dosen dan Staff', href: '/#dosen-staff' },
+        { label: 'Struktur Organisasi', href: '/#struktur-organisasi' },
+        { label: 'Tulisan Dosen', href: '/tulisan-dosen' },
+      ],
+    },
+    { label: 'ADMISSIONS', href: 'https://pmb.umbandung.ac.id/', isExternal: true },
+    {
+      label: 'STATISTIK',
+      href: '#',
+      submenu: [
+        { label: 'Rata Mahasiswa Baru', href: '/statistik#rata-maba' },
+        { label: 'Rasio Dosen', href: '/statistik#rasio-dosen' },
+        { label: 'Rasio Masa studi', href: '/statistik#rasio-studi' },
       ],
     },
     {
-      label: 'RENCANA AKADEMIK',
+      label: 'MAHASISWA DAN ALUMNI',
       href: '#',
       submenu: [
-        { label: 'Tujuan Pendidikan Program (PEO)', href: '#peo' },
-        { label: 'Tujuan Pembelajaran Program (PLO)', href: '#plo' },
-        { label: 'Struktur Kurikulum', href: '#program' },
+        { label: 'Prestasi Mahasiswa', href: '/#aktivitas-prestasi' },
+        { label: 'Tugas Akhir', href: '/#tugas-akhir' },
+        { label: 'Alumni', href: '/alumni' },
       ],
     },
-    { label: 'ADMISSION', href: 'https://pmb.umbandung.ac.id/', isExternal: true },
-    { label: 'STATISTIK', href: '#statistik' },
     {
-      label: 'MAHASISWA & ALUMNI',
+      label: 'GALERI KEGIATAN',
       href: '#',
       submenu: [
-        { label: 'Aktivitas & Prestasi Mahasiswa', href: '#aktivitas-prestasi' },
-        { label: 'Tugas Akhir', href: '#tugas-akhir' },
+        { label: 'Kegiatan Dosen', href: '/kegiatan-dosen' },
+        { label: 'Kegiatan Mahasiswa', href: '/kegiatan-mahasiswa' },
       ],
     },
-    { label: 'GALERI ARSIP', href: '#archive' },
+    ...(PRODI_CONFIG.sintaUrl ? [{ 
+      label: 'SINTA PRODI', 
+      href: PRODI_CONFIG.sintaUrl, 
+      isExternal: true 
+    }] : []),
   ];
 
-  const portals = lang === 'en' ? PRODI_CONFIG.portals.en : PRODI_CONFIG.portals.id;
+  const portals = PRODI_CONFIG.portals[lang] || [];
 
   return (
     <nav
@@ -102,25 +128,25 @@ export function Navigation({ lang, onOpenMenu }: NavigationProps) {
       }`}
     >
       {/* Top Utility Bar (Quick Portal) */}
-      <div
-        className={`hidden lg:block border-b border-white/10 text-[9px] font-sans font-bold tracking-widest transition-all duration-300 overflow-hidden ${
-          scrolled ? 'max-h-0 py-0 border-none bg-mono-black' : 'bg-transparent max-h-10 py-2'
-        }`}
-      >
-        <div className="max-w-7xl mx-auto px-12 flex justify-end gap-6">
-          {portals.map((portal, idx) => (
-            <a
-              key={idx}
-              href={portal.href}
-              className={`transition-colors no-underline ${
-                scrolled ? 'text-white/70 hover:text-mono-yellow' : 'text-white/70 hover:text-mono-yellow'
-              }`}
-            >
-              {portal.label}
-            </a>
-          ))}
+      {portals.length > 0 && (
+        <div
+          className={`hidden lg:block border-b border-white/10 text-[9px] font-sans font-bold tracking-widest transition-all duration-300 overflow-hidden ${
+            scrolled ? 'max-h-0 py-0 border-none bg-mono-black' : 'bg-transparent max-h-10 py-2'
+          }`}
+        >
+          <div className="max-w-7xl mx-auto px-12 flex justify-end gap-6">
+            {portals.map((portal, idx) => (
+              <a
+                key={idx}
+                href={portal.href}
+                className="transition-colors no-underline text-white/70 hover:text-mono-yellow"
+              >
+                {portal.label}
+              </a>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
 
       <div
         className={`w-full px-6 lg:px-12 flex items-center justify-between transition-all duration-500 ${
@@ -137,7 +163,7 @@ export function Navigation({ lang, onOpenMenu }: NavigationProps) {
           </span>
         </a>
 
-        {/* Desktop Menu (Centered/Right-aligned inline links) */}
+        {/* Desktop Menu */}
         <div className="hidden lg:flex items-center gap-8">
           {menuItems.map((item, index) => (
             <div key={index} className="relative group py-2">
@@ -150,7 +176,7 @@ export function Navigation({ lang, onOpenMenu }: NavigationProps) {
                     </svg>
                   </button>
                   {/* Dropdown Menu */}
-                  <div className="absolute left-0 top-full mt-2 w-64 bg-mono-black border border-white/20 py-3 shadow-[4px_4px_0px_0px_var(--primary-color)] opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 z-50">
+                  <div className={`absolute left-0 top-full mt-2 w-64 bg-mono-black border border-white/20 py-3 shadow-[4px_4px_0px_0px_var(--primary-color)] opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 z-50`}>
                     {item.submenu.map((sub, idx) => (
                       <a
                         key={idx}
@@ -175,7 +201,7 @@ export function Navigation({ lang, onOpenMenu }: NavigationProps) {
             </div>
           ))}
 
-          {/* Language Selector Dropdown with flag icons */}
+          {/* Language Selector Dropdown */}
           <div className="relative group py-2">
             <button className={`flex items-center gap-1.5 font-sans text-[11px] font-bold tracking-widest bg-transparent border-0 p-0 cursor-pointer transition-colors hover:text-mono-yellow ${textClass}`}>
               {lang === 'id' ? '🇮🇩 ID' : '🇬🇧 EN'}
@@ -183,7 +209,7 @@ export function Navigation({ lang, onOpenMenu }: NavigationProps) {
                 <path d="M1 2.5L4 5.5L7 2.5" stroke="currentColor" strokeWidth="1.5" />
               </svg>
             </button>
-            <div className="absolute right-0 top-full mt-2 w-28 bg-mono-black border border-white/20 py-2 shadow-[4px_4px_0px_0px_var(--primary-color)] opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 z-50">
+            <div className={`absolute right-0 top-full mt-2 w-28 bg-mono-black border border-white/20 py-2 shadow-[4px_4px_0px_0px_var(--primary-color)] opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 z-50`}>
               <a
                 href="/"
                 className={`block w-full text-left px-4 py-2 text-xs font-sans font-semibold text-white/80 hover:text-mono-yellow hover:bg-neutral-900 transition-colors no-underline ${lang === 'id' ? 'text-mono-yellow' : ''}`}

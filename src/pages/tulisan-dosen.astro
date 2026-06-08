@@ -1,0 +1,120 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { BookOpen, User, Calendar, ExternalLink } from 'lucide-react';
+import { PRODI_CONFIG } from '../config/prodi.config';
+
+const publications = [
+  {
+    title: "Rekonstruksi Motif Batik Pajajaran Berbasis Fraktal Komputasi",
+    author: "Dr. Asep Setiawan, M.Ds.",
+    journal: "Jurnal Kriya & Rupa Nusantara, Vol. 8 No. 2",
+    year: "2025",
+    category: "JURNAL NASIONAL",
+    link: "https://sinta.kemdiktisaintek.go.id/"
+  },
+  {
+    title: "Eco-Fashion: Penerapan Pewarna Alami Daun Ketapang pada Serat Sutra",
+    author: "Dian Lestari, M.Sn.",
+    journal: "Seminar Nasional Inovasi Desain & Fesyen (SNIDF)",
+    year: "2024",
+    category: "PROSIDING SEMINAR",
+    link: "https://sinta.kemdiktisaintek.go.id/"
+  },
+  {
+    title: "Eksplorasi Serat Nanas Sebagai Material Struktur Busana Avant-Garde",
+    author: "Rian Hidayat, M.Ds.",
+    journal: "International Journal of Creative Fashion & Material Engineering",
+    year: "2024",
+    category: "JURNAL INTERNASIONAL",
+    link: "https://sinta.kemdiktisaintek.go.id/"
+  },
+  {
+    title: "Sosiologi Mode: Perubahan Tren Busana Muslimah Urban di Bandung",
+    author: "Sarah Amelia, M.A.",
+    journal: "Jurnal Sosio-Desain UMB, Vol. 4 No. 1",
+    year: "2023",
+    category: "JURNAL NASIONAL",
+    link: "https://sinta.kemdiktisaintek.go.id/"
+  },
+  {
+    title: "Sustainable Fashion & Circular Economy: Teori dan Praktis Studio Kriya",
+    author: "Dr. Asep Setiawan, M.Ds. & Dian Lestari, M.Sn.",
+    journal: `Penerbit ${PRODI_CONFIG.universityShort} Press (Buku Referensi)`,
+    year: "2023",
+    category: "BUKU ILMIAH",
+    link: "https://sinta.kemdiktisaintek.go.id/"
+  }
+];
+---
+
+<Layout title={`Tulisan Dosen | ${PRODI_CONFIG.degree} ${PRODI_CONFIG.name.id} ${PRODI_CONFIG.universityShort}`} lang="id">
+  {/* Header Section */}
+  <section className="relative bg-mono-black text-white pt-36 pb-20 border-b border-white/10">
+    <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      <p className="tech-tag text-mono-yellow mb-3">PUBLICATIONS // ACADEMIC WRITING</p>
+      <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl tracking-wide leading-none">
+        Tulisan & Karya Ilmiah Dosen
+      </h1>
+      <p className="font-sans text-sm text-white/60 max-w-2xl mt-4 leading-relaxed">
+        Daftar publikasi penelitian, artikel ilmiah, jurnal akreditasi, opini media, dan buku referensi akademik yang ditulis oleh dosen-dosen Program Studi {PRODI_CONFIG.degree} {PRODI_CONFIG.name.id} {PRODI_CONFIG.university}.
+      </p>
+    </div>
+  </section>
+
+  {/* Main Grid Section */}
+  <section className="py-20 bg-mono-cream min-h-screen">
+    <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      
+      {/* Category Tabs (Static design) */}
+      <div className="flex flex-wrap gap-2.5 mb-12 border-b border-mono-black/10 pb-6">
+        <span className="px-4 py-2 border border-mono-black bg-mono-black text-white text-[10px] font-sans font-bold tracking-widest cursor-pointer shadow-[2px_2px_0px_0px_var(--primary-color)]">SEMUA KARYA</span>
+        <span className="px-4 py-2 border border-mono-black bg-white text-mono-black text-[10px] font-sans font-bold tracking-widest cursor-pointer hover:bg-neutral-100 transition-colors">JURNAL</span>
+        <span className="px-4 py-2 border border-mono-black bg-white text-mono-black text-[10px] font-sans font-bold tracking-widest cursor-pointer hover:bg-neutral-100 transition-colors">PROSIDING</span>
+        <span className="px-4 py-2 border border-mono-black bg-white text-mono-black text-[10px] font-sans font-bold tracking-widest cursor-pointer hover:bg-neutral-100 transition-colors">BUKU</span>
+      </div>
+
+      {/* Publications Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {publications.map((pub, index) => (
+          <div key={index} className="flex flex-col justify-between border border-mono-black bg-white p-8 hover:shadow-[6px_6px_0px_0px_var(--primary-color)] transition-all duration-300">
+            <div>
+              <div className="flex justify-between items-start mb-4">
+                <span className="tech-tag bg-mono-yellow/15 text-mono-yellow border border-mono-yellow/20 px-2.5 py-1 text-[9px] font-bold tracking-wider">
+                  {pub.category}
+                </span>
+                <span className="tech-tag text-mono-black/45 text-[9px]">{pub.year}</span>
+              </div>
+              <h3 className="font-serif text-xl font-bold text-mono-black mb-4 hover:text-mono-yellow transition-colors leading-snug">
+                {pub.title}
+              </h3>
+              
+              <div className="flex flex-col gap-2 font-sans text-xs text-neutral-600 mb-6">
+                <div className="flex items-center gap-2">
+                  <User className="h-3.5 w-3.5 text-mono-yellow shrink-0" />
+                  <span>{pub.author}</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <BookOpen className="h-3.5 w-3.5 text-mono-yellow shrink-0" />
+                  <span className="italic">{pub.journal}</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="pt-4 border-t border-dotted border-neutral-200">
+              <a 
+                href={pub.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 font-sans text-[10px] font-bold tracking-widest text-mono-black hover:text-mono-yellow transition-colors no-underline"
+              >
+                <span>LIHAT DOKUMEN / SINTA</span>
+                <ExternalLink className="h-3 w-3" />
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+</Layout>

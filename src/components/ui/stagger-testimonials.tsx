@@ -59,7 +59,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
         alt={`${testimonial.by.split('(')[0]}`}
         className="mb-4 h-14 w-12 bg-neutral-800 object-cover object-top"
         style={{
-          boxShadow: isCenter ? '3px 3px 0px #0D0D0D' : '3px 3px 0px var(--primary-color)',
+          boxShadow: isCenter ? '3px 3px 0px #0D0D0D' : '3px 3px 0px #D49A17',
         }}
       />
       <h3

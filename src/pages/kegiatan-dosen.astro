@@ -1,0 +1,91 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Calendar, MapPin, Eye } from 'lucide-react';
+import { PRODI_CONFIG } from '../config/prodi.config';
+
+const activities = [
+  {
+    title: "Pameran Tekstil Internasional 'Fiber Art Dialogue' 2025",
+    date: "12 Maret 2025",
+    location: "Kuala Lumpur, Malaysia",
+    desc: `Dosen ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort} mewakili Indonesia memamerkan instalasi fiber art berskala besar yang mengeksplorasi serat pelepah pisang dan benang daur ulang dalam dialog pelestarian alam Asia Tenggara.`,
+    image: "/assets/kegiatan-d1.png"
+  },
+  {
+    title: "Workshop Pewarnaan Alam untuk Pengrajin Wastra di Jawa Barat",
+    date: "18 Oktober 2024",
+    location: "Soreang, Bandung",
+    desc: "Pengabdian Kepada Masyarakat (PKM) berupa pelatihan teknis standardisasi pewarnaan alami Indigofera dan kulit kayu secang untuk meningkatkan daya saing ekonomi perajin tenun lokal.",
+    image: "/assets/kegiatan-d2.png"
+  },
+  {
+    title: "Riset Kolaborasi Rekayasa Komposit Serat Alam Bersama BRIN",
+    date: "04 Juni 2024",
+    location: "Lab Puslit Fisika, Serpong",
+    desc: `Kolaborasi riset strategis dosen ${PRODI_CONFIG.acronym} dalam menguji kekuatan mekanis serat abaka dan serat nanas hasil modifikasi kimiawi untuk bahan baku komposit otomotif ramah lingkungan.`,
+    image: "/assets/kegiatan-d3.png"
+  }
+];
+---
+
+<Layout title={`Kegiatan Dosen | ${PRODI_CONFIG.degree} ${PRODI_CONFIG.name.id} ${PRODI_CONFIG.universityShort}`} lang="id">
+  {/* Header Section */}
+  <section className="relative bg-mono-black text-white pt-36 pb-20 border-b border-white/10">
+    <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      <p className="tech-tag text-mono-yellow mb-3">GALLERY // FACULTY ACTIVITIES</p>
+      <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl tracking-wide leading-none">
+        Kegiatan & Pengabdian Dosen
+      </h1>
+      <p className="font-sans text-sm text-white/60 max-w-2xl mt-4 leading-relaxed">
+        Dokumentasi kiprah akademik, pameran seni serat profesional, pengabdian masyarakat terapan, dan riset kolaboratif yang dilakukan oleh jajaran dosen {PRODI_CONFIG.acronym} {PRODI_CONFIG.universityShort}.
+      </p>
+    </div>
+  </section>
+
+  {/* Main Grid */}
+  <section className="py-20 bg-mono-cream min-h-screen">
+    <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {activities.map((act, idx) => (
+          <div key={idx} className="border border-mono-black bg-white hover:shadow-[6px_6px_0px_0px_var(--primary-color)] transition-all duration-300 flex flex-col justify-between">
+            {/* Visual Container */}
+            <div className="bg-neutral-100 aspect-[4/3] border-b border-mono-black relative overflow-hidden flex items-center justify-center">
+              <span className="tech-tag text-mono-black/40 text-[10px]">DOKUMENTASI D-0{idx+1}</span>
+            </div>
+            
+            <div className="p-8 flex-1 flex flex-col justify-between">
+              <div>
+                <div className="flex flex-wrap gap-4 text-[10px] font-sans font-semibold text-neutral-400 mb-4">
+                  <div className="flex items-center gap-1.5">
+                    <Calendar className="h-3.5 w-3.5 text-mono-yellow" />
+                    <span>{act.date}</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <MapPin className="h-3.5 w-3.5 text-mono-yellow" />
+                    <span>{act.location}</span>
+                  </div>
+                </div>
+                
+                <h3 className="font-serif text-lg font-bold text-mono-black mb-3 leading-snug">
+                  {act.title}
+                </h3>
+                
+                <p className="font-sans text-xs text-neutral-600 leading-relaxed mb-6">
+                  {act.desc}
+                </p>
+              </div>
+
+              <div className="pt-4 border-t border-dotted border-neutral-200 flex items-center justify-between">
+                <span className="tech-tag text-[9px] text-mono-yellow font-bold">FAKULTAS / PKM</span>
+                <span className="flex items-center gap-1 font-sans text-[9px] font-bold text-mono-black/60">
+                  <Eye className="h-3 w-3" />
+                  <span>DOKUMENTASI</span>
+                </span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

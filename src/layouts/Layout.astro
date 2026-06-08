@@ -5,24 +5,15 @@ import { Footer } from '../components/Footer';
 import { PRODI_CONFIG } from '../config/prodi.config';
 
 interface Props {
-  title?: string;
+  title: string;
   description?: string;
   lang?: 'id' | 'en';
 }
 
-const { lang = 'id' } = Astro.props;
-
-const defaultTitle = lang === 'en'
-  ? `${PRODI_CONFIG.degree} ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort} | Academic Portal`
-  : `${PRODI_CONFIG.degree} ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort} | Portal Akademik`;
-
-const defaultDescription = lang === 'en'
-  ? `Official Academic Portal of the Bachelor Program in ${PRODI_CONFIG.name.en}, ${PRODI_CONFIG.university}.`
-  : `Portal Akademik Resmi Program Studi ${PRODI_CONFIG.degree} ${PRODI_CONFIG.name.id}, ${PRODI_CONFIG.university}.`;
-
 const {
-  title = defaultTitle,
-  description = defaultDescription,
+  title,
+  description = `Portal Akademik Resmi Program Studi ${PRODI_CONFIG.degree} ${PRODI_CONFIG.name.id}, ${PRODI_CONFIG.university}.`,
+  lang = 'id',
 } = Astro.props;
 ---
 
@@ -39,12 +30,6 @@ const {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-
-    <style define:vars={{ primaryColor: PRODI_CONFIG.theme.primaryColor }}>
-      :root {
-        --primary-color: var(--primaryColor);
-      }
-    </style>
   </head>
   <body class="min-h-screen bg-white selection:bg-mono-yellow selection:text-mono-black antialiased">
     <Header lang={lang} client:load />

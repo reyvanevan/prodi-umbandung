@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { PRODI_CONFIG } from '../config/prodi.config';
+import { PRODI_CONFIG } from '@/config/prodi.config';
 
 interface NavDrawerProps {
   lang: 'id' | 'en';
@@ -21,37 +21,52 @@ export function NavDrawer({ lang, isOpen, onClose }: NavDrawerProps) {
       label: 'ABOUT US',
       href: '#',
       submenu: [
-        { label: 'Vision & Mission', href: '#profil' },
-        { label: 'History', href: '#sejarah' },
-        { label: 'Accreditation', href: '#akreditasi' },
-        { label: 'Faculty Activities', href: '#aktivitas-dosen' },
-        { label: 'Faculty & Staff', href: '#dosen-staff' },
-        { label: 'Organizational Structure', href: '#struktur-organisasi' },
-        { label: 'News & Announcements', href: '#berita-agenda' },
+        { label: 'Vision', href: '/en/#profil' },
+        { label: 'Mission', href: '/en/#profil' },
+        { label: 'Program History', href: '/en/#sejarah' },
+        { label: 'Accreditation', href: '/en/#akreditasi' },
+        { label: 'Faculty Activities', href: '/en/#aktivitas-dosen' },
+        { label: 'Faculty & Staff', href: '/en/#dosen-staff' },
+        { label: 'Organizational Structure', href: '/en/#struktur-organisasi' },
+        { label: 'Faculty Publications', href: '/en/tulisan-dosen' },
       ],
     },
+    { id: 'admission', label: 'ADMISSIONS', href: 'https://pmb.umbandung.ac.id/', isExternal: true },
     {
-      id: 'academic',
-      label: 'ACADEMIC PLAN',
+      id: 'statistics',
+      label: 'STATISTICS',
       href: '#',
       submenu: [
-        { label: 'Program Educational Objectives (PEO)', href: '#peo' },
-        { label: 'Program Learning Outcomes (PLO)', href: '#plo' },
-        { label: 'Curriculum Structure', href: '#program' },
+        { label: 'New Students Average', href: '/en/statistik#rata-maba' },
+        { label: 'Lecturer Ratio', href: '/en/statistik#rasio-dosen' },
+        { label: 'Study Duration Ratio', href: '/en/statistik#rasio-studi' },
       ],
     },
-    { id: 'admission', label: 'ADMISSION', href: 'https://pmb.umbandung.ac.id/', isExternal: true },
-    { id: 'statistics', label: 'STATISTICS', href: '#statistik' },
     {
       id: 'students',
       label: 'STUDENTS & ALUMNI',
       href: '#',
       submenu: [
-        { label: 'Student Activities & Achievements', href: '#aktivitas-prestasi' },
-        { label: 'Final Project Archive', href: '#tugas-akhir' },
+        { label: 'Student Achievements', href: '/en/#aktivitas-prestasi' },
+        { label: 'Final Project', href: '/en/#tugas-akhir' },
+        { label: 'Alumni', href: '/en/alumni' },
       ],
     },
-    { id: 'archive', label: 'ARCHIVE GALLERY', href: '#archive' },
+    {
+      id: 'gallery',
+      label: 'ACTIVITY GALLERY',
+      href: '#',
+      submenu: [
+        { label: 'Faculty Activities', href: '/en/kegiatan-dosen' },
+        { label: 'Student Activities', href: '/en/kegiatan-mahasiswa' },
+      ],
+    },
+    ...(PRODI_CONFIG.sintaUrl ? [{ 
+      id: 'sinta', 
+      label: 'SINTA PRODI', 
+      href: PRODI_CONFIG.sintaUrl, 
+      isExternal: true 
+    }] : []),
   ] : [
     { id: 'home', label: 'HOME', href: '/' },
     {
@@ -59,40 +74,55 @@ export function NavDrawer({ lang, isOpen, onClose }: NavDrawerProps) {
       label: 'TENTANG KAMI',
       href: '#',
       submenu: [
-        { label: 'Visi & Misi', href: '#profil' },
-        { label: 'Sejarah Prodi', href: '#sejarah' },
-        { label: 'Akreditasi', href: '#akreditasi' },
-        { label: 'Aktivitas Dosen', href: '#aktivitas-dosen' },
-        { label: 'Dosen & Staff', href: '#dosen-staff' },
-        { label: 'Struktur Organisasi', href: '#struktur-organisasi' },
-        { label: 'Berita', href: '#berita-agenda' },
+        { label: 'Visi', href: '/#profil' },
+        { label: 'Misi', href: '/#profil' },
+        { label: 'Sejarah Prodi', href: '/#sejarah' },
+        { label: 'Akreditasi', href: '/#akreditasi' },
+        { label: 'Aktivitas Dosen', href: '/#aktivitas-dosen' },
+        { label: 'Dosen dan Staff', href: '/#dosen-staff' },
+        { label: 'Struktur Organisasi', href: '/#struktur-organisasi' },
+        { label: 'Tulisan Dosen', href: '/tulisan-dosen' },
       ],
     },
+    { id: 'admission', label: 'ADMISSIONS', href: 'https://pmb.umbandung.ac.id/', isExternal: true },
     {
-      id: 'academic',
-      label: 'RENCANA AKADEMIK',
+      id: 'statistics',
+      label: 'STATISTIK',
       href: '#',
       submenu: [
-        { label: 'Tujuan Pendidikan Program (PEO)', href: '#peo' },
-        { label: 'Tujuan Pembelajaran Program (PLO)', href: '#plo' },
-        { label: 'Struktur Kurikulum', href: '#program' },
+        { label: 'Rata Mahasiswa Baru', href: '/statistik#rata-maba' },
+        { label: 'Rasio Dosen', href: '/statistik#rasio-dosen' },
+        { label: 'Rasio Masa studi', href: '/statistik#rasio-studi' },
       ],
     },
-    { id: 'admission', label: 'ADMISSION', href: 'https://pmb.umbandung.ac.id/', isExternal: true },
-    { id: 'statistics', label: 'STATISTIK', href: '#statistik' },
     {
       id: 'students',
-      label: 'MAHASISWA & ALUMNI',
+      label: 'MAHASISWA DAN ALUMNI',
       href: '#',
       submenu: [
-        { label: 'Aktivitas & Prestasi Mahasiswa', href: '#aktivitas-prestasi' },
-        { label: 'Tugas Akhir', href: '#tugas-akhir' },
+        { label: 'Prestasi Mahasiswa', href: '/#aktivitas-prestasi' },
+        { label: 'Tugas Akhir', href: '/#tugas-akhir' },
+        { label: 'Alumni', href: '/alumni' },
       ],
     },
-    { id: 'archive', label: 'GALERI ARSIP', href: '#archive' },
+    {
+      id: 'gallery',
+      label: 'GALERI KEGIATAN',
+      href: '#',
+      submenu: [
+        { label: 'Kegiatan Dosen', href: '/kegiatan-dosen' },
+        { label: 'Kegiatan Mahasiswa', href: '/kegiatan-mahasiswa' },
+      ],
+    },
+    ...(PRODI_CONFIG.sintaUrl ? [{ 
+      id: 'sinta', 
+      label: 'SINTA PRODI', 
+      href: PRODI_CONFIG.sintaUrl, 
+      isExternal: true 
+    }] : []),
   ];
 
-  const portals = lang === 'en' ? PRODI_CONFIG.portals.en : PRODI_CONFIG.portals.id;
+  const portals = PRODI_CONFIG.portals[lang] || [];
 
   return (
     <>
@@ -111,7 +141,9 @@ export function NavDrawer({ lang, isOpen, onClose }: NavDrawerProps) {
         {/* Header */}
         <div className="flex items-center justify-between pb-6 border-b border-white/10 shrink-0">
           <div>
-            <span className="font-serif text-xl tracking-wide">{PRODI_CONFIG.degree} {PRODI_CONFIG.acronym} {PRODI_CONFIG.universityShort}</span>
+            <span className="font-serif text-xl tracking-wide">
+              {PRODI_CONFIG.degree} {PRODI_CONFIG.acronym} {PRODI_CONFIG.universityShort}
+            </span>
             <span className="tech-tag block text-white/40 mt-1">
               {lang === 'en' ? 'NAVIGATION MENU' : 'MENU NAVIGASI'}
             </span>
@@ -134,7 +166,7 @@ export function NavDrawer({ lang, isOpen, onClose }: NavDrawerProps) {
           </button>
         </div>
 
-        {/* Main Links (Collapsible/Accordion on mobile) */}
+        {/* Main Links */}
         <div className="flex-1 my-8 flex flex-col justify-start gap-4 shrink-0 overflow-y-auto pr-2">
           {menuItems.map((item, index) => {
             const numStr = String(index + 1).padStart(2, '0');
@@ -229,26 +261,32 @@ export function NavDrawer({ lang, isOpen, onClose }: NavDrawerProps) {
             </div>
           </div>
 
-          <p className="tech-tag text-white/30 mb-3">
-            {lang === 'en' ? 'QUICK PORTALS // ACADEMIC' : 'PORTAL CEPAT // AKADEMIK'}
-          </p>
-          <div className="grid grid-cols-2 gap-3 mb-6">
-            {portals.map((portal, idx) => (
-              <a
-                key={idx}
-                href={portal.href}
-                className="tech-tag text-white/60 hover:text-white transition-colors no-underline text-[9px]"
-              >
-                {portal.label}
-              </a>
-            ))}
-          </div>
+          {portals.length > 0 && (
+            <>
+              <p className="tech-tag text-white/30 mb-3">
+                {lang === 'en' ? 'QUICK PORTALS // ACADEMIC' : 'PORTAL CEPAT // AKADEMIK'}
+              </p>
+              <div className="grid grid-cols-2 gap-3 mb-6">
+                {portals.map((portal, idx) => (
+                  <a
+                    key={idx}
+                    href={portal.href}
+                    className="tech-tag text-white/60 hover:text-white transition-colors no-underline text-[9px]"
+                  >
+                    {portal.label}
+                  </a>
+                ))}
+              </div>
+            </>
+          )}
 
           <div className="flex justify-between items-center pt-4 border-t border-white/5">
             <span className="tech-tag text-white/30">
               {lang === 'en' ? 'ACCREDITATION: B' : 'AKREDITASI: B'}
             </span>
-            <span className="tech-tag text-mono-yellow font-bold">UM BANDUNG</span>
+            <span className="tech-tag text-mono-yellow font-bold">
+              {PRODI_CONFIG.universityShort.toUpperCase()}
+            </span>
           </div>
         </div>
       </div>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getNews, getEvents } from '@/lib/supabase/db';
 import { isSupabaseConfigured } from '@/lib/supabase/client';
 import { ACADEMIC_NEWS, ACADEMIC_EVENTS } from '@/lib/site-data';
+import { PRODI_CONFIG } from '@/config/prodi.config';
 
 interface NewsEventsSectionProps {
   lang: 'id' | 'en';
@@ -14,6 +15,14 @@ export function NewsEventsSection({ lang, newsList, eventsList }: NewsEventsSect
   const [dbEvents, setDbEvents] = useState<any[] | undefined>(eventsList);
 
   useEffect(() => {
+    // Sync props to state if props are provided
+    if (newsList) {
+      setDbNews(newsList);
+    }
+    if (eventsList) {
+      setDbEvents(eventsList);
+    }
+
     if (newsList && eventsList) return;
     if (!isSupabaseConfigured) return;
 
@@ -51,29 +60,30 @@ export function NewsEventsSection({ lang, newsList, eventsList }: NewsEventsSect
     };
     loadData();
   }, [lang, newsList, eventsList]);
+
   const defaultNews = lang === 'en' ? [
     {
       id: 'news-1',
       title: 'Natural Dyeing Techniques Training for Local Artisans',
       date: '02 JUN 2026',
       category: 'COMMUNITY SERVICE',
-      snippet: 'UMB Textile Craft & Fashion faculty and students held a workshop on utilizing Bandung\'s local plants as sustainable natural dyes.',
+      snippet: `Training on utilizing local plants as sustainable natural dyes led by the faculty and students of ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}.`,
       imgSrc: '/assets/portfolio-ecoprint.jpg',
     },
     {
       id: 'news-2',
-      title: 'KTF UMB Student Wins Best Work Award at National Exhibition',
+      title: `${PRODI_CONFIG.acronym} Student Wins Best Work Award at National Exhibition`,
       date: '28 MAY 2026',
       category: 'STUDENT ACHIEVEMENT',
-      snippet: 'Featuring Sundanese cultural heritage using modern weaving techniques, the work of the 2024 cohort student wowed the jury panels.',
+      snippet: 'Featuring cultural heritage using modern techniques, the work of the student wowed the jury panels.',
       imgSrc: '/assets/portfolio-woven-bag.jpg',
     },
     {
       id: 'news-3',
-      title: 'Collaborative Natural Fiber Research with Textile Fiber Association',
+      title: 'Collaborative Research with Textile Fiber Association',
       date: '15 MAY 2026',
       category: 'RESEARCH COLLABORATION',
-      snippet: 'The study program officially signed a partnership to develop eco-friendly local fiber-based textile craft competency standards.',
+      snippet: 'The study program officially signed a partnership to develop eco-friendly local fiber-based craft competency standards.',
       imgSrc: '/assets/philosophy-lab-editorial.jpg',
     },
   ] : ACADEMIC_NEWS;
@@ -83,22 +93,22 @@ export function NewsEventsSection({ lang, newsList, eventsList }: NewsEventsSect
       id: 'event-1',
       dateDay: '18',
       dateMonth: 'JUN',
-      title: 'KRIYAFEST 2026: Graduation Fashion Show & Craft Exhibition',
-      location: 'KH. AHMAD DAHLAN MAIN HALL, UMBANDUNG',
+      title: `${PRODI_CONFIG.acronym}FEST 2026: Graduation Fashion Show & Craft Exhibition`,
+      location: `MAIN HALL, ${PRODI_CONFIG.universityShort.toUpperCase()}`,
     },
     {
       id: 'event-2',
       dateDay: '25',
       dateMonth: 'JUN',
       title: 'Textile Craft Workshop: Fabric Experiments & Surface Design',
-      location: 'MAIN CRAFT STUDIO, UMB BUILDING',
+      location: `MAIN STUDIO, ${PRODI_CONFIG.universityShort.toUpperCase()} BUILDING`,
     },
     {
       id: 'event-3',
       dateDay: '05',
       dateMonth: 'JUL',
-      title: 'Public Lecture: The Future of Craft & Nusantara Creative Industries',
-      location: 'MAIN AUDITORIUM, UMBANDUNG',
+      title: 'Public Lecture: Nusantara Creative Industries',
+      location: `MAIN AUDITORIUM, ${PRODI_CONFIG.universityShort.toUpperCase()}`,
     },
   ] : ACADEMIC_EVENTS;
 
@@ -106,7 +116,7 @@ export function NewsEventsSection({ lang, newsList, eventsList }: NewsEventsSect
   const finalEvents = dbEvents && dbEvents.length > 0 ? dbEvents : defaultEvents;
 
   return (
-    <section id="berita-agenda" className="w-full py-24 lg:py-32 bg-white border-b border-mono-black/10">
+    <section id="berita-agenda" className="w-full py-24 lg:py-32 bg-mono-cream border-b border-mono-black/10">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
           {/* News Stream (7 columns) */}
@@ -170,7 +180,7 @@ export function NewsEventsSection({ lang, newsList, eventsList }: NewsEventsSect
               {finalEvents.map((event) => (
                 <div
                   key={event.id}
-                  className="flex gap-6 p-6 border border-mono-black/10 hover:border-mono-yellow transition-colors duration-300 bg-neutral-50"
+                  className="flex gap-6 p-6 border border-mono-black/10 hover:border-mono-yellow transition-colors duration-300 bg-white"
                 >
                   {/* Date Badge */}
                   <div className="flex flex-col items-center justify-center bg-mono-black text-white w-16 h-16 shrink-0 border-b-2 border-mono-yellow">

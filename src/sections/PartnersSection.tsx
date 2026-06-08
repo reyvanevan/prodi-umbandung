@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getPartners } from '@/lib/supabase/db';
+import { getPartners, getLandingPartners } from '@/lib/supabase/db';
 import { isSupabaseConfigured } from '@/lib/supabase/client';
 import { PARTNERS } from '@/lib/site-data';
 
@@ -12,10 +12,21 @@ export function PartnersSection({ lang, partnersList }: PartnersSectionProps) {
   const [dbPartners, setDbPartners] = useState<string[] | undefined>(partnersList);
 
   useEffect(() => {
-    if (partnersList) return;
+    if (partnersList) {
+      setDbPartners(partnersList);
+      return;
+    }
     if (!isSupabaseConfigured) return;
 
     const loadData = async () => {
+      // Try landing_partners table first
+      const fetchedLanding = await getLandingPartners();
+      if (fetchedLanding && fetchedLanding.length > 0) {
+        setDbPartners(fetchedLanding.map((item) => item.name));
+        return;
+      }
+
+      // Fallback to legacy partners table
       const fetchedPartners = await getPartners();
       if (fetchedPartners) {
         setDbPartners(fetchedPartners.map((item) => item.name));

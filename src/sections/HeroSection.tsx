@@ -1,17 +1,23 @@
-import { PRODI_CONFIG } from '../config/prodi.config';
+import { PRODI_CONFIG } from '@/config/prodi.config';
 
 interface HeroSectionProps {
   lang: 'id' | 'en';
 }
 
 export function HeroSection({ lang }: HeroSectionProps) {
+  // Split name to display nicely in two lines
+  const nameToDisplay = lang === 'en' ? PRODI_CONFIG.name.en : PRODI_CONFIG.name.id;
+  const parts = nameToDisplay.split('&');
+  const part1 = parts[0]?.trim();
+  const part2 = parts[1] ? `& ${parts[1].trim()}` : '';
+
   return (
     <section className="relative w-full h-screen overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
           src="/assets/hero-mono-stigma.png"
-          alt="UMB Department Background"
+          alt={`${PRODI_CONFIG.acronym} Editorial Background`}
           className="w-full h-full object-cover"
         />
         {/* Cinematic gradient overlay */}
@@ -21,31 +27,34 @@ export function HeroSection({ lang }: HeroSectionProps) {
       {/* Hero Content */}
       <div className="relative z-10 h-full flex flex-col items-center justify-center px-6">
         {/* Main Title */}
-        <div className="text-center fade-in-element flex flex-col items-center">
+        <div className="text-center fade-in-element">
           <p className="tech-tag text-white/70 mb-6 tracking-ultra-wide">
             {PRODI_CONFIG.university.toUpperCase()}
           </p>
-          <h1 className="font-serif text-white text-6xl md:text-8xl tracking-wide leading-none">
-            {PRODI_CONFIG.degree} {PRODI_CONFIG.acronym}
+          <h1 className="font-serif text-white text-5xl md:text-7xl lg:text-8xl tracking-wide leading-none">
+            {lang === 'id' ? `${PRODI_CONFIG.degree} ${part1}` : part1}
           </h1>
-          <h2 className="font-serif text-white text-3xl md:text-5xl tracking-wide mt-4 italic max-w-4xl">
-            {lang === 'en' ? PRODI_CONFIG.name.en : PRODI_CONFIG.name.id}
+          <h2 className="font-serif text-white text-4xl md:text-6xl lg:text-7xl tracking-wide mt-2 italic">
+            {lang === 'en' ? `${part2} (${PRODI_CONFIG.degreeTitle})` : part2}
           </h2>
         </div>
 
-        {/* Ghost Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 mt-12 fade-in-element delay-300">
           <a
-            href="#profil"
-            className="ghost-btn ghost-btn-dark px-10 py-4 border border-white text-white text-xs tracking-ultra-wide block text-center"
+            href="https://pmb.umbandung.ac.id/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="ghost-btn ghost-btn-dark px-10 py-4 border border-white text-white text-xs tracking-ultra-wide block text-center font-bold bg-mono-yellow/10 hover:bg-mono-yellow hover:text-mono-black transition-colors"
           >
-            {lang === 'en' ? 'PROGRAM PROFILE' : 'PROFIL PRODI'}
+            {lang === 'en' ? 'REGISTRATION' : 'PENDAFTARAN'}
           </a>
           <a
-            href="#archive"
-            className="ghost-btn ghost-btn-dark px-10 py-4 border border-white text-white text-xs tracking-ultra-wide block text-center"
+            href={`/assets/brosur-${PRODI_CONFIG.acronym.toLowerCase()}.pdf`}
+            target="_blank"
+            download
+            className="ghost-btn ghost-btn-dark px-10 py-4 border border-white text-white text-xs tracking-ultra-wide block text-center hover:bg-white hover:text-mono-black transition-colors"
           >
-            {lang === 'en' ? 'ARCHIVE GALLERY' : 'KARYA ARSIP'}
+            {lang === 'en' ? 'BOOKLET' : 'BOOKLET'}
           </a>
         </div>
 

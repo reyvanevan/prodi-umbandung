@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getSiteContent } from '@/lib/supabase/db';
 import { isSupabaseConfigured } from '@/lib/supabase/client';
-import { PRODI_CONFIG } from '../config/prodi.config';
+import { PRODI_CONFIG } from '@/config/prodi.config';
 
 interface EditorialSectionProps {
   lang: 'id' | 'en';
@@ -12,7 +12,10 @@ export function EditorialSection({ lang, quote }: EditorialSectionProps) {
   const [dbQuote, setDbQuote] = useState<string | undefined>(quote);
 
   useEffect(() => {
-    if (quote) return;
+    if (quote) {
+      setDbQuote(quote);
+      return;
+    }
     if (!isSupabaseConfigured) return;
 
     const loadData = async () => {
@@ -35,7 +38,7 @@ export function EditorialSection({ lang, quote }: EditorialSectionProps) {
         <div className="relative h-[60vh] lg:h-auto overflow-hidden fade-in-element">
           <img
             src="/assets/editorial-mono-stigma.png"
-            alt="MONO-STIGMA Editorial portrait"
+            alt={`${PRODI_CONFIG.acronym} Editorial portrait`}
             className="w-full h-full object-cover"
           />
           {/* Technical overlay */}
@@ -69,12 +72,12 @@ export function EditorialSection({ lang, quote }: EditorialSectionProps) {
                 <span>&ldquo;{finalQuote}&rdquo;</span>
               ) : lang === 'en' ? (
                 <>
-                  &ldquo;{PRODI_CONFIG.name.en} is not just study or objects, but the way we{' '}
+                  &ldquo;Textile craft and fashion are not just clothing or objects, but the way we{' '}
                   <span className="text-mono-yellow">breathe life into culture</span> and respond to the future.&rdquo;
                 </>
               ) : (
                 <>
-                  &ldquo;{PRODI_CONFIG.name.id} bukan sekadar kuliah atau benda, melainkan cara kita{' '}
+                  &ldquo;Kriya dan fashion bukan sekadar pakaian or benda, melainkan cara kita{' '}
                   <span className="text-mono-yellow">menghidupkan budaya</span> dan merespons masa depan.&rdquo;
                 </>
               )}
@@ -84,7 +87,7 @@ export function EditorialSection({ lang, quote }: EditorialSectionProps) {
               <div className="w-12 h-px bg-white/30" />
               <div>
                 <p className="font-serif text-white text-lg font-medium">
-                  {PRODI_CONFIG.degree} {PRODI_CONFIG.acronym} {PRODI_CONFIG.universityShort}
+                  {PRODI_CONFIG.acronym} {PRODI_CONFIG.universityShort}
                 </p>
                 <p className="tech-tag text-white/50">PHILOSOPHY // SS 2026</p>
               </div>

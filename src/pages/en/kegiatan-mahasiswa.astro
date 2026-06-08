@@ -1,0 +1,91 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { Calendar, MapPin, Eye } from 'lucide-react';
+import { PRODI_CONFIG } from '../../config/prodi.config';
+
+const activities = [
+  {
+    title: "Kriyasa Graduation Exhibition: Final Project Portfolio Exhibition 2025",
+    date: "February 24-28, 2025",
+    location: `${PRODI_CONFIG.universityShort} Rektorat Building, Bandung`,
+    desc: `The premier graduation portfolio exhibition showcasing the masterpiece works of ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort} graduates, highlighting contemporary fiber art exploration, premium handloom weaving, and conceptual apparel design.`,
+    image: "/assets/kegiatan-m1.png"
+  },
+  {
+    title: "Solo Graduation Fashion Show 'Benang Juang' at Bandung Fashion Hall",
+    date: "March 05, 2025",
+    location: "Bandung Fashion Hall, Bandung",
+    desc: `An exclusive fashion showcase managed entirely by graduating ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort} students to present their ready-to-wear apparel and conceptual garments before commercial buyers and media.`,
+    image: "/assets/kegiatan-m2.png"
+  },
+  {
+    title: "SERAT Gathering: Basic Macrame Workshop for the Public",
+    date: "November 14, 2024",
+    location: `${PRODI_CONFIG.universityShort} Campus, Bandung`,
+    desc: `A public workshop hosted by the ${PRODI_CONFIG.acronym} Student Association introducing weaving knot art (macrame) to local high school students and craft hobbyists.`,
+    image: "/assets/kegiatan-m3.png"
+  }
+];
+---
+
+<Layout title={`Student Activities | ${PRODI_CONFIG.degree} ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}`} lang="en">
+  {/* Header Section */}
+  <section className="relative bg-mono-black text-white pt-36 pb-20 border-b border-white/10">
+    <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      <p className="tech-tag text-mono-yellow mb-3">GALLERY // STUDENT LIFE</p>
+      <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl tracking-wide leading-none">
+        Student Activities & Creations
+      </h1>
+      <p className="font-sans text-sm text-white/60 max-w-2xl mt-4 leading-relaxed">
+        Explore the vibrant creative student life at {PRODI_CONFIG.acronym} {PRODI_CONFIG.universityShort}. Witness our graduation design portfolio exhibition (Kriyasa), runway shows, and social community crafts workshops by the Student Association.
+      </p>
+    </div>
+  </section>
+
+  {/* Main Grid */}
+  <section className="py-20 bg-mono-cream min-h-screen">
+    <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {activities.map((act, idx) => (
+          <div key={idx} className="border border-mono-black bg-white hover:shadow-[6px_6px_0px_0px_var(--primary-color)] transition-all duration-300 flex flex-col justify-between">
+            {/* Visual Container */}
+            <div className="bg-neutral-100 aspect-[4/3] border-b border-mono-black relative overflow-hidden flex items-center justify-center">
+              <span className="tech-tag text-mono-black/40 text-[10px]">DOKUMENTASI M-0{idx+1}</span>
+            </div>
+            
+            <div className="p-8 flex-1 flex flex-col justify-between">
+              <div>
+                <div className="flex flex-wrap gap-4 text-[10px] font-sans font-semibold text-neutral-400 mb-4">
+                  <div className="flex items-center gap-1.5">
+                    <Calendar className="h-3.5 w-3.5 text-mono-yellow" />
+                    <span>{act.date}</span>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <MapPin className="h-3.5 w-3.5 text-mono-yellow" />
+                    <span>{act.location}</span>
+                  </div>
+                </div>
+                
+                <h3 className="font-serif text-lg font-bold text-mono-black mb-3 leading-snug">
+                  {act.title}
+                </h3>
+                
+                <p className="font-sans text-xs text-neutral-600 leading-relaxed mb-6">
+                  {act.desc}
+                </p>
+              </div>
+
+              <div className="pt-4 border-t border-dotted border-neutral-200 flex items-center justify-between">
+                <span className="tech-tag text-[9px] text-mono-yellow font-bold">STUDENTS // HIMAPRODI</span>
+                <span className="flex items-center gap-1 font-sans text-[9px] font-bold text-mono-black/60">
+                  <Eye className="h-3 w-3" />
+                  <span>DOKUMENTASI</span>
+                </span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

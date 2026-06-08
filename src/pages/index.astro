@@ -2,21 +2,28 @@
 import Layout from '../layouts/Layout.astro';
 import { HeroSection } from '../sections/HeroSection';
 import { SambutanKaprodi } from '../sections/SambutanKaprodi';
+import { InfoSingkatSection } from '../sections/InfoSingkatSection';
+import { TujuanPendidikanSection } from '../sections/TujuanPendidikanSection';
+import { ProfilVideoSection } from '../sections/ProfilVideoSection';
+import { StatsRibbon } from '../sections/StatsRibbon';
 import { NewsEventsSection } from '../sections/NewsEventsSection';
-import { ProgramsSection } from '../sections/ProgramsSection';
 import { ArchiveSection } from '../sections/ArchiveSection';
-import { EditorialSection } from '../sections/EditorialSection';
 import { PartnersSection } from '../sections/PartnersSection';
+import { EditorialSection } from '../sections/EditorialSection';
 import { StaggerTestimonials } from '../components/ui/stagger-testimonials';
+import { PRODI_CONFIG } from '../config/prodi.config';
 ---
 
-<Layout lang="id">
+<Layout title={`${PRODI_CONFIG.degree} ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort} | Portal Akademik`} lang="id">
   <HeroSection lang="id" client:load />
   <SambutanKaprodi lang="id" client:load />
+  <InfoSingkatSection lang="id" client:load />
+  <TujuanPendidikanSection lang="id" client:load />
+  <ProfilVideoSection lang="id" client:load />
+  <StatsRibbon lang="id" client:load />
   <NewsEventsSection lang="id" client:load />
-  <ProgramsSection lang="id" client:load />
   <ArchiveSection lang="id" client:load />
-  <EditorialSection lang="id" client:load />
   <PartnersSection lang="id" client:load />
+  <EditorialSection lang="id" client:load />
   <StaggerTestimonials lang="id" client:load />
 </Layout>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getSiteContent } from '@/lib/supabase/db';
 import { isSupabaseConfigured } from '@/lib/supabase/client';
-import { PRODI_CONFIG } from '../config/prodi.config';
+import { PRODI_CONFIG } from '@/config/prodi.config';
 
 interface SambutanKaprodiProps {
   lang: 'id' | 'en';
@@ -40,15 +40,15 @@ export function SambutanKaprodi({ lang, title, p1, p2 }: SambutanKaprodiProps) {
     ? `Welcome to the official portal of the ${PRODI_CONFIG.degree} Program in ${PRODI_CONFIG.name.en} at ${PRODI_CONFIG.university}. We are committed to shaping future creative talents who master the balance between aesthetics, modern technology, and local cultural wisdom.`
     : `Selamat datang di portal resmi Program Studi ${PRODI_CONFIG.degree} ${PRODI_CONFIG.name.id} ${PRODI_CONFIG.university}. Kami berkomitmen untuk membentuk talenta-talenta kreatif masa depan yang menguasai keseimbangan estetika, teknologi modern, dan kearifan budaya lokal.`;
   const defaultP2 = lang === 'en'
-    ? `Our development focus lies in integrating innovative methodologies with the noble values of the Nusantara, creating craft products that are globally competitive while possessing a deep sense of identity.`
-    : `Fokus pengembangan kami terletak pada integrasi inovasi teknologi dengan nilai-nilai luhur Nusantara, menciptakan produk kriya yang berdaya saing global sekaligus memiliki kedalaman karakter identitas bangsa.`;
+    ? 'Our development focus lies in integrating fashion technology innovations with the noble values of the Nusantara, creating textile craft products that are globally competitive while possessing a deep sense of national identity.'
+    : 'Fokus pengembangan kami terletak pada integrasi inovasi teknologi busana dengan nilai-nilai luhur Nusantara, menciptakan produk kriya tekstil yang berdaya saing global sekaligus memiliki kedalaman karakter identitas bangsa.';
 
   const finalTitle = dbTitle || title || defaultTitle;
   const finalP1 = dbP1 || p1 || defaultP1;
   const finalP2 = dbP2 || p2 || defaultP2;
 
   return (
-    <section id="profil" className="w-full bg-neutral-50 py-24 lg:py-32 border-b border-mono-black/10">
+    <section id="profil" className="w-full bg-mono-cream py-24 lg:py-32 border-b border-mono-black/10">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Portrait Image (5 columns) */}
@@ -68,7 +68,7 @@ export function SambutanKaprodi({ lang, title, p1, p2 }: SambutanKaprodiProps) {
               </div>
               <div className="absolute bottom-6 left-6 right-6 flex justify-between border-t border-white/20 pt-4">
                 <span className="tech-tag text-white/30">REC [●] 1080P</span>
-                <span className="tech-tag text-white/30">UMB // BDG</span>
+                <span className="tech-tag text-white/30">{PRODI_CONFIG.universityShort.toUpperCase()} // BDG</span>
               </div>
             </div>
           </div>
@@ -96,12 +96,12 @@ export function SambutanKaprodi({ lang, title, p1, p2 }: SambutanKaprodiProps) {
                 <p className="tech-tag text-mono-black/40 mb-1">CINEMATIC PROFILE VIDEO</p>
                 <h4 className="font-serif text-lg text-mono-black">
                   {lang === 'en'
-                    ? `Watch ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort} Profile (2026)`
-                    : `Tonton Profil ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort} (2026)`}
+                    ? `Watch ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort} Profile`
+                    : `Tonton Profil ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}`}
                 </h4>
               </div>
               <a
-                href={PRODI_CONFIG.videoProfileUrl || '#video-profil'}
+                href="#video-profil"
                 className="px-6 py-3 border border-mono-black text-mono-black hover:bg-mono-yellow hover:border-mono-yellow hover:text-mono-black text-xs font-bold tracking-ultra-wide block text-center bg-transparent shrink-0 transition-colors no-underline"
               >
                 PLAY VIDEO [▶]

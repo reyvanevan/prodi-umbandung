@@ -89,3 +89,46 @@ insert into public.news (title, title_en, category, category_en, snippet, snippe
   ('Pelatihan Teknik Pewarna Alami untuk Pengrajin Lokal', 'Natural Dyeing Techniques Training for Local Artisans', 'PENGABDIAN MASYARAKAT', 'COMMUNITY SERVICE', 'Dosen dan mahasiswa Kriya Tekstil & Fashion UMB menyelenggarakan workshop pemanfaatan tanaman lokal Bandung sebagai pewarna alami berkelanjutan.', 'UMB Textile Craft & Fashion faculty and students held a workshop on utilizing Bandung''s local plants as sustainable natural dyes.', '02 JUN 2026', '/assets/portfolio-ecoprint.jpg'),
   ('Mahasiswa KTF UMB Raih Penghargaan Karya Terbaik di Pameran Nasional', 'KTF UMB Student Wins Best Work Award at National Exhibition', 'PRESTASI MAHASISWA', 'STUDENT ACHIEVEMENT', 'Mengangkat tema warisan budaya sunda dengan teknik anyaman modern, karya mahasiswa angkatan 2024 berhasil memukau dewan juri.', 'Featuring Sundanese cultural heritage using modern weaving techniques, the work of the 2024 cohort student wowed the jury panels.', '28 MAY 2026', '/assets/portfolio-woven-bag.jpg'),
   ('Kolaborasi Riset Serat Alam Bersama Asosiasi Serat Tekstil', 'Collaborative Natural Fiber Research with Textile Fiber Association', 'KOLABORASI RISET', 'RESEARCH COLLABORATION', 'Program studi resmi menandatangani kerjasama pengembangan standardisasi kompetensi kriya tekstil berbasis serat lokal ramah lingkungan.', 'The study program officially signed a partnership to develop eco-friendly local fiber-based textile craft competency standards.', '15 MAY 2026', '/assets/philosophy-lab-editorial.jpg');
+
+-- 12. Create landing_stats table
+create table if not exists public.landing_stats (
+  id uuid primary key default gen_random_uuid(),
+  number text not null,
+  label text not null,
+  sort_order int not null default 0,
+  created_at timestamp with time zone default timezone('utc'::text, now()) not null
+);
+alter table public.landing_stats enable row level security;
+create policy "Allow public read-only access for landing_stats" on public.landing_stats for select using (true);
+create policy "Allow admin write access for landing_stats" on public.landing_stats for all using (auth.role() = 'authenticated');
+
+-- 13. Create landing_portfolio_items table
+create table if not exists public.landing_portfolio_items (
+  id uuid primary key default gen_random_uuid(),
+  image text not null,
+  title text not null,
+  medium text not null,
+  technique text not null,
+  year text not null,
+  "gridClass" text not null,
+  sort_order int not null default 0,
+  created_at timestamp with time zone default timezone('utc'::text, now()) not null
+);
+alter table public.landing_portfolio_items enable row level security;
+create policy "Allow public read-only access for landing_portfolio_items" on public.landing_portfolio_items for select using (true);
+create policy "Allow admin write access for landing_portfolio_items" on public.landing_portfolio_items for all using (auth.role() = 'authenticated');
+
+-- 14. Seed landing_stats
+insert into public.landing_stats (number, label, sort_order) values
+  ('180+', 'MAHASISWA AKTIF KREATIF', 1),
+  ('240+', 'ALUMNI TERSEBAR', 2),
+  ('16+', 'DOSEN PENGAMPU AHLI', 3),
+  ('50+', 'MATA KULIAH UNGGULAN', 4);
+
+-- 15. Seed landing_portfolio_items
+insert into public.landing_portfolio_items (image, title, medium, technique, year, "gridClass", sort_order) values
+  ('/assets/portfolio-organic-gown.jpg', 'Golden Heritage Eco-Gown', 'DESIGNER: NAILA PUTRI', 'JUARA I // FASHION DESIGN COMPETITION', 'AWARD-01', 'lg:col-span-2 lg:row-span-2', 1),
+  ('/assets/portfolio-songket.jpg', 'Contemporary Woven Songket', 'DESIGNER: DANIEL WIJAYA', 'KARYA TERBAIK // EXHIBITION ITB', 'AWARD-02', 'col-span-1', 2),
+  ('/assets/portfolio-ikat-jacket.jpg', 'Structured Ikat Utility Jacket', 'DESIGNER: ARYA DINATA', 'PAMERAN UTAMA // JOGJA FASHION WEEK', 'AWARD-03', 'col-span-1', 3),
+  ('/assets/portfolio-batik.jpg', 'Batik Sogan Pewarna Alami', 'DESIGNER: RYU HANSEN', 'KARYA INOVATIF // WARISAN BUDAYA', 'AWARD-04', 'col-span-1', 4),
+  ('/assets/portfolio-ready-to-wear.jpg', 'Urban Shibori Ready-To-Wear', 'DESIGNER: FARAH AMALIA', 'FINALIS // NATIONAL YOUNG DESIGNER AWARD', 'AWARD-05', 'lg:col-span-2', 5);

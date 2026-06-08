@@ -129,3 +129,69 @@ export async function updateSiteContent(key: string, value: string, valueEn: str
   }
   return true;
 }
+
+export interface DbLandingStat {
+  id: string;
+  number: string;
+  label: string;
+  sort_order: number;
+}
+
+export interface DbLandingPartner {
+  id: string;
+  name: string;
+  sort_order: number;
+}
+
+export interface DbLandingPortfolioItem {
+  id: string;
+  image: string;
+  title: string;
+  medium: string;
+  technique: string;
+  year: string;
+  gridClass: string;
+  sort_order: number;
+}
+
+export async function getLandingStats(): Promise<DbLandingStat[] | null> {
+  const supabase = getBrowserSupabaseClient();
+  if (!supabase) return null;
+  const { data, error } = await supabase
+    .from('landing_stats')
+    .select('*')
+    .order('sort_order', { ascending: true });
+  if (error) {
+    console.error('Error fetching landing stats:', error);
+    return null;
+  }
+  return data;
+}
+
+export async function getLandingPartners(): Promise<DbLandingPartner[] | null> {
+  const supabase = getBrowserSupabaseClient();
+  if (!supabase) return null;
+  const { data, error } = await supabase
+    .from('landing_partners')
+    .select('*')
+    .order('sort_order', { ascending: true });
+  if (error) {
+    console.error('Error fetching landing partners:', error);
+    return null;
+  }
+  return data;
+}
+
+export async function getLandingPortfolioItems(): Promise<DbLandingPortfolioItem[] | null> {
+  const supabase = getBrowserSupabaseClient();
+  if (!supabase) return null;
+  const { data, error } = await supabase
+    .from('landing_portfolio_items')
+    .select('*')
+    .order('sort_order', { ascending: true });
+  if (error) {
+    console.error('Error fetching landing portfolio items:', error);
+    return null;
+  }
+  return data;
+}
