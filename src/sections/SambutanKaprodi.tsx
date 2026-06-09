@@ -52,24 +52,19 @@ export function SambutanKaprodi({ lang, title, p1, p2 }: SambutanKaprodiProps) {
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Portrait Image (5 columns) */}
-          <div className="lg:col-span-5 relative overflow-hidden bg-neutral-200 aspect-[3/4] fade-in-element">
-            {/* Visual headshot placeholder with high fashion styling */}
-            <div className="w-full h-full flex flex-col items-center justify-center p-8 bg-mono-black text-white relative">
-              <div className="absolute inset-0 opacity-20">
-                {/* Visual texture overlay */}
-                <div className="w-full h-full bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px]" />
-              </div>
-              <div className="z-10 text-center">
-                <p className="tech-tag text-white mb-4">
-                  {lang === 'en' ? 'PORTRAIT // DEPT HEAD' : 'PORTRAIT // KAPRODI'}
-                </p>
-                <h3 className="font-serif text-3xl mb-2">{PRODI_CONFIG.headOfDepartment.name}</h3>
-                <p className="tech-tag text-white/50">{PRODI_CONFIG.headOfDepartment.degree}</p>
-              </div>
-              <div className="absolute bottom-6 left-6 right-6 flex justify-between border-t border-white/20 pt-4">
-                <span className="tech-tag text-white/30">REC [●] 1080P</span>
-                <span className="tech-tag text-white/30">{PRODI_CONFIG.universityShort.toUpperCase()} // BDG</span>
-              </div>
+          <div className="lg:col-span-5 relative overflow-hidden bg-neutral-200 aspect-[3/4] fade-in-element group border border-mono-black/10">
+            <img 
+              src="/assets/kaprodi.png" 
+              alt={PRODI_CONFIG.headOfDepartment.name}
+              className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+            />
+            {/* Overlay name badge */}
+            <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-mono-black/90 via-mono-black/60 to-transparent p-6 text-white pt-16">
+              <span className="tech-tag text-white/50 text-[9px] tracking-widest block mb-1">
+                {lang === 'en' ? 'HEAD OF DEPARTMENT' : 'KAPRODI'}
+              </span>
+              <h3 className="font-serif text-2xl mb-1">{PRODI_CONFIG.headOfDepartment.name}</h3>
+              <p className="tech-tag text-white/40 text-[9px] tracking-wide">{PRODI_CONFIG.headOfDepartment.degree}</p>
             </div>
           </div>
 
@@ -88,24 +83,6 @@ export function SambutanKaprodi({ lang, title, p1, p2 }: SambutanKaprodiProps) {
               <p>
                 {finalP2}
               </p>
-            </div>
-
-            {/* Video Profil Trigger Block */}
-            <div className="mt-12 p-6 border border-mono-black/10 bg-white flex flex-col sm:flex-row items-center justify-between gap-6">
-              <div>
-                <p className="tech-tag text-mono-black/40 mb-1">CINEMATIC PROFILE VIDEO</p>
-                <h4 className="font-serif text-lg text-mono-black">
-                  {lang === 'en'
-                    ? `Watch ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort} Profile`
-                    : `Tonton Profil ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}`}
-                </h4>
-              </div>
-              <a
-                href="#profil"
-                className="px-6 py-3 border border-mono-black text-mono-black hover:bg-mono-black hover:border-mono-black hover:text-white text-xs font-bold tracking-ultra-wide block text-center bg-transparent shrink-0 transition-colors no-underline"
-              >
-                PLAY VIDEO [▶]
-              </a>
             </div>
           </div>
         </div>
