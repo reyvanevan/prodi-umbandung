@@ -11,28 +11,28 @@ export function ProgramsSection({ lang }: ProgramsSectionProps) {
       id: 'prog-1',
       title: 'MBKM Internal & External',
       tag: 'PROGRAM: MERDEKA_BELAJAR',
-      description: 'Convert SKS through creative industry internships, local craft research, cultural thematic community work, student exchanges, and independent entrepreneurship.',
-      details: ['Creative Industry Internship', 'Sustainable Textile Research', 'National Student Exchange', 'UMB Independent Entrepreneurship'],
+      description: 'Convert SKS through tech industry internships, smart systems research, digital village community work, student exchanges, and startup entrepreneurship.',
+      details: ['Software & Cloud Industry Internship', 'Collaborative AI Research', 'National Student Exchange', 'UMB Merdeka Entrepreneurship'],
     },
     {
       id: 'prog-2',
-      title: 'Craft & Fashion Professional Certification',
+      title: 'Global IT Professional Certification',
       tag: 'CREDENTIAL: LSP_COMPETENCY',
-      description: 'Each graduate is equipped with a national professional certification in textile craft to strengthen their industry portfolio.',
-      details: ['Fashion/Textile Designer Competency', 'Competency Standardization Certification', 'BNSP National Recognition', 'Portfolio Development Support'],
+      description: 'Each graduate is equipped with information technology competency certifications recognized nationally and internationally.',
+      details: ['Software Engineer Competency', 'CCNA/Mikrotik Network Certification', 'BNSP National Recognition', 'Project Portfolio Assessment Support'],
     },
     {
       id: 'prog-3',
       title: 'Accelerated Study / Fast Track',
       tag: 'TIMELINE: ACCELERATED_STUDY',
       description: 'An integrated curriculum design that helps students complete their undergraduate studies efficiently with ready-to-work outcomes.',
-      details: ['Project-Integrated Curriculum', 'Focused Final Project Advising', 'Industry Expert Mentorship', 'Graduate Solo Showcase & Exhibition'],
+      details: ['Project-Integrated Curriculum', 'Focused Final Project Advising', 'Industry Expert Mentorship', 'Graduate Project Solo Exhibition'],
     },
     {
       id: 'prog-4',
       title: 'Outcome-Based Education',
       tag: 'METHODOLOGY: OBE_CURRICULUM',
-      description: 'Learning methodology focused on real outcomes (textiles, apparel fashion, and periodic collaborative projects).',
+      description: 'Learning methodology focused on real outcomes (software products, IoT systems, and periodic collaborative projects).',
       details: ['Project-Based Outcomes Assessment', 'Regular Portfolio Evaluation', 'Industrial Alignment', 'Studio-Theory Synthesis'],
     },
   ] : PROGRAM_HIGHLIGHTS;
@@ -42,7 +42,7 @@ export function ProgramsSection({ lang }: ProgramsSectionProps) {
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         {/* Section Header */}
         <div className="mb-16 fade-in-element">
-          <p className="tech-tag text-mono-yellow mb-3">CURRICULUM // EXCELLENCE</p>
+          <p className="tech-tag text-mono-black mb-3">CURRICULUM // EXCELLENCE</p>
           <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl tracking-wide">
             {lang === 'en' ? 'Featured Programs' : 'Program Unggulan'}
           </h2>
@@ -57,14 +57,14 @@ export function ProgramsSection({ lang }: ProgramsSectionProps) {
               <div
                 key={program.id}
                 className={cn(
-                  'bg-white border border-mono-black/10 p-8 flex flex-col justify-between hover:border-mono-yellow transition-colors duration-300 fade-in-element',
+                  'bg-white border border-mono-black/10 p-8 flex flex-col justify-between hover:border-mono-black transition-colors duration-300 fade-in-element',
                   delayClass
                 )}
               >
                 <div>
                   {/* Technical Header */}
                   <div className="flex justify-between items-center mb-6 pb-4 border-b border-mono-black/10">
-                    <span className="tech-tag text-mono-yellow">
+                    <span className="tech-tag text-mono-black font-semibold">
                       {program.tag}
                     </span>
                     <span className="tech-tag text-mono-black/30">
@@ -85,7 +85,7 @@ export function ProgramsSection({ lang }: ProgramsSectionProps) {
                 <ul className="space-y-2.5 p-0 m-0 list-none">
                   {program.details.map((detail, idx) => (
                     <li key={idx} className="flex items-center gap-3">
-                      <span className="w-1.5 h-1.5 bg-mono-yellow shrink-0" />
+                      <span className="w-1.5 h-1.5 bg-mono-black shrink-0" />
                       <span className="tech-tag text-mono-black/70 text-xs">
                         {detail}
                       </span>

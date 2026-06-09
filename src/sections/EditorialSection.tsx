@@ -44,7 +44,7 @@ export function EditorialSection({ lang, quote }: EditorialSectionProps) {
           {/* Technical overlay */}
           <div className="absolute bottom-8 left-8">
             <div className="flex items-center gap-3">
-              <span className="w-2 h-2 bg-mono-yellow status-pulse" />
+              <span className="w-2 h-2 bg-white status-pulse" />
               <span className="tech-tag text-white/60">SHOT ON LOCATION // BANDUNG</span>
             </div>
           </div>
@@ -61,7 +61,7 @@ export function EditorialSection({ lang, quote }: EditorialSectionProps) {
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="1"
-                className="text-mono-yellow"
+                className="text-white"
               >
                 <path d="M12 24C12 17.3726 17.3726 12 24 12M24 12C30.6274 12 36 17.3726 36 24M24 12V36M12 24C12 30.6274 17.3726 36 24 36M24 36C30.6274 36 36 30.6274 36 24" />
               </svg>
@@ -73,12 +73,12 @@ export function EditorialSection({ lang, quote }: EditorialSectionProps) {
               ) : lang === 'en' ? (
                 <>
                   &ldquo;Technology and software are not just code or algorithms, but the way we{' '}
-                  <span className="text-mono-yellow">solve human problems</span> and shape the digital future.&rdquo;
+                  <span className="text-white font-bold underline underline-offset-4 decoration-white/40">solve human problems</span> and shape the digital future.&rdquo;
                 </>
               ) : (
                 <>
                   &ldquo;Teknologi dan perangkat lunak bukan sekadar kode atau algoritma, melainkan cara kita{' '}
-                  <span className="text-mono-yellow">memecahkan masalah manusia</span> dan membentuk masa depan digital.&rdquo;
+                  <span className="text-white font-bold underline underline-offset-4 decoration-white/40">memecahkan masalah manusia</span> dan membentuk masa depan digital.&rdquo;
                 </>
               )}
             </blockquote>

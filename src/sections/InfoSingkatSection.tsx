@@ -9,7 +9,7 @@ interface InfoSingkatSectionProps {
 export function InfoSingkatSection({ lang }: InfoSingkatSectionProps) {
   const cards = [
     {
-      icon: <GraduationCap className="h-8 w-8 text-mono-yellow" />,
+      icon: <GraduationCap className="h-8 w-8 text-white" />,
       label: lang === 'en' ? 'GRADUATION DEGREE' : 'GELAR LULUSAN',
       value: PRODI_CONFIG.degreeTitle,
       sub: lang === 'en' 
@@ -17,13 +17,13 @@ export function InfoSingkatSection({ lang }: InfoSingkatSectionProps) {
         : `${PRODI_CONFIG.degreeTitleFull.id} (${PRODI_CONFIG.degree})`
     },
     {
-      icon: <Award className="h-8 w-8 text-mono-yellow" />,
+      icon: <Award className="h-8 w-8 text-white" />,
       label: lang === 'en' ? 'TOTAL CREDIT HOURS' : 'TOTAL SKS',
       value: '144 SKS',
       sub: lang === 'en' ? 'Core & Elective SKS Requirements' : 'SKS Teori & Eksperimen Studio'
     },
     {
-      icon: <Calendar className="h-8 w-8 text-mono-yellow" />,
+      icon: <Calendar className="h-8 w-8 text-white" />,
       label: lang === 'en' ? 'STUDY DURATION' : 'MASA STUDI',
       value: lang === 'en' ? '4 Years' : '4 Tahun',
       sub: lang === 'en' ? '8 Academic Semesters (Fast track available)' : '8 Semester Perkuliahan Akademik'

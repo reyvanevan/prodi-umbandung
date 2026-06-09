@@ -59,7 +59,7 @@ export function PartnersSection({ lang, partnersList }: PartnersSectionProps) {
             {repeatedPartners.map((partner, index) => (
               <span
                 key={index}
-                className="font-serif italic font-medium text-lg md:text-xl text-mono-black/40 hover:text-mono-yellow hover:scale-105 transition-all select-none cursor-default tracking-wide"
+                className="font-serif italic font-medium text-lg md:text-xl text-mono-black/40 hover:text-mono-black hover:scale-105 transition-all select-none cursor-default tracking-wide"
               >
                 {partner}
               </span>

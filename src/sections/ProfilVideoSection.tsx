@@ -24,7 +24,7 @@ export function ProfilVideoSection({ lang }: ProfilVideoSectionProps) {
           
           {/* Text Content Area */}
           <div className="lg:col-span-5 flex flex-col justify-center">
-            <p className="tech-tag text-mono-yellow mb-3">PROFILE VIDEO // AUDIO-VISUAL</p>
+            <p className="tech-tag text-white/70 mb-3">PROFILE VIDEO // AUDIO-VISUAL</p>
             <h2 className="font-serif text-4xl md:text-5xl tracking-wide mb-6 text-white leading-tight">
               {lang === 'en' ? 'Engineering the Future in Motion' : 'Mengembangkan Teknologi Masa Depan'}
             </h2>
@@ -42,7 +42,7 @@ export function ProfilVideoSection({ lang }: ProfilVideoSectionProps) {
               )}
             </p>
             <div className="flex items-center gap-4 py-4 border-t border-white/10">
-              <div className="h-2 w-2 rounded-full bg-mono-yellow animate-pulse" />
+              <div className="h-2 w-2 rounded-full bg-white animate-pulse" />
               <span className="tech-tag text-white/50 text-[10px] tracking-widest">
                 {lang === 'en' ? 'YOUTUBE PREVIEW // 1080P' : 'TAYANGAN YOUTUBE // 1080P'}
               </span>

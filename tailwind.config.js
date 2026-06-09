@@ -50,8 +50,8 @@ module.exports = {
         },
         'mono-white': '#FFFFFF',
         'mono-black': '#0B2545',
-        'mono-yellow': '#D49A17',
-        'mono-cream': '#FDFBF7',
+        'mono-yellow': '#0B2545',
+        'mono-cream': '#FFFFFF',
       },
       fontFamily: {
         serif: ['Cormorant Garamond', 'serif'],

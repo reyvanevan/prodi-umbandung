@@ -133,12 +133,12 @@ export function Footer({ lang = 'id' }: FooterProps) {
             {lang === 'en' ? (
               <>
                 Academic Portal of the Bachelor Program in {PRODI_CONFIG.name.en}, {PRODI_CONFIG.university}. 
-                We educate future designers who combine the rich local culture of Nusantara with modern fashion technology innovations.
+                We produce professional software engineers, system architects, and technology innovators ready to compete globally.
               </>
             ) : (
               <>
                 Portal Akademik Program Studi {PRODI_CONFIG.degree} {PRODI_CONFIG.name.id}, {PRODI_CONFIG.university}. 
-                Kami mendidik desainer masa depan yang memadukan kekayaan budaya lokal Nusantara dengan inovasi teknologi fesyen modern.
+                Kami mencetak rekayasawan perangkat lunak, arsitek sistem, dan inovator teknologi profesional yang siap bersaing di tingkat global.
               </>
             )}
           </p>

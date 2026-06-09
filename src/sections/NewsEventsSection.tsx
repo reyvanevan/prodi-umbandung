@@ -121,7 +121,7 @@ export function NewsEventsSection({ lang, newsList, eventsList }: NewsEventsSect
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
           {/* News Stream (7 columns) */}
           <div className="lg:col-span-7 fade-in-element">
-            <p className="tech-tag text-mono-yellow mb-3">
+            <p className="tech-tag text-mono-black mb-3">
               {lang === 'en' ? 'JOURNAL // NEWS FEED' : 'JOURNAL // NEWS FEED'}
             </p>
             <h2 className="font-serif text-4xl md:text-5xl tracking-wide mb-12">
@@ -152,7 +152,7 @@ export function NewsEventsSection({ lang, newsList, eventsList }: NewsEventsSect
                         </span>
                         <span className="tech-tag text-mono-black/40">{news.date}</span>
                       </div>
-                      <h3 className="font-serif text-xl lg:text-2xl tracking-wide text-mono-black group-hover:text-mono-yellow transition-colors duration-300 leading-snug">
+                      <h3 className="font-serif text-xl lg:text-2xl tracking-wide text-mono-black group-hover:underline transition-all duration-300 leading-snug">
                         <a href="#" className="no-underline text-inherit">
                           {news.title}
                         </a>
@@ -169,7 +169,7 @@ export function NewsEventsSection({ lang, newsList, eventsList }: NewsEventsSect
 
           {/* Events Timeline (5 columns) */}
           <div className="lg:col-span-5 fade-in-element delay-200">
-            <p className="tech-tag text-mono-yellow mb-3">
+            <p className="tech-tag text-mono-black mb-3">
               {lang === 'en' ? 'AGENDA // TIMETABLE' : 'AGENDA // TIMETABLE'}
             </p>
             <h2 className="font-serif text-4xl md:text-5xl tracking-wide mb-12">
@@ -180,10 +180,10 @@ export function NewsEventsSection({ lang, newsList, eventsList }: NewsEventsSect
               {finalEvents.map((event) => (
                 <div
                   key={event.id}
-                  className="flex gap-6 p-6 border border-mono-black/10 hover:border-mono-yellow transition-colors duration-300 bg-white"
+                  className="flex gap-6 p-6 border border-mono-black/10 hover:border-mono-black transition-colors duration-300 bg-white"
                 >
                   {/* Date Badge */}
-                  <div className="flex flex-col items-center justify-center bg-mono-black text-white w-16 h-16 shrink-0 border-b-2 border-mono-yellow">
+                  <div className="flex flex-col items-center justify-center bg-mono-black text-white w-16 h-16 shrink-0 border-b-2 border-white">
                     <span className="font-serif text-2xl font-bold leading-none">
                       {event.dateDay}
                     </span>
@@ -205,7 +205,7 @@ export function NewsEventsSection({ lang, newsList, eventsList }: NewsEventsSect
                         fill="none"
                         stroke="currentColor"
                         strokeWidth="1.5"
-                        className="text-mono-yellow"
+                        className="text-mono-black/50"
                       >
                         <path d="M8 1.5C4.4 1.5 1.5 4.4 1.5 8c0 3.6 2.9 6.5 6.5 6.5s6.5-2.9 6.5-6.5C14.5 4.4 11.6 1.5 8 1.5Z" />
                         <circle cx="8" cy="8" r="2.5" />

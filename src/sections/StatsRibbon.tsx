@@ -24,12 +24,12 @@ export function StatsRibbon({ lang, statsProp }: StatsRibbonProps) {
   }, [statsProp]);
 
   const defaultStats = lang === 'en' ? [
-    { number: '180+', label: 'ACTIVE CREATIVE STUDENTS' },
+    { number: '180+', label: 'ACTIVE INFORMATICS STUDENTS' },
     { number: '240+', label: 'GRADUATED ALUMNI' },
     { number: '16+', label: 'EXPERT FACULTY LECTURERS' },
     { number: '50+', label: 'CORE SPECIALIZED COURSES' }
   ] : [
-    { number: '180+', label: 'MAHASISWA AKTIF KREATIF' },
+    { number: '180+', label: 'MAHASISWA INFORMATIKA AKTIF' },
     { number: '240+', label: 'ALUMNI TERSEBAR' },
     { number: '16+', label: 'DOSEN PENGAMPU AHLI' },
     { number: '50+', label: 'MATA KULIAH UNGGULAN' }
@@ -43,7 +43,7 @@ export function StatsRibbon({ lang, statsProp }: StatsRibbonProps) {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 divide-x-0 lg:divide-x divide-white/10">
           {stats.map((stat, idx) => (
             <div key={idx} className="flex flex-col items-center lg:items-start text-center lg:text-left px-4 lg:first:pl-0">
-              <span className="font-serif text-5xl md:text-6xl lg:text-7xl font-bold text-mono-yellow tracking-tight leading-none mb-3">
+              <span className="font-serif text-5xl md:text-6xl lg:text-7xl font-bold text-white tracking-tight leading-none mb-3">
                 {stat.number}
               </span>
               <span className="tech-tag text-white/60 text-[10px] tracking-widest max-w-[200px] leading-relaxed">

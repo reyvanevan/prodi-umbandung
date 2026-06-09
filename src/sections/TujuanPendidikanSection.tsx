@@ -74,7 +74,7 @@ export function TujuanPendidikanSection({ lang }: TujuanPendidikanSectionProps) 
         
         {/* Section Header */}
         <div className="mb-16">
-          <p className="tech-tag text-mono-yellow mb-3">CURRICULUM // PROFILE</p>
+          <p className="tech-tag text-mono-black mb-3">CURRICULUM // PROFILE</p>
           <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl tracking-wide text-mono-black">
             {lang === 'en' ? 'Educational Framework' : 'Rencana & Tujuan Akademik'}
           </h2>
@@ -133,7 +133,7 @@ export function TujuanPendidikanSection({ lang }: TujuanPendidikanSectionProps) 
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {content.tujuan.items.map((item, idx) => (
-                  <div key={idx} className="border-l-4 border-mono-yellow pl-6">
+                  <div key={idx} className="border-l-4 border-mono-black pl-6">
                     <h4 className="font-serif text-lg font-bold mb-3 text-mono-black">{item.title}</h4>
                     <p className="font-sans text-sm text-neutral-600 leading-relaxed">{item.desc}</p>
                   </div>
@@ -150,8 +150,8 @@ export function TujuanPendidikanSection({ lang }: TujuanPendidikanSectionProps) 
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
                 {content.fasilitas.items.map((item, idx) => (
-                  <div key={idx} className="p-6 border border-neutral-100 hover:border-mono-yellow transition-colors bg-neutral-50/50">
-                    <span className="tech-tag text-mono-yellow text-[9px] block mb-2">STUDIO AREA 0{idx+1}</span>
+                  <div key={idx} className="p-6 border border-neutral-100 hover:border-mono-black transition-colors bg-neutral-50/50">
+                    <span className="tech-tag text-mono-black text-[9px] block mb-2">STUDIO AREA 0{idx+1}</span>
                     <h4 className="font-serif text-xl font-bold mb-2 text-mono-black">{item.name}</h4>
                     <p className="font-sans text-xs text-neutral-600 leading-relaxed">{item.desc}</p>
                   </div>

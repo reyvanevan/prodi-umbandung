@@ -60,7 +60,7 @@ export function SambutanKaprodi({ lang, title, p1, p2 }: SambutanKaprodiProps) {
                 <div className="w-full h-full bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px]" />
               </div>
               <div className="z-10 text-center">
-                <p className="tech-tag text-mono-yellow mb-4">
+                <p className="tech-tag text-white mb-4">
                   {lang === 'en' ? 'PORTRAIT // DEPT HEAD' : 'PORTRAIT // KAPRODI'}
                 </p>
                 <h3 className="font-serif text-3xl mb-2">{PRODI_CONFIG.headOfDepartment.name}</h3>
@@ -101,8 +101,8 @@ export function SambutanKaprodi({ lang, title, p1, p2 }: SambutanKaprodiProps) {
                 </h4>
               </div>
               <a
-                href="#video-profil"
-                className="px-6 py-3 border border-mono-black text-mono-black hover:bg-mono-yellow hover:border-mono-yellow hover:text-mono-black text-xs font-bold tracking-ultra-wide block text-center bg-transparent shrink-0 transition-colors no-underline"
+                href="#profil"
+                className="px-6 py-3 border border-mono-black text-mono-black hover:bg-mono-black hover:border-mono-black hover:text-white text-xs font-bold tracking-ultra-wide block text-center bg-transparent shrink-0 transition-colors no-underline"
               >
                 PLAY VIDEO [▶]
               </a>

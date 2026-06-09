@@ -44,7 +44,7 @@ export function HeroSection({ lang }: HeroSectionProps) {
             href="https://pmb.umbandung.ac.id/"
             target="_blank"
             rel="noopener noreferrer"
-            className="ghost-btn ghost-btn-dark px-10 py-4 border border-white text-white text-xs tracking-ultra-wide block text-center font-bold bg-mono-yellow/10 hover:bg-mono-yellow hover:text-mono-black transition-colors"
+            className="ghost-btn ghost-btn-dark px-10 py-4 border border-white text-white text-xs tracking-ultra-wide block text-center font-bold bg-white/10 hover:bg-white hover:text-mono-black transition-colors"
           >
             {lang === 'en' ? 'REGISTRATION' : 'PENDAFTARAN'}
           </a>

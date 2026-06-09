@@ -26,8 +26,8 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
       className={cn(
         'absolute left-1/2 top-1/2 cursor-pointer border-2 p-8 transition-all duration-500 ease-in-out',
         isCenter
-          ? 'z-10 bg-mono-yellow text-mono-black border-mono-yellow'
-          : 'z-0 bg-neutral-900 text-white/60 border-white/15 hover:border-mono-yellow/50'
+          ? 'z-10 bg-white text-mono-black border-mono-black'
+          : 'z-0 bg-white text-mono-black/60 border-mono-black/15 hover:border-mono-black/50'
       )}
       style={{
         width: cardSize,
@@ -39,13 +39,13 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
           translateY(${isCenter ? -30 : position % 2 ? 40 : 10}px)
           rotate(${isCenter ? 0 : position % 2 ? 2.5 : -2.5}deg)
         `,
-        boxShadow: isCenter ? '0px 8px 0px 4px #000000' : '0px 0px 0px 0px transparent',
+        boxShadow: isCenter ? '0px 8px 0px 4px #0B2545' : '0px 0px 0px 0px transparent',
       }}
     >
       <span
         className={cn(
           'absolute block origin-top-right rotate-45',
-          isCenter ? 'bg-mono-black/10' : 'bg-white/10'
+          isCenter ? 'bg-mono-black/10' : 'bg-mono-black/5'
         )}
         style={{
           right: -2,
@@ -57,15 +57,15 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
       <img
         src={testimonial.imgSrc}
         alt={`${testimonial.by.split('(')[0]}`}
-        className="mb-4 h-14 w-12 bg-neutral-800 object-cover object-top"
+        className="mb-4 h-14 w-12 bg-mono-black/10 object-cover object-top"
         style={{
-          boxShadow: isCenter ? '3px 3px 0px #0D0D0D' : '3px 3px 0px #D49A17',
+          boxShadow: isCenter ? '3px 3px 0px #0B2545' : '3px 3px 0px rgba(11, 37, 69, 0.2)',
         }}
       />
       <h3
         className={cn(
           'text-base sm:text-lg font-serif leading-relaxed',
-          isCenter ? 'text-mono-black' : 'text-white/95'
+          isCenter ? 'text-mono-black' : 'text-mono-black/80'
         )}
       >
         "{testimonial.testimonial}"
@@ -73,7 +73,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
       <p
         className={cn(
           'absolute bottom-8 left-8 right-8 mt-2 text-[10px] tech-tag uppercase tracking-widest',
-          isCenter ? 'text-mono-black/70' : 'text-white/40'
+          isCenter ? 'text-mono-black/70' : 'text-mono-black/50'
         )}
       >
         - {testimonial.by}
@@ -94,43 +94,43 @@ export const StaggerTestimonials: React.FC<StaggerTestimonialsProps> = ({ lang, 
     {
       id: 'test-1',
       tempId: 0,
-      testimonial: 'The curriculum focusing on traditional craft techniques with a touch of modern design is highly relevant to today\'s textile craft industry.',
-      by: 'Andini Kusuma, S.Ds (Creative Designer at Oltre Textile Studio)',
+      testimonial: 'The curriculum focusing on modern software engineering and architecture is highly relevant to today\'s tech industry needs.',
+      by: 'Andini Kusuma, S.Kom (Software Engineer at Tokopedia)',
       imgSrc: '/assets/alumni_1.png',
     },
     {
       id: 'test-2',
       tempId: 1,
-      testimonial: 'The studio internship program gave me the opportunity to network directly with the national creative industry from the very beginning.',
-      by: 'Rian Hidayat, S.Ds (Textile Designer at PT Sritex Tbk)',
+      testimonial: 'The laboratory internship program gave me the opportunity to network directly with cloud and DevOps practitioners from the very beginning.',
+      by: 'Rian Hidayat, S.Kom (DevOps Engineer at GoTo)',
       imgSrc: '/assets/alumni_2.png',
     },
     {
       id: 'test-3',
       tempId: 2,
-      testimonial: 'KTF UMB truly honed my creative thinking in combining local materials with modern technology.',
-      by: 'Melati Indah, S.Ds (Founder of Bumi Eco-Wear)',
+      testimonial: 'Informatics UMB truly honed my logical thinking and capabilities in solving complex problems using artificial intelligence.',
+      by: 'Melati Indah, S.Kom (AI Researcher at Bukalapak)',
       imgSrc: '/assets/alumni_1.png',
     },
     {
       id: 'test-4',
       tempId: 3,
-      testimonial: 'The collaborative studio atmosphere got me used to experimenting with designs without being afraid to fail.',
-      by: "Fauzan Adhi, S.Ds (Fashion Stylist at Harper's Bazaar)",
+      testimonial: 'The collaborative lab atmosphere got me used to experimenting with systems and coding without being afraid to fail.',
+      by: 'Fauzan Adhi, S.Kom (Cybersecurity Analyst at Cyber Security Agency)',
       imgSrc: '/assets/alumni_2.png',
     },
     {
       id: 'test-5',
       tempId: 4,
-      testimonial: 'Regular portfolio guidance during my studies made it very easy for me to apply for jobs at international fashion retail brands.',
-      by: 'Sarah Amalia, S.Ds (Visual Merchandiser at H&M)',
+      testimonial: 'Regular portfolio reviews during my studies made it very easy for me to apply for software engineering positions at global tech companies.',
+      by: 'Sarah Amalia, S.Kom (Technical Product Manager at Shopee)',
       imgSrc: '/assets/alumni_1.png',
     },
     {
       id: 'test-6',
       tempId: 5,
-      testimonial: 'Thanks to intensive mentoring from industry-practitioner lecturers, I was able to release my graduation collection at a national exhibition.',
-      by: 'Yusuf Maulana, S.Ds (Independent Fiber Artist)',
+      testimonial: 'Thanks to intensive mentoring from industry-practitioner lecturers, I was able to deploy a fully functional capstone product.',
+      by: 'Yusuf Maulana, S.Kom (Data Scientist at Telkom Indonesia)',
       imgSrc: '/assets/alumni_2.png',
     },
   ];
@@ -182,12 +182,12 @@ export const StaggerTestimonials: React.FC<StaggerTestimonialsProps> = ({ lang, 
 
   return (
     <div
-      className="relative w-full overflow-hidden bg-mono-black border-b border-white/10"
+      className="relative w-full overflow-hidden bg-white border-b border-mono-black/10"
       style={{ height: 650 }}
     >
       <div className="absolute top-12 left-1/2 -translate-x-1/2 text-center z-10 pointer-events-none">
-        <p className="tech-tag text-mono-yellow mb-2">SUCCESS STORIES // ALUMNI NETWORK</p>
-        <h2 className="font-serif text-3xl md:text-4xl tracking-wide text-white">
+        <p className="tech-tag text-mono-black/70 mb-2">SUCCESS STORIES // ALUMNI NETWORK</p>
+        <h2 className="font-serif text-3xl md:text-4xl tracking-wide text-mono-black">
           {lang === 'en' ? 'Alumni Testimonials' : 'Testimoni Alumni'}
         </h2>
       </div>
@@ -212,9 +212,9 @@ export const StaggerTestimonials: React.FC<StaggerTestimonialsProps> = ({ lang, 
         <button
           onClick={() => handleMove(-1)}
           className={cn(
-            'flex h-12 w-12 items-center justify-center transition-colors',
-            'bg-neutral-900 border border-white/10 text-white hover:bg-mono-yellow hover:border-mono-yellow hover:text-mono-black',
-            'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-mono-yellow'
+            'flex h-12 w-12 items-center justify-center transition-colors cursor-pointer',
+            'bg-white border border-mono-black/25 text-mono-black hover:bg-mono-black hover:text-white hover:border-mono-black',
+            'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-mono-black'
           )}
           aria-label="Previous testimonial"
         >
@@ -223,9 +223,9 @@ export const StaggerTestimonials: React.FC<StaggerTestimonialsProps> = ({ lang, 
         <button
           onClick={() => handleMove(1)}
           className={cn(
-            'flex h-12 w-12 items-center justify-center transition-colors',
-            'bg-neutral-900 border border-white/10 text-white hover:bg-mono-yellow hover:border-mono-yellow hover:text-mono-black',
-            'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-mono-yellow'
+            'flex h-12 w-12 items-center justify-center transition-colors cursor-pointer',
+            'bg-white border border-mono-black/25 text-mono-black hover:bg-mono-black hover:text-white hover:border-mono-black',
+            'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-mono-black'
           )}
           aria-label="Next testimonial"
         >

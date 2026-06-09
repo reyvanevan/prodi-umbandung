@@ -12,21 +12,21 @@
     --card-foreground: 0 0% 6.7%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 6.7%;
-    --primary: 50 100% 50%;
+    --primary: 213 73% 16%;
     --primary-foreground: 0 0% 98%;
     --secondary: 222 98% 22%;
     --secondary-foreground: 0 0% 6.7%;
     --muted: 0 0% 96%;
     --muted-foreground: 0 0% 54%;
-    --accent: 50 100% 50%;
+    --accent: 213 73% 16%;
     --accent-foreground: 0 0% 6.7%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
     --border: 0 0% 90%;
     --input: 0 0% 90%;
-    --ring: 50 100% 50%;
+    --ring: 213 73% 16%;
     --radius: 0;
-    --primary-color: #D49A17;
+    --primary-color: #0B2545;
   }
 
   html {
@@ -47,7 +47,7 @@
   }
 
   ::selection {
-    background: #D49A17;
+    background: #0B2545;
     color: #ffffff;
   }
 

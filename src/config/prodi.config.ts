@@ -59,7 +59,7 @@ export const PRODI_CONFIG: ProdiConfig = {
   university: 'Universitas Muhammadiyah Bandung',
   universityShort: 'UMB',
   theme: {
-    primaryColor: '#D49A17',
+    primaryColor: '#0B2545',
     primaryTailwind: 'mono-yellow',
   },
   contact: {
