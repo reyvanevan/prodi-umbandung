@@ -26,6 +26,7 @@
     --input: 0 0% 90%;
     --ring: 50 100% 50%;
     --radius: 0;
+    --primary-color: #0B2545;
   }
 
   html {
@@ -46,7 +47,7 @@
   }
 
   ::selection {
-    background: #CC7722;
+    background: #0B2545;
     color: #ffffff;
   }
 

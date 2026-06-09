@@ -50,7 +50,7 @@ module.exports = {
         },
         'mono-white': '#FFFFFF',
         'mono-black': '#0D0D0D',
-        'mono-yellow': '#CC7722',
+        'mono-yellow': '#0B2545',
         'mono-cream': '#FDFBF7',
       },
       fontFamily: {
