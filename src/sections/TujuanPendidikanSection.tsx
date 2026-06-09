@@ -15,55 +15,55 @@ export function TujuanPendidikanSection({ lang }: TujuanPendidikanSectionProps) 
   const content = {
     tujuan: {
       title: lang === 'en' ? 'Educational Objectives (PEO & PLO)' : 'Tujuan Pendidikan (PEO & PLO)',
-      subtitle: lang === 'en' ? 'Preparing ready-to-compete design professionals.' : 'Mempersiapkan profesional desainer yang siap bersaing.',
+      subtitle: lang === 'en' ? 'Preparing ready-to-compete engineering professionals.' : 'Mempersiapkan profesional rekayasa yang siap bersaing.',
       items: lang === 'en' ? [
         {
           title: 'Program Educational Objectives (PEO)',
-          desc: `To produce graduates of ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.degree} program who possess high integrity, global creative competence, innovative entrepreneurship spirit based on local values.`,
+          desc: `To produce graduates of ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.degree} program who possess high integrity, global technological competence, innovative digital entrepreneurship spirit based on local values.`,
         },
         {
           title: 'Program Learning Outcomes (PLO)',
-          desc: `Graduates are capable of conducting research-based design and material engineering, compiling ready-to-wear blueprints, and directing business strategies with sustainability awareness.`,
+          desc: `Graduates are capable of conducting research-based software engineering, designing secure and scaleable system architectures, and directing technological initiatives with ethical awareness.`,
         }
       ] : [
         {
           title: 'Program Educational Objectives (PEO)',
-          desc: `Menghasilkan sarjana ${PRODI_CONFIG.name.id} ${PRODI_CONFIG.degree} yang berintegritas tinggi, kompeten secara kreatif di tingkat global, serta memiliki jiwa kewirausahaan inovatif berbasis kearifan budaya lokal.`,
+          desc: `Menghasilkan sarjana ${PRODI_CONFIG.name.id} ${PRODI_CONFIG.degree} yang berintegritas tinggi, kompeten secara teknologi di tingkat global, serta memiliki jiwa kewirausahaan digital inovatif berbasis kearifan budaya lokal.`,
         },
         {
           title: 'Program Learning Outcomes (PLO)',
-          desc: `Lulusan mampu melakukan perancangan reka latar dan reka struktur berbasis riset, menyusun rancangan koleksi produk siap pakai, serta mengarahkan strategi bisnis dengan kesadaran keberlanjutan.`,
+          desc: `Lulusan mampu melakukan rekayasa perangkat lunak berbasis riset, merancang arsitektur sistem yang aman dan terukur, serta mengarahkan inisiatif teknologi dengan kesadaran etis.`,
         }
       ]
     },
     fasilitas: {
-      title: lang === 'en' ? 'Creative Studio & Laboratories' : 'Studio Kreatif & Laboratorium',
+      title: lang === 'en' ? 'Computing Laboratories & Studios' : 'Laboratorium & Studio Komputasi',
       subtitle: lang === 'en' ? 'Hands-on practice facilities with industry standards.' : 'Fasilitas praktik langsung dengan standar industri.',
       items: lang === 'en' ? [
-        { name: 'Surface Design Studio', desc: 'Space for batik, natural dye experiments, screen printing, and chemical textile treatments.' },
-        { name: 'Weaving & Structural Studio', desc: 'Equipped with Handlooms (ATBM) and manual knitting machines for material engineering.' },
-        { name: 'Garment & Sewing Studio', desc: 'Equipped with high-speed industrial sewing machines, heavy-duty overlocks, and drapery dummies.' },
-        { name: 'Digital & Concept Lab', desc: 'High-performance workstations for computer-aided fashion design, pattern drafting, and portfolio compilation.' }
+        { name: 'Software Engineering Studio', desc: 'Space for developing web, mobile, and enterprise-grade software products with collaboration tools.' },
+        { name: 'AI & Data Science Laboratory', desc: 'Equipped with high-performance computing resources and GPU nodes for training deep learning models.' },
+        { name: 'Network & Cybersecurity Lab', desc: 'Equipped with routers, switches, and firewalls for simulating secure networks and penetration testing.' },
+        { name: 'Digital Innovation & IoT Lab', desc: 'Microcontrollers, sensors, and hardware fabrication tools for engineering smart physical devices.' }
       ] : [
-        { name: 'Studio Reka Latar (Surface)', desc: 'Ruang khusus batik, eksperimen zat warna alam, sablon manual, dan perlakuan kimia tekstil.' },
-        { name: 'Studio Tenun & Reka Struktur', desc: 'Dilengkapi Alat Tenun Bukan Mesin (ATBM) dan mesin rajut manual untuk rekayasa material.' },
-        { name: 'Studio Menjahit & Pola (Garment)', desc: 'Menyediakan mesin jahit industrial high-speed, mesin obras berat, dan dummy drapery standar industri.' },
-        { name: 'Lab Komputasi & Desain Digital', desc: 'Workstation berspesifikasi tinggi untuk computer-aided fashion design, drafting pola digital, dan portofolio.' }
+        { name: 'Studio Rekayasa Perangkat Lunak', desc: 'Ruang kolaboratif untuk merancang produk perangkat lunak web, mobile, dan enterprise dengan standar industri.' },
+        { name: 'Laboratorium AI & Sains Data', desc: 'Dilengkapi workstation berspesifikasi tinggi dan GPU untuk melatih model machine learning dan deep learning.' },
+        { name: 'Lab Jaringan & Keamanan Siber', desc: 'Menyediakan perangkat router, switch, dan sistem simulasi keamanan siber untuk uji penetrasi.' },
+        { name: 'Lab Inovasi Digital & IoT', desc: 'Menyediakan mikrokontroler, sensor, dan peralatan pendukung untuk perakitan sistem cerdas terintegrasi.' }
       ]
     },
     kurikulum: {
       title: lang === 'en' ? 'Academic Curriculum Structure' : 'Struktur Kurikulum Akademik',
       subtitle: lang === 'en' ? 'Step-by-step progress from fundamentals to graduation portfolio.' : 'Tahapan perkuliahan terstruktur dari dasar hingga karya kelulusan.',
       semesters: lang === 'en' ? [
-        { title: 'Semesters 1-2: Foundations', desc: 'Textile Fiber Science, Basic Surface Design, Fashion Figure Drawing, History of Nusantara Art & Culture.' },
-        { title: 'Semesters 3-4: Studio Specialization', desc: 'Fiber Art Studio, Ready-to-Wear (RTW) Apparels, Material Experimentation, CAD for Fashion.' },
-        { title: 'Semesters 5-6: Industry & Research', desc: 'Professional Internship (MBKM), Research Methodology, Conceptual Fashion Studio, Fashion Branding & Identity.' },
-        { title: 'Semesters 7-8: Graduation Portfolio', desc: 'Pre-Thesis Studio, Final Project Exhibition (Kriyasa), Solo Graduation Fashion Show.' }
+        { title: 'Semesters 1-2: Foundations', desc: 'Introduction to Programming, Discrete Mathematics, Algorithms & Data Structures, Linear Algebra, Database Systems.' },
+        { title: 'Semesters 3-4: Core Specialization', desc: 'Object-Oriented Programming, Computer Networks, Operating Systems, Software Engineering, Web Development.' },
+        { title: 'Semesters 5-6: Advanced IT & Industry', desc: 'Artificial Intelligence, Machine Learning, Cloud Computing, Professional Internship (MBKM), Mobile Application Development.' },
+        { title: 'Semesters 7-8: Capstone Showcase', desc: 'Research Methodology, Pre-Thesis Studio, Capstone Project & Exhibition, Thesis Defense.' }
       ] : [
-        { title: 'Semester 1-2: Fondasi Dasar', desc: 'Pengetahuan Serat Tekstil, Reka Latar Dasar, Gambar Mode & Figur, Sejarah Seni & Budaya Nusantara.' },
-        { title: 'Semester 3-4: Studio Spesialisasi', desc: 'Studio Kriya Serat, Desain Busana Siap Pakai (RTW), Eksperimentasi Material & Serat, CAD Fesyen.' },
-        { title: 'Semester 5-6: Riset & Industri', desc: 'Magang Industri / MBKM, Metodologi Penelitian Kriya, Studio Fesyen Konseptual, Branding & Identitas Fesyen.' },
-        { title: 'Semester 7-8: Portofolio Akhir', desc: 'Pra-Tugas Akhir, Karya Pameran Kelulusan (Kriyasa), Solo Graduation Fashion Show.' }
+        { title: 'Semester 1-2: Fondasi Dasar', desc: 'Pengantar Pemrograman, Matematika Diskrit, Algoritma & Struktur Data, Aljabar Linear, Sistem Basis Data.' },
+        { title: 'Semester 3-4: Inti Spesialisasi', desc: 'Pemrograman Berorientasi Objek, Jaringan Komputer, Sistem Operasi, Rekayasa Perangkat Lunak, Pengembangan Web.' },
+        { title: 'Semester 5-6: IT Lanjut & Industri', desc: 'Kecerdasan Buatan, Pembelajaran Mesin, Komputasi Awan, Magang Industri / MBKM, Pengembangan Aplikasi Mobile.' },
+        { title: 'Semester 7-8: Capstone & Karya Akhir', desc: 'Metodologi Penelitian, Pra-Tugas Akhir, Capstone Project Showcase, Sidang Tugas Akhir.' }
       ]
     }
   };

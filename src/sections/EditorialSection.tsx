@@ -72,13 +72,13 @@ export function EditorialSection({ lang, quote }: EditorialSectionProps) {
                 <span>&ldquo;{finalQuote}&rdquo;</span>
               ) : lang === 'en' ? (
                 <>
-                  &ldquo;Textile craft and fashion are not just clothing or objects, but the way we{' '}
-                  <span className="text-mono-yellow">breathe life into culture</span> and respond to the future.&rdquo;
+                  &ldquo;Technology and software are not just code or algorithms, but the way we{' '}
+                  <span className="text-mono-yellow">solve human problems</span> and shape the digital future.&rdquo;
                 </>
               ) : (
                 <>
-                  &ldquo;Kriya dan fashion bukan sekadar pakaian or benda, melainkan cara kita{' '}
-                  <span className="text-mono-yellow">menghidupkan budaya</span> dan merespons masa depan.&rdquo;
+                  &ldquo;Teknologi dan perangkat lunak bukan sekadar kode atau algoritma, melainkan cara kita{' '}
+                  <span className="text-mono-yellow">memecahkan masalah manusia</span> dan membentuk masa depan digital.&rdquo;
                 </>
               )}
             </blockquote>

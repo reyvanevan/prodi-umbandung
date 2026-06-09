@@ -41,16 +41,16 @@ export interface ProdiConfig {
 }
 
 export const PRODI_CONFIG: ProdiConfig = {
-  acronym: 'KTF',
+  acronym: 'IF',
   name: {
-    id: 'Kriya Tekstil & Fashion',
-    en: 'Textile Craft & Fashion',
+    id: 'Teknik Informatika',
+    en: 'Informatics Engineering',
   },
   degree: 'S1',
-  degreeTitle: 'S.Ds.',
+  degreeTitle: 'S.Kom.',
   degreeTitleFull: {
-    id: 'Sarjana Desain',
-    en: 'Bachelor of Design',
+    id: 'Sarjana Komputer',
+    en: 'Bachelor of Computer Science',
   },
   faculty: {
     id: 'Fakultas Sains dan Teknologi',
@@ -63,18 +63,18 @@ export const PRODI_CONFIG: ProdiConfig = {
     primaryTailwind: 'mono-yellow',
   },
   contact: {
-    email: 'kriya@umbandung.ac.id',
+    email: 'if@umbandung.ac.id',
     phone: '+62 22 783 0000',
     address: 'Jl. Soekarno-Hatta No. 752, Cipadung Kidul, Panyileukan, Kota Bandung, Jawa Barat 40614',
-    instagram: 'kriya.umb',
-    youtube: '@kriyatekstils1umb',
+    instagram: 'if.umbandung',
+    youtube: '@ifumbandung',
   },
   headOfDepartment: {
-    name: 'Dr. Budi Hermawan',
-    degree: 'M.Sn',
+    name: 'M. Yusuf Efendi, S.T., M.T.',
+    degree: 'Ketua Program Studi',
   },
   videoProfileUrl: 'https://www.youtube.com/watch?v=9KGQkYJcwXM',
-  sintaUrl: 'https://sinta.kemdiktisaintek.go.id/departments/authors/4508/B1E2C1BA-7DA9-4D94-AD8D-03A55689849E/00F7C6DB-046D-499C-B6A9-4EBE970BB955',
+  sintaUrl: '#',
   portals: {
     id: [
       { label: 'PORTAL IGRACIAS', href: 'https://igracias.umbandung.ac.id' },

@@ -37,11 +37,11 @@ export function SambutanKaprodi({ lang, title, p1, p2 }: SambutanKaprodiProps) {
 
   const defaultTitle = lang === 'en' ? "Head of Department's Welcome" : 'Sambutan Kepala Program Studi';
   const defaultP1 = lang === 'en'
-    ? `Welcome to the official portal of the ${PRODI_CONFIG.degree} Program in ${PRODI_CONFIG.name.en} at ${PRODI_CONFIG.university}. We are committed to shaping future creative talents who master the balance between aesthetics, modern technology, and local cultural wisdom.`
-    : `Selamat datang di portal resmi Program Studi ${PRODI_CONFIG.degree} ${PRODI_CONFIG.name.id} ${PRODI_CONFIG.university}. Kami berkomitmen untuk membentuk talenta-talenta kreatif masa depan yang menguasai keseimbangan estetika, teknologi modern, dan kearifan budaya lokal.`;
+    ? `Welcome to the official portal of the ${PRODI_CONFIG.degree} Program in ${PRODI_CONFIG.name.en} at ${PRODI_CONFIG.university}. We are committed to shaping future technology leaders and software engineers who master modern computing, programming systems, and artificial intelligence.`
+    : `Selamat datang di portal resmi Program Studi ${PRODI_CONFIG.degree} ${PRODI_CONFIG.name.id} ${PRODI_CONFIG.university}. Kami berkomitmen untuk mencetak pemimpin teknologi dan rekayasawan perangkat lunak masa depan yang menguasai komputasi modern, sistem pemrograman, dan kecerdasan buatan.`;
   const defaultP2 = lang === 'en'
-    ? 'Our development focus lies in integrating fashion technology innovations with the noble values of the Nusantara, creating textile craft products that are globally competitive while possessing a deep sense of national identity.'
-    : 'Fokus pengembangan kami terletak pada integrasi inovasi teknologi busana dengan nilai-nilai luhur Nusantara, menciptakan produk kriya tekstil yang berdaya saing global sekaligus memiliki kedalaman karakter identitas bangsa.';
+    ? 'Our development focus lies in integrating computer science advancements with practical industry needs, creating digital solutions and systems that are globally competitive and socially impactful.'
+    : 'Fokus pengembangan kami terletak pada integrasi kemajuan ilmu komputer dengan kebutuhan praktis industri, menciptakan solusi dan sistem digital yang berdaya saing global serta berdampak sosial.';
 
   const finalTitle = dbTitle || title || defaultTitle;
   const finalP1 = dbP1 || p1 || defaultP1;
