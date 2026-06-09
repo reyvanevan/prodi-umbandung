@@ -90,6 +90,25 @@ alter table public.landing_portfolio_items enable row level security;
 alter table public.site_content enable row level security;
 alter table public.landing_partners enable row level security;
 
+-- Drop policies if they already exist
+drop policy if exists "Allow public read-only access for news" on public.news;
+drop policy if exists "Allow public read-only access for events" on public.events;
+drop policy if exists "Allow public read-only access for testimonials" on public.testimonials;
+drop policy if exists "Allow public read-only access for partners" on public.partners;
+drop policy if exists "Allow public read-only access for landing_stats" on public.landing_stats;
+drop policy if exists "Allow public read-only access for landing_portfolio_items" on public.landing_portfolio_items;
+drop policy if exists "Allow public read-only access for site_content" on public.site_content;
+drop policy if exists "Allow public read-only access for landing_partners" on public.landing_partners;
+
+drop policy if exists "Allow admin write access for news" on public.news;
+drop policy if exists "Allow admin write access for events" on public.events;
+drop policy if exists "Allow admin write access for testimonials" on public.testimonials;
+drop policy if exists "Allow admin write access for partners" on public.partners;
+drop policy if exists "Allow admin write access for landing_stats" on public.landing_stats;
+drop policy if exists "Allow admin write access for landing_portfolio_items" on public.landing_portfolio_items;
+drop policy if exists "Allow admin write access for site_content" on public.site_content;
+drop policy if exists "Allow admin write access for landing_partners" on public.landing_partners;
+
 -- Create Read policies (Public Select)
 create policy "Allow public read-only access for news" on public.news for select using (true);
 create policy "Allow public read-only access for events" on public.events for select using (true);
