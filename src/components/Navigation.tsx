@@ -169,19 +169,19 @@ export function Navigation({ lang, onOpenMenu }: NavigationProps) {
             <div key={index} className="relative group py-2">
               {item.submenu ? (
                 <>
-                  <button className={`flex items-center gap-1.5 font-sans text-[11px] font-bold tracking-widest bg-transparent border-0 p-0 cursor-pointer transition-colors hover:text-mono-yellow ${textClass}`}>
+                  <button className={`flex items-center gap-1.5 font-sans text-[11px] font-bold tracking-widest bg-transparent border-0 p-0 cursor-pointer transition-all hover:opacity-75 ${textClass}`}>
                     {item.label}
                     <svg width="8" height="8" viewBox="0 0 8 8" fill="none" className="opacity-60 transition-transform group-hover:rotate-180">
                       <path d="M1 2.5L4 5.5L7 2.5" stroke="currentColor" strokeWidth="1.5" />
                     </svg>
                   </button>
                   {/* Dropdown Menu */}
-                  <div className={`absolute left-0 top-full mt-2 w-64 bg-mono-black border border-white/20 py-3 shadow-[4px_4px_0px_0px_var(--primary-color)] opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 z-50`}>
+                  <div className={`absolute left-0 top-full mt-2 w-64 bg-white border border-mono-black/10 py-3 shadow-[4px_4px_0px_0px_var(--primary-color)] opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 z-50`}>
                     {item.submenu.map((sub, idx) => (
                       <a
                         key={idx}
                         href={sub.href}
-                        className="block px-5 py-2.5 text-xs text-white/80 hover:text-mono-yellow hover:bg-neutral-900 transition-all no-underline font-sans tracking-wide border-l-2 border-transparent hover:border-mono-yellow"
+                        className="block px-5 py-2.5 text-xs text-mono-black/80 hover:text-mono-black hover:bg-mono-black/5 transition-all no-underline font-sans tracking-wide border-l-2 border-transparent hover:border-mono-black"
                       >
                         {sub.label}
                       </a>
@@ -193,7 +193,7 @@ export function Navigation({ lang, onOpenMenu }: NavigationProps) {
                   href={item.href}
                   target={item.isExternal ? '_blank' : undefined}
                   rel={item.isExternal ? 'noopener noreferrer' : undefined}
-                  className={`font-sans text-[11px] font-bold tracking-widest no-underline transition-colors hover:text-mono-yellow ${textClass}`}
+                  className={`font-sans text-[11px] font-bold tracking-widest no-underline transition-all hover:opacity-75 ${textClass}`}
                 >
                   {item.label}
                 </a>
@@ -203,22 +203,22 @@ export function Navigation({ lang, onOpenMenu }: NavigationProps) {
 
           {/* Language Selector Dropdown */}
           <div className="relative group py-2">
-            <button className={`flex items-center gap-1.5 font-sans text-[11px] font-bold tracking-widest bg-transparent border-0 p-0 cursor-pointer transition-colors hover:text-mono-yellow ${textClass}`}>
+            <button className={`flex items-center gap-1.5 font-sans text-[11px] font-bold tracking-widest bg-transparent border-0 p-0 cursor-pointer transition-all hover:opacity-75 ${textClass}`}>
               {lang === 'id' ? '🇮🇩 ID' : '🇬🇧 EN'}
               <svg width="8" height="8" viewBox="0 0 8 8" fill="none" className="opacity-60 transition-transform group-hover:rotate-180">
                 <path d="M1 2.5L4 5.5L7 2.5" stroke="currentColor" strokeWidth="1.5" />
               </svg>
             </button>
-            <div className={`absolute right-0 top-full mt-2 w-28 bg-mono-black border border-white/20 py-2 shadow-[4px_4px_0px_0px_var(--primary-color)] opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 z-50`}>
+            <div className={`absolute right-0 top-full mt-2 w-28 bg-white border border-mono-black/10 py-2 shadow-[4px_4px_0px_0px_var(--primary-color)] opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 z-50`}>
               <a
                 href="/"
-                className={`block w-full text-left px-4 py-2 text-xs font-sans font-semibold text-white/80 hover:text-mono-yellow hover:bg-neutral-900 transition-colors no-underline ${lang === 'id' ? 'text-mono-yellow' : ''}`}
+                className={`block w-full text-left px-4 py-2 text-xs font-sans font-semibold text-mono-black/80 hover:text-mono-black hover:bg-mono-black/5 transition-colors no-underline ${lang === 'id' ? 'text-mono-black bg-mono-black/5' : ''}`}
               >
                 🇮🇩 ID
               </a>
               <a
                 href="/en"
-                className={`block w-full text-left px-4 py-2 text-xs font-sans font-semibold text-white/80 hover:text-mono-yellow hover:bg-neutral-900 transition-colors no-underline ${lang === 'en' ? 'text-mono-yellow' : ''}`}
+                className={`block w-full text-left px-4 py-2 text-xs font-sans font-semibold text-mono-black/80 hover:text-mono-black hover:bg-mono-black/5 transition-colors no-underline ${lang === 'en' ? 'text-mono-black bg-mono-black/5' : ''}`}
               >
                 🇬🇧 EN
               </a>
