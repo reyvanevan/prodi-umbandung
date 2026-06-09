@@ -7,35 +7,77 @@ interface NavDrawerProps {
   onClose: () => void;
 }
 
+interface SubSubmenuItem {
+  label: string;
+  href: string;
+}
+
+interface SubmenuItem {
+  label: string;
+  href: string;
+  isExternal?: boolean;
+  items?: SubSubmenuItem[];
+}
+
+interface MenuItem {
+  id: string;
+  label: string;
+  href?: string;
+  isExternal?: boolean;
+  submenu?: SubmenuItem[];
+}
+
+interface NavDrawerProps {
+  lang: 'id' | 'en';
+  isOpen: boolean;
+  onClose: () => void;
+}
+
 export function NavDrawer({ lang, isOpen, onClose }: NavDrawerProps) {
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
+  const [openSubSubmenu, setOpenSubSubmenu] = useState<string | null>(null);
 
   const toggleSubmenu = (id: string) => {
     setOpenSubmenu(openSubmenu === id ? null : id);
+    setOpenSubSubmenu(null);
   };
 
-  const menuItems = lang === 'en' ? [
-    { id: 'home', label: 'HOME', href: '/en' },
+  const menuItems: MenuItem[] = lang === 'en' ? [
     {
       id: 'about',
       label: 'ABOUT US',
-      href: '#',
       submenu: [
-        { label: 'Vision', href: '/en/#profil' },
-        { label: 'Mission', href: '/en/#profil' },
-        { label: 'Program History', href: '/en/#sejarah' },
-        { label: 'Accreditation', href: '/en/#akreditasi' },
-        { label: 'Faculty Activities', href: '/en/#aktivitas-dosen' },
-        { label: 'Faculty & Staff', href: '/en/#dosen-staff' },
-        { label: 'Organizational Structure', href: '/en/#struktur-organisasi' },
-        { label: 'Faculty Publications', href: '/en/tulisan-dosen' },
+        { label: 'Program Achievements', href: '/en/#' },
+        { label: 'Vision & Mission', href: '/en/#profil' },
+        {
+          label: 'Faculty & Staff Profile',
+          href: '#',
+          items: [
+            { label: 'Organizational Structure', href: '/en/#struktur-organisasi' },
+            { label: 'Faculty, Lab Tech & Staff', href: '/en/#dosen-staff' },
+          ],
+        },
+        { label: 'Cooperation', href: '/en/#mitra-kerjasama' },
       ],
     },
-    { id: 'admission', label: 'ADMISSIONS', href: 'https://pmb.umbandung.ac.id/', isExternal: true },
+    {
+      id: 'academics',
+      label: 'ACADEMICS',
+      submenu: [
+        { label: 'Study Program Curriculum', href: '/en/#tujuan-pendidikan' },
+        { label: 'Prospectus', href: '/en/#info-singkat' },
+        { label: 'Graduate Profile', href: '/en/#tujuan-pendidikan' },
+        { label: 'Graduate Learning Outcomes (PLO)', href: '/en/#tujuan-pendidikan' },
+        { label: 'Research & Publications', href: '/en/tulisan-dosen' },
+        { label: 'Internship', href: '/en/#tujuan-pendidikan' },
+        { label: 'Final Project / Thesis', href: '/en/#tugas-akhir' },
+        { label: 'Lecture Schedule', href: '/en/statistik' },
+        { label: 'Learning Management System (LMS)', href: 'https://lms.umbandung.ac.id', isExternal: true },
+      ],
+    },
     {
       id: 'statistics',
       label: 'STATISTICS',
-      href: '#',
       submenu: [
         { label: 'New Students Average', href: '/en/statistik#rata-maba' },
         { label: 'Lecturer Ratio', href: '/en/statistik#rasio-dosen' },
@@ -45,7 +87,6 @@ export function NavDrawer({ lang, isOpen, onClose }: NavDrawerProps) {
     {
       id: 'students',
       label: 'STUDENTS & ALUMNI',
-      href: '#',
       submenu: [
         { label: 'Student Achievements', href: '/en/#aktivitas-prestasi' },
         { label: 'Final Project', href: '/en/#tugas-akhir' },
@@ -55,40 +96,47 @@ export function NavDrawer({ lang, isOpen, onClose }: NavDrawerProps) {
     {
       id: 'gallery',
       label: 'ACTIVITY GALLERY',
-      href: '#',
       submenu: [
         { label: 'Faculty Activities', href: '/en/kegiatan-dosen' },
         { label: 'Student Activities', href: '/en/kegiatan-mahasiswa' },
       ],
     },
-    ...(PRODI_CONFIG.sintaUrl ? [{ 
-      id: 'sinta', 
-      label: 'SINTA PRODI', 
-      href: PRODI_CONFIG.sintaUrl, 
-      isExternal: true 
-    }] : []),
   ] : [
-    { id: 'home', label: 'HOME', href: '/' },
     {
       id: 'about',
       label: 'TENTANG KAMI',
-      href: '#',
       submenu: [
-        { label: 'Visi', href: '/#profil' },
-        { label: 'Misi', href: '/#profil' },
-        { label: 'Sejarah Prodi', href: '/#sejarah' },
-        { label: 'Akreditasi', href: '/#akreditasi' },
-        { label: 'Aktivitas Dosen', href: '/#aktivitas-dosen' },
-        { label: 'Dosen dan Staff', href: '/#dosen-staff' },
-        { label: 'Struktur Organisasi', href: '/#struktur-organisasi' },
-        { label: 'Tulisan Dosen', href: '/tulisan-dosen' },
+        { label: 'Prestasi Program Studi', href: '/#' },
+        { label: 'Visi & Misi', href: '/#profil' },
+        {
+          label: 'Profil SDM',
+          href: '#',
+          items: [
+            { label: 'Struktur Organisasi', href: '/#struktur-organisasi' },
+            { label: 'Dosen, Laboran dan Karyawan', href: '/#dosen-staff' },
+          ],
+        },
+        { label: 'Kerjasama', href: '/#mitra-kerjasama' },
       ],
     },
-    { id: 'admission', label: 'ADMISSIONS', href: 'https://pmb.umbandung.ac.id/', isExternal: true },
+    {
+      id: 'academics',
+      label: 'AKADEMIK',
+      submenu: [
+        { label: 'Kurikulum Program Studi', href: '/#tujuan-pendidikan' },
+        { label: 'Prospectus', href: '/#info-singkat' },
+        { label: 'Profil Lulusan', href: '/#tujuan-pendidikan' },
+        { label: 'Capaian Pembelajaran Lulusan (CPL)', href: '/#tujuan-pendidikan' },
+        { label: 'Riset & Publikasi', href: '/tulisan-dosen' },
+        { label: 'Magang', href: '/#tujuan-pendidikan' },
+        { label: 'Tugas Akhir / Skripsi', href: '/#tugas-akhir' },
+        { label: 'Jadwal Kuliah', href: '/statistik' },
+        { label: 'Learning Management System (LMS)', href: 'https://lms.umbandung.ac.id', isExternal: true },
+      ],
+    },
     {
       id: 'statistics',
       label: 'STATISTIK',
-      href: '#',
       submenu: [
         { label: 'Rata Mahasiswa Baru', href: '/statistik#rata-maba' },
         { label: 'Rasio Dosen', href: '/statistik#rasio-dosen' },
@@ -98,7 +146,6 @@ export function NavDrawer({ lang, isOpen, onClose }: NavDrawerProps) {
     {
       id: 'students',
       label: 'MAHASISWA DAN ALUMNI',
-      href: '#',
       submenu: [
         { label: 'Prestasi Mahasiswa', href: '/#aktivitas-prestasi' },
         { label: 'Tugas Akhir', href: '/#tugas-akhir' },
@@ -108,18 +155,11 @@ export function NavDrawer({ lang, isOpen, onClose }: NavDrawerProps) {
     {
       id: 'gallery',
       label: 'GALERI KEGIATAN',
-      href: '#',
       submenu: [
         { label: 'Kegiatan Dosen', href: '/kegiatan-dosen' },
         { label: 'Kegiatan Mahasiswa', href: '/kegiatan-mahasiswa' },
       ],
     },
-    ...(PRODI_CONFIG.sintaUrl ? [{ 
-      id: 'sinta', 
-      label: 'SINTA PRODI', 
-      href: PRODI_CONFIG.sintaUrl, 
-      isExternal: true 
-    }] : []),
   ];
 
   const portals = PRODI_CONFIG.portals[lang] || [];
@@ -202,20 +242,70 @@ export function NavDrawer({ lang, isOpen, onClose }: NavDrawerProps) {
                     <div
                       className={`overflow-hidden transition-all duration-300 pl-8 flex flex-col gap-2 ${
                         openSubmenu === item.id
-                          ? 'max-h-[320px] mt-2 mb-4 opacity-100'
+                          ? 'max-h-[600px] mt-2 mb-4 opacity-100'
                           : 'max-h-0 opacity-0 pointer-events-none'
                       }`}
                     >
-                      {item.submenu.map((sub, idx) => (
-                        <a
-                          key={idx}
-                          href={sub.href}
-                          onClick={onClose}
-                          className="font-sans text-sm text-white/77 hover:text-mono-yellow no-underline py-1 transition-colors"
-                        >
-                          {sub.label}
-                        </a>
-                      ))}
+                      {item.submenu.map((sub, idx) => {
+                        const hasSubSub = !!sub.items;
+                        if (hasSubSub) {
+                          const isSubSubOpen = openSubSubmenu === sub.label;
+                          return (
+                            <div key={idx} className="flex flex-col">
+                              <button
+                                onClick={() => setOpenSubSubmenu(isSubSubOpen ? null : sub.label)}
+                                className="group flex items-center justify-between py-1.5 text-left bg-transparent border-0 p-0 w-full cursor-pointer"
+                              >
+                                <span className="font-sans text-sm text-white/77 group-hover:text-mono-yellow transition-colors">
+                                  {sub.label}
+                                </span>
+                                <svg
+                                  width="8"
+                                  height="8"
+                                  viewBox="0 0 8 8"
+                                  fill="none"
+                                  className={`text-white/40 transition-transform ${
+                                    isSubSubOpen ? 'rotate-180' : ''
+                                  }`}
+                                >
+                                  <path d="M1 2.5L4 5.5L7 2.5" stroke="currentColor" strokeWidth="1.5" />
+                                </svg>
+                              </button>
+                              <div
+                                className={`overflow-hidden transition-all duration-300 pl-4 flex flex-col gap-1.5 ${
+                                  isSubSubOpen
+                                    ? 'max-h-[150px] mt-1.5 mb-2 opacity-100'
+                                    : 'max-h-0 opacity-0 pointer-events-none'
+                                }`}
+                              >
+                                {sub.items.map((subSub, subIdx) => (
+                                  <a
+                                    key={subIdx}
+                                    href={subSub.href}
+                                    onClick={onClose}
+                                    className="font-sans text-xs text-white/60 hover:text-mono-yellow no-underline py-1 transition-colors"
+                                  >
+                                    {subSub.label}
+                                  </a>
+                                ))}
+                              </div>
+                            </div>
+                          );
+                        } else {
+                          return (
+                            <a
+                              key={idx}
+                              href={sub.href}
+                              target={sub.isExternal ? '_blank' : undefined}
+                              rel={sub.isExternal ? 'noopener noreferrer' : undefined}
+                              onClick={onClose}
+                              className="font-sans text-sm text-white/77 hover:text-mono-yellow no-underline py-1 transition-colors"
+                            >
+                              {sub.label}
+                            </a>
+                          );
+                        }
+                      })}
                     </div>
                   </>
                 ) : (

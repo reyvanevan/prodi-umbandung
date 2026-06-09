@@ -1,6 +1,25 @@
 import { useEffect, useState } from 'react';
 import { PRODI_CONFIG } from '@/config/prodi.config';
 
+interface SubSubmenuItem {
+  label: string;
+  href: string;
+}
+
+interface SubmenuItem {
+  label: string;
+  href: string;
+  isExternal?: boolean;
+  items?: SubSubmenuItem[];
+}
+
+interface MenuItem {
+  label: string;
+  href?: string;
+  isExternal?: boolean;
+  submenu?: SubmenuItem[];
+}
+
 interface NavigationProps {
   lang: 'id' | 'en';
   onOpenMenu: () => void;
@@ -20,26 +39,39 @@ export function Navigation({ lang, onOpenMenu }: NavigationProps) {
   const textClass = scrolled ? 'text-mono-black' : 'text-white';
   const subtextClass = scrolled ? 'text-mono-black/60' : 'text-white/60';
 
-  const menuItems = lang === 'en' ? [
-    { label: 'HOME', href: '/en' },
+  const menuItems: MenuItem[] = lang === 'en' ? [
     {
       label: 'ABOUT US',
-      href: '#',
       submenu: [
-        { label: 'Vision', href: '/en/#profil' },
-        { label: 'Mission', href: '/en/#profil' },
-        { label: 'Program History', href: '/en/#sejarah' },
-        { label: 'Accreditation', href: '/en/#akreditasi' },
-        { label: 'Faculty Activities', href: '/en/#aktivitas-dosen' },
-        { label: 'Faculty & Staff', href: '/en/#dosen-staff' },
-        { label: 'Organizational Structure', href: '/en/#struktur-organisasi' },
-        { label: 'Faculty Publications', href: '/en/tulisan-dosen' },
+        { label: 'Program Achievements', href: '/en/#' },
+        { label: 'Vision & Mission', href: '/en/#profil' },
+        {
+          label: 'Faculty & Staff Profile',
+          href: '#',
+          items: [
+            { label: 'Organizational Structure', href: '/en/#struktur-organisasi' },
+            { label: 'Faculty, Lab Tech & Staff', href: '/en/#dosen-staff' },
+          ],
+        },
+        { label: 'Cooperation', href: '/en/#mitra-kerjasama' },
       ],
     },
-    { label: 'ADMISSIONS', href: 'https://pmb.umbandung.ac.id/', isExternal: true },
+    {
+      label: 'ACADEMICS',
+      submenu: [
+        { label: 'Study Program Curriculum', href: '/en/#tujuan-pendidikan' },
+        { label: 'Prospectus', href: '/en/#info-singkat' },
+        { label: 'Graduate Profile', href: '/en/#tujuan-pendidikan' },
+        { label: 'Graduate Learning Outcomes (PLO)', href: '/en/#tujuan-pendidikan' },
+        { label: 'Research & Publications', href: '/en/tulisan-dosen' },
+        { label: 'Internship', href: '/en/#tujuan-pendidikan' },
+        { label: 'Final Project / Thesis', href: '/en/#tugas-akhir' },
+        { label: 'Lecture Schedule', href: '/en/statistik' },
+        { label: 'Learning Management System (LMS)', href: 'https://lms.umbandung.ac.id', isExternal: true },
+      ],
+    },
     {
       label: 'STATISTICS',
-      href: '#',
       submenu: [
         { label: 'New Students Average', href: '/en/statistik#rata-maba' },
         { label: 'Lecturer Ratio', href: '/en/statistik#rasio-dosen' },
@@ -48,7 +80,6 @@ export function Navigation({ lang, onOpenMenu }: NavigationProps) {
     },
     {
       label: 'STUDENTS & ALUMNI',
-      href: '#',
       submenu: [
         { label: 'Student Achievements', href: '/en/#aktivitas-prestasi' },
         { label: 'Final Project', href: '/en/#tugas-akhir' },
@@ -57,37 +88,44 @@ export function Navigation({ lang, onOpenMenu }: NavigationProps) {
     },
     {
       label: 'ACTIVITY GALLERY',
-      href: '#',
       submenu: [
         { label: 'Faculty Activities', href: '/en/kegiatan-dosen' },
         { label: 'Student Activities', href: '/en/kegiatan-mahasiswa' },
       ],
     },
-    ...(PRODI_CONFIG.sintaUrl ? [{ 
-      label: 'SINTA PRODI', 
-      href: PRODI_CONFIG.sintaUrl, 
-      isExternal: true 
-    }] : []),
   ] : [
-    { label: 'HOME', href: '/' },
     {
       label: 'TENTANG KAMI',
-      href: '#',
       submenu: [
-        { label: 'Visi', href: '/#profil' },
-        { label: 'Misi', href: '/#profil' },
-        { label: 'Sejarah Prodi', href: '/#sejarah' },
-        { label: 'Akreditasi', href: '/#akreditasi' },
-        { label: 'Aktivitas Dosen', href: '/#aktivitas-dosen' },
-        { label: 'Dosen dan Staff', href: '/#dosen-staff' },
-        { label: 'Struktur Organisasi', href: '/#struktur-organisasi' },
-        { label: 'Tulisan Dosen', href: '/tulisan-dosen' },
+        { label: 'Prestasi Program Studi', href: '/#' },
+        { label: 'Visi & Misi', href: '/#profil' },
+        {
+          label: 'Profil SDM',
+          href: '#',
+          items: [
+            { label: 'Struktur Organisasi', href: '/#struktur-organisasi' },
+            { label: 'Dosen, Laboran dan Karyawan', href: '/#dosen-staff' },
+          ],
+        },
+        { label: 'Kerjasama', href: '/#mitra-kerjasama' },
       ],
     },
-    { label: 'ADMISSIONS', href: 'https://pmb.umbandung.ac.id/', isExternal: true },
+    {
+      label: 'AKADEMIK',
+      submenu: [
+        { label: 'Kurikulum Program Studi', href: '/#tujuan-pendidikan' },
+        { label: 'Prospectus', href: '/#info-singkat' },
+        { label: 'Profil Lulusan', href: '/#tujuan-pendidikan' },
+        { label: 'Capaian Pembelajaran Lulusan (CPL)', href: '/#tujuan-pendidikan' },
+        { label: 'Riset & Publikasi', href: '/tulisan-dosen' },
+        { label: 'Magang', href: '/#tujuan-pendidikan' },
+        { label: 'Tugas Akhir / Skripsi', href: '/#tugas-akhir' },
+        { label: 'Jadwal Kuliah', href: '/statistik' },
+        { label: 'Learning Management System (LMS)', href: 'https://lms.umbandung.ac.id', isExternal: true },
+      ],
+    },
     {
       label: 'STATISTIK',
-      href: '#',
       submenu: [
         { label: 'Rata Mahasiswa Baru', href: '/statistik#rata-maba' },
         { label: 'Rasio Dosen', href: '/statistik#rasio-dosen' },
@@ -96,7 +134,6 @@ export function Navigation({ lang, onOpenMenu }: NavigationProps) {
     },
     {
       label: 'MAHASISWA DAN ALUMNI',
-      href: '#',
       submenu: [
         { label: 'Prestasi Mahasiswa', href: '/#aktivitas-prestasi' },
         { label: 'Tugas Akhir', href: '/#tugas-akhir' },
@@ -105,17 +142,11 @@ export function Navigation({ lang, onOpenMenu }: NavigationProps) {
     },
     {
       label: 'GALERI KEGIATAN',
-      href: '#',
       submenu: [
         { label: 'Kegiatan Dosen', href: '/kegiatan-dosen' },
         { label: 'Kegiatan Mahasiswa', href: '/kegiatan-mahasiswa' },
       ],
     },
-    ...(PRODI_CONFIG.sintaUrl ? [{ 
-      label: 'SINTA PRODI', 
-      href: PRODI_CONFIG.sintaUrl, 
-      isExternal: true 
-    }] : []),
   ];
 
   const portals = PRODI_CONFIG.portals[lang] || [];
@@ -177,15 +208,45 @@ export function Navigation({ lang, onOpenMenu }: NavigationProps) {
                   </button>
                   {/* Dropdown Menu */}
                   <div className={`absolute left-0 top-full mt-2 w-64 bg-white border border-mono-black/10 py-3 shadow-[4px_4px_0px_0px_var(--primary-color)] opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 z-50`}>
-                    {item.submenu.map((sub, idx) => (
-                      <a
-                        key={idx}
-                        href={sub.href}
-                        className="block px-5 py-2.5 text-xs text-mono-black/80 hover:text-mono-black hover:bg-mono-black/5 transition-all no-underline font-sans tracking-wide border-l-2 border-transparent hover:border-mono-black"
-                      >
-                        {sub.label}
-                      </a>
-                    ))}
+                    {item.submenu.map((sub, idx) => {
+                      const hasSubSub = !!sub.items;
+                      return (
+                        <div key={idx} className="relative group/sub">
+                          {hasSubSub ? (
+                            <>
+                              <button className="w-full flex items-center justify-between px-5 py-2.5 text-xs text-mono-black/80 hover:text-mono-black hover:bg-mono-black/5 transition-all no-underline font-sans tracking-wide border-l-2 border-transparent hover:border-mono-black bg-transparent border-0 cursor-pointer text-left">
+                                <span>{sub.label}</span>
+                                <svg width="8" height="8" viewBox="0 0 8 8" fill="none" className="opacity-60 transition-transform -rotate-90">
+                                  <path d="M1 2.5L4 5.5L7 2.5" stroke="currentColor" strokeWidth="1.5" />
+                                </svg>
+                              </button>
+                              {/* Sub-Submenu */}
+                              <div className="absolute left-full top-0 ml-0.5 w-64 bg-white border border-mono-black/10 py-3 shadow-[4px_4px_0px_0px_var(--primary-color)] opacity-0 invisible translate-x-2 group-hover/sub:opacity-100 group-hover/sub:visible group-hover/sub:translate-x-0 transition-all duration-300 z-50">
+                                {sub.items.map((subSub, subIdx) => (
+                                  <a
+                                    key={subIdx}
+                                    href={subSub.href}
+                                    className="block px-5 py-2.5 text-xs text-mono-black/80 hover:text-mono-black hover:bg-mono-black/5 transition-all no-underline font-sans tracking-wide border-l-2 border-transparent hover:border-mono-black"
+                                  >
+                                    {subSub.label}
+                                  </a>
+                                ))}
+                              </div>
+                            </>
+                          ) : (
+                            <a
+                              key={idx}
+                              href={sub.href}
+                              target={sub.isExternal ? '_blank' : undefined}
+                              rel={sub.isExternal ? 'noopener noreferrer' : undefined}
+                              className="block px-5 py-2.5 text-xs text-mono-black/80 hover:text-mono-black hover:bg-mono-black/5 transition-all no-underline font-sans tracking-wide border-l-2 border-transparent hover:border-mono-black"
+                            >
+                              {sub.label}
+                            </a>
+                          )}
+                        </div>
+                      );
+                    })}
                   </div>
                 </>
               ) : (
