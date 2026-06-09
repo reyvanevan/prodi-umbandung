@@ -227,3 +227,55 @@ export const PARTNERS: string[] = [
   'IKATAN ALUMNI TEKNIK INFORMATIKA (IKATI)',
   'PT GOTO GOJEK TOKOPEDIA TBK',
 ];
+
+export interface DosenItem {
+  id: string;
+  name: string;
+  imgSrc: string;
+  scopus: string;
+  sinta: string;
+  scholar: string;
+  facebook?: string;
+  twitter?: string;
+  tiktok?: string;
+  instagram?: string;
+}
+
+export const ACADEMIC_DOSEN: DosenItem[] = [
+  {
+    id: 'dosen-1',
+    name: 'Hanif Alamudin Manshur, S.Gz., M.Si.',
+    imgSrc: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=300&auto=format&fit=crop',
+    scopus: '-',
+    sinta: '6704890',
+    scholar: '#',
+    facebook: '#',
+    twitter: '#',
+    tiktok: '#',
+    instagram: '#',
+  },
+  {
+    id: 'dosen-2',
+    name: 'Vritta Amroini Wahyudi, S.Si., M.Si.',
+    imgSrc: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=300&auto=format&fit=crop',
+    scopus: '-',
+    sinta: '6640055',
+    scholar: '#',
+    facebook: '#',
+    twitter: '#',
+    tiktok: '#',
+    instagram: '#',
+  },
+  {
+    id: 'dosen-3',
+    name: 'Prof. Dr. Ir. Noor Harini, M.S.',
+    imgSrc: 'https://images.unsplash.com/photo-1580894732444-8fecef2271ff?q=80&w=300&auto=format&fit=crop',
+    scopus: '57203912449',
+    sinta: '6042313',
+    scholar: '#',
+    facebook: '#',
+    twitter: '#',
+    tiktok: '#',
+    instagram: '#',
+  },
+];

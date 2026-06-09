@@ -195,3 +195,31 @@ export async function getLandingPortfolioItems(): Promise<DbLandingPortfolioItem
   }
   return data;
 }
+
+export interface DbDosen {
+  id: string;
+  name: string;
+  img_src: string | null;
+  scopus: string | null;
+  sinta: string | null;
+  scholar: string | null;
+  facebook: string | null;
+  twitter: string | null;
+  tiktok: string | null;
+  instagram: string | null;
+  sort_order: number;
+}
+
+export async function getDosen(): Promise<DbDosen[] | null> {
+  const supabase = getBrowserSupabaseClient();
+  if (!supabase) return null;
+  const { data, error } = await supabase
+    .from('dosen')
+    .select('*')
+    .order('sort_order', { ascending: true });
+  if (error) {
+    console.error('Error fetching dosen:', error);
+    return null;
+  }
+  return data;
+}

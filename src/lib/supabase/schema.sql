@@ -80,6 +80,22 @@ create table if not exists public.landing_partners (
   created_at timestamp with time zone default timezone('utc'::text, now()) not null
 );
 
+-- 9. Create dosen table
+create table if not exists public.dosen (
+  id uuid default gen_random_uuid() primary key,
+  name text not null,
+  img_src text,
+  scopus text,
+  sinta text,
+  scholar text,
+  facebook text,
+  twitter text,
+  tiktok text,
+  instagram text,
+  sort_order int not null default 0,
+  created_at timestamp with time zone default timezone('utc'::text, now()) not null
+);
+
 -- Enable Row Level Security (RLS) for all tables
 alter table public.news enable row level security;
 alter table public.events enable row level security;
@@ -89,6 +105,7 @@ alter table public.landing_stats enable row level security;
 alter table public.landing_portfolio_items enable row level security;
 alter table public.site_content enable row level security;
 alter table public.landing_partners enable row level security;
+alter table public.dosen enable row level security;
 
 -- Drop policies if they already exist
 drop policy if exists "Allow public read-only access for news" on public.news;
@@ -99,6 +116,7 @@ drop policy if exists "Allow public read-only access for landing_stats" on publi
 drop policy if exists "Allow public read-only access for landing_portfolio_items" on public.landing_portfolio_items;
 drop policy if exists "Allow public read-only access for site_content" on public.site_content;
 drop policy if exists "Allow public read-only access for landing_partners" on public.landing_partners;
+drop policy if exists "Allow public read-only access for dosen" on public.dosen;
 
 drop policy if exists "Allow admin write access for news" on public.news;
 drop policy if exists "Allow admin write access for events" on public.events;
@@ -108,6 +126,7 @@ drop policy if exists "Allow admin write access for landing_stats" on public.lan
 drop policy if exists "Allow admin write access for landing_portfolio_items" on public.landing_portfolio_items;
 drop policy if exists "Allow admin write access for site_content" on public.site_content;
 drop policy if exists "Allow admin write access for landing_partners" on public.landing_partners;
+drop policy if exists "Allow admin write access for dosen" on public.dosen;
 
 -- Create Read policies (Public Select)
 create policy "Allow public read-only access for news" on public.news for select using (true);
@@ -118,6 +137,7 @@ create policy "Allow public read-only access for landing_stats" on public.landin
 create policy "Allow public read-only access for landing_portfolio_items" on public.landing_portfolio_items for select using (true);
 create policy "Allow public read-only access for site_content" on public.site_content for select using (true);
 create policy "Allow public read-only access for landing_partners" on public.landing_partners for select using (true);
+create policy "Allow public read-only access for dosen" on public.dosen for select using (true);
 
 -- Create Write policies (Authenticated Admin only)
 create policy "Allow admin write access for news" on public.news for all using (auth.role() = 'authenticated');
@@ -128,6 +148,7 @@ create policy "Allow admin write access for landing_stats" on public.landing_sta
 create policy "Allow admin write access for landing_portfolio_items" on public.landing_portfolio_items for all using (auth.role() = 'authenticated');
 create policy "Allow admin write access for site_content" on public.site_content for all using (auth.role() = 'authenticated');
 create policy "Allow admin write access for landing_partners" on public.landing_partners for all using (auth.role() = 'authenticated');
+create policy "Allow admin write access for dosen" on public.dosen for all using (auth.role() = 'authenticated');
 
 -- Clean existing data before seeding
 truncate table public.news restart identity cascade;
@@ -138,6 +159,7 @@ truncate table public.landing_stats restart identity cascade;
 truncate table public.landing_portfolio_items restart identity cascade;
 truncate table public.site_content restart identity cascade;
 truncate table public.landing_partners restart identity cascade;
+truncate table public.dosen restart identity cascade;
 
 -- Seed Partners
 insert into public.partners (name) values
@@ -207,3 +229,9 @@ insert into public.site_content (key, value, value_en) values
   ('sambutan_title', 'Sambutan Kepala Program Studi', 'Head of Department\'s Welcome'),
   ('philosophy_title', 'Filosofi Pembelajaran Kami', 'Our Learning Philosophy'),
   ('philosophy_body', 'Kami percaya bahwa pemrograman bukan hanya tentang mengetik baris kode, melainkan tentang membangun solusi komputasi yang efisien, etis, dan memberikan dampak nyata bagi masyarakat.', 'We believe programming is not just about writing lines of code, but about building efficient, ethical computing solutions that deliver real impact to society.');
+
+-- Seed Dosen
+insert into public.dosen (name, img_src, scopus, sinta, scholar, facebook, twitter, tiktok, instagram, sort_order) values
+  ('Hanif Alamudin Manshur, S.Gz., M.Si.', 'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=300&auto=format&fit=crop', '-', '6704890', '#', '#', '#', '#', '#', 1),
+  ('Vritta Amroini Wahyudi, S.Si., M.Si.', 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=300&auto=format&fit=crop', '-', '6640055', '#', '#', '#', '#', '#', 2),
+  ('Prof. Dr. Ir. Noor Harini, M.S.', 'https://images.unsplash.com/photo-1580894732444-8fecef2271ff?q=80&w=300&auto=format&fit=crop', '57203912449', '6042313', '#', '#', '#', '#', '#', 3);

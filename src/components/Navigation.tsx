@@ -51,7 +51,7 @@ export function Navigation({ lang, onOpenMenu, logoUrl }: NavigationProps) {
           href: '#',
           items: [
             { label: 'Organizational Structure', href: '/en/#struktur-organisasi' },
-            { label: 'Faculty, Lab Tech & Staff', href: '/en/#dosen-staff' },
+            { label: 'Faculty, Lab Tech & Staff', href: '/en/dosen' },
           ],
         },
         { label: 'Cooperation', href: '/en/#mitra-kerjasama' },
@@ -105,7 +105,7 @@ export function Navigation({ lang, onOpenMenu, logoUrl }: NavigationProps) {
           href: '#',
           items: [
             { label: 'Struktur Organisasi', href: '/#struktur-organisasi' },
-            { label: 'Dosen, Laboran dan Karyawan', href: '/#dosen-staff' },
+            { label: 'Dosen, Laboran dan Karyawan', href: '/dosen' },
           ],
         },
         { label: 'Kerjasama', href: '/#mitra-kerjasama' },
