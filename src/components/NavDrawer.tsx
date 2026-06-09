@@ -249,7 +249,7 @@ export function NavDrawer({ lang, isOpen, onClose, logoUrl }: NavDrawerProps) {
                           : 'max-h-0 opacity-0 pointer-events-none'
                       }`}
                     >
-                      {item.submenu.map((sub, idx) => {
+                      {item.submenu?.map((sub, idx) => {
                         const hasSubSub = !!sub.items;
                         if (hasSubSub) {
                           const isSubSubOpen = openSubSubmenu === sub.label;
@@ -281,7 +281,7 @@ export function NavDrawer({ lang, isOpen, onClose, logoUrl }: NavDrawerProps) {
                                     : 'max-h-0 opacity-0 pointer-events-none'
                                 }`}
                               >
-                                {sub.items.map((subSub, subIdx) => (
+                                {sub.items?.map((subSub, subIdx) => (
                                   <a
                                     key={subIdx}
                                     href={subSub.href}

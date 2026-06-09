@@ -219,7 +219,7 @@ export function Navigation({ lang, onOpenMenu, logoUrl }: NavigationProps) {
                   </button>
                   {/* Dropdown Menu */}
                   <div className={`absolute left-0 top-full mt-2 w-64 bg-white border border-mono-black/10 py-3 shadow-[4px_4px_0px_0px_var(--primary-color)] opacity-0 invisible translate-y-2 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-300 z-50`}>
-                    {item.submenu.map((sub, idx) => {
+                    {item.submenu?.map((sub, idx) => {
                       const hasSubSub = !!sub.items;
                       return (
                         <div key={idx} className="relative group/sub">
@@ -233,7 +233,7 @@ export function Navigation({ lang, onOpenMenu, logoUrl }: NavigationProps) {
                               </button>
                               {/* Sub-Submenu */}
                               <div className="absolute left-full top-0 ml-0.5 w-64 bg-white border border-mono-black/10 py-3 shadow-[4px_4px_0px_0px_var(--primary-color)] opacity-0 invisible translate-x-2 group-hover/sub:opacity-100 group-hover/sub:visible group-hover/sub:translate-x-0 transition-all duration-300 z-50">
-                                {sub.items.map((subSub, subIdx) => (
+                                {sub.items?.map((subSub, subIdx) => (
                                   <a
                                     key={subIdx}
                                     href={subSub.href}
