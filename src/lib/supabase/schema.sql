@@ -201,6 +201,7 @@ insert into public.site_content (key, value, value_en) values
   ('kaprodi_welcome_p2', 'Fokus pengembangan kami terletak pada integrasi kemajuan ilmu komputer dengan kebutuhan praktis industri, menciptakan solusi dan sistem digital yang berdaya saing global serta berdampak sosial.', 'Our development focus lies in integrating computer science advancements with practical industry needs, creating digital solutions and systems that are globally competitive and socially impactful.'),
   ('kaprodi_photo_url', '/assets/kaprodi.png', '/assets/kaprodi.png'),
   ('logo_prodi_url', '', ''),
+  ('hero_bg_url', '/assets/hero-mono-stigma.png', '/assets/hero-mono-stigma.png'),
   ('kaprodi_name', 'M. Yusuf Efendi, S.T., M.T.', 'M. Yusuf Efendi, S.T., M.T.'),
   ('kaprodi_title', 'Ketua Program Studi Teknik Informatika', 'Head of Informatics Engineering Department'),
   ('sambutan_title', 'Sambutan Kepala Program Studi', 'Head of Department\'s Welcome'),
