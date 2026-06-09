@@ -49,8 +49,8 @@ module.exports = {
           ring: "hsl(var(--sidebar-ring))",
         },
         'mono-white': '#FFFFFF',
-        'mono-black': '#0D0D0D',
-        'mono-yellow': '#0B2545',
+        'mono-black': '#0B2545',
+        'mono-yellow': '#D49A17',
         'mono-cream': '#FDFBF7',
       },
       fontFamily: {

@@ -18,17 +18,17 @@ export function ProfilVideoSection({ lang }: ProfilVideoSectionProps) {
   const embedUrl = `https://www.youtube.com/embed/${videoId}`;
 
   return (
-    <section id="profil" className="w-full py-24 bg-mono-cream text-mono-black border-b border-mono-black/10">
+    <section id="profil" className="w-full py-24 bg-mono-black text-white border-b border-white/10">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           
           {/* Text Content Area */}
           <div className="lg:col-span-5 flex flex-col justify-center">
             <p className="tech-tag text-mono-yellow mb-3">PROFILE VIDEO // AUDIO-VISUAL</p>
-            <h2 className="font-serif text-4xl md:text-5xl tracking-wide mb-6 text-mono-black leading-tight">
+            <h2 className="font-serif text-4xl md:text-5xl tracking-wide mb-6 text-white leading-tight">
               {lang === 'en' ? 'Engineering the Future in Motion' : 'Mengembangkan Teknologi Masa Depan'}
             </h2>
-            <p className="font-sans text-sm text-neutral-700 leading-relaxed mb-6">
+            <p className="font-sans text-sm text-white/70 leading-relaxed mb-6">
               {lang === 'en' ? (
                 <>
                   Experience the vibrant academic life of our {PRODI_CONFIG.degree} {PRODI_CONFIG.name.en} program at {PRODI_CONFIG.universityShort}. 
@@ -41,9 +41,9 @@ export function ProfilVideoSection({ lang }: ProfilVideoSectionProps) {
                 </>
               )}
             </p>
-            <div className="flex items-center gap-4 py-4 border-t border-mono-black/10">
+            <div className="flex items-center gap-4 py-4 border-t border-white/10">
               <div className="h-2 w-2 rounded-full bg-mono-yellow animate-pulse" />
-              <span className="tech-tag text-mono-black/50 text-[10px] tracking-widest">
+              <span className="tech-tag text-white/50 text-[10px] tracking-widest">
                 {lang === 'en' ? 'YOUTUBE PREVIEW // 1080P' : 'TAYANGAN YOUTUBE // 1080P'}
               </span>
             </div>
@@ -51,7 +51,7 @@ export function ProfilVideoSection({ lang }: ProfilVideoSectionProps) {
 
           {/* Video Player Area */}
           <div className="lg:col-span-7">
-            <div className="relative border border-mono-black bg-white p-2 shadow-[8px_8px_0px_0px_var(--primary-color)]">
+            <div className="relative border border-white/20 bg-neutral-900 p-2 shadow-[8px_8px_0px_0px_var(--primary-color)]">
               {/* Aspect-Ratio Box (16:9) */}
               <div className="relative w-full aspect-video overflow-hidden">
                 <iframe
@@ -65,8 +65,8 @@ export function ProfilVideoSection({ lang }: ProfilVideoSectionProps) {
               
               {/* Decorative Technical Info overlay */}
               <div className="flex justify-between items-center mt-3 px-1">
-                <span className="tech-tag text-[9px] text-mono-black/40">ID: {videoId}</span>
-                <span className="tech-tag text-[9px] text-mono-black/40">RATIO: 16:9</span>
+                <span className="tech-tag text-[9px] text-white/40">ID: {videoId}</span>
+                <span className="tech-tag text-[9px] text-white/40">RATIO: 16:9</span>
               </div>
             </div>
           </div>
