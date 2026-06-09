@@ -24,10 +24,10 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
     <div
       onClick={() => handleMove(position)}
       className={cn(
-        'absolute left-1/2 top-1/2 cursor-pointer border-2 p-8 transition-all duration-500 ease-in-out',
+        'absolute left-1/2 top-1/2 cursor-pointer border-2 p-8 transition-all duration-500 ease-in-out select-none',
         isCenter
           ? 'z-10 bg-white text-mono-black border-mono-black'
-          : 'z-0 bg-white text-mono-black/60 border-mono-black/15 hover:border-mono-black/50'
+          : 'z-0 bg-white/45 text-mono-black/50 border-mono-black/10 hover:border-mono-black/30'
       )}
       style={{
         width: cardSize,
@@ -35,9 +35,10 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
         clipPath: `polygon(50px 0%, calc(100% - 50px) 0%, 100% 50px, 100% 100%, calc(100% - 50px) 100%, 50px 100%, 0 100%, 0 0)`,
         transform: `
           translate(-50%, -50%) 
-          translateX(${(cardSize / 1.5) * position}px)
-          translateY(${isCenter ? -30 : position % 2 ? 40 : 10}px)
-          rotate(${isCenter ? 0 : position % 2 ? 2.5 : -2.5}deg)
+          translateX(${(cardSize / 1.4) * position}px)
+          translateY(${isCenter ? -65 : position % 2 ? 15 : -15}px)
+          rotate(${isCenter ? 0 : position % 2 ? 3.5 : -3.5}deg)
+          scale(${isCenter ? 1.05 : 0.88})
         `,
         boxShadow: isCenter ? '0px 8px 0px 4px #0B2545' : '0px 0px 0px 0px transparent',
       }}
@@ -45,7 +46,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
       <span
         className={cn(
           'absolute block origin-top-right rotate-45',
-          isCenter ? 'bg-mono-black/10' : 'bg-mono-black/5'
+          isCenter ? 'bg-mono-black/15' : 'bg-mono-black/5'
         )}
         style={{
           right: -2,
@@ -59,13 +60,13 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
         alt={`${testimonial.by.split('(')[0]}`}
         className="mb-4 h-14 w-12 bg-mono-black/10 object-cover object-top"
         style={{
-          boxShadow: isCenter ? '3px 3px 0px #0B2545' : '3px 3px 0px rgba(11, 37, 69, 0.2)',
+          boxShadow: isCenter ? '3px 3px 0px #0B2545' : '3px 3px 0px rgba(11, 37, 69, 0.15)',
         }}
       />
       <h3
         className={cn(
           'text-base sm:text-lg font-serif leading-relaxed',
-          isCenter ? 'text-mono-black' : 'text-mono-black/80'
+          isCenter ? 'text-mono-black' : 'text-mono-black/60'
         )}
       >
         "{testimonial.testimonial}"
@@ -73,7 +74,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
       <p
         className={cn(
           'absolute bottom-8 left-8 right-8 mt-2 text-[10px] tech-tag uppercase tracking-widest',
-          isCenter ? 'text-mono-black/70' : 'text-mono-black/50'
+          isCenter ? 'text-mono-black/70' : 'text-mono-black/40'
         )}
       >
         - {testimonial.by}
@@ -136,19 +137,32 @@ export const StaggerTestimonials: React.FC<StaggerTestimonialsProps> = ({ lang, 
   ];
 
   const getInitialList = () => {
+    let list = [];
     if (testimonialsListProp && testimonialsListProp.length > 0) {
-      return testimonialsListProp;
+      list = testimonialsListProp;
+    } else {
+      list = lang === 'en' ? englishTestimonials : ALUMNI_TESTIMONIALS;
     }
-    return lang === 'en' ? englishTestimonials : ALUMNI_TESTIMONIALS;
+
+    // Triple the list to hide the wrapper transition on wide screens
+    let finalTestimonials = [...list];
+    if (finalTestimonials.length > 0 && finalTestimonials.length < 10) {
+      finalTestimonials = [
+        ...finalTestimonials,
+        ...finalTestimonials.map((t, i) => ({ ...t, id: t.id + `-dup1-${i}` })),
+        ...finalTestimonials.map((t, i) => ({ ...t, id: t.id + `-dup2-${i}` }))
+      ];
+    }
+
+    return finalTestimonials.map((item, idx) => ({
+      ...item,
+      tempId: item.tempId !== undefined ? item.tempId : idx
+    }));
   };
   const [testimonialsList, setTestimonialsList] = useState(getInitialList);
 
   useEffect(() => {
-    if (testimonialsListProp && testimonialsListProp.length > 0) {
-      setTestimonialsList(testimonialsListProp);
-    } else {
-      setTestimonialsList(lang === 'en' ? englishTestimonials : ALUMNI_TESTIMONIALS);
-    }
+    setTestimonialsList(getInitialList());
   }, [lang, testimonialsListProp]);
 
   const handleMove = (steps: number) => {
