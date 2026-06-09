@@ -16,6 +16,7 @@ export function SambutanKaprodi({ lang, title, p1, p2 }: SambutanKaprodiProps) {
   const [dbP2, setDbP2] = useState<string | undefined>(p2);
   const [dbKaprodiName, setDbKaprodiName] = useState<string | undefined>(undefined);
   const [dbKaprodiTitle, setDbKaprodiTitle] = useState<string | undefined>(undefined);
+  const [dbKaprodiPhoto, setDbKaprodiPhoto] = useState<string | undefined>(undefined);
 
   useEffect(() => {
     if (!isSupabaseConfigured) return;
@@ -33,6 +34,7 @@ export function SambutanKaprodi({ lang, title, p1, p2 }: SambutanKaprodiProps) {
         if (!p2 && contentMap.kaprodi_welcome_p2) setDbP2(contentMap.kaprodi_welcome_p2);
         if (contentMap.kaprodi_name) setDbKaprodiName(contentMap.kaprodi_name);
         if (contentMap.kaprodi_title) setDbKaprodiTitle(contentMap.kaprodi_title);
+        if (contentMap.kaprodi_photo_url) setDbKaprodiPhoto(contentMap.kaprodi_photo_url);
       }
     };
     loadData();
@@ -51,6 +53,7 @@ export function SambutanKaprodi({ lang, title, p1, p2 }: SambutanKaprodiProps) {
   const finalP2 = dbP2 || p2 || defaultP2;
   const finalName = dbKaprodiName || PRODI_CONFIG.headOfDepartment.name;
   const finalRole = dbKaprodiTitle || PRODI_CONFIG.headOfDepartment.degree;
+  const finalPhoto = dbKaprodiPhoto || "/assets/kaprodi.png";
 
   return (
     <section id="profil" className="w-full bg-mono-cream py-24 lg:py-32 border-b border-mono-black/10">
@@ -59,7 +62,7 @@ export function SambutanKaprodi({ lang, title, p1, p2 }: SambutanKaprodiProps) {
           {/* Portrait Image (5 columns) */}
           <div className="lg:col-span-5 relative overflow-hidden bg-neutral-200 aspect-[3/4] fade-in-element group border border-mono-black/10">
             <img 
-              src="/assets/kaprodi.png" 
+              src={finalPhoto} 
               alt={finalName}
               className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
             />
