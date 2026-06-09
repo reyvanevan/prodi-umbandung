@@ -1,11 +1,29 @@
+import { useState, useEffect } from 'react';
 import { Mail, Instagram, Youtube, MessageSquare, Linkedin, Globe, ArrowUp, Phone, MapPin, Clock } from 'lucide-react';
 import { PRODI_CONFIG } from '@/config/prodi.config';
+import { getSiteContent } from '@/lib/supabase/db';
+import { isSupabaseConfigured } from '@/lib/supabase/client';
 
 interface FooterProps {
   lang?: 'id' | 'en';
 }
 
 export function Footer({ lang = 'id' }: FooterProps) {
+  const [logoUrl, setLogoUrl] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (isSupabaseConfigured) {
+      getSiteContent().then((dbContent) => {
+        if (dbContent) {
+          const logoItem = dbContent.find((item) => item.key === 'logo_prodi_url');
+          if (logoItem?.value) {
+            setLogoUrl(logoItem.value);
+          }
+        }
+      });
+    }
+  }, []);
+
   const handleScrollTop = () => {
     window.scrollTo({
       top: 0,
@@ -119,14 +137,22 @@ export function Footer({ lang = 'id' }: FooterProps) {
                 (e.target as HTMLElement).style.display = 'none';
               }}
             />
-            <div className="flex flex-col">
-              <span className="font-serif text-2xl tracking-wide text-mono-black">
-                {PRODI_CONFIG.degree} {PRODI_CONFIG.acronym} {PRODI_CONFIG.universityShort}
-              </span>
-              <span className="tech-tag text-mono-yellow font-bold mt-1 text-[10px] tracking-wider">
-                {lang === 'en' ? PRODI_CONFIG.name.en.toUpperCase() : PRODI_CONFIG.name.id.toUpperCase()}
-              </span>
-            </div>
+            {logoUrl ? (
+              <img 
+                src={logoUrl} 
+                alt="Logo Prodi" 
+                className="h-16 w-auto object-contain"
+              />
+            ) : (
+              <div className="flex flex-col">
+                <span className="font-serif text-2xl tracking-wide text-mono-black">
+                  {PRODI_CONFIG.degree} {PRODI_CONFIG.acronym} {PRODI_CONFIG.universityShort}
+                </span>
+                <span className="tech-tag text-mono-yellow font-bold mt-1 text-[10px] tracking-wider">
+                  {lang === 'en' ? PRODI_CONFIG.name.en.toUpperCase() : PRODI_CONFIG.name.id.toUpperCase()}
+                </span>
+              </div>
+            )}
           </div>
           
           <p className="bg-transparent text-xs leading-5 text-mono-black/60 max-w-3xl md:ml-8 border-l-0 md:border-l md:border-mono-black/15 md:pl-8 py-1 m-0">

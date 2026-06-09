@@ -5,9 +5,10 @@ interface NavDrawerProps {
   lang: 'id' | 'en';
   isOpen: boolean;
   onClose: () => void;
+  logoUrl?: string | null;
 }
 
-export function NavDrawer({ lang, isOpen, onClose }: NavDrawerProps) {
+export function NavDrawer({ lang, isOpen, onClose, logoUrl }: NavDrawerProps) {
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
 
   const toggleSubmenu = (id: string) => {
@@ -141,9 +142,17 @@ export function NavDrawer({ lang, isOpen, onClose }: NavDrawerProps) {
         {/* Header */}
         <div className="flex items-center justify-between pb-6 border-b border-white/10 shrink-0">
           <div>
-            <span className="font-serif text-xl tracking-wide">
-              {PRODI_CONFIG.degree} {PRODI_CONFIG.acronym} {PRODI_CONFIG.universityShort}
-            </span>
+            {logoUrl ? (
+              <img 
+                src={logoUrl} 
+                alt="Logo Prodi" 
+                className="h-10 w-auto object-contain max-w-[200px]"
+              />
+            ) : (
+              <span className="font-serif text-xl tracking-wide">
+                {PRODI_CONFIG.degree} {PRODI_CONFIG.acronym} {PRODI_CONFIG.universityShort}
+              </span>
+            )}
             <span className="tech-tag block text-white/40 mt-1">
               {lang === 'en' ? 'NAVIGATION MENU' : 'MENU NAVIGASI'}
             </span>

@@ -200,8 +200,9 @@ insert into public.site_content (key, value, value_en) values
   ('kaprodi_welcome', 'Selamat datang di portal resmi Program Studi S1 Teknik Informatika Universitas Muhammadiyah Bandung. Kami berkomitmen untuk mencetak pemimpin teknologi dan rekayasawan perangkat lunak masa depan yang menguasai komputasi modern, sistem pemrograman, dan kecerdasan buatan.', 'Welcome to the official portal of the S1 Program in Informatics Engineering at Universitas Muhammadiyah Bandung. We are committed to shaping future technology leaders and software engineers who master modern computing, programming systems, and artificial intelligence.'),
   ('kaprodi_welcome_p2', 'Fokus pengembangan kami terletak pada integrasi kemajuan ilmu komputer dengan kebutuhan praktis industri, menciptakan solusi dan sistem digital yang berdaya saing global serta berdampak sosial.', 'Our development focus lies in integrating computer science advancements with practical industry needs, creating digital solutions and systems that are globally competitive and socially impactful.'),
   ('kaprodi_photo_url', '/assets/kaprodi.png', '/assets/kaprodi.png'),
+  ('logo_prodi_url', '', ''),
   ('kaprodi_name', 'M. Yusuf Efendi, S.T., M.T.', 'M. Yusuf Efendi, S.T., M.T.'),
   ('kaprodi_title', 'Ketua Program Studi Teknik Informatika', 'Head of Informatics Engineering Department'),
-  ('sambutan_title', 'Sambutan Kepala Program Studi', 'Head of Department''s Welcome'),
+  ('sambutan_title', 'Sambutan Kepala Program Studi', 'Head of Department\'s Welcome'),
   ('philosophy_title', 'Filosofi Pembelajaran Kami', 'Our Learning Philosophy'),
   ('philosophy_body', 'Kami percaya bahwa pemrograman bukan hanya tentang mengetik baris kode, melainkan tentang membangun solusi komputasi yang efisien, etis, dan memberikan dampak nyata bagi masyarakat.', 'We believe programming is not just about writing lines of code, but about building efficient, ethical computing solutions that deliver real impact to society.');
