@@ -90,6 +90,25 @@ alter table public.landing_portfolio_items enable row level security;
 alter table public.site_content enable row level security;
 alter table public.landing_partners enable row level security;
 
+-- Drop policies if they already exist
+drop policy if exists "Allow public read-only access for news" on public.news;
+drop policy if exists "Allow public read-only access for events" on public.events;
+drop policy if exists "Allow public read-only access for testimonials" on public.testimonials;
+drop policy if exists "Allow public read-only access for partners" on public.partners;
+drop policy if exists "Allow public read-only access for landing_stats" on public.landing_stats;
+drop policy if exists "Allow public read-only access for landing_portfolio_items" on public.landing_portfolio_items;
+drop policy if exists "Allow public read-only access for site_content" on public.site_content;
+drop policy if exists "Allow public read-only access for landing_partners" on public.landing_partners;
+
+drop policy if exists "Allow admin write access for news" on public.news;
+drop policy if exists "Allow admin write access for events" on public.events;
+drop policy if exists "Allow admin write access for testimonials" on public.testimonials;
+drop policy if exists "Allow admin write access for partners" on public.partners;
+drop policy if exists "Allow admin write access for landing_stats" on public.landing_stats;
+drop policy if exists "Allow admin write access for landing_portfolio_items" on public.landing_portfolio_items;
+drop policy if exists "Allow admin write access for site_content" on public.site_content;
+drop policy if exists "Allow admin write access for landing_partners" on public.landing_partners;
+
 -- Create Read policies (Public Select)
 create policy "Allow public read-only access for news" on public.news for select using (true);
 create policy "Allow public read-only access for events" on public.events for select using (true);
@@ -178,9 +197,13 @@ insert into public.landing_portfolio_items (image, title, medium, technique, yea
 insert into public.site_content (key, value, value_en) values
   ('hero_title', 'Teknik Informatika UMB Bandung', 'Informatics Engineering UMB Bandung'),
   ('hero_subtitle', 'Membentuk Software Engineer dan Praktisi Cloud Modern Berbasis Nilai Islam & Inovasi Teknologi.', 'Forming Modern Software Engineers and Cloud Practitioners based on Islamic Values & Tech Innovation.'),
-  ('kaprodi_welcome', 'Selamat datang di Program Studi Teknik Informatika Universitas Muhammadiyah Bandung. Kami berfokus pada kurikulum modern berbasis proyek nyata, cloud computing, cybersecurity, dan kecerdasan buatan.', 'Welcome to the Informatics Engineering Department of Universitas Muhammadiyah Bandung. We focus on modern curricula based on real projects, cloud computing, cybersecurity, and artificial intelligence.'),
-  ('kaprodi_name', 'Ir. H. Muhammad Adi, M.T.', 'Ir. H. Muhammad Adi, M.T.'),
-  ('kaprodi_role', 'Ketua Program Studi Teknik Informatika', 'Head of Informatics Engineering Department'),
-  ('sambutan_title', 'Sambutan Kepala Program Studi', 'Head of Department''s Welcome'),
-  ('sambutan_p1', 'Selamat datang di portal resmi Program Studi S1 Teknik Informatika Universitas Muhammadiyah Bandung. Kami berkomitmen untuk mencetak pemimpin teknologi dan rekayasawan perangkat lunak masa depan yang menguasai komputasi modern, sistem pemrograman, dan kecerdasan buatan.', 'Welcome to the official portal of the S1 Program in Informatics Engineering at Universitas Muhammadiyah Bandung. We are committed to shaping future technology leaders and software engineers who master modern computing, programming systems, and artificial intelligence.'),
-  ('sambutan_p2', 'Fokus pengembangan kami terletak pada integrasi kemajuan ilmu komputer dengan kebutuhan praktis industri, menciptakan solusi dan sistem digital yang berdaya saing global serta berdampak sosial.', 'Our development focus lies in integrating computer science advancements with practical industry needs, creating digital solutions and systems that are globally competitive and socially impactful.');
+  ('kaprodi_welcome', 'Selamat datang di portal resmi Program Studi S1 Teknik Informatika Universitas Muhammadiyah Bandung. Kami berkomitmen untuk mencetak pemimpin teknologi dan rekayasawan perangkat lunak masa depan yang menguasai komputasi modern, sistem pemrograman, dan kecerdasan buatan.', 'Welcome to the official portal of the S1 Program in Informatics Engineering at Universitas Muhammadiyah Bandung. We are committed to shaping future technology leaders and software engineers who master modern computing, programming systems, and artificial intelligence.'),
+  ('kaprodi_welcome_p2', 'Fokus pengembangan kami terletak pada integrasi kemajuan ilmu komputer dengan kebutuhan praktis industri, menciptakan solusi dan sistem digital yang berdaya saing global serta berdampak sosial.', 'Our development focus lies in integrating computer science advancements with practical industry needs, creating digital solutions and systems that are globally competitive and socially impactful.'),
+  ('kaprodi_photo_url', '/assets/kaprodi.png', '/assets/kaprodi.png'),
+  ('logo_prodi_url', '', ''),
+  ('hero_bg_url', '/assets/hero-mono-stigma.png', '/assets/hero-mono-stigma.png'),
+  ('kaprodi_name', 'M. Yusuf Efendi, S.T., M.T.', 'M. Yusuf Efendi, S.T., M.T.'),
+  ('kaprodi_title', 'Ketua Program Studi Teknik Informatika', 'Head of Informatics Engineering Department'),
+  ('sambutan_title', 'Sambutan Kepala Program Studi', 'Head of Department\'s Welcome'),
+  ('philosophy_title', 'Filosofi Pembelajaran Kami', 'Our Learning Philosophy'),
+  ('philosophy_body', 'Kami percaya bahwa pemrograman bukan hanya tentang mengetik baris kode, melainkan tentang membangun solusi komputasi yang efisien, etis, dan memberikan dampak nyata bagi masyarakat.', 'We believe programming is not just about writing lines of code, but about building efficient, ethical computing solutions that deliver real impact to society.');

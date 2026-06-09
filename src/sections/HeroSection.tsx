@@ -10,6 +10,7 @@ interface HeroSectionProps {
 export function HeroSection({ lang }: HeroSectionProps) {
   const [dbTitle, setDbTitle] = useState<string | undefined>(undefined);
   const [dbSubtitle, setDbSubtitle] = useState<string | undefined>(undefined);
+  const [heroBgUrl, setHeroBgUrl] = useState<string | undefined>(undefined);
 
   useEffect(() => {
     if (!isSupabaseConfigured) return;
@@ -22,6 +23,7 @@ export function HeroSection({ lang }: HeroSectionProps) {
         });
         if (contentMap.hero_title) setDbTitle(contentMap.hero_title);
         if (contentMap.hero_subtitle) setDbSubtitle(contentMap.hero_subtitle);
+        if (contentMap.hero_bg_url) setHeroBgUrl(contentMap.hero_bg_url);
       }
     };
     loadData();
@@ -41,15 +43,32 @@ export function HeroSection({ lang }: HeroSectionProps) {
     : 'Membentuk Software Engineer dan Praktisi Cloud Modern Berbasis Nilai Islam & Inovasi Teknologi.';
   const finalSubtitle = dbSubtitle || defaultSubtitle;
 
+  const finalBgUrl = heroBgUrl || '/assets/hero-mono-stigma.png';
+  const isVideo = finalBgUrl.toLowerCase().endsWith('.mp4') || 
+                  finalBgUrl.toLowerCase().endsWith('.webm') || 
+                  finalBgUrl.toLowerCase().endsWith('.ogg') || 
+                  finalBgUrl.startsWith('data:video/');
+
   return (
     <section className="relative w-full h-screen overflow-hidden">
-      {/* Background Image */}
+      {/* Background Image / Video */}
       <div className="absolute inset-0">
-        <img
-          src="/assets/hero-mono-stigma.png"
-          alt={`${PRODI_CONFIG.acronym} Editorial Background`}
-          className="w-full h-full object-cover"
-        />
+        {isVideo ? (
+          <video
+            src={finalBgUrl}
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+          />
+        ) : (
+          <img
+            src={finalBgUrl}
+            alt={`${PRODI_CONFIG.acronym} Editorial Background`}
+            className="w-full h-full object-cover"
+          />
+        )}
         {/* Cinematic gradient overlay */}
         <div className="hero-overlay absolute inset-0" />
       </div>

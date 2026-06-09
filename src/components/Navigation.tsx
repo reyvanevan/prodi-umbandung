@@ -23,9 +23,10 @@ interface MenuItem {
 interface NavigationProps {
   lang: 'id' | 'en';
   onOpenMenu: () => void;
+  logoUrl?: string | null;
 }
 
-export function Navigation({ lang, onOpenMenu }: NavigationProps) {
+export function Navigation({ lang, onOpenMenu, logoUrl }: NavigationProps) {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -185,13 +186,23 @@ export function Navigation({ lang, onOpenMenu }: NavigationProps) {
         }`}
       >
         {/* Logo */}
-        <a href={lang === 'en' ? '/en' : '/'} className="flex flex-col no-underline shrink-0">
-          <span className={`font-serif text-xl tracking-wide transition-colors ${textClass}`}>
-            {PRODI_CONFIG.degree} {PRODI_CONFIG.acronym} {PRODI_CONFIG.universityShort}
-          </span>
-          <span className={`tech-tag transition-colors mt-0.5 ${subtextClass}`}>
-            {lang === 'en' ? PRODI_CONFIG.name.en.toUpperCase() : PRODI_CONFIG.name.id.toUpperCase()}
-          </span>
+        <a href={lang === 'en' ? '/en' : '/'} className="flex items-center gap-3 no-underline shrink-0">
+          {logoUrl ? (
+            <img 
+              src={logoUrl} 
+              alt="Logo Prodi" 
+              className="h-10 md:h-12 w-auto object-contain"
+            />
+          ) : (
+            <div className="flex flex-col">
+              <span className={`font-serif text-xl tracking-wide transition-colors ${textClass}`}>
+                {PRODI_CONFIG.degree} {PRODI_CONFIG.acronym} {PRODI_CONFIG.universityShort}
+              </span>
+              <span className={`tech-tag transition-colors mt-0.5 ${subtextClass}`}>
+                {lang === 'en' ? PRODI_CONFIG.name.en.toUpperCase() : PRODI_CONFIG.name.id.toUpperCase()}
+              </span>
+            </div>
+          )}
         </a>
 
         {/* Desktop Menu */}

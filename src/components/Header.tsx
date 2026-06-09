@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Navigation } from './Navigation';
 import { NavDrawer } from './NavDrawer';
+import { isSupabaseConfigured } from '@/lib/supabase/client';
+import { getSiteContent } from '@/lib/supabase/db';
 
 interface HeaderProps {
   lang: 'id' | 'en';
@@ -8,6 +10,7 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ lang }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [logoUrl, setLogoUrl] = useState<string | null>(null);
 
   const openMenu = () => {
     setIsMenuOpen(true);
@@ -19,7 +22,6 @@ export const Header: React.FC<HeaderProps> = ({ lang }) => {
     document.body.style.overflow = '';
   };
 
-  // Close menu on ESC key
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -27,13 +29,27 @@ export const Header: React.FC<HeaderProps> = ({ lang }) => {
       }
     };
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+
+    if (isSupabaseConfigured) {
+      getSiteContent().then((dbContent) => {
+        if (dbContent) {
+          const logoItem = dbContent.find((item) => item.key === 'logo_prodi_url');
+          if (logoItem?.value) {
+            setLogoUrl(logoItem.value);
+          }
+        }
+      });
+    }
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
   }, []);
 
   return (
     <>
-      <Navigation lang={lang} onOpenMenu={openMenu} />
-      <NavDrawer lang={lang} isOpen={isMenuOpen} onClose={closeMenu} />
+      <Navigation lang={lang} onOpenMenu={openMenu} logoUrl={logoUrl} />
+      <NavDrawer lang={lang} isOpen={isMenuOpen} onClose={closeMenu} logoUrl={logoUrl} />
     </>
   );
 };
