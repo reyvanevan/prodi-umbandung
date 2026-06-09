@@ -21,7 +21,7 @@ export function EditorialSection({ lang, quote }: EditorialSectionProps) {
     const loadData = async () => {
       const dbContent = await getSiteContent();
       if (dbContent) {
-        const item = dbContent.find((x) => x.key === 'quote_text');
+        const item = dbContent.find((x) => x.key === 'philosophy_body');
         if (item) {
           setDbQuote(lang === 'en' ? (item.value_en || item.value) : item.value);
         }

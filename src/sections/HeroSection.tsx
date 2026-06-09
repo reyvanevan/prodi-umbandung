@@ -1,3 +1,6 @@
+import React, { useState, useEffect } from 'react';
+import { getSiteContent } from '@/lib/supabase/db';
+import { isSupabaseConfigured } from '@/lib/supabase/client';
 import { PRODI_CONFIG } from '@/config/prodi.config';
 
 interface HeroSectionProps {
@@ -5,11 +8,38 @@ interface HeroSectionProps {
 }
 
 export function HeroSection({ lang }: HeroSectionProps) {
-  // Split name to display nicely in two lines
-  const nameToDisplay = lang === 'en' ? PRODI_CONFIG.name.en : PRODI_CONFIG.name.id;
-  const parts = nameToDisplay.split('&');
-  const part1 = parts[0]?.trim();
-  const part2 = parts[1] ? `& ${parts[1].trim()}` : '';
+  const [dbTitle, setDbTitle] = useState<string | undefined>(undefined);
+  const [dbSubtitle, setDbSubtitle] = useState<string | undefined>(undefined);
+
+  useEffect(() => {
+    if (!isSupabaseConfigured) return;
+    const loadData = async () => {
+      const dbContent = await getSiteContent();
+      if (dbContent) {
+        const contentMap: Record<string, string> = {};
+        dbContent.forEach((item) => {
+          contentMap[item.key] = lang === 'en' ? (item.value_en || item.value) : item.value;
+        });
+        if (contentMap.hero_title) setDbTitle(contentMap.hero_title);
+        if (contentMap.hero_subtitle) setDbSubtitle(contentMap.hero_subtitle);
+      }
+    };
+    loadData();
+  }, [lang]);
+
+  // Fallback title logic
+  const defaultTitle = lang === 'en' ? PRODI_CONFIG.name.en : PRODI_CONFIG.name.id;
+  const displayTitle = dbTitle || defaultTitle;
+  
+  // Split title if it contains specific words for beautiful styling
+  const parts = displayTitle.split(/(?<=Informatika|Engineering|&)/i);
+  const part1 = parts[0]?.trim() || displayTitle;
+  const part2 = parts.slice(1).join(' ').trim();
+
+  const defaultSubtitle = lang === 'en'
+    ? 'Forming Modern Software Engineers and Cloud Practitioners based on Islamic Values & Tech Innovation.'
+    : 'Membentuk Software Engineer dan Praktisi Cloud Modern Berbasis Nilai Islam & Inovasi Teknologi.';
+  const finalSubtitle = dbSubtitle || defaultSubtitle;
 
   return (
     <section className="relative w-full h-screen overflow-hidden">
@@ -32,11 +62,16 @@ export function HeroSection({ lang }: HeroSectionProps) {
             {PRODI_CONFIG.university.toUpperCase()}
           </p>
           <h1 className="font-serif text-white text-5xl md:text-7xl lg:text-8xl tracking-wide leading-none">
-            {lang === 'id' ? `${PRODI_CONFIG.degree} ${part1}` : part1}
+            {part1}
           </h1>
-          <h2 className="font-serif text-white text-4xl md:text-6xl lg:text-7xl tracking-wide mt-2 italic">
-            {lang === 'en' ? `${part2} (${PRODI_CONFIG.degreeTitle})` : part2}
-          </h2>
+          {part2 && (
+            <h2 className="font-serif text-white text-4xl md:text-6xl lg:text-7xl tracking-wide mt-2 italic">
+              {part2}
+            </h2>
+          )}
+          <p className="mt-8 text-white/80 max-w-2xl mx-auto text-sm md:text-base tracking-wide leading-relaxed font-sans font-medium px-4">
+            {finalSubtitle}
+          </p>
         </div>
 
         <div className="flex flex-col sm:flex-row gap-4 mt-12 fade-in-element delay-300">
