@@ -8,10 +8,10 @@ interface ProfilVideoSectionProps {
 export function ProfilVideoSection({ lang }: ProfilVideoSectionProps) {
   // Helper to extract YouTube video ID from URL
   const getYoutubeId = (url?: string) => {
-    if (!url) return '9KGQkYJcwXM';
+    if (!url) return '12ER7lJyZOc';
     const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
     const match = url.match(regExp);
-    return (match && match[2].length === 11) ? match[2] : '9KGQkYJcwXM';
+    return (match && match[2].length === 11) ? match[2] : '12ER7lJyZOc';
   };
 
   const videoId = getYoutubeId(PRODI_CONFIG.videoProfileUrl);
@@ -26,18 +26,18 @@ export function ProfilVideoSection({ lang }: ProfilVideoSectionProps) {
           <div className="lg:col-span-5 flex flex-col justify-center">
             <p className="tech-tag text-mono-yellow mb-3">PROFILE VIDEO // AUDIO-VISUAL</p>
             <h2 className="font-serif text-4xl md:text-5xl tracking-wide mb-6 text-white leading-tight">
-              {lang === 'en' ? 'Crafting the Future in Motion' : 'Menghidupkan Budaya Lewat Karya'}
+              {lang === 'en' ? 'Engineering the Future in Motion' : 'Mengembangkan Teknologi Masa Depan'}
             </h2>
             <p className="font-sans text-sm text-white/70 leading-relaxed mb-6">
               {lang === 'en' ? (
                 <>
-                  Experience the vibrant creative life of our {PRODI_CONFIG.degree} {PRODI_CONFIG.name.en} program at {PRODI_CONFIG.universityShort}. 
-                  Watch our program profile video to see our studios, workshops, faculty mentors, and students engineering traditional Nusantara fibers into futuristic global runway fashion.
+                  Experience the vibrant academic life of our {PRODI_CONFIG.degree} {PRODI_CONFIG.name.en} program at {PRODI_CONFIG.universityShort}. 
+                  Watch our program profile video to see our laboratories, computing workshops, faculty mentors, and students engineering innovative software solutions for global impact.
                 </>
               ) : (
                 <>
-                  Saksikan langsung kehidupan kreatif program studi {PRODI_CONFIG.degree} {PRODI_CONFIG.name.id} {PRODI_CONFIG.university}. 
-                  Video profil kami memperlihatkan aktivitas studio, eksperimen reka latar, pendampingan dosen ahli, dan dedikasi mahasiswa dalam merajut serat lokal menjadi fashion global masa depan.
+                  Saksikan langsung kehidupan akademik program studi {PRODI_CONFIG.degree} {PRODI_CONFIG.name.id} {PRODI_CONFIG.university}. 
+                  Video profil kami memperlihatkan aktivitas laboratorium, studio komputasi, pendampingan dosen ahli, dan dedikasi mahasiswa dalam membangun solusi perangkat lunak inovatif untuk masa depan global.
                 </>
               )}
             </p>

@@ -73,7 +73,7 @@ export const PRODI_CONFIG: ProdiConfig = {
     name: 'M. Yusuf Efendi, S.T., M.T.',
     degree: 'Ketua Program Studi',
   },
-  videoProfileUrl: 'https://www.youtube.com/watch?v=9KGQkYJcwXM',
+  videoProfileUrl: 'https://www.youtube.com/watch?v=12ER7lJyZOc&feature=youtu.be',
   sintaUrl: '#',
   portals: {
     id: [
