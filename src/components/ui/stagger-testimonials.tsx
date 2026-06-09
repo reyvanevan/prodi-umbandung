@@ -26,7 +26,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
       className={cn(
         'absolute left-1/2 top-1/2 cursor-pointer border-2 p-8 transition-all duration-500 ease-in-out select-none',
         isCenter
-          ? 'z-10 bg-white text-mono-black border-mono-black'
+          ? 'z-10 bg-mono-black text-white border-mono-black'
           : 'z-0 bg-white/45 text-mono-black/50 border-mono-black/10 hover:border-mono-black/30'
       )}
       style={{
@@ -40,13 +40,13 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
           rotate(${isCenter ? 0 : position % 2 ? 3.5 : -3.5}deg)
           scale(${isCenter ? 1.05 : 0.88})
         `,
-        boxShadow: isCenter ? '0px 8px 0px 4px #0B2545' : '0px 0px 0px 0px transparent',
+        boxShadow: isCenter ? '0px 8px 0px 4px rgba(11, 37, 69, 0.35)' : '0px 0px 0px 0px transparent',
       }}
     >
       <span
         className={cn(
           'absolute block origin-top-right rotate-45',
-          isCenter ? 'bg-mono-black/15' : 'bg-mono-black/5'
+          isCenter ? 'bg-white/15' : 'bg-mono-black/5'
         )}
         style={{
           right: -2,
@@ -60,13 +60,13 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
         alt={`${testimonial.by.split('(')[0]}`}
         className="mb-4 h-14 w-12 bg-mono-black/10 object-cover object-top"
         style={{
-          boxShadow: isCenter ? '3px 3px 0px #0B2545' : '3px 3px 0px rgba(11, 37, 69, 0.15)',
+          boxShadow: isCenter ? '3px 3px 0px #FFFFFF' : '3px 3px 0px rgba(11, 37, 69, 0.15)',
         }}
       />
       <h3
         className={cn(
           'text-base sm:text-lg font-serif leading-relaxed',
-          isCenter ? 'text-mono-black' : 'text-mono-black/60'
+          isCenter ? 'text-white' : 'text-mono-black/60'
         )}
       >
         "{testimonial.testimonial}"
@@ -74,7 +74,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
       <p
         className={cn(
           'absolute bottom-8 left-8 right-8 mt-2 text-[10px] tech-tag uppercase tracking-widest',
-          isCenter ? 'text-mono-black/70' : 'text-mono-black/40'
+          isCenter ? 'text-white/70' : 'text-mono-black/40'
         )}
       >
         - {testimonial.by}
