@@ -1,69 +1,74 @@
-# Catatan Pembaruan Web KTF (Revisi Client)
+# Dokumentasi Pembaruan Sistem: Halaman & Manajemen Dosen
 
-Dokumen ini mencatat detail pembaruan dan restrukturisasi yang telah berhasil diimplementasikan pada website S1 Kriya Tekstil & Fashion UMB.
-
----
-
-## 1. RESTREKTURISASI NAVIGASI & MENU
-Perubahan pada menu navigasi desktop (`Navigation.tsx`) dan mobile drawer (`NavDrawer.tsx`):
-*   **HOME**: Tetap dipertahankan di posisi awal.
-*   **TENTANG KAMI**: Memiliki submenu:
-    *   *Visi* & *Misi* (Tautan ke anchor `/#profil` / `/en/#profil`).
-    *   *Sejarah Prodi*, *Akreditasi*, *Aktivitas Dosen*, *Dosen & Staff*, *Struktur Organisasi* (Tautan ke anchor section beranda).
-    *   *Tulisan Dosen* (Mengarahkan ke halaman terpisah `/tulisan-dosen`).
-*   **ADMISSIONS**: Tautan eksternal langsung menuju PMB UMB.
-*   **STATISTIK**: Menu dropdown baru dengan link halaman terpisah `/statistik`:
-    *   *Rata Mahasiswa Baru* (`/statistik#rata-maba`).
-    *   *Rasio Dosen* (`/statistik#rasio-dosen`).
-    *   *Rasio Masa Studi* (`/statistik#rasio-studi`).
-*   **MAHASISWA & ALUMNI**: Menu dropdown baru dengan tautan:
-    *   *Prestasi Mahasiswa* (`/#aktivitas-prestasi`).
-    *   *Tugas Akhir* (`/#tugas-akhir`).
-    *   *Alumni* (Mengarahkan ke halaman terpisah `/alumni`).
-*   **GALERI KEGIATAN**: Menu dropdown baru:
-    *   *Kegiatan Dosen* (`/kegiatan-dosen`).
-    *   *Kegiatan Mahasiswa* (`/kegiatan-mahasiswa`).
-*   **SINTA PRODI**: Tautan langsung ke profil Sinta KTF Kemdiktisaintek.
+Pembaruan ini menambahkan halaman profil **Dosen & Staff** pada website program studi (`prodi-umbandung`) serta mengintegrasikan manajemen CRUD (Create, Read, Update, Delete) dosen ke dalam panel administrasi (`cms-umbandung-v2`).
 
 ---
 
-## 2. PENYEMPURNAAN FOOTER
-Struktur footer (`Footer.tsx`) diperbarui secara menyeluruh menggunakan grid premium:
-1.  **Logo UMB**: Ditampilkan secara dinamis dengan gambar `/assets/logo-umb.png`.
-2.  **Email**: `kriya.fashion@umbandung.ac.id` (Link mailto aktif).
-3.  **Telepon**: Nomor helpdesk KTF (`+62 22 730 9999`).
-4.  **Lokasi**: Alamat lengkap Kampus UMB Bandung.
-5.  **Jam Operasional**: Senin - Jumat | 08:00 - 16:00 WIB.
-6.  **Media Sosial**: Instagram, YouTube, WhatsApp, LinkedIn, & Website UMB.
+## 1. Pembaruan pada Website (`prodi-umbandung`)
+
+### **Fitur & Halaman Baru**
+- **`/src/pages/dosen.astro` (Halaman Bahasa Indonesia)**: Rencana antarmuka neo-brutalis untuk menampilkan daftar dosen program studi. Setiap dosen memiliki kartu profil yang menampilkan foto, nama lengkap, metrik akademik (Scopus, Sinta, Scholar), serta tautan media sosial.
+- **`/src/pages/en/dosen.astro` (Halaman Bahasa Inggris)**: Lokalisasi halaman profil dosen untuk versi bahasa Inggris ("Faculty & Staff").
+
+### **Navigasi & Menu**
+- **`/src/components/Navigation.tsx` (Desktop Navigation)**:
+  - Mengganti menu "Admission" menjadi "Akademik".
+  - Menghapus menu "Home" (pengguna dapat kembali ke halaman utama dengan mengklik logo prodi).
+  - Menghapus opsi "Sinta Prodi".
+  - Menambahkan menu dropdown bercabang/sub-dropdown untuk profil dan akademik.
+  - Mengarahkan tautan submenu "Dosen" ke `/dosen` (ID) dan `/en/dosen` (EN).
+- **`/src/components/NavDrawer.tsx` (Mobile Navigation)**:
+  - Menyelaraskan seluruh struktur menu mobile agar sesuai dengan versi desktop (menghapus Home, mengganti Admission, dan memperbarui tautan halaman Dosen).
+
+### **Integrasi & Skema Data**
+- **`/src/lib/supabase/db.ts`**:
+  - Menambahkan fungsi `getDosenList()` untuk mengambil data dosen dari Supabase.
+  - Mengimplementasikan mekanisme *fail-safe* (fallback) ke data statis/lokal dari `site-data.ts` jika koneksi Supabase tidak diatur atau gagal terhubung.
+- **`/src/lib/supabase/schema.sql`**:
+  - Menambahkan deklarasi skema tabel `dosen` Supabase:
+    ```sql
+    CREATE TABLE IF NOT EXISTS dosen (
+      id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+      name TEXT NOT NULL,
+      img_src TEXT,
+      scopus TEXT,
+      sinta TEXT,
+      scholar TEXT,
+      facebook TEXT,
+      twitter TEXT,
+      tiktok TEXT,
+      instagram TEXT,
+      sort_order INT DEFAULT 0,
+      created_at TIMESTAMP WITH TIME ZONE DEFAULT timezone('utc'::text, now()) NOT NULL
+    );
+    ```
+- **`/src/lib/site-data.ts`**:
+  - Menambahkan objek data statis fallback (`dosenDataID` dan `dosenDataEN`) untuk memunculkan dosen *default* jika database utama luring.
 
 ---
 
-## 3. PEMBARUAN TATA URUTAN & SECTION BERANDA (LANDING PAGE)
-Urutan section halaman beranda (`src/pages/index.astro` & `src/pages/en/index.astro`) disesuaikan menjadi:
-1.  **HeroSection**: Menambahkan tombol CTA **Daftar Sekarang** (Link PMB) dan **Unduh Brosur** (Mendownload brosur KTF PDF).
-2.  **Sambutan Kaprodi**: Sambutan resmi dan foto Kepala Program Studi.
-3.  **InfoSingkatSection (BARU)**: Kartu neo-brutalist menampilkan informasi Gelar (S.Ds.), Beban Studi (144 SKS), dan Masa Studi (4 Tahun / 8 Semester).
-4.  **TujuanPendidikanSection (MODIFIKASI)**: Menggantikan *ProgramsSection*. Menyediakan tab interaktif (PEO & PLO, Fasilitas Studio, & Struktur Kurikulum).
-5.  **ProfilVideoSection (BARU)**: Menyematkan pemutar video profil YouTube KTF UMB (`9KGQkYJcwXM`) dengan bingkai premium dan deskripsi naratif.
-6.  **StatsRibbon**: Update angka statistik menjadi Mahasiswa Aktif, Alumni, Dosen Pengampu, dan Mata Kuliah.
-7.  **NewsEventsSection**: Update berita dan agenda terkini prodi.
-8.  **ArchiveSection**: Menampilkan portofolio karya/prestasi mahasiswa.
-9.  **PartnersSection**: Logo mitra kerja sama industri.
-10. **EditorialSection**: Foto editorial dan kutipan inspiratif prodi.
-11. **StaggerTestimonials**: Testimoni dari alumni terpilih.
+## 2. Pembaruan pada Dashboard CMS (`cms-umbandung-v2`)
 
----
+### **Model & Data Layer**
+- **`/src/lib/mockData.ts`**:
+  - Membuat antarmuka TypeScript `DbDosen` agar sesuai dengan skema database.
+  - Menambahkan data awal (`initialDosen`) untuk visualisasi saat mode mock diaktifkan.
+  - Memperbarui fungsi `initStorage` agar mendaftarkan koleksi `mock_dosen` pada localStorage browser.
+- **`/src/lib/dataService.ts`**:
+  - Menambahkan fungsi CRUD API: `getDosen()`, `createDosen()`, `updateDosen()`, dan `deleteDosen()`.
+  - Mengarahkan query secara dinamis ke REST API Supabase (jika tersambung) atau ke helper MockDB localStorage (jika menggunakan mode demo offline).
 
-## 4. HALAMAN BARU (SEPARATE PAGES)
-Untuk mengoptimalkan performa halaman beranda, dibuat 5 halaman terpisah untuk versi Indonesia (`src/pages/*`) dan Inggris (`src/pages/en/*`):
-1.  **`/tulisan-dosen`**: Menampilkan publikasi riset, buku, opini, dan jurnal ilmiah milik para dosen KTF.
-2.  **`/statistik`**: Halaman rincian statistik penerimaan maba, rasio dosen-mahasiswa, dan grafik tren pendaftaran mahasiswa baru.
-3.  **`/alumni`**: Profil dan testimoni alumni sukses yang bekerja di industri fashion maupun creativepreneur.
-4.  **`/kegiatan-dosen`**: Galeri foto pameran kriya serat internasional dan pengabdian masyarakat (PKM).
-5.  **`/kegiatan-mahasiswa`**: Dokumentasi kegiatan Himpunan Mahasiswa (SERAT), pameran kelulusan (Kriyasa), dan fashion show angkatan.
-
----
-
-## 5. OPTIMASI & VERIFIKASI SERVER
-*   **Perbaikan SSR/Prerendering**: Supabase client (`client.ts`) telah dimodifikasi agar tidak menginisiasi Realtime channel di sisi server (Node.js) selama build untuk menghindari crash WebSockets.
-*   **Validasi Build**: Hasil kompilasi `npm run build` sukses 100% tanpa error, memproduksi 13 static pages di folder `/dist`.
+### **Antarmuka CMS (UI/UX Components)**
+- **`/src/components/Tabs/DosenTab.tsx` (Tab Baru)**:
+  - Antarmuka tabel neo-brutalist dengan fitur pencarian (search bar) berdasarkan nama dosen.
+  - Menampilkan ringkasan metrik Scopus, Sinta, Scholar, serta tombol aksi cepat untuk menambah, mengedit, atau menghapus item dosen.
+- **`/src/components/Sidebar.tsx`**:
+  - Menambahkan menu item **"Dosen & Staff"** lengkap dengan ikon `GraduationCap` di navigasi utama panel admin.
+- **`/src/components/Modals/CrudModal.tsx`**:
+  - Menambahkan form input khusus untuk data dosen (Nama, Urutan Tampilan, ID Scopus, ID Sinta, ID Scholar, URL Facebook, Twitter, TikTok, Instagram, serta sistem upload gambar via berkas lokal/URL eksternal).
+- **`/src/App.tsx` (Root State Management)**:
+  - Menambahkan tipe tab baru `'dosen'` pada `TabType`.
+  - Menyediakan *state* global untuk `dosenList` dan `dosenForm`.
+  - Menyambungkan form input modal ke trigger API untuk tambah (`createDosen`) dan perbarui (`updateDosen`).
+  - Menambahkan opsi hapus data dosen pada modal konfirmasi hapus (`deleteDosen`).
+  - Menambahkan opsi reset `mock_dosen` pada menu Settings Database.
