@@ -32,7 +32,7 @@ export function EditorialSection({ lang, quote }: EditorialSectionProps) {
 
   const finalQuote = dbQuote || quote;
   return (
-    <section id="editorial" className="w-full min-h-screen bg-mono-black">
+    <section id="editorial" className="w-full min-h-screen bg-mono-cream border-b border-mono-black/10">
       <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
         {/* Image Side */}
         <div className="relative h-[60vh] lg:h-auto overflow-hidden fade-in-element">
@@ -45,7 +45,7 @@ export function EditorialSection({ lang, quote }: EditorialSectionProps) {
           <div className="absolute bottom-8 left-8">
             <div className="flex items-center gap-3">
               <span className="w-2 h-2 bg-mono-yellow status-pulse" />
-              <span className="tech-tag text-white/60">SHOT ON LOCATION // BANDUNG</span>
+              <span className="tech-tag text-white/80">SHOT ON LOCATION // BANDUNG</span>
             </div>
           </div>
         </div>
@@ -67,7 +67,7 @@ export function EditorialSection({ lang, quote }: EditorialSectionProps) {
               </svg>
             </div>
 
-            <blockquote className="editorial-quote text-white text-2xl md:text-3xl lg:text-4xl mb-8 leading-snug">
+            <blockquote className="editorial-quote text-mono-black text-2xl md:text-3xl lg:text-4xl mb-8 leading-snug">
               {finalQuote ? (
                 <span>&ldquo;{finalQuote}&rdquo;</span>
               ) : lang === 'en' ? (
@@ -84,29 +84,29 @@ export function EditorialSection({ lang, quote }: EditorialSectionProps) {
             </blockquote>
 
             <div className="flex items-center gap-4">
-              <div className="w-12 h-px bg-white/30" />
+              <div className="w-12 h-px bg-mono-black/30" />
               <div>
-                <p className="font-serif text-white text-lg font-medium">
+                <p className="font-serif text-mono-black text-lg font-medium">
                   {PRODI_CONFIG.acronym} {PRODI_CONFIG.universityShort}
                 </p>
-                <p className="tech-tag text-white/50">PHILOSOPHY // SS 2026</p>
+                <p className="tech-tag text-mono-black/50">PHILOSOPHY // SS 2026</p>
               </div>
             </div>
 
             {/* Technical Data */}
-            <div className="mt-12 pt-8 border-t border-white/10">
+            <div className="mt-12 pt-8 border-t border-mono-black/10">
               <div className="grid grid-cols-3 gap-6">
                 <div>
-                  <p className="tech-tag text-white/40 mb-1">ISSUE</p>
-                  <p className="font-serif text-white text-xl">001</p>
+                  <p className="tech-tag text-mono-black/40 mb-1">ISSUE</p>
+                  <p className="font-serif text-mono-black text-xl">001</p>
                 </div>
                 <div>
-                  <p className="tech-tag text-white/40 mb-1">SEASON</p>
-                  <p className="font-serif text-white text-xl">SS 26</p>
+                  <p className="tech-tag text-mono-black/40 mb-1">SEASON</p>
+                  <p className="font-serif text-mono-black text-xl">SS 26</p>
                 </div>
                 <div>
-                  <p className="tech-tag text-white/40 mb-1">STUDIO</p>
-                  <p className="font-serif text-white text-xl">BDG</p>
+                  <p className="tech-tag text-mono-black/40 mb-1">STUDIO</p>
+                  <p className="font-serif text-mono-black text-xl">BDG</p>
                 </div>
               </div>
             </div>
