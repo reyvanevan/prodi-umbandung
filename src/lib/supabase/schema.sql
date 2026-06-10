@@ -164,106 +164,106 @@ truncate table public.dosen restart identity cascade;
 
 -- Seed Partners
 insert into public.partners (name) values
-  ('Asosiasi Telekomunikasi Indonesia'),
-  ('PT Indonesia Digital Teknologi'),
-  ('Google Developer Groups Bandung'),
-  ('Kementerian Komunikasi & Informatika'),
-  ('Ikatan Alumni Teknik Informatika (IKATI)'),
-  ('PT GoTo Gojek Tokopedia Tbk');
+  ('PT Garudafood Putra Putri Jaya Tbk'),
+  ('PT Indofood Sukses Makmur Tbk'),
+  ('PT Nestlé Indonesia'),
+  ('Badan Pengawas Obat dan Makanan (BPOM)'),
+  ('Ikatan Ahli Teknologi Pangan Indonesia (IATPI)'),
+  ('Balai Penelitian Tanaman Serealia (Balitsereal)');
 
 -- Seed Events
 insert into public.events (date_day, date_month, title, title_en, location, location_en) values
-  ('18', 'JUN', 'INFOTEC 2026: Capstone Project Showcase & IT Career Expo', 'INFOTEC 2026: Capstone Project Showcase & IT Career Expo', 'Aula Utama KH. Ahmad Dahlan, UMB Bandung', 'KH. Ahmad Dahlan Main Hall, UMB Bandung'),
-  ('25', 'JUN', 'Coding Workshop: Building Web Apps with React & Supabase', 'Coding Workshop: Building Web Apps with React & Supabase', 'Lab Komputasi Gedung UMB', 'UMB Building Computing Lab'),
-  ('05', 'JUL', 'Kuliah Umum: Tren Kecerdasan Buatan di Era Komputasi Awan', 'Public Lecture: Artificial Intelligence Trends in the Cloud Computing Era', 'Auditorium Utama UMB Bandung', 'UMB Bandung Main Auditorium');
+  ('20', 'JUN', 'PANGAN FEST 2026: Expo Inovasi Produk Pangan Halal Mahasiswa', 'PANGAN FEST 2026: Student Halal Food Innovation Product Expo', 'Aula Utama KH. Ahmad Dahlan, UMB Bandung', 'KH. Ahmad Dahlan Main Hall, UMB Bandung'),
+  ('28', 'JUN', 'Workshop Uji Organoleptik & Analisis Sensori Produk Pangan', 'Workshop: Organoleptic Testing & Food Product Sensory Analysis', 'Lab Teknologi Pangan Gedung UMB', 'UMB Building Food Technology Laboratory'),
+  ('10', 'JUL', 'Kuliah Umum: Pangan Halal & Sertifikasi BPOM di Era Industri 4.0', 'Public Lecture: Halal Food & BPOM Certification in Industry 4.0', 'Auditorium Utama UMB Bandung', 'UMB Bandung Main Auditorium');
 
 -- Seed Testimonials
 insert into public.testimonials (testimonial, testimonial_en, by, by_en, img_src) values
-  ('Materi kurikulum yang berfokus pada software engineering dan arsitektur modern sangat relevan dengan kebutuhan industri teknologi saat ini.', 'Curriculum material focusing on software engineering and modern architecture is highly relevant to current tech industry needs.', 'Andini Kusuma, S.Kom (Software Engineer at Tokopedia)', 'Andini Kusuma, S.Kom (Software Engineer at Tokopedia)', 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop'),
-  ('Program magang laboratorium memberikan saya kesempatan berjejaring langsung dengan praktisi cloud dan devops nasional sejak awal perkuliahan.', 'The lab internship program gave me the opportunity to network directly with national cloud and devops practitioners since the beginning of college.', 'Rian Hidayat, S.Kom (DevOps Engineer at GoTo)', 'Rian Hidayat, S.Kom (DevOps Engineer at GoTo)', 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop'),
-  ('Informatika UMB benar-benar mengasah kemampuan berpikir logis dan pemecahan masalah kompleks menggunakan teknologi kecerdasan buatan.', 'Informatics UMB really sharpens logical thinking and complex problem solving skills using artificial intelligence technology.', 'Melati Indah, S.Kom (AI Researcher at Bukalapak)', 'Melati Indah, S.Kom (AI Researcher at Bukalapak)', 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200&auto=format&fit=crop'),
-  ('Suasana lab yang kolaboratif membuat saya terbiasa melakukan eksperimen sistem dan coding tanpa takut gagal.', 'The collaborative lab atmosphere makes me accustomed to conducting system experiments and coding without fear of failure.', 'Fauzan Adhi, S.Kom (Cybersecurity Analyst at Cyber Security Agency)', 'Fauzan Adhi, S.Kom (Cybersecurity Analyst at Cyber Security Agency)', 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop'),
-  ('Pembekalan portofolio proyek berkala selama perkuliahan sangat mempermudah saya ketika melamar kerja di perusahaan multinasional.', 'Regular project portfolio preparation during college made it very easy for me when applying for jobs at multinational companies.', 'Sarah Amalia, S.Kom (Technical Product Manager at Shopee)', 'Sarah Amalia, S.Kom (Technical Product Manager at Shopee)', 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop'),
-  ('Berkat bimbingan intensif dosen-dosen praktisi industri, saya bisa merilis proyek akhir saya di ajang kompetisi IT nasional.', 'Thanks to the intensive guidance of industry practitioner lecturers, I was able to release my final project in a national IT competition.', 'Yusuf Maulana, S.Kom (Data Scientist at Telkom Indonesia)', 'Yusuf Maulana, S.Kom (Data Scientist at Telkom Indonesia)', 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=200&auto=format&fit=crop');
+  ('Kurikulum Teknologi Pangan UMB yang mengintegrasikan konsep halalan thayyiban sangat relevan dan membuat saya siap kerja di industri pangan nasional.', 'The UMB Food Technology curriculum integrating the halalan thayyiban concept is highly relevant and prepared me for work in the national food industry.', 'Nurul Fadilah, S.TP. (Quality Assurance di PT Garudafood)', 'Nurul Fadilah, S.TP. (Quality Assurance at PT Garudafood)', 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop'),
+  ('Program magang industri pangan memberi saya pengalaman nyata proses produksi, sanitasi, dan pengendalian mutu yang langsung dipraktikkan di lapangan.', 'The food industry internship program gave me real-world experience in production processes, sanitation, and quality control directly applied in the field.', 'Rizky Pratama, S.TP. (R&D Specialist di PT Indofood)', 'Rizky Pratama, S.TP. (R&D Specialist at PT Indofood)', 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop'),
+  ('Riset berbasis pangan lokal Nusantara yang diajarkan dosen UMB membuka mata saya bahwa kekayaan bahan pangan Indonesia sangat luar biasa untuk dikembangkan.', 'Research based on local Nusantara food taught by UMB lecturers opened my eyes to how remarkable Indonesia''s wealth of food ingredients is to be developed.', 'Siti Aisyah, S.TP. (Food Scientist di Balai Besar Industri Agro)', 'Siti Aisyah, S.TP. (Food Scientist at Center for Agro-Based Industry)', 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200&auto=format&fit=crop'),
+  ('Pendekatan technopreneurship yang kuat membuat saya berani membuka usaha pengolahan pangan lokal khas Bandung sendiri setelah lulus.', 'The strong technopreneurship approach gave me the courage to start my own local Bandung food processing business after graduation.', 'Ahmad Fauzi, S.TP. (Wirausahawan Pangan & Pendiri Brand Produk Lokal)', 'Ahmad Fauzi, S.TP. (Food Entrepreneur & Local Brand Founder)', 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop'),
+  ('Bimbingan dosen yang intensif dalam penelitian hanjeli dan pangan fungsional benar-benar mengasah kemampuan riset saya sejak semester awal.', 'Intensive lecturer mentoring in hanjeli and functional food research truly honed my research skills from the very first semester.', 'Dian Pertiwi, S.TP. (Peneliti di Badan Riset dan Inovasi Nasional)', 'Dian Pertiwi, S.TP. (Researcher at National Research and Innovation Agency)', 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop'),
+  ('Sertifikasi halal yang menjadi DNA program studi ini sangat membantu karir saya di divisi regulatory affairs perusahaan multinasional.', 'The halal certification expertise that is the DNA of this study program greatly helped my career in the regulatory affairs division of a multinational company.', 'Farhan Maulana, S.TP. (Regulatory Affairs Specialist di PT Nestlé Indonesia)', 'Farhan Maulana, S.TP. (Regulatory Affairs Specialist at PT Nestlé Indonesia)', 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=200&auto=format&fit=crop');
 
 -- Seed News
 insert into public.news (title, title_en, category, category_en, snippet, snippet_en, date, img_src) values
-  ('Pelatihan Cloud Computing Bersama AWS Academy', 'Cloud Computing Training with AWS Academy', 'PENGABDIAN MASYARAKAT', 'COMMUNITY SERVICE', 'Dosen dan mahasiswa Teknik Informatika UMB menyelenggarakan workshop pemanfaatan arsitektur cloud server untuk UMKM di Bandung.', 'UMB Informatics faculty and students held a workshop on utilizing cloud server architecture for MSMEs in Bandung.', '02 JUN 2026', 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=600&auto=format&fit=crop'),
-  ('Mahasiswa Informatika UMB Raih Penghargaan Hackathon Nasional', 'UMB Informatics Student Wins National Hackathon Award', 'PRESTASI MAHASISWA', 'STUDENT ACHIEVEMENT', 'Mengangkat tema smart campus mobile app berbasis React Native, karya mahasiswa angkatan 2024 berhasil meraih Juara Utama.', 'Featuring a smart campus mobile app based on React Native, the work of the 2024 cohort student won the main championship.', '28 MAY 2026', 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=600&auto=format&fit=crop'),
-  ('Kolaborasi Riset Cybersecurity Bersama Asosiasi IT Indonesia', 'Cybersecurity Research Collaboration with Indonesian IT Association', 'KOLABORASI RISET', 'RESEARCH COLLABORATION', 'Program studi resmi menandatangani kerjasama pengembangan standardisasi keamanan informasi dan sertifikasi kompetensi jaringan.', 'The study program officially signed a partnership for information security standardization development and network competency certification.', '15 MAY 2026', 'https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=600&auto=format&fit=crop');
+  ('Inovasi Produk Tepung Hanjeli UMB Raih Penghargaan di Pameran Pangan Nasional', 'UMB Hanjeli Flour Innovation Wins Award at National Food Exhibition', 'PRESTASI MAHASISWA', 'STUDENT ACHIEVEMENT', 'Produk olahan tepung hanjeli hasil riset kolaboratif dosen dan mahasiswa Teknologi Pangan UMB berhasil meraih medali emas di ajang pameran inovasi pangan nasional.', 'Hanjeli flour products from collaborative research by UMB Food Technology lecturers and students won a gold medal at the national food innovation exhibition.', '03 JUN 2026', 'https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=600&auto=format&fit=crop'),
+  ('Kuliah Umum Bersama Pakar QA Garudafood: Standar Mutu & Keamanan Pangan Modern', 'General Lecture with Garudafood QA Expert: Modern Food Safety & Quality Standards', 'KOLABORASI INDUSTRI', 'INDUSTRY COLLABORATION', 'Program studi menghadirkan pakar Quality Assurance dari PT Garudafood untuk berbagi wawasan tentang implementasi HACCP dan standar keamanan pangan industri skala besar.', 'The study program hosted a Quality Assurance expert from PT Garudafood to share insights on HACCP implementation and large-scale industrial food safety standards.', '27 MAY 2026', 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=600&auto=format&fit=crop'),
+  ('Prodi Teknologi Pangan UMB Tanda Tangani MoU dengan BPOM RI untuk Riset Kehalalan', 'UMB Food Technology Signs MoU with BPOM for Halal Research', 'KERJASAMA STRATEGIS', 'STRATEGIC PARTNERSHIP', 'Kerjasama resmi dengan Badan Pengawas Obat dan Makanan RI membuka peluang riset bersama terkait sertifikasi halal, analisis kontaminan, dan pengujian bahan tambahan pangan.', 'The official partnership with BPOM Indonesia opens opportunities for joint research on halal certification, contaminant analysis, and food additive testing.', '15 MAY 2026', 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=600&auto=format&fit=crop');
 
 -- Seed landing_stats
-insert into public.landing_stats (number, label, sort_order) values
-  ('98%', 'Keterserapan Lulusan di Industri', 1),
-  ('20+', 'Mitra Industri & Tech Company', 2),
-  ('150+', 'Project Apps Mahasiswa Terpublikasi', 3),
-  ('8', 'Laboratorium Komputasi & Riset', 4);
+insert into public.landing_stats (number, label, label_en, sort_order) values
+  ('95%', 'Keterserapan Lulusan di Industri Pangan', 'Graduate Employment Rate in Food Industry', 1),
+  ('15+', 'Mitra Industri Pangan & Lembaga Riset', 'Food Industry Partners & Research Institutions', 2),
+  ('80+', 'Produk Inovasi Pangan Mahasiswa Terpublikasi', 'Published Student Food Innovation Products', 3),
+  ('4', 'Laboratorium Analisis & Pengolahan Pangan', 'Food Analysis & Processing Laboratories', 4);
 
 -- Seed landing_partners
 insert into public.landing_partners (name, sort_order) values
-  ('PT GoTo Gojek Tokopedia Tbk', 1),
-  ('Google Developer Groups Bandung', 2),
-  ('Asosiasi Telekomunikasi Indonesia', 3),
-  ('PT Indonesia Digital Teknologi', 4),
-  ('Kementerian Komunikasi & Informatika', 5),
-  ('Ikatan Alumni Teknik Informatika (IKATI)', 6);
+  ('PT Garudafood Putra Putri Jaya Tbk', 1),
+  ('PT Indofood Sukses Makmur Tbk', 2),
+  ('Badan Pengawas Obat dan Makanan (BPOM)', 3),
+  ('PT Nestlé Indonesia', 4),
+  ('Ikatan Ahli Teknologi Pangan Indonesia (IATPI)', 5),
+  ('Balai Penelitian Tanaman Serealia (Balitsereal)', 6);
 
 -- Seed landing_portfolio_items
 insert into public.landing_portfolio_items (image, title, medium, technique, year, "gridClass", sort_order) values
-  ('https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=600&auto=format&fit=crop', 'Smart Campus Mobile & Analytics App', 'React Native & Node.js', 'Developer: Naila Putri', 'Juara I // Hackathon Nasional', 'col-span-2 row-span-2', 1),
-  ('https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=600&auto=format&fit=crop', 'IoT Automated Greenhouse Controller', 'Raspberry Pi & Python', 'Developer: Daniel Wijaya', 'Karya Terbaik // Exhibition ITB', 'col-span-1 row-span-1', 2),
-  ('https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=600&auto=format&fit=crop', 'Decentralized Academic Credentials', 'Solidity & Ethereum', 'Developer: Arya Dinata', 'Proyek Riset // Kementerian Dikti', 'col-span-1 row-span-2', 3),
-  ('https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=600&auto=format&fit=crop', 'AI Lung Cancer Detection Model', 'Python & PyTorch', 'Developer: Ryu Hansen', 'Karya Inovatif // Global Health', 'col-span-1 row-span-1', 4),
-  ('https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=600&auto=format&fit=crop', 'AR Campus Navigation System', 'Unity & C#', 'Developer: Farah Amalia', 'Finalis // Indonesian Young Inventor', 'col-span-2 row-span-1', 5);
+  ('https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=600&auto=format&fit=crop', 'Formulasi Biskuit Fungsional Tepung Hanjeli & Kacang Merah', 'Rekayasa Pangan Fungsional', 'Peneliti: Nurul Fadilah', 'Medali Emas // Pameran Pangan Nasional', 'col-span-2 row-span-2', 1),
+  ('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=600&auto=format&fit=crop', 'Sistem Monitoring Suhu HACCP Berbasis IoT untuk UMKM Pangan', 'IoT & Teknologi Pangan', 'Peneliti: Ahmad Fauzi', 'Finalis // Kompetisi Inovasi Pangan BPOM', 'col-span-1 row-span-1', 2),
+  ('https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=600&auto=format&fit=crop', 'Ekstraksi Bioaktif Kulit Manggis sebagai Pengawet Alami Halal', 'Bioteknologi Pangan', 'Peneliti: Siti Aisyah', 'Proyek Riset // Hibah DIKTI', 'col-span-1 row-span-2', 3),
+  ('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=600&auto=format&fit=crop', 'Diversifikasi Produk Mocaf (Modified Cassava Flour) Pangan Lokal', 'Teknologi Fermentasi', 'Peneliti: Dian Pertiwi', 'Karya Terbaik // World Food Day UAI-UAD', 'col-span-1 row-span-1', 4),
+  ('https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=600&auto=format&fit=crop', 'Pengembangan Kemasan Edible Film Berbasis Pati Tapioka Lokal', 'Teknologi Pengemasan Pangan', 'Peneliti: Rizky Pratama', 'Juara II // Kompetisi Kemasan Pangan Nasional', 'col-span-2 row-span-1', 5);
 
 -- Seed site_content
 insert into public.site_content (key, value, value_en) values
-  ('hero_title', 'Teknik Informatika UMB Bandung', 'Informatics Engineering UMB Bandung'),
-  ('hero_subtitle', 'Membentuk Software Engineer dan Praktisi Cloud Modern Berbasis Nilai Islam & Inovasi Teknologi.', 'Forming Modern Software Engineers and Cloud Practitioners based on Islamic Values & Tech Innovation.'),
-  ('kaprodi_welcome', 'Selamat datang di portal resmi Program Studi S1 Teknik Informatika Universitas Muhammadiyah Bandung. Kami berkomitmen untuk mencetak pemimpin teknologi dan rekayasawan perangkat lunak masa depan yang menguasai komputasi modern, sistem pemrograman, dan kecerdasan buatan.', 'Welcome to the official portal of the S1 Program in Informatics Engineering at Universitas Muhammadiyah Bandung. We are committed to shaping future technology leaders and software engineers who master modern computing, programming systems, and artificial intelligence.'),
-  ('kaprodi_welcome_p2', 'Fokus pengembangan kami terletak pada integrasi kemajuan ilmu komputer dengan kebutuhan praktis industri, menciptakan solusi dan sistem digital yang berdaya saing global serta berdampak sosial.', 'Our development focus lies in integrating computer science advancements with practical industry needs, creating digital solutions and systems that are globally competitive and socially impactful.'),
+  ('hero_title', 'Teknologi Pangan UMB Bandung', 'Food Technology UMB Bandung'),
+  ('hero_subtitle', 'Mencetak Ahli Pangan Halalan Thayyiban Berbasis Inovasi Sains & Technopreneurship Pangan Nusantara.', 'Producing Halalan Thayyiban Food Technology Experts Based on Science Innovation & Nusantara Food Technopreneurship.'),
+  ('kaprodi_welcome', 'Selamat datang di portal resmi Program Studi S1 Teknologi Pangan Universitas Muhammadiyah Bandung. Kami berkomitmen untuk menghasilkan lulusan ahli pangan yang profesional, inovatif, dan berkarakter Islami, yang mampu bersaing secara global dalam mengembangkan potensi pangan lokal Nusantara menjadi produk bertaraf internasional.', 'Welcome to the official portal of the S1 Food Technology Program at Universitas Muhammadiyah Bandung. We are committed to producing professional, innovative, and Islamic-character food technology graduates who can compete globally in developing the potential of local Nusantara food into international-standard products.'),
+  ('kaprodi_welcome_p2', 'Fokus pengembangan kami terletak pada integrasi sains pangan modern dengan prinsip kehalalan, sistem biorefinery berkelanjutan, dan jiwa kewirausahaan — menciptakan ahli pangan yang berdampak nyata bagi ketahanan dan kedaulatan pangan bangsa.', 'Our development focus lies in integrating modern food science with halal principles, sustainable biorefinery systems, and an entrepreneurial spirit — creating food technology experts who make a real impact on national food security and sovereignty.'),
   ('kaprodi_photo_url', '/assets/kaprodi.png', '/assets/kaprodi.png'),
   ('logo_prodi_url', '', ''),
   ('hero_bg_url', '/assets/hero-mono-stigma.png', '/assets/hero-mono-stigma.png'),
-  ('kaprodi_name', 'M. Yusuf Efendi, S.T., M.T.', 'M. Yusuf Efendi, S.T., M.T.'),
-  ('kaprodi_title', 'Ketua Program Studi Teknik Informatika', 'Head of Informatics Engineering Department'),
+  ('kaprodi_name', 'Dr. Khairiah, S.P., M.T.', 'Dr. Khairiah, S.P., M.T.'),
+  ('kaprodi_title', 'Ketua Program Studi Teknologi Pangan', 'Head of Food Technology Department'),
   ('sambutan_title', 'Sambutan Kepala Program Studi', 'Head of Department''s Welcome'),
-  ('philosophy_title', 'Filosofi Pembelajaran Kami', 'Our Learning Philosophy'),
-  ('philosophy_body', 'Kami percaya bahwa pemrograman bukan hanya tentang mengetik baris kode, melainkan tentang membangun solusi komputasi yang efisien, etis, dan memberikan dampak nyata bagi masyarakat.', 'We believe programming is not just about writing lines of code, but about building efficient, ethical computing solutions that deliver real impact to society.'),
-  ('visi_misi_vision', 'Menjadi program studi rekayasa perangkat lunak yang unggul di tingkat nasional, berdaya saing global, terintegrasi dengan nilai-nilai Keislaman serta inovasi teknologi digital pada tahun 2030.', 'To become a leading, globally-recognized center of software engineering education and research that integrates Islamic values and digital technological innovations by 2030.'),
-  ('visi_misi_missions', 'Menyelenggarakan pendidikan rekayasa perangkat lunak berkualitas tinggi yang selaras dengan standar komputasi global dan kebutuhan dinamis industri teknologi.
-Melaksanakan riset inovatif dan kolaboratif di bidang sistem awan, kecerdasan buatan, dan keamanan siber dengan publikasi akademis yang berdampak.
-Mengimplementasikan program pengabdian masyarakat berbasis transformasi digital untuk memberdayakan UMKM lokal dan sektor sosial kemasyarakatan.
-Mengintegrasikan etika Keislaman, integritas profesional, dan prinsip moral dalam pembelajaran akademik serta pembinaan karakter.', 'Deliver a high-quality software engineering curriculum that aligns with global computing standards and dynamic tech industry demands.
-Conduct innovative, collaborative research in cloud systems, artificial intelligence, and cybersecurity with meaningful academic publications.
-Implement digital transformation initiatives and community service programs to support local MSMEs and community sectors.
-Integrate Islamic ethics, professional integrity, and moral principles into academic learning and character development.'),
-  ('visi_misi_goals', 'Kompetensi Profesional Global
-Output Riset yang Inovatif
-Ekosistem Digital Berkelanjutan
-Karakter Islami & Kepemimpinan', 'Global Professional Competency
-Innovative Research Output
-Sustainable Digital Ecosystems
-Islamic Character & Leadership'),
-  ('gov_sec_name', 'Vritta Amroini Wahyudi, S.Si., M.Si.', 'Vritta Amroini Wahyudi, S.Si., M.Si.'),
-  ('gov_sec_role', 'Sekretaris Program Studi', 'Secretary of Department'),
-  ('gov_sec_email', 'vritta.aw@umbandung.ac.id', 'vritta.aw@umbandung.ac.id'),
-  ('gov_sec_photo', 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=300&auto=format&fit=crop', 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=300&auto=format&fit=crop'),
+  ('philosophy_title', 'Filosofi Pengembangan Pangan Kami', 'Our Food Development Philosophy'),
+  ('philosophy_body', 'Kami percaya bahwa teknologi pangan bukan sekadar tentang mengolah bahan makanan, melainkan tentang membangun sistem pangan yang aman, bergizi, halal, dan berkelanjutan — yang memberikan dampak nyata bagi ketahanan pangan masyarakat dan kemaslahatan umat.', 'We believe food technology is not just about processing food ingredients, but about building food systems that are safe, nutritious, halal, and sustainable — delivering real impact on community food security and societal well-being.'),
+  ('visi_misi_vision', 'Menjadi program studi unggul dan inovatif dalam mengembangkan keilmuan sains dan teknologi pangan halal berbasis keanekaragaman pangan Nusantara melalui sistem biorefinery sirkular berkelanjutan guna menghasilkan lulusan profesional dan teknopreneur berkarakter Islami yang berdaya saing global dan berdampak luas bagi masyarakat.', 'To become a leading and innovative study program in developing halal food science and technology knowledge based on the diversity of Nusantara food through a sustainable circular biorefinery system, producing professional graduates and Islamically-characterized technopreneurs who are globally competitive and have a broad impact on society.'),
+  ('visi_misi_missions', 'Menyelenggarakan pendidikan dan pengajaran berkualitas di bidang sains dan teknologi pangan lokal, kehalalan pangan, sistem biorefinery sirkular berkelanjutan, dan technopreneurship dalam menghasilkan lulusan yang berkarakter Islami.
+Menyelenggarakan penelitian di bidang sains dan teknologi pangan yang inovatif, berfokus pada eksplorasi berbasis keanekaragaman pangan Nusantara untuk menghasilkan produk pangan yang aman, bermutu, dan halal.
+Melaksanakan pengabdian kepada masyarakat berbasis ilmu pangan untuk pemberdayaan UMKM pangan lokal dan peningkatan ketahanan pangan masyarakat.
+Mengintegrasikan nilai-nilai Keislaman, etika profesi pangan, dan prinsip kehalalan dalam seluruh aspek pembelajaran akademik dan pembinaan karakter mahasiswa.', 'Deliver quality education and teaching in the fields of local food science and technology, food halalness, sustainable circular biorefinery systems, and technopreneurship to produce Islamically-characterized graduates.
+Conduct innovative food science and technology research, focused on exploration based on Nusantara food diversity to produce safe, quality, and halal food products.
+Implement community service based on food science to empower local food MSMEs and improve community food security.
+Integrate Islamic values, food professional ethics, and halal principles in all aspects of academic learning and student character development.'),
+  ('visi_misi_goals', 'Kompetensi Profesional Pangan Global
+Inovasi Riset Pangan Berbasis Lokal
+Technopreneurship & Wirausaha Pangan
+Karakter Islami & Pangan Halalan Thayyiban', 'Global Food Professional Competency
+Local-Based Food Research Innovation
+Technopreneurship & Food Entrepreneurship
+Islamic Character & Halalan Thayyiban Food'),
+  ('gov_sec_name', 'Dr. Saepul Adnan, S.Si., M.Si.', 'Dr. Saepul Adnan, S.Si., M.Si.'),
+  ('gov_sec_role', 'Sekretaris Program Studi Teknologi Pangan', 'Secretary of Food Technology Department'),
+  ('gov_sec_email', 'saepul.adnan@umbandung.ac.id', 'saepul.adnan@umbandung.ac.id'),
+  ('gov_sec_photo', 'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=300&auto=format&fit=crop', 'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=300&auto=format&fit=crop'),
   ('gov_lab_name', 'Hanif Alamudin Manshur, S.Gz., M.Si.', 'Hanif Alamudin Manshur, S.Gz., M.Si.'),
-  ('gov_lab_role', 'Kepala Laboratorium Komputasi', 'Head of Computing Laboratories'),
+  ('gov_lab_role', 'Kepala Laboratorium Analisis Pangan', 'Head of Food Analysis Laboratory'),
   ('gov_lab_email', 'hanif.am@umbandung.ac.id', 'hanif.am@umbandung.ac.id'),
-  ('gov_lab_photo', 'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=300&auto=format&fit=crop', 'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=300&auto=format&fit=crop'),
-  ('kurikulum_description', 'Pelajari kurikulum adaptif kami yang disusun berdasarkan standar komputasi internasional (ACM/IEEE), sertifikasi profesi industri, serta skema Merdeka Belajar Kampus Merdeka (MBKM).', 'Explore our modern, adaptive curriculum structured around international computing standards (ACM/IEEE), industry certifications, and MBKM learning path designs.'),
-  ('kurikulum_internship_desc', 'Mahasiswa kami difasilitasi untuk mengkonversikan pengalaman kerja lapangan / magang industri riil hingga 20 SKS akademik di bawah skema MBKM Kemendikbud, bermitra dengan startup dan BUMN teknologi terkemuka.', 'Our students are eligible to convert real-world industrial experiences into up to 20 academic credits under the Kemendikbud MBKM schema, collaborating with global and national technology enterprises.'),
-  ('tugas_akhir_description', 'Akses panduan akademik, persyaratan kelayakan, alur pengajuan proposal, serta berkas unduhan template untuk menyelesaikan Tugas Akhir (Skripsi) Anda.', 'Access guidelines, academic prerequisites, research workflows, and download templates required to successfully complete your capstone final project.'),
-  ('tugas_akhir_prereq_desc', 'Telah menempuh dan lulus minimal 110 SKS mata kuliah akademik, tidak memiliki nilai D/E untuk core courses, IPK Kumulatif minimal 2.00, serta menyertakan Seminar Proposal di KRS berjalan.', 'Successfully completed a minimum of 110 academic credits (SKS), no D or E grades for core courses, minimum GPA of 2.00, and enrolled in Thesis Proposal Seminar in the current KRS.'),
-  ('kerjasama_description', 'Membuka peluang kolaborasi global guna mendukung Tri Dharma Perguruan Tinggi, magang industri mahasiswa, riset bersama, serta penyerapan karir lulusan.', 'Exploring global collaborations to support the Tri Dharma of Higher Education, student internships, joint research programs, and professional career transitions.');
+  ('gov_lab_photo', 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=300&auto=format&fit=crop', 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=300&auto=format&fit=crop'),
+  ('kurikulum_description', 'Pelajari kurikulum adaptif kami yang mengintegrasikan tiga pilar utama: Keislaman (pangan halalan thayyiban), Technopreneurship (kewirausahaan pangan), dan Ilmu Teknologi Pangan (rekayasa, gizi, dan pengolahan bahan lokal Nusantara).', 'Explore our adaptive curriculum integrating three main pillars: Islamic Values (halalan thayyiban food), Technopreneurship (food entrepreneurship), and Food Technology Science (engineering, nutrition, and local Nusantara ingredient processing).'),
+  ('kurikulum_internship_desc', 'Mahasiswa kami difasilitasi untuk mengkonversikan pengalaman magang di industri pangan, BPOM, lembaga riset pangan, atau usaha pangan binaan hingga 20 SKS di bawah skema MBKM Kemendikbud, bermitra dengan industri pangan nasional terkemuka.', 'Our students can convert internship experiences at food industries, BPOM, food research institutions, or food business incubators into up to 20 academic credits under the Kemendikbud MBKM scheme, in partnership with leading national food industries.'),
+  ('tugas_akhir_description', 'Akses panduan akademik, persyaratan kelayakan, alur pengajuan proposal penelitian pangan, serta berkas unduhan template untuk menyelesaikan Tugas Akhir (Skripsi) Anda di bidang Teknologi Pangan.', 'Access academic guidelines, eligibility requirements, food research proposal submission procedures, and template download files to complete your Final Project (Thesis) in Food Technology.'),
+  ('tugas_akhir_prereq_desc', 'Telah menempuh dan lulus minimal 110 SKS mata kuliah akademik, tidak memiliki nilai D/E untuk mata kuliah inti Teknologi Pangan, IPK Kumulatif minimal 2.00, serta menyertakan Seminar Proposal Tugas Akhir di KRS berjalan.', 'Successfully completed a minimum of 110 academic credits (SKS), no D or E grades for core Food Technology courses, minimum cumulative GPA of 2.00, and enrolled in the Final Project Proposal Seminar in the current academic plan.'),
+  ('kerjasama_description', 'Membuka peluang kolaborasi dengan industri pangan, lembaga pemerintah, dan institusi riset untuk mendukung Tri Dharma Perguruan Tinggi, magang industri pangan mahasiswa, riset produk halal, serta penyerapan lulusan ahli pangan.', 'Opening collaboration opportunities with food industries, government agencies, and research institutions to support the Tri Dharma of Higher Education, student food industry internships, halal product research, and absorption of food technology graduates.');
 
 -- Seed Dosen
 insert into public.dosen (name, img_src, scopus, sinta, scholar, facebook, twitter, tiktok, instagram, sort_order) values
-  ('Hanif Alamudin Manshur, S.Gz., M.Si.', 'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=300&auto=format&fit=crop', '-', '6704890', '#', '#', '#', '#', '#', 1),
-  ('Vritta Amroini Wahyudi, S.Si., M.Si.', 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=300&auto=format&fit=crop', '-', '6640055', '#', '#', '#', '#', '#', 2),
-  ('Prof. Dr. Ir. Noor Harini, M.S.', 'https://images.unsplash.com/photo-1580894732444-8fecef2271ff?q=80&w=300&auto=format&fit=crop', '57203912449', '6042313', '#', '#', '#', '#', '#', 3);
+  ('Dr. Khairiah, S.P., M.T.', 'https://images.unsplash.com/photo-1580894732444-8fecef2271ff?q=80&w=300&auto=format&fit=crop', '-', '-', '#', '#', '#', '#', '#', 1),
+  ('Dr. Saepul Adnan, S.Si., M.Si.', 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=300&auto=format&fit=crop', '-', '-', '#', '#', '#', '#', '#', 2),
+  ('Hanif Alamudin Manshur, S.Gz., M.Si.', 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=300&auto=format&fit=crop', '-', '-', '#', '#', '#', '#', '#', 3);
 
 -- MIGRATION SCRIPTS (For existing databases)
 -- Run these if your tables already exist and you need to update their columns:
