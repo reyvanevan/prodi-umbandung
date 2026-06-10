@@ -39,6 +39,11 @@ export function NavDrawer({ lang, isOpen, onClose, logoUrl }: NavDrawerProps) {
 
   const menuItems: MenuItem[] = lang === 'en' ? [
     {
+      id: 'home',
+      label: 'HOME',
+      href: '/en',
+    },
+    {
       id: 'about',
       label: 'ABOUT US',
       submenu: [
@@ -97,6 +102,11 @@ export function NavDrawer({ lang, isOpen, onClose, logoUrl }: NavDrawerProps) {
       ],
     },
   ] : [
+    {
+      id: 'home',
+      label: 'HOME',
+      href: '/',
+    },
     {
       id: 'about',
       label: 'TENTANG KAMI',

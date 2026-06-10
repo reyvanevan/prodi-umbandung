@@ -42,6 +42,10 @@ export function Navigation({ lang, onOpenMenu, logoUrl }: NavigationProps) {
 
   const menuItems: MenuItem[] = lang === 'en' ? [
     {
+      label: 'HOME',
+      href: '/en',
+    },
+    {
       label: 'ABOUT US',
       submenu: [
         { label: 'Program Achievements', href: '/en/#' },
@@ -95,6 +99,10 @@ export function Navigation({ lang, onOpenMenu, logoUrl }: NavigationProps) {
       ],
     },
   ] : [
+    {
+      label: 'HOME',
+      href: '/',
+    },
     {
       label: 'TENTANG KAMI',
       submenu: [
