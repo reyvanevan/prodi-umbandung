@@ -193,6 +193,9 @@ insert into public.news (title, title_en, category, category_en, snippet, snippe
   ('Prodi Teknologi Pangan UMB Tanda Tangani MoU dengan BPOM RI untuk Riset Kehalalan', 'UMB Food Technology Signs MoU with BPOM for Halal Research', 'KERJASAMA STRATEGIS', 'STRATEGIC PARTNERSHIP', 'Kerjasama resmi dengan Badan Pengawas Obat dan Makanan RI membuka peluang riset bersama terkait sertifikasi halal, analisis kontaminan, dan pengujian bahan tambahan pangan.', 'The official partnership with BPOM Indonesia opens opportunities for joint research on halal certification, contaminant analysis, and food additive testing.', '15 MAY 2026', 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=600&auto=format&fit=crop');
 
 -- Seed landing_stats
+-- Ensure label_en column exists (for databases migrated from older schema)
+alter table public.landing_stats add column if not exists label_en text;
+
 insert into public.landing_stats (number, label, label_en, sort_order) values
   ('95%', 'Keterserapan Lulusan di Industri Pangan', 'Graduate Employment Rate in Food Industry', 1),
   ('15+', 'Mitra Industri Pangan & Lembaga Riset', 'Food Industry Partners & Research Institutions', 2),
@@ -266,5 +269,6 @@ insert into public.dosen (name, img_src, scopus, sinta, scholar, facebook, twitt
   ('Hanif Alamudin Manshur, S.Gz., M.Si.', 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=300&auto=format&fit=crop', '-', '-', '#', '#', '#', '#', '#', 3);
 
 -- MIGRATION SCRIPTS (For existing databases)
--- Run these if your tables already exist and you need to update their columns:
+-- label_en is now handled inline above with ADD COLUMN IF NOT EXISTS
+-- Run this manually only if you need to add other missing columns:
 -- ALTER TABLE public.landing_stats ADD COLUMN IF NOT EXISTS label_en text;
