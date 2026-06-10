@@ -250,3 +250,98 @@ export async function getDosen(): Promise<DbDosen[] | null> {
   }
   return data;
 }
+
+export interface DbKurikulumCourse {
+  id: string;
+  semester: string;
+  name: string;
+  name_en: string | null;
+  credits: number;
+  sort_order: number;
+}
+
+export interface DbKurikulumPlo {
+  id: string;
+  code: string;
+  type: string;
+  type_en: string | null;
+  text: string;
+  text_en: string | null;
+  sort_order: number;
+}
+
+export interface DbKurikulumProfile {
+  id: string;
+  title: string;
+  title_en: string | null;
+  desc: string;
+  desc_en: string | null;
+  sort_order: number;
+}
+
+export interface DbTaStep {
+  id: string;
+  num: string;
+  title: string;
+  title_en: string | null;
+  desc: string;
+  desc_en: string | null;
+  sort_order: number;
+}
+
+export async function getKurikulumCourses(): Promise<DbKurikulumCourse[] | null> {
+  const supabase = getBrowserSupabaseClient();
+  if (!supabase) return null;
+  const { data, error } = await supabase
+    .from('kurikulum_courses')
+    .select('*')
+    .order('semester', { ascending: true })
+    .order('sort_order', { ascending: true });
+  if (error) {
+    console.error('Error fetching kurikulum courses:', error);
+    return null;
+  }
+  return data;
+}
+
+export async function getKurikulumPlos(): Promise<DbKurikulumPlo[] | null> {
+  const supabase = getBrowserSupabaseClient();
+  if (!supabase) return null;
+  const { data, error } = await supabase
+    .from('kurikulum_plos')
+    .select('*')
+    .order('sort_order', { ascending: true });
+  if (error) {
+    console.error('Error fetching kurikulum plos:', error);
+    return null;
+  }
+  return data;
+}
+
+export async function getKurikulumProfiles(): Promise<DbKurikulumProfile[] | null> {
+  const supabase = getBrowserSupabaseClient();
+  if (!supabase) return null;
+  const { data, error } = await supabase
+    .from('kurikulum_profiles')
+    .select('*')
+    .order('sort_order', { ascending: true });
+  if (error) {
+    console.error('Error fetching kurikulum profiles:', error);
+    return null;
+  }
+  return data;
+}
+
+export async function getTaSteps(): Promise<DbTaStep[] | null> {
+  const supabase = getBrowserSupabaseClient();
+  if (!supabase) return null;
+  const { data, error } = await supabase
+    .from('tugas_akhir_steps')
+    .select('*')
+    .order('sort_order', { ascending: true });
+  if (error) {
+    console.error('Error fetching tugas akhir steps:', error);
+    return null;
+  }
+  return data;
+}

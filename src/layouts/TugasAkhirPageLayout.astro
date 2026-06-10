@@ -2,7 +2,7 @@
 import Layout from './Layout.astro';
 import { ClipboardCheck, Download, Calendar, BookOpen, AlertCircle } from 'lucide-react';
 import { PRODI_CONFIG } from '../config/prodi.config';
-import { getSiteContent } from '../lib/supabase/db';
+import { getSiteContent, getTaSteps } from '../lib/supabase/db';
 
 interface Props {
   lang: 'id' | 'en';
@@ -46,8 +46,8 @@ const prerequisites = contentMap['tugas_akhir_prereq_desc']
   ? contentMap['tugas_akhir_prereq_desc'].split('\n').filter(Boolean)
   : defaultPrerequisites;
 
-// 2. Thesis Workflow Steps
-const steps = lang === 'en' ? [
+// 2. Thesis Workflow Steps (Fallbacks)
+const fallbackSteps = lang === 'en' ? [
   { num: "01", title: "Topic Submission", desc: "Submit your food research title and abstract online to the academic committee." },
   { num: "02", title: "Advisor Assignment", desc: "Get assigned primary and secondary academic advisors based on research alignment." },
   { num: "03", title: "Proposal Seminar", desc: "Defend your research design and laboratory methodologies in front of a review board." },
@@ -60,6 +60,15 @@ const steps = lang === 'en' ? [
   { num: "04", title: "Riset & Analisis Lab", desc: "Melakukan eksperimen laboratorium, uji sensoris, atau rancang pabrik pangan dengan bimbingan berkala." },
   { num: "05", title: "Sidang Akhir (Pendadaran)", desc: "Mempertahankan naskah laporan ilmiah Tugas Akhir dan hasil temuan produk di depan dewan penguji." }
 ];
+
+const dbSteps = await getTaSteps();
+const steps = (dbSteps && dbSteps.length > 0)
+  ? dbSteps.map(s => ({
+      num: s.num,
+      title: lang === 'en' ? (s.title_en || s.title) : s.title,
+      desc: lang === 'en' ? (s.desc_en || s.desc) : s.desc
+    }))
+  : fallbackSteps;
 
 // 3. Document Templates for Download
 const templates = lang === 'en' ? [

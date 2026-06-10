@@ -97,6 +97,52 @@ create table if not exists public.dosen (
   created_at timestamp with time zone default timezone('utc'::text, now()) not null
 );
 
+-- 10. Create kurikulum_courses table
+create table if not exists public.kurikulum_courses (
+  id uuid default gen_random_uuid() primary key,
+  semester text not null,
+  name text not null,
+  name_en text,
+  credits int not null,
+  sort_order int not null default 0,
+  created_at timestamp with time zone default timezone('utc'::text, now()) not null
+);
+
+-- 11. Create kurikulum_plos table
+create table if not exists public.kurikulum_plos (
+  id uuid default gen_random_uuid() primary key,
+  code text not null,
+  type text not null,
+  type_en text,
+  text text not null,
+  text_en text,
+  sort_order int not null default 0,
+  created_at timestamp with time zone default timezone('utc'::text, now()) not null
+);
+
+-- 12. Create kurikulum_profiles table
+create table if not exists public.kurikulum_profiles (
+  id uuid default gen_random_uuid() primary key,
+  title text not null,
+  title_en text,
+  "desc" text not null,
+  desc_en text,
+  sort_order int not null default 0,
+  created_at timestamp with time zone default timezone('utc'::text, now()) not null
+);
+
+-- 13. Create tugas_akhir_steps table
+create table if not exists public.tugas_akhir_steps (
+  id uuid default gen_random_uuid() primary key,
+  num text not null,
+  title text not null,
+  title_en text,
+  "desc" text not null,
+  desc_en text,
+  sort_order int not null default 0,
+  created_at timestamp with time zone default timezone('utc'::text, now()) not null
+);
+
 -- Enable Row Level Security (RLS) for all tables
 alter table public.news enable row level security;
 alter table public.events enable row level security;
@@ -107,6 +153,10 @@ alter table public.landing_portfolio_items enable row level security;
 alter table public.site_content enable row level security;
 alter table public.landing_partners enable row level security;
 alter table public.dosen enable row level security;
+alter table public.kurikulum_courses enable row level security;
+alter table public.kurikulum_plos enable row level security;
+alter table public.kurikulum_profiles enable row level security;
+alter table public.tugas_akhir_steps enable row level security;
 
 -- Drop policies if they already exist
 drop policy if exists "Allow public read-only access for news" on public.news;
@@ -118,6 +168,10 @@ drop policy if exists "Allow public read-only access for landing_portfolio_items
 drop policy if exists "Allow public read-only access for site_content" on public.site_content;
 drop policy if exists "Allow public read-only access for landing_partners" on public.landing_partners;
 drop policy if exists "Allow public read-only access for dosen" on public.dosen;
+drop policy if exists "Allow public read-only access for kurikulum_courses" on public.kurikulum_courses;
+drop policy if exists "Allow public read-only access for kurikulum_plos" on public.kurikulum_plos;
+drop policy if exists "Allow public read-only access for kurikulum_profiles" on public.kurikulum_profiles;
+drop policy if exists "Allow public read-only access for tugas_akhir_steps" on public.tugas_akhir_steps;
 
 drop policy if exists "Allow admin write access for news" on public.news;
 drop policy if exists "Allow admin write access for events" on public.events;
@@ -128,6 +182,10 @@ drop policy if exists "Allow admin write access for landing_portfolio_items" on 
 drop policy if exists "Allow admin write access for site_content" on public.site_content;
 drop policy if exists "Allow admin write access for landing_partners" on public.landing_partners;
 drop policy if exists "Allow admin write access for dosen" on public.dosen;
+drop policy if exists "Allow admin write access for kurikulum_courses" on public.kurikulum_courses;
+drop policy if exists "Allow admin write access for kurikulum_plos" on public.kurikulum_plos;
+drop policy if exists "Allow admin write access for kurikulum_profiles" on public.kurikulum_profiles;
+drop policy if exists "Allow admin write access for tugas_akhir_steps" on public.tugas_akhir_steps;
 
 -- Create Read policies (Public Select)
 create policy "Allow public read-only access for news" on public.news for select using (true);
@@ -139,6 +197,10 @@ create policy "Allow public read-only access for landing_portfolio_items" on pub
 create policy "Allow public read-only access for site_content" on public.site_content for select using (true);
 create policy "Allow public read-only access for landing_partners" on public.landing_partners for select using (true);
 create policy "Allow public read-only access for dosen" on public.dosen for select using (true);
+create policy "Allow public read-only access for kurikulum_courses" on public.kurikulum_courses for select using (true);
+create policy "Allow public read-only access for kurikulum_plos" on public.kurikulum_plos for select using (true);
+create policy "Allow public read-only access for kurikulum_profiles" on public.kurikulum_profiles for select using (true);
+create policy "Allow public read-only access for tugas_akhir_steps" on public.tugas_akhir_steps for select using (true);
 
 -- Create Write policies (Authenticated Admin only)
 create policy "Allow admin write access for news" on public.news for all using (auth.role() = 'authenticated');
@@ -150,6 +212,10 @@ create policy "Allow admin write access for landing_portfolio_items" on public.l
 create policy "Allow admin write access for site_content" on public.site_content for all using (auth.role() = 'authenticated');
 create policy "Allow admin write access for landing_partners" on public.landing_partners for all using (auth.role() = 'authenticated');
 create policy "Allow admin write access for dosen" on public.dosen for all using (auth.role() = 'authenticated');
+create policy "Allow admin write access for kurikulum_courses" on public.kurikulum_courses for all using (auth.role() = 'authenticated');
+create policy "Allow admin write access for kurikulum_plos" on public.kurikulum_plos for all using (auth.role() = 'authenticated');
+create policy "Allow admin write access for kurikulum_profiles" on public.kurikulum_profiles for all using (auth.role() = 'authenticated');
+create policy "Allow admin write access for tugas_akhir_steps" on public.tugas_akhir_steps for all using (auth.role() = 'authenticated');
 
 -- Clean existing data before seeding
 truncate table public.news restart identity cascade;
@@ -161,6 +227,10 @@ truncate table public.landing_portfolio_items restart identity cascade;
 truncate table public.site_content restart identity cascade;
 truncate table public.landing_partners restart identity cascade;
 truncate table public.dosen restart identity cascade;
+truncate table public.kurikulum_courses restart identity cascade;
+truncate table public.kurikulum_plos restart identity cascade;
+truncate table public.kurikulum_profiles restart identity cascade;
+truncate table public.tugas_akhir_steps restart identity cascade;
 
 -- Seed Partners
 insert into public.partners (name) values
@@ -267,6 +337,53 @@ insert into public.dosen (name, img_src, scopus, sinta, scholar, facebook, twitt
   ('Dr. Khairiah, S.P., M.T.', 'https://images.unsplash.com/photo-1580894732444-8fecef2271ff?q=80&w=300&auto=format&fit=crop', '-', '-', '#', '#', '#', '#', '#', 1),
   ('Dr. Saepul Adnan, S.Si., M.Si.', 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=300&auto=format&fit=crop', '-', '-', '#', '#', '#', '#', '#', 2),
   ('Hanif Alamudin Manshur, S.Gz., M.Si.', 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=300&auto=format&fit=crop', '-', '-', '#', '#', '#', '#', '#', 3);
+
+-- Seed Kurikulum Courses
+insert into public.kurikulum_courses (semester, name, name_en, credits, sort_order) values
+  ('I', 'Pengantar Teknologi Pangan', 'Introduction to Food Technology', 2, 1),
+  ('I', 'Kimia Dasar', 'General Chemistry', 3, 2),
+  ('I', 'Biologi Umum', 'General Biology', 3, 3),
+  ('II', 'Kimia Organik', 'Organic Chemistry', 3, 4),
+  ('II', 'Mikrobiologi Umum', 'General Microbiology', 3, 5),
+  ('II', 'Matematika Pangan', 'Food Mathematics', 2, 6),
+  ('III', 'Kimia Pangan', 'Food Chemistry', 3, 7),
+  ('III', 'Mikrobiologi Pangan', 'Food Microbiology', 3, 8),
+  ('III', 'Biokimia Pangan', 'Food Biochemistry', 3, 9),
+  ('IV', 'Analisis Pangan', 'Food Analysis', 3, 10),
+  ('IV', 'Satuan Operasi Industri Pangan', 'Unit Operations in Food Industry', 3, 11),
+  ('IV', 'Bahan Tambahan Pangan', 'Food Additives', 2, 12),
+  ('V', 'Teknologi Pengolahan Pangan', 'Food Processing Technology', 4, 13),
+  ('V', 'Sensoris Pangan', 'Food Sensory Evaluation', 3, 14),
+  ('V', 'Peraturan & Undang-Undang Pangan', 'Food Regulations & Laws', 2, 15),
+  ('VI', 'Sistem Jaminan Produk Halal', 'Halal Product Assurance System', 3, 16),
+  ('VI', 'Manajemen Mutu & Keamanan Pangan', 'Food Quality & Safety Management', 3, 17),
+  ('VI', 'Desain & Inovasi Produk Pangan', 'Food Product Design & Innovation', 3, 18),
+  ('VII', 'Metodologi Penelitian Pangan', 'Food Research Methodology', 2, 19),
+  ('VII', 'Seminar Proposal Tugas Akhir', 'Final Project Proposal Seminar', 1, 20),
+  ('VII', 'Magang Industri Pangan', 'Food Industry Internship', 4, 21),
+  ('VIII', 'Tugas Akhir / Skripsi', 'Final Project / Undergraduate Thesis', 6, 22);
+
+-- Seed Kurikulum PLOs
+insert into public.kurikulum_plos (code, type, type_en, text, text_en, sort_order) values
+  ('CPL-01', 'Sikap & Nilai Keislaman', 'Islamic Attitude & Values', 'Mampu menginternalisasikan nilai-nilai Islam, etika profesi pangan, dan prinsip kehalalan dalam kehidupan bermasyarakat dan dunia industri.', 'Able to internalize Islamic values, food professional ethics, and halal principles in community life and the industrial world.', 1),
+  ('CPL-02', 'Penguasaan Pengetahuan Sains Pangan', 'Food Science Knowledge Mastery', 'Menguasai konsep sains pangan, kimia pangan, mikrobiologi pangan, analisis pangan, gizi, dan rekayasa proses pengolahan pangan secara mendalam.', 'Mastering food science concepts, food chemistry, food microbiology, food analysis, nutrition, and food processing engineering deeply.', 2),
+  ('CPL-03', 'Keterampilan Kerja Khusus', 'Specific Work Skills', 'Mampu mengaplikasikan ilmu teknologi pangan dalam merancang produk pangan halal, aman, bermutu, dan mengelola sistem penjaminan mutu (HACCP & Sertifikasi Halal).', 'Able to apply food technology science to design halal, safe, and quality food products, and manage quality assurance systems (HACCP & Halal Certification).', 3),
+  ('CPL-04', 'Technopreneurship & Inovasi', 'Technopreneurship & Innovation', 'Mampu mengidentifikasi peluang bisnis pangan berbasis pangan lokal Nusantara dengan pendekatan technopreneurship sirkular berkelanjutan.', 'Able to identify food business opportunities based on local Nusantara food with a sustainable circular technopreneurship approach.', 4);
+
+-- Seed Kurikulum Graduate Profiles
+insert into public.kurikulum_profiles (title, title_en, desc, desc_en, sort_order) values
+  ('QA/QC & Food Safety Specialist', 'QA/QC & Food Safety Specialist', 'Profesional yang mampu menjamin mutu, keamanan, dan kehalalan produk pangan dari bahan baku hingga produk jadi di industri makanan dan minuman.', 'Professionals capable of ensuring the quality, safety, and halal integrity of food products from raw materials to finished products in the food and beverage industry.', 1),
+  ('R&D & Product Development Specialist', 'R&D & Product Development Specialist', 'Inovator yang mampu merancang formulasi baru, diversifikasi pangan lokal Nusantara, serta rekayasa kemasan pangan bernilai gizi tinggi.', 'Innovators capable of designing new formulations, diversifying local Nusantara food, and engineering high-nutrition food packaging.', 2),
+  ('Halal Food Auditor / Consultant', 'Halal Food Auditor / Consultant', 'Ahli bersertifikasi yang mendampingi industri pangan dan UMKM dalam mengaudit, menyusun dokumen Sistem Jaminan Produk Halal (SJPH).', 'Certified experts assisting the food industry and MSMEs in auditing and compiling Halal Product Assurance System documents.', 3),
+  ('Food Technopreneur', 'Food Technopreneur', 'Wirausahawan mandiri yang mengembangkan bisnis pengolahan pangan lokal yang inovatif dengan mengedepankan aspek halal dan keberlanjutan.', 'Independent entrepreneurs developing innovative local food processing businesses prioritizing halal and sustainability aspects.', 4);
+
+-- Seed Tugas Akhir Steps
+insert into public.tugas_akhir_steps (num, title, title_en, desc, desc_en, sort_order) values
+  ('01', 'Pengajuan Judul & Proposal', 'Title & Proposal Submission', 'Mahasiswa mengajukan draf rencana penelitian beserta calon dosen pembimbing ke prodi untuk dievaluasi kesesuaian topiknya.', 'Students submit research plan drafts along with prospective advisors to the department for topic suitability evaluation.', 1),
+  ('02', 'Seminar Proposal', 'Proposal Seminar', 'Pemaparan rencana penelitian di hadapan dosen penguji untuk mendapat masukan metodologi ilmiah dan kelayakan riset.', 'Presentation of research plans before examiners to receive scientific methodology feedback and research feasibility validation.', 2),
+  ('03', 'Penelitian Laboratorium & Analisis', 'Lab Research & Analysis', 'Pelaksanaan eksperimen, analisis laboratorium (fisik, kimia, mikrobiologi, atau organoleptik) sesuai metodologi proposal.', 'Conducting experiments and laboratory analyses (physical, chemical, microbiological, or organoleptic) per proposal methodology.', 3),
+  ('04', 'Sidang Tugas Akhir', 'Undergraduate Thesis Defense', 'Ujian lisan komprehensif untuk mempertahankan hasil penelitian, analisis data, dan kesimpulan di hadapan dewan penguji.', 'Comprehensive oral exam to defend research results, data analysis, and conclusions before the board of examiners.', 4),
+  ('05', 'Revisi & Pengumpulan Berkas', 'Revision & Submission', 'Penyempurnaan draf naskah skripsi berdasarkan masukan penguji serta pengunggahan manuskrip ke repositori institusi.', 'Perfecting the thesis draft per examiners'' feedback and uploading the final manuscript to the institutional repository.', 5);
 
 -- MIGRATION SCRIPTS (For existing databases)
 -- label_en is now handled inline above with ADD COLUMN IF NOT EXISTS

@@ -2,7 +2,7 @@
 import Layout from './Layout.astro';
 import { BookOpen, GraduationCap, Award, Compass } from 'lucide-react';
 import { PRODI_CONFIG } from '../config/prodi.config';
-import { getSiteContent } from '../lib/supabase/db';
+import { getSiteContent, getKurikulumCourses, getKurikulumPlos, getKurikulumProfiles } from '../lib/supabase/db';
 
 interface Props {
   lang: 'id' | 'en';
@@ -29,8 +29,8 @@ const defaultDescription = lang === 'en'
 
 const description = contentMap['kurikulum_description'] || defaultDescription;
 
-// 1. Graduate Profiles
-const profiles = lang === 'en' ? [
+// 1. Graduate Profiles (Fallbacks)
+const fallbackProfiles = lang === 'en' ? [
   {
     title: "Food Product Developer / R&D Specialist",
     desc: "Professionals who design, formulate, and optimize safe, nutritious, and halal food products using local Nusantara agricultural resources."
@@ -66,8 +66,16 @@ const profiles = lang === 'en' ? [
   }
 ];
 
-// 2. Program Learning Outcomes (PLO/CPL)
-const plos = lang === 'en' ? [
+const dbProfiles = await getKurikulumProfiles();
+const profiles = (dbProfiles && dbProfiles.length > 0)
+  ? dbProfiles.map(p => ({
+      title: lang === 'en' ? (p.title_en || p.title) : p.title,
+      desc: lang === 'en' ? (p.desc_en || p.desc) : p.desc
+    }))
+  : fallbackProfiles;
+
+// 2. Program Learning Outcomes (PLO/CPL) (Fallbacks)
+const fallbackPlos = lang === 'en' ? [
   { code: "CPL-01", type: "Ethics", text: "Apply professional ethics, Islamic principles, and halal food regulatory compliance in food supply chains." },
   { code: "CPL-02", type: "Core Knowledge", text: "Demonstrate solid knowledge of food science principles (chemistry, microbiology, nutrition) and food engineering." },
   { code: "CPL-03", type: "Quality & Safety", text: "Design and manage food quality assurance and safety systems (HACCP, Halal, GMP, SSOP)." },
@@ -79,8 +87,17 @@ const plos = lang === 'en' ? [
   { code: "CPL-04", type: "Inovasi", text: "Memformulasikan produk pangan baru yang fungsional dan berkelanjutan berbasis potensi komoditas lokal." }
 ];
 
-// 3. Curriculum Semesters Data
-const semesters = [
+const dbPlos = await getKurikulumPlos();
+const plos = (dbPlos && dbPlos.length > 0)
+  ? dbPlos.map(p => ({
+      code: p.code,
+      type: lang === 'en' ? (p.type_en || p.type) : p.type,
+      text: lang === 'en' ? (p.text_en || p.text) : p.text
+    }))
+  : fallbackPlos;
+
+// 3. Curriculum Semesters Data (Fallbacks)
+const fallbackSemesters = [
   {
     sem: "I",
     courses: [
@@ -165,6 +182,37 @@ const semesters = [
     ]
   }
 ];
+
+const dbCourses = await getKurikulumCourses();
+let semesters = fallbackSemesters;
+if (dbCourses && dbCourses.length > 0) {
+  const semOrder = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII"];
+  const grouped: Record<string, typeof dbCourses> = {};
+  semOrder.forEach(s => {
+    grouped[s] = [];
+  });
+  
+  dbCourses.forEach(c => {
+    const s = c.semester;
+    if (grouped[s]) {
+      grouped[s].push(c);
+    } else {
+      grouped[s] = [c];
+    }
+  });
+  
+  semesters = semOrder.map(s => {
+    const sortedCourses = (grouped[s] || []).sort((a, b) => a.sort_order - b.sort_order);
+    return {
+      sem: s,
+      courses: sortedCourses.map(c => ({
+        name_en: c.name_en || c.name,
+        name_id: c.name,
+        credits: c.credits
+      }))
+    };
+  });
+}
 
 const internshipTitle = lang === 'en' ? 'MBKM & Internship Framework' : 'Skema Magang Industri & MBKM';
 const defaultInternshipDesc = lang === 'en'

@@ -8,7 +8,11 @@ import {
   getLandingPortfolioItems,
   getLandingPartners,
   getPartners,
-  getTestimonials
+  getTestimonials,
+  getKurikulumCourses,
+  getKurikulumPlos,
+  getKurikulumProfiles,
+  getTaSteps
 } from '@/lib/supabase/db';
 
 /**
@@ -270,4 +274,167 @@ export function useTestimonials(lang: 'id' | 'en') {
   }, [lang]);
 
   return { testimonials, loading, error };
+}
+
+/**
+ * Reusable hook to fetch curriculum courses.
+ */
+export function useKurikulumCourses(lang: 'id' | 'en') {
+  const [courses, setCourses] = useState<any[] | null>(null);
+  const [loading, setLoading] = useState(isSupabaseConfigured);
+  const [error, setError] = useState<any>(null);
+
+  useEffect(() => {
+    if (!isSupabaseConfigured) {
+      setLoading(false);
+      return;
+    }
+
+    const loadData = async () => {
+      try {
+        const dbData = await getKurikulumCourses();
+        if (dbData) {
+          const mapped = dbData.map((item) => ({
+            id: item.id,
+            semester: item.semester,
+            name: lang === 'en' ? (item.name_en || item.name) : item.name,
+            credits: item.credits,
+            sortOrder: item.sort_order
+          }));
+          setCourses(mapped);
+        }
+      } catch (err) {
+        console.error('Error in useKurikulumCourses hook:', err);
+        setError(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadData();
+  }, [lang]);
+
+  return { courses, loading, error };
+}
+
+/**
+ * Reusable hook to fetch curriculum PLOs (Capaian Pembelajaran Lulusan).
+ */
+export function useKurikulumPlos(lang: 'id' | 'en') {
+  const [plos, setPlos] = useState<any[] | null>(null);
+  const [loading, setLoading] = useState(isSupabaseConfigured);
+  const [error, setError] = useState<any>(null);
+
+  useEffect(() => {
+    if (!isSupabaseConfigured) {
+      setLoading(false);
+      return;
+    }
+
+    const loadData = async () => {
+      try {
+        const dbData = await getKurikulumPlos();
+        if (dbData) {
+          const mapped = dbData.map((item) => ({
+            id: item.id,
+            code: item.code,
+            type: lang === 'en' ? (item.type_en || item.type) : item.type,
+            text: lang === 'en' ? (item.text_en || item.text) : item.text,
+            sortOrder: item.sort_order
+          }));
+          setPlos(mapped);
+        }
+      } catch (err) {
+        console.error('Error in useKurikulumPlos hook:', err);
+        setError(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadData();
+  }, [lang]);
+
+  return { plos, loading, error };
+}
+
+/**
+ * Reusable hook to fetch curriculum profiles (Profil Lulusan).
+ */
+export function useKurikulumProfiles(lang: 'id' | 'en') {
+  const [profiles, setProfiles] = useState<any[] | null>(null);
+  const [loading, setLoading] = useState(isSupabaseConfigured);
+  const [error, setError] = useState<any>(null);
+
+  useEffect(() => {
+    if (!isSupabaseConfigured) {
+      setLoading(false);
+      return;
+    }
+
+    const loadData = async () => {
+      try {
+        const dbData = await getKurikulumProfiles();
+        if (dbData) {
+          const mapped = dbData.map((item) => ({
+            id: item.id,
+            title: lang === 'en' ? (item.title_en || item.title) : item.title,
+            desc: lang === 'en' ? (item.desc_en || item.desc) : item.desc,
+            sortOrder: item.sort_order
+          }));
+          setProfiles(mapped);
+        }
+      } catch (err) {
+        console.error('Error in useKurikulumProfiles hook:', err);
+        setError(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadData();
+  }, [lang]);
+
+  return { profiles, loading, error };
+}
+
+/**
+ * Reusable hook to fetch Tugas Akhir / Skripsi steps.
+ */
+export function useTaSteps(lang: 'id' | 'en') {
+  const [steps, setSteps] = useState<any[] | null>(null);
+  const [loading, setLoading] = useState(isSupabaseConfigured);
+  const [error, setError] = useState<any>(null);
+
+  useEffect(() => {
+    if (!isSupabaseConfigured) {
+      setLoading(false);
+      return;
+    }
+
+    const loadData = async () => {
+      try {
+        const dbData = await getTaSteps();
+        if (dbData) {
+          const mapped = dbData.map((item) => ({
+            id: item.id,
+            num: item.num,
+            title: lang === 'en' ? (item.title_en || item.title) : item.title,
+            desc: lang === 'en' ? (item.desc_en || item.desc) : item.desc,
+            sortOrder: item.sort_order
+          }));
+          setSteps(mapped);
+        }
+      } catch (err) {
+        console.error('Error in useTaSteps hook:', err);
+        setError(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadData();
+  }, [lang]);
+
+  return { steps, loading, error };
 }
