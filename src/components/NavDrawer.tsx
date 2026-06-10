@@ -47,7 +47,7 @@ export function NavDrawer({ lang, isOpen, onClose, logoUrl }: NavDrawerProps) {
       id: 'about',
       label: 'ABOUT US',
       submenu: [
-        { label: 'Program Achievements', href: '/en/#' },
+        { label: 'Program Achievements', href: '/en/#aktivitas-prestasi' },
         { label: 'Vision & Mission', href: '/en/#profil' },
         {
           label: 'Faculty & Staff Profile',
@@ -111,7 +111,7 @@ export function NavDrawer({ lang, isOpen, onClose, logoUrl }: NavDrawerProps) {
       id: 'about',
       label: 'TENTANG KAMI',
       submenu: [
-        { label: 'Prestasi Program Studi', href: '/#' },
+        { label: 'Prestasi Program Studi', href: '/#aktivitas-prestasi' },
         { label: 'Visi & Misi', href: '/#profil' },
         {
           label: 'Profil SDM',

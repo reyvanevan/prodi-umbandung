@@ -13,7 +13,9 @@ export function ArchiveSection({ lang }: ArchiveSectionProps) {
 
   if (loading) {
     return (
-      <section id="archive" className="w-full py-24 lg:py-32 px-6 lg:px-12 bg-white border-b border-mono-black/10">
+      <section id="archive" className="relative w-full py-24 lg:py-32 px-6 lg:px-12 bg-white border-b border-mono-black/10">
+        <div id="aktivitas-prestasi" className="absolute -top-24" />
+        <div id="tugas-akhir" className="absolute -top-24" />
         <div className="mb-16 max-w-7xl mx-auto animate-pulse">
           <div className="h-3 bg-neutral-200 w-48 rounded mb-3" />
           <div className="h-14 bg-neutral-200 w-96 rounded" />
@@ -32,7 +34,9 @@ export function ArchiveSection({ lang }: ArchiveSectionProps) {
   }
 
   return (
-    <section id="archive" className="w-full py-24 lg:py-32 px-6 lg:px-12 bg-white border-b border-mono-black/10">
+    <section id="archive" className="relative w-full py-24 lg:py-32 px-6 lg:px-12 bg-white border-b border-mono-black/10">
+      <div id="aktivitas-prestasi" className="absolute -top-24" />
+      <div id="tugas-akhir" className="absolute -top-24" />
       {/* Section Header */}
       <div className="mb-16 max-w-7xl mx-auto fade-in-element">
         <div className="flex items-end justify-between">

@@ -21,7 +21,8 @@ export function SambutanKaprodi({ lang, title, p1, p2 }: SambutanKaprodiProps) {
 
   if (loading) {
     return (
-      <section id="profil" className="w-full bg-mono-cream py-24 lg:py-32 border-b border-mono-black/10">
+      <section id="profil" className="relative w-full bg-mono-cream py-24 lg:py-32 border-b border-mono-black/10">
+        <div id="struktur-organisasi" className="absolute -top-24" />
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center animate-pulse">
             <div className="lg:col-span-5 aspect-[3/4] bg-neutral-300 border border-mono-black/10 rounded" />
@@ -60,7 +61,8 @@ export function SambutanKaprodi({ lang, title, p1, p2 }: SambutanKaprodiProps) {
   const finalPhoto = dbKaprodiPhoto || "/assets/kaprodi.png";
 
   return (
-    <section id="profil" className="w-full bg-mono-cream py-24 lg:py-32 border-b border-mono-black/10">
+    <section id="profil" className="relative w-full bg-mono-cream py-24 lg:py-32 border-b border-mono-black/10">
+      <div id="struktur-organisasi" className="absolute -top-24" />
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Portrait Image (5 columns) */}

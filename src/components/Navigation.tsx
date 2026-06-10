@@ -48,7 +48,7 @@ export function Navigation({ lang, onOpenMenu, logoUrl }: NavigationProps) {
     {
       label: 'ABOUT US',
       submenu: [
-        { label: 'Program Achievements', href: '/en/#' },
+        { label: 'Program Achievements', href: '/en/#aktivitas-prestasi' },
         { label: 'Vision & Mission', href: '/en/#profil' },
         {
           label: 'Faculty & Staff Profile',
@@ -106,7 +106,7 @@ export function Navigation({ lang, onOpenMenu, logoUrl }: NavigationProps) {
     {
       label: 'TENTANG KAMI',
       submenu: [
-        { label: 'Prestasi Program Studi', href: '/#' },
+        { label: 'Prestasi Program Studi', href: '/#aktivitas-prestasi' },
         { label: 'Visi & Misi', href: '/#profil' },
         {
           label: 'Profil SDM',
