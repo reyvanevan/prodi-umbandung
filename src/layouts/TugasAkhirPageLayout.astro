@@ -32,12 +32,12 @@ const description = contentMap['tugas_akhir_description'] || defaultDescription;
 // 1. Prerequisites
 const defaultPrerequisites = lang === 'en' ? [
   "Successfully completed a minimum of 110 academic credits (SKS).",
-  "No 'D' or 'E' grades for core Software Engineering / Computing courses.",
+  "No 'D' or 'E' grades for core Food Chemistry, Food Microbiology, and Halal Assurance courses.",
   "Minimum GPA (IPK) of 2.00.",
   "Currently enrolled in the 'Thesis Proposal Seminar' course."
 ] : [
   "Telah menempuh dan lulus minimal 110 SKS mata kuliah akademik.",
-  "Tidak memiliki nilai 'D' atau 'E' untuk mata kuliah wajib Rekayasa Perangkat Lunak / Inti Komputasi.",
+  "Tidak memiliki nilai 'D' atau 'E' untuk mata kuliah wajib Kimia Pangan, Mikrobiologi Pangan, dan Jaminan Halal.",
   "IPK Kumulatif minimal 2.00.",
   "Telah memasukkan mata kuliah 'Seminar Proposal Tugas Akhir' di KRS berjalan."
 ];
@@ -48,17 +48,17 @@ const prerequisites = contentMap['tugas_akhir_prereq_desc']
 
 // 2. Thesis Workflow Steps
 const steps = lang === 'en' ? [
-  { num: "01", title: "Topic Submission", desc: "Submit your research title and abstract online to the academic committee." },
+  { num: "01", title: "Topic Submission", desc: "Submit your food research title and abstract online to the academic committee." },
   { num: "02", title: "Advisor Assignment", desc: "Get assigned primary and secondary academic advisors based on research alignment." },
-  { num: "03", title: "Proposal Seminar", desc: "Defend your research design and methodologies in front of a review board." },
-  { num: "04", title: "Mentorship & Coding", desc: "Develop the software solution and compile the thesis under advisor supervision." },
-  { num: "05", title: "Final Defense (Sidang)", desc: "Conduct a live defense of the completed codebase and scientific thesis write-up." }
+  { num: "03", title: "Proposal Seminar", desc: "Defend your research design and laboratory methodologies in front of a review board." },
+  { num: "04", title: "Lab & Analysis", desc: "Conduct laboratory experiments, sensory testing, or factory processing design under supervisor guidance." },
+  { num: "05", title: "Final Defense (Sidang)", desc: "Conduct a live defense of the completed thesis report and product findings." }
 ] : [
-  { num: "01", title: "Pengajuan Topik", desc: "Mengajukan draf judul dan ringkasan ide penelitian secara online kepada tim prodi." },
+  { num: "01", title: "Pengajuan Topik", desc: "Mengajukan draf judul dan ringkasan ide penelitian pangan secara online kepada tim prodi." },
   { num: "02", title: "Penunjukan Pembimbing", desc: "Menerima penetapan Dosen Pembimbing Utama dan Pendamping sesuai dengan topik riset." },
-  { num: "03", title: "Seminar Proposal", desc: "Mempresentasikan rencana riset dan desain perangkat lunak di hadapan dewan penguji." },
-  { num: "04", title: "Bimbingan & Coding", desc: "Mengembangkan produk perangkat lunak dan menyusun buku laporan akhir dengan bimbingan berkala." },
-  { num: "05", title: "Sidang Akhir (Pendadaran)", desc: "Mempertahankan fungsionalitas aplikasi dan naskah ilmiah di depan dewan penguji." }
+  { num: "03", title: "Seminar Proposal", desc: "Mempresentasikan rencana riset dan metodologi laboratorium di hadapan dewan penguji." },
+  { num: "04", title: "Riset & Analisis Lab", desc: "Melakukan eksperimen laboratorium, uji sensoris, atau rancang pabrik pangan dengan bimbingan berkala." },
+  { num: "05", title: "Sidang Akhir (Pendadaran)", desc: "Mempertahankan naskah laporan ilmiah Tugas Akhir dan hasil temuan produk di depan dewan penguji." }
 ];
 
 // 3. Document Templates for Download
@@ -76,15 +76,15 @@ const templates = lang === 'en' ? [
 
 // 4. Sample Research Topics
 const sampleTopics = lang === 'en' ? [
-  "Optimization of microservices network protocols using secure gRPC tunnels.",
-  "Developing automated ML pipelines for early plant disease identification via edge nodes.",
-  "Securing public electronic health record databases via decentralized smart contracts.",
-  "Comparative analysis of Flutter vs native Swift/Kotlin render pipelines under intense resource load."
+  "Physicochemical and sensory formulation of local flour-based gluten-free functional cookies.",
+  "Microbiological contamination analysis and HACCP system implementation in local food MSMEs.",
+  "Extraction and characterization of bioactive compounds from agricultural waste as natural food preservatives.",
+  "Sensory evaluation and shelf-life prediction of prebiotic functional drinks using ASLT method."
 ] : [
-  "Optimasi protokol jaringan arsitektur microservices menggunakan secure gRPC tunnel.",
-  "Pengembangan pipeline ML otomatis untuk identifikasi penyakit tanaman via perangkat edge.",
-  "Pengamanan basis data rekam medis elektronik publik via smart contract terdesentralisasi.",
-  "Analisis perbandingan performa render pipeline Flutter vs native Swift/Kotlin pada beban memori tinggi."
+  "Formulasi dan karakterisasi fisikokimia biskuit fungsional berbasis tepung lokal bebas gluten.",
+  "Analisis cemaran mikroba dan penerapan sistem HACCP pada UMKM pangan lokal.",
+  "Isolasi dan karakterisasi senyawa bioaktif dari limbah pertanian sebagai pengawet pangan alami.",
+  "Evaluasi sensoris dan umur simpan minuman fungsional prebiotik menggunakan metode ASLT (Accelerated Shelf Life Testing)."
 ];
 ---
 

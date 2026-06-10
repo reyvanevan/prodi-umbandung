@@ -11,38 +11,38 @@ const { lang } = Astro.props;
 
 const activities = [
   {
-    title: "INFOTEC 2026: Capstone Project & IoT Showcase",
+    title: "FOODTECH 2026: Capstone Product & Halal Food Expo",
     date: lang === 'en' ? "February 24-28, 2026" : "24-28 Februari 2026",
     location: lang === 'en'
       ? `${PRODI_CONFIG.universityShort} Rektorat Building, Bandung`
       : `Gedung Rektorat ${PRODI_CONFIG.universityShort}, Bandung`,
     desc: lang === 'en'
-      ? `The premier graduation portfolio exhibition showcasing the masterpiece works of ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort} graduates, highlighting various software solutions, mobile applications, smart IoT systems, and machine learning models.`
-      : `Pameran karya kelulusan proyek akhir mahasiswa angkatan pertama ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}, menampilkan berbagai solusi rekayasa perangkat lunak, aplikasi mobile, sistem IoT cerdas, dan model machine learning.`,
+      ? `The premier graduation project exhibition showcasing the masterpiece innovations of ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort} students, highlighting new food formulations, functional products, and circular biorefinery designs.`
+      : `Pameran karya kelulusan proyek akhir mahasiswa angkatan pertama ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}, menampilkan berbagai formulasi produk pangan baru, makanan/minuman fungsional, dan desain pabrik pangan sirkular.`,
     image: "/assets/kegiatan-m1.png"
   },
   {
     title: lang === 'en'
-      ? "Informatics National Hackathon: Digital Solutions for Society"
-      : "Informatics National Hackathon: Solusi Digital untuk Masyarakat",
+      ? "National Food Innovation Competition (NFIC): Local Resource Formulation"
+      : "National Food Innovation Competition (NFIC): Inovasi Produk Pangan Lokal",
     date: lang === 'en' ? "March 05, 2026" : "05 Maret 2026",
     location: "Bandung Tech Hall, Bandung",
     desc: lang === 'en'
-      ? `An intensive national programming competition hosted by ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort} students to practice solving real-world challenges with technology in 24 hours.`
-      : `Kompetisi pemrograman intensif tingkat nasional yang digarap mandiri oleh mahasiswa ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort} untuk melatih kemampuan memecahkan masalah nyata dengan teknologi dalam 24 jam.`,
+      ? `An intensive national product development competition hosted by ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort} students to formulate functional food from local agricultural resources in 24 hours.`
+      : `Kompetisi inovasi produk pangan fungsional tingkat nasional yang diinisiasi oleh mahasiswa ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort} untuk melatih kemampuan rekayasa formula bahan lokal dalam 24 jam.`,
     image: "/assets/kegiatan-m2.png"
   },
   {
     title: lang === 'en'
-      ? "DevDay Gathering: Basic Web Development Workshop for Beginners"
-      : "DevDay Gathering: Workshop Web Development untuk Pemula",
+      ? "HIMATEPA Food Safety Camp: Hygiene & Sanitation Training for MSMEs"
+      : "HIMATEPA Food Safety Camp: Edukasi Sanitasi & Higiene UMKM Pangan",
     date: lang === 'en' ? "November 14, 2025" : "14 November 2025",
     location: lang === 'en'
       ? `${PRODI_CONFIG.universityShort} Campus, Bandung`
       : `Kampus ${PRODI_CONFIG.universityShort}, Bandung`,
     desc: lang === 'en'
-      ? `A public workshop hosted by the ${PRODI_CONFIG.acronym} Student Association introducing basic web development and computational thinking to local high school students.`
-      : "Program reguler Himpunan Mahasiswa dalam memperkenalkan pemrograman web dasar dan logika computational thinking kepada siswa sekolah menengah dan masyarakat luas Bandung.",
+      ? `A public community service campaign hosted by the HIMATEPA Student Association, introducing food safety, hygienic processing, and halal audit workflows to local culinary MSMEs.`
+      : "Program reguler Himpunan Mahasiswa dalam memberikan penyuluhan serta pendampingan sanitasi higiene pengolahan pangan dan alur pengajuan sertifikasi produk halal bagi UMKM pangan lokal.",
     image: "/assets/kegiatan-m3.png"
   }
 ];
@@ -54,8 +54,8 @@ const title = lang === 'en'
 const heading = lang === 'en' ? 'Student Activities & Creations' : 'Kegiatan & Kreativitas Mahasiswa';
 
 const description = lang === 'en'
-  ? `Explore the vibrant creative student life at ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}. Witness our graduation project showcase (INFOTEC), national hackathons, and programming workshops by the Student Association.`
-  : `Jelajahi dinamika kehidupan kreatif mahasiswa ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}. Mulai dari pameran karya capstone project, hackathon nasional, hingga workshop pemrograman oleh Himpunan Mahasiswa.`;
+  ? `Explore the vibrant creative student life at ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}. Witness our graduation project expo (FOODTECH), national innovation competitions, and food safety workshops by the Student Association.`
+  : `Jelajahi dinamika kehidupan kreatif mahasiswa ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}. Mulai dari pameran karya capstone project, kompetisi inovasi pangan nasional, hingga workshop keamanan pangan oleh Himpunan Mahasiswa.`;
 
 const docLabel = 'DOKUMENTASI M-0';
 const tagLabel = lang === 'en' ? 'STUDENTS // HIMAPRODI' : 'MAHASISWA / HIMAPRODI';

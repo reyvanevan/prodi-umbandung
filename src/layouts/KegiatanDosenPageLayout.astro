@@ -12,35 +12,35 @@ const { lang } = Astro.props;
 const activities = [
   {
     title: lang === 'en'
-      ? "International Textile Exhibition 'Fiber Art Dialogue' 2025"
-      : "Pameran Tekstil Internasional 'Fiber Art Dialogue' 2025",
+      ? "International Conference on Halal Food & Biorefinery 2025"
+      : "Konferensi Internasional Pangan Halal & Biorefinery 2025",
     date: lang === 'en' ? "March 12, 2025" : "12 Maret 2025",
     location: "Kuala Lumpur, Malaysia",
     desc: lang === 'en'
-      ? `${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort} faculty representatives represent Indonesia in exhibiting large-scale fiber art installations that explore banana pseudo-stem fibers and recycled yarns in an eco-preservation dialogue.`
-      : `Dosen ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort} mewakili Indonesia memamerkan instalasi fiber art berskala besar yang mengeksplorasi serat pelepah pisang dan benang daur ulang dalam dialog pelestarian alam Asia Tenggara.`,
+      ? `${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort} faculty presented research on chitosan-based edible coatings to extend tropical fruits shelf life at a global food science symposium.`
+      : `Dosen Teknologi Pangan ${PRODI_CONFIG.universityShort} mempresentasikan riset tentang edible coating berbasis kitosan lokal untuk memperpanjang umur simpan buah tropis pada simposium sains pangan global.`,
     image: "/assets/kegiatan-d1.png"
   },
   {
     title: lang === 'en'
-      ? "Natural Dye Workshop for West Java Textile Artisans"
-      : "Workshop Pewarnaan Alam untuk Pengrajin Wastra di Jawa Barat",
+      ? "HACCP & Halal Certification Training for Food MSMEs"
+      : "Workshop Penerapan HACCP & Sertifikasi Halal Asosiasi UMKM Pangan",
     date: lang === 'en' ? "October 18, 2024" : "18 Oktober 2024",
     location: "Soreang, Bandung",
     desc: lang === 'en'
-      ? "A Public Service initiative providing technical guidance on standardization of Indigofera and caesalpinia sappan wood natural dyes to elevate local artisan weavers competitiveness."
-      : "Pengabdian Kepada Masyarakat (PKM) berupa pelatihan teknis standardisasi pewarnaan alami Indigofera dan kulit kayu secang untuk meningkatkan daya saing ekonomi perajin tenun lokal.",
+      ? "A Public Service initiative providing technical guidance on hygiene standardization and critical point analysis to help local food MSMEs achieve halal certification."
+      : "Pengabdian Kepada Masyarakat (PKM) berupa pelatihan teknis standardisasi higienitas sanitasi dan analisis titik kritis haram untuk membantu akselerasi sertifikasi halal UMKM pangan lokal.",
     image: "/assets/kegiatan-d2.png"
   },
   {
     title: lang === 'en'
-      ? "Joint Research on Natural Fiber Reinforced Composites with BRIN"
-      : "Riset Kolaborasi Rekayasa Komposit Serat Alam Bersama BRIN",
+      ? "Joint Research on Cocoa Shell Bioactive Extraction with BRIN"
+      : "Riset Kolaborasi Pemanfaatan Limbah Kulit Kakao Bersama BRIN",
     date: lang === 'en' ? "June 04, 2024" : "04 Juni 2024",
-    location: "BRIN Physics Lab, Serpong",
+    location: "BRIN Food Processing Lab, Serpong",
     desc: lang === 'en'
-      ? `A strategic research collaboration by ${PRODI_CONFIG.acronym} lecturers testing mechanical properties of chemically-modified abaca and pineapple leaf fibers for eco-friendly automotive composite parts.`
-      : `Kolaborasi riset strategis dosen ${PRODI_CONFIG.acronym} dalam menguji kekuatan mekanis serat abaka dan serat nanas hasil modifikasi kimiawi untuk bahan baku komposit otomotif ramah lingkungan.`,
+      ? `A strategic research collaboration by ${PRODI_CONFIG.acronym} lecturers testing extraction of antioxidant compounds from cocoa shell agricultural waste for functional food applications.`
+      : `Kolaborasi riset strategis dosen ${PRODI_CONFIG.acronym} dalam menguji rekayasa ekstraksi senyawa aktif antioksidan dari limbah pertanian kulit biji kakao untuk aplikasi pangan fungsional.`,
     image: "/assets/kegiatan-d3.png"
   }
 ];
@@ -52,8 +52,8 @@ const title = lang === 'en'
 const heading = lang === 'en' ? 'Faculty Activities & Initiatives' : 'Kegiatan & Pengabdian Dosen';
 
 const description = lang === 'en'
-  ? `Documentation of academic endeavors, professional fiber art exhibitions, applied community service, and collaborative engineering research conducted by the faculty of ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}.`
-  : `Dokumentasi kiprah akademik, pameran seni serat profesional, pengabdian masyarakat terapan, dan riset kolaboratif yang dilakukan oleh jajaran dosen ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}.`;
+  ? `Documentation of academic endeavors, halal food symposiums, applied community service, and collaborative food science research conducted by the faculty of ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}.`
+  : `Dokumentasi kiprah akademik, konferensi pangan internasional, pengabdian masyarakat terapan, dan riset sains pangan kolaboratif yang dilakukan oleh jajaran dosen ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}.`;
 
 const docLabel = 'DOKUMENTASI D-0';
 const tagLabel = lang === 'en' ? 'FACULTY / RESEARCH' : 'FAKULTAS / PKM';

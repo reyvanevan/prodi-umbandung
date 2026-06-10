@@ -11,42 +11,42 @@ const { lang } = Astro.props;
 
 const alumni = [
   {
-    name: "Amelia Rahma, S.Kom.",
+    name: "Amelia Rahma, S.TP.",
     classOf: lang === 'en' ? "Class of 2019" : "Angkatan 2019",
-    role: "Lead Software Engineer",
-    company: "Gojek Tokopedia (GoTo Group)",
+    role: "Lead R&D Specialist",
+    company: "PT Garudafood Putra Putri Jaya Tbk",
     quote: lang === 'en' 
-      ? `At ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}, I was taught programming fundamentals, data structures, and solid system architecture. This prepared me to solve complex, large-scale computational challenges in the tech industry.`
-      : `Di ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}, saya diajarkan dasar pemrograman, struktur data, dan arsitektur sistem yang kuat. Ini membekali saya untuk memecahkan masalah komputasi kompleks berskala besar di industri teknologi.`,
+      ? `At ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}, I was taught food chemistry, sensory evaluation, and factory design. This practical training prepared me to lead halal food formulations in the food manufacturing industry.`
+      : `Di ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}, saya diajarkan kimia pangan, evaluasi sensoris, dan desain pabrik pangan secara mendalam. Ini sangat membantu saya memimpin formulasi produk baru bersertifikasi halal secara industri.`,
     image: "/assets/alumni-1.png"
   },
   {
-    name: "Bagus Pratama, S.Kom.",
+    name: "Bagus Pratama, S.TP.",
     classOf: lang === 'en' ? "Class of 2020" : "Angkatan 2020",
     role: "Founder & CEO",
-    company: "TechInovasi Digital (Software House)",
+    company: "Bumi Halal Nusantara (Food Startup)",
     quote: lang === 'en'
-      ? `The adaptive curriculum and faculty mentorship at ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort} trained my digital entrepreneurship mindset to establish a digital product development agency upon graduation.`
-      : `Penyusunan kurikulum adaptif dan bimbingan dosen di ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort} melatih mental kewirausahaan digital saya untuk mendirikan agensi pengembangan produk digital selepas lulus.`,
+      ? `The food technopreneurship curriculum and research on local crops at ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort} shaped my business mindset to build a sustainable circular food business upon graduation.`
+      : `Penyusunan kurikulum technopreneurship pangan dan riset inovasi bahan lokal di ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort} melatih mental bisnis saya untuk mendirikan usaha pengolahan pangan berkelanjutan selepas lulus.`,
     image: "/assets/alumni-2.png"
   },
   {
-    name: "Risa Fitria, S.Kom.",
+    name: "Risa Fitria, S.TP.",
     classOf: lang === 'en' ? "Class of 2019" : "Angkatan 2019",
-    role: "Data Scientist",
-    company: "PT Telekomunikasi Indonesia (Telkom)",
+    role: "QA/QC & Halal Auditor",
+    company: "PT Indofood Sukses Makmur Tbk",
     quote: lang === 'en'
-      ? `The deep AI computing laboratory facilities and data science curriculum at ${PRODI_CONFIG.acronym} gave me a robust foundation to process big data for strategic business decision making.`
-      : `Fasilitas laboratorium AI dan kurikulum sains data yang mendalam di ${PRODI_CONFIG.acronym} memberikan pondasi kuat bagi saya untuk mengolah big data guna pengambilan keputusan bisnis strategis.`,
+      ? `Integrating food safety standards like HACCP and Halal assurance directly into the curriculum gave me a strong edge to excel in international food processing companies.`
+      : `Integrasi sertifikasi HACCP dan sistem jaminan halal secara langsung di mata kuliah memberikan saya keunggulan kompetitif yang kuat saat memulai karier di industri manufaktur pangan multinasional.`,
     image: "/assets/alumni-3.png"
   }
 ];
 
 const sectors = [
-  { name: "Software Engineering & App Development", percentage: "45%" },
-  { name: "Data Science & Artificial Intelligence", percentage: "30%" },
-  { name: "Network Security & Cloud Computing", percentage: "15%" },
-  { name: lang === 'en' ? "Education, Research, & IT Consulting" : "Pendidikan, Riset, & IT Consultant", percentage: "10%" }
+  { name: lang === 'en' ? "Food Processing & Manufacturing Industry" : "Industri Pengolahan & Manufaktur Pangan", percentage: "45%" },
+  { name: lang === 'en' ? "Research, QA/QC, & Product Development (R&D)" : "Riset, QA/QC, & Pengembangan Produk (R&D)", percentage: "30%" },
+  { name: lang === 'en' ? "Food Startups & Technopreneurship" : "Wirausaha Pangan & Technopreneurship", percentage: "15%" },
+  { name: lang === 'en' ? "Halal Certification & Food Regulatory Auditing" : "Lembaga Sertifikasi Halal & Auditor Regulasi Pangan", percentage: "10%" }
 ];
 
 const title = lang === 'en'
@@ -56,13 +56,13 @@ const title = lang === 'en'
 const heading = lang === 'en' ? 'Alumni & Careers' : 'Jejak Karier & Alumni';
 
 const description = lang === 'en'
-  ? `Welcome to the ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort} Alumni Registry. Our graduates are scattered globally, excelling as software engineers, startup founders, data scientists, network engineers, and IT consultants.`
-  : `Selamat datang di gerbang jejaring alumni ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}. Alumni kami tersebar secara profesional sebagai software engineer, startup founder, data scientist, network engineer, dan konsultan IT.`;
+  ? `Welcome to the ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort} Alumni Registry. Our graduates are scattered globally, excelling as food product developers, QA/QC managers, halal auditors, and food technopreneurs.`
+  : `Selamat datang di gerbang jejaring alumni ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}. Alumni kami tersebar secara profesional sebagai ahli pengembangan produk pangan (R&D), manajer QA/QC, auditor halal, dan wirausaha pangan.`;
 
 const section1Title = lang === 'en' ? 'Graduate Career Pathways' : 'Sebaran Sektor Industri Lulusan';
 const section1Desc = lang === 'en'
-  ? `Based on recent graduate tracking data, ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort} alumni enjoy high career flexibility across corporate technology industries as well as starting independent digital ventures.`
-  : `Berdasarkan data pelacakan alumni terbaru, lulusan prodi ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort} memiliki fleksibilitas karier yang tinggi baik di sektor korporasi maupun merintis startup teknologi secara mandiri.`;
+  ? `Based on recent graduate tracking data, ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort} alumni enjoy high career flexibility across corporate food manufacturing sectors as well as starting independent food ventures.`
+  : `Berdasarkan data pelacakan alumni terbaru, lulusan prodi ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort} memiliki fleksibilitas karier yang tinggi baik di sektor manufaktur pangan korporasi maupun merintis usaha pangan secara mandiri.`;
 
 const section2Title = lang === 'en' ? 'Featured Alumni Profiles' : 'Profil Alumni Berprestasi';
 ---

@@ -32,51 +32,51 @@ const description = contentMap['kurikulum_description'] || defaultDescription;
 // 1. Graduate Profiles
 const profiles = lang === 'en' ? [
   {
-    title: "Software Engineer / Developer",
-    desc: "Professionals who design, implement, and maintain complex software architectures, web applications, mobile services, and secure backend platforms."
+    title: "Food Product Developer / R&D Specialist",
+    desc: "Professionals who design, formulate, and optimize safe, nutritious, and halal food products using local Nusantara agricultural resources."
   },
   {
-    title: "Cloud DevOps Specialist",
-    desc: "Experts managing secure continuous integration pipelines, container deployments, microservices orchestration, and resilient cloud infrastructures."
+    title: "Quality Assurance & QC Specialist",
+    desc: "Experts managing food safety systems (HACCP, ISO 22000, Halal Certification) and analyzing food chemical and microbiological quality."
   },
   {
-    title: "Data & AI Systems Developer",
-    desc: "Specialists crafting intelligence layers, parsing large datasets, building machine learning models, and automating analytics workflows."
+    title: "Food Process & Production Engineer",
+    desc: "Specialists managing food manufacturing operations, industrial processing equipment, and sustainable circular biorefinery systems."
   },
   {
-    title: "IT Consultant & Solution Architect",
-    desc: "Advisors translating business requisites into technical software designs, evaluating digital system feasibility, and directing tech projects."
+    title: "Halal Food Auditor & Consultant",
+    desc: "Advisors evaluating halal compliance in supply chains, auditing food production processes, and consulting for certification."
   }
 ] : [
   {
-    title: "Software Engineer / Developer",
-    desc: "Profesional yang merancang, mengimplementasikan, dan memelihara arsitektur perangkat lunak kompleks, aplikasi web, layanan mobile, dan platform backend."
+    title: "Food Product Developer / R&D Specialist",
+    desc: "Profesional yang merancang, memformulasikan, dan mengoptimalkan produk pangan baru yang aman, bergizi, dan halal berbasis komoditas lokal."
   },
   {
-    title: "Cloud DevOps Specialist",
-    desc: "Tenaga ahli yang mengelola pipeline integrasi berkelanjutan (CI/CD), penyebaran kontainer, orkestrasi microservices, dan infrastruktur cloud yang andal."
+    title: "Quality Assurance & QC Specialist",
+    desc: "Tenaga ahli yang mengelola sistem keamanan pangan (HACCP, ISO 22000, Sertifikasi Halal) serta melakukan analisis kimia & mikrobiologi pangan."
   },
   {
-    title: "Data & AI Systems Developer",
-    desc: "Spesialis yang membangun lapisan kecerdasan buatan, mengolah dataset skala besar, melatih model machine learning, dan mengotomatisasi analisis data."
+    title: "Food Process & Production Engineer",
+    desc: "Spesialis pengelola operasional pabrik pengolahan pangan, mesin pengolahan industri, dan sistem biorefinery sirkular nirlimbah."
   },
   {
-    title: "Konsultan IT & Solution Architect",
-    desc: "Konsultan yang menerjemahkan kebutuhan bisnis menjadi rancangan teknis perangkat lunak, menilai kelayakan sistem digital, dan memimpin proyek teknologi."
+    title: "Halal Food Auditor & Konsultan",
+    desc: "Konsultan dan auditor yang mengevaluasi kepatuhan halal rantai pasok, melakukan audit proses produksi pangan, serta bimbingan sertifikasi."
   }
 ];
 
 // 2. Program Learning Outcomes (PLO/CPL)
 const plos = lang === 'en' ? [
-  { code: "CPL-01", type: "Ethics", text: "Apply professional ethics, Islamic principles, and legal accountability in software engineering practices." },
-  { code: "CPL-02", type: "Core Knowledge", text: "Demonstrate solid knowledge of programming systems, algorithms, computing networks, and databases." },
-  { code: "CPL-03", type: "Engineering", text: "Design, build, and test software configurations using modern DevOps pipelines and engineering standards." },
-  { code: "CPL-04", type: "Innovation", text: "Formulate innovative digital solutions to societal problems through research, entrepreneurship, and collaborative projects." }
+  { code: "CPL-01", type: "Ethics", text: "Apply professional ethics, Islamic principles, and halal food regulatory compliance in food supply chains." },
+  { code: "CPL-02", type: "Core Knowledge", text: "Demonstrate solid knowledge of food science principles (chemistry, microbiology, nutrition) and food engineering." },
+  { code: "CPL-03", type: "Quality & Safety", text: "Design and manage food quality assurance and safety systems (HACCP, Halal, GMP, SSOP)." },
+  { code: "CPL-04", type: "Innovation", text: "Formulate innovative functional and sustainable food products based on local agricultural resources." }
 ] : [
-  { code: "CPL-01", type: "Etika", text: "Menerapkan etika profesional, nilai-nilai Keislaman, serta tanggung jawab hukum dalam praktik rekayasa perangkat lunak." },
-  { code: "CPL-02", type: "Pengetahuan", text: "Menunjukkan pemahaman yang kokoh tentang sistem pemrograman, algoritma, jaringan komputer, dan basis data." },
-  { code: "CPL-03", type: "Rekayasa", text: "Merancang, membangun, dan menguji konfigurasi perangkat lunak dengan standar DevOps modern dan teknik rekayasa." },
-  { code: "CPL-04", type: "Inovasi", text: "Merumuskan solusi digital inovatif atas masalah di masyarakat melalui riset ilmiah, kewirausahaan, dan kerja kelompok." }
+  { code: "CPL-01", type: "Etika", text: "Menerapkan etika profesi, nilai Keislaman, serta kepatuhan regulasi pangan halal dalam rantai pasok pangan." },
+  { code: "CPL-02", type: "Pengetahuan", text: "Menguasai prinsip sains pangan (kimia, mikrobiologi, gizi) serta teknologi rekayasa proses pengolahan pangan." },
+  { code: "CPL-03", type: "Mutu & Keamanan", text: "Merancang dan mengelola sistem penjaminan mutu serta keamanan pangan (HACCP, Halal, GMP, SSOP)." },
+  { code: "CPL-04", type: "Inovasi", text: "Memformulasikan produk pangan baru yang fungsional dan berkelanjutan berbasis potensi komoditas lokal." }
 ];
 
 // 3. Curriculum Semesters Data
@@ -84,54 +84,56 @@ const semesters = [
   {
     sem: "I",
     courses: [
-      { name_en: "Introduction to Information Technology", name_id: "Pengantar Teknologi Informasi", credits: 3 },
-      { name_en: "Basic Programming", name_id: "Pemrograman Dasar", credits: 4 },
-      { name_en: "Calculus", name_id: "Kalkulus", credits: 3 },
+      { name_en: "Introduction to Food Technology", name_id: "Pengantar Teknologi Pangan", credits: 3 },
+      { name_en: "General Chemistry", name_id: "Kimia Dasar", credits: 3 },
+      { name_en: "General Biology", name_id: "Biologi Umum", credits: 3 },
       { name_en: "Islamic Studies I", name_id: "Studi Islam I", credits: 2 },
       { name_en: "English Language I", name_id: "Bahasa Inggris I", credits: 2 },
-      { name_en: "Linear Algebra", name_id: "Aljabar Linier", credits: 3 }
+      { name_en: "Calculus", name_id: "Kalkulus", credits: 3 },
+      { name_en: "Introduction to Entrepreneurship", name_id: "Pengantar Kewirausahaan", credits: 2 }
     ]
   },
   {
     sem: "II",
     courses: [
-      { name_en: "Object-Oriented Programming", name_id: "Pemrograman Berorientasi Objek", credits: 4 },
-      { name_en: "Discrete Mathematics", name_id: "Matematika Diskrit", credits: 3 },
-      { name_en: "Data Structures & Algorithms", name_id: "Struktur Data & Algoritma", credits: 4 },
-      { name_en: "Requirements Engineering", name_id: "Rekayasa Kebutuhan Perangkat Lunak", credits: 3 },
+      { name_en: "Food Chemistry I", name_id: "Kimia Pangan I", credits: 3 },
+      { name_en: "General Microbiology", name_id: "Mikrobiologi Umum", credits: 3 },
+      { name_en: "General Physics", name_id: "Fisika Dasar", credits: 3 },
+      { name_en: "Engineering Mathematics", name_id: "Matematika Teknik", credits: 3 },
       { name_en: "Islamic Studies II", name_id: "Studi Islam II", credits: 2 },
-      { name_en: "Civic Education", name_id: "Pendidikan Kewarganegaraan", credits: 2 }
+      { name_en: "Civic Education", name_id: "Pendidikan Kewarganegaraan", credits: 2 },
+      { name_en: "Unit Operations in Food Industry", name_id: "Satuan Operasi Industri Pangan", credits: 3 }
     ]
   },
   {
     sem: "III",
     courses: [
-      { name_en: "Database Systems", name_id: "Sistem Basis Data", credits: 4 },
-      { name_en: "Web Application Development", name_id: "Pemrograman Web", credits: 4 },
-      { name_en: "Software Architecture & Design", name_id: "Arsitektur & Desain Perangkat Lunak", credits: 3 },
-      { name_en: "Human-Computer Interaction", name_id: "Interaksi Manusia & Komputer", credits: 3 },
-      { name_en: "Computer Networks", name_id: "Jaringan Komputer", credits: 3 },
+      { name_en: "Food Chemistry II", name_id: "Kimia Pangan II", credits: 3 },
+      { name_en: "Food Microbiology", name_id: "Mikrobiologi Pangan", credits: 3 },
+      { name_en: "Food Biochemistry", name_id: "Biokimia Pangan", credits: 3 },
+      { name_en: "Food Analysis", name_id: "Analisis Pangan", credits: 4 },
+      { name_en: "Food Processing Machinery", name_id: "Alat & Mesin Pengolahan Pangan", credits: 3 },
       { name_en: "Islamic Studies III", name_id: "Studi Islam III", credits: 2 }
     ]
   },
   {
     sem: "IV",
     courses: [
-      { name_en: "Software Testing & QA", name_id: "Pengujian & Penjaminan Mutu Software", credits: 3 },
-      { name_en: "Operating Systems", name_id: "Sistem Operasi", credits: 3 },
-      { name_en: "Advanced Web Development", name_id: "Pemrograman Web Lanjut", credits: 4 },
-      { name_en: "Cybersecurity Fundamentals", name_id: "Keamanan Siber Dasar", credits: 3 },
-      { name_en: "Algorithm Analysis & Design", name_id: "Desain & Analisis Algoritma", credits: 3 },
-      { name_en: "Statistics & Probability", name_id: "Statistika & Probabilitas", credits: 3 }
+      { name_en: "Food Safety & Sanitation", name_id: "Keamanan Pangan & Sanitasi", credits: 3 },
+      { name_en: "Nusantara Food Processing Technology", name_id: "Teknologi Pengolahan Pangan Nusantara", credits: 4 },
+      { name_en: "Sensory Evaluation", name_id: "Evaluasi Sensoris", credits: 3 },
+      { name_en: "Food Regulations & Law", name_id: "Peraturan & Perundang-undangan Pangan", credits: 2 },
+      { name_en: "Thermodynamics & Heat Transfer", name_id: "Termodinamika & Perpindahan Panas", credits: 3 },
+      { name_en: "Statistics for Food Industry", name_id: "Statistika Industri Pangan", credits: 3 }
     ]
   },
   {
     sem: "V",
     courses: [
-      { name_en: "Cloud Computing Systems", name_id: "Sistem Komputasi Awan", credits: 3 },
-      { name_en: "Mobile Application Engineering", name_id: "Pemrograman Perangkat Bergerak", credits: 4 },
-      { name_en: "Artificial Intelligence Foundations", name_id: "Kecerdasan Buatan Dasar", credits: 3 },
-      { name_en: "Software Project Management", name_id: "Manajemen Proyek Perangkat Lunak", credits: 3 },
+      { name_en: "Postharvest Technology & Physiology", name_id: "Fisiologi & Teknologi Pascapanen", credits: 3 },
+      { name_en: "Food Packaging & Storage", name_id: "Teknologi Pengemasan & Penyimpanan", credits: 3 },
+      { name_en: "Halal Product Assurance System", name_id: "Sistem Jaminan Produk Halal", credits: 3 },
+      { name_en: "Nutrition & Health", name_id: "Gizi dan Kesehatan", credits: 3 },
       { name_en: "Elective Course I", name_id: "Mata Kuliah Pilihan I", credits: 3 },
       { name_en: "Islamic Studies IV", name_id: "Studi Islam IV", credits: 2 }
     ]
@@ -140,8 +142,8 @@ const semesters = [
     sem: "VI",
     courses: [
       { name_en: "Research Methodology", name_id: "Metodologi Penelitian", credits: 2 },
-      { name_en: "Collaborative Software Engineering", name_id: "Rekayasa Perangkat Lunak Kolaboratif", credits: 3 },
-      { name_en: "Industrial Internship (MBKM)", name_id: "Magang Industri (MBKM)", credits: 6 },
+      { name_en: "Food Factory Design", name_id: "Desain Pabrik Pangan", credits: 3 },
+      { name_en: "Industrial Internship (MBKM)", name_id: "Magang Industri Pangan (MBKM)", credits: 6 },
       { name_en: "Elective Course II", name_id: "Mata Kuliah Pilihan II", credits: 3 },
       { name_en: "Elective Course III", name_id: "Mata Kuliah Pilihan III", credits: 3 }
     ]
@@ -149,8 +151,8 @@ const semesters = [
   {
     sem: "VII",
     courses: [
-      { name_en: "Technopreneurship", name_id: "Kewirausahaan Teknologi", credits: 2 },
-      { name_en: "IT Professional Ethics", name_id: "Etika Profesi IT", credits: 2 },
+      { name_en: "Food Technopreneurship", name_id: "Wirausaha Mandiri Pangan", credits: 2 },
+      { name_en: "Food Professional Ethics", name_id: "Etika Profesi Teknologi Pangan", credits: 2 },
       { name_en: "Thesis Proposal Seminar", name_id: "Seminar Proposal Tugas Akhir", credits: 2 },
       { name_en: "Elective Course IV", name_id: "Mata Kuliah Pilihan IV", credits: 3 },
       { name_en: "Elective Course V", name_id: "Mata Kuliah Pilihan V", credits: 3 }
@@ -166,8 +168,8 @@ const semesters = [
 
 const internshipTitle = lang === 'en' ? 'MBKM & Internship Framework' : 'Skema Magang Industri & MBKM';
 const defaultInternshipDesc = lang === 'en'
-  ? "Our students are eligible to convert real-world industrial experiences into up to 20 academic credits under the Kemendikbud MBKM schema, collaborating with global and national technology enterprises."
-  : "Mahasiswa kami difasilitasi untuk mengkonversikan pengalaman kerja lapangan / magang industri riil hingga 20 SKS akademik di bawah skema MBKM Kemendikbud, bermitra dengan startup dan BUMN teknologi terkemuka.";
+  ? "Our students are eligible to convert real-world industrial experiences into up to 20 academic credits under the Kemendikbud MBKM schema, collaborating with national food companies, laboratories, and halal certification agencies."
+  : "Mahasiswa kami difasilitasi untuk mengkonversikan pengalaman kerja lapangan / magang industri riil hingga 20 SKS akademik di bawah skema MBKM Kemendikbud, bermitra dengan industri pangan nasional, BPOM, dan LPPOM MUI.";
 const internshipDesc = contentMap['kurikulum_internship_desc'] || defaultInternshipDesc;
 ---
 
