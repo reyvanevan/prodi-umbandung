@@ -345,3 +345,176 @@ export async function getTaSteps(): Promise<DbTaStep[] | null> {
   }
   return data;
 }
+
+// ─── Prestasi ────────────────────────────────────────────────────────────────
+
+export interface DbPrestasi {
+  id: string;
+  type: 'prodi' | 'mahasiswa';
+  title: string;
+  title_en: string | null;
+  year: string;
+  desc: string;
+  desc_en: string | null;
+  host: string | null;
+  host_en: string | null;
+  competitor: string | null;
+  image_url: string | null;
+  sort_order: number;
+}
+
+export async function getPrestasi(): Promise<DbPrestasi[] | null> {
+  const supabase = getBrowserSupabaseClient();
+  if (!supabase) return null;
+  const { data, error } = await supabase
+    .from('prestasi')
+    .select('*')
+    .order('sort_order', { ascending: true });
+  if (error) { console.error('Error fetching prestasi:', error); return null; }
+  return data;
+}
+
+// ─── Publikasi Dosen ─────────────────────────────────────────────────────────
+
+export interface DbPublikasiDosen {
+  id: string;
+  title: string;
+  title_en: string | null;
+  author: string;
+  journal: string;
+  journal_en: string | null;
+  year: string;
+  category: string;
+  category_en: string | null;
+  link: string | null;
+  sort_order: number;
+}
+
+export async function getPublikasiDosen(): Promise<DbPublikasiDosen[] | null> {
+  const supabase = getBrowserSupabaseClient();
+  if (!supabase) return null;
+  const { data, error } = await supabase
+    .from('publikasi_dosen')
+    .select('*')
+    .order('sort_order', { ascending: true });
+  if (error) { console.error('Error fetching publikasi dosen:', error); return null; }
+  return data;
+}
+
+// ─── Kegiatan Dosen ───────────────────────────────────────────────────────────
+
+export interface DbKegiatanDosen {
+  id: string;
+  title: string;
+  title_en: string | null;
+  date_text: string;
+  date_text_en: string | null;
+  location: string;
+  desc: string;
+  desc_en: string | null;
+  image_url: string | null;
+  sort_order: number;
+}
+
+export async function getKegiatanDosen(): Promise<DbKegiatanDosen[] | null> {
+  const supabase = getBrowserSupabaseClient();
+  if (!supabase) return null;
+  const { data, error } = await supabase
+    .from('kegiatan_dosen')
+    .select('*')
+    .order('sort_order', { ascending: true });
+  if (error) { console.error('Error fetching kegiatan dosen:', error); return null; }
+  return data;
+}
+
+// ─── Kegiatan Mahasiswa ───────────────────────────────────────────────────────
+
+export interface DbKegiatanMahasiswa {
+  id: string;
+  title: string;
+  title_en: string | null;
+  date_text: string;
+  date_text_en: string | null;
+  location: string;
+  desc: string;
+  desc_en: string | null;
+  image_url: string | null;
+  sort_order: number;
+}
+
+export async function getKegiatanMahasiswa(): Promise<DbKegiatanMahasiswa[] | null> {
+  const supabase = getBrowserSupabaseClient();
+  if (!supabase) return null;
+  const { data, error } = await supabase
+    .from('kegiatan_mahasiswa')
+    .select('*')
+    .order('sort_order', { ascending: true });
+  if (error) { console.error('Error fetching kegiatan mahasiswa:', error); return null; }
+  return data;
+}
+
+// ─── Alumni ───────────────────────────────────────────────────────────────────
+
+export interface DbAlumni {
+  id: string;
+  name: string;
+  class_of: string;
+  class_of_en: string | null;
+  role: string;
+  company: string;
+  quote: string;
+  quote_en: string | null;
+  image_url: string | null;
+  sort_order: number;
+}
+
+export interface DbAlumniSector {
+  id: string;
+  name: string;
+  name_en: string | null;
+  percentage: string;
+  sort_order: number;
+}
+
+export async function getAlumni(): Promise<DbAlumni[] | null> {
+  const supabase = getBrowserSupabaseClient();
+  if (!supabase) return null;
+  const { data, error } = await supabase
+    .from('alumni')
+    .select('*')
+    .order('sort_order', { ascending: true });
+  if (error) { console.error('Error fetching alumni:', error); return null; }
+  return data;
+}
+
+export async function getAlumniSectors(): Promise<DbAlumniSector[] | null> {
+  const supabase = getBrowserSupabaseClient();
+  if (!supabase) return null;
+  const { data, error } = await supabase
+    .from('alumni_sectors')
+    .select('*')
+    .order('sort_order', { ascending: true });
+  if (error) { console.error('Error fetching alumni sectors:', error); return null; }
+  return data;
+}
+
+// ─── Statistik ────────────────────────────────────────────────────────────────
+
+export interface DbStatistikMaba {
+  id: string;
+  year: string;
+  count: number;
+  sort_order: number;
+}
+
+export async function getStatistikMaba(): Promise<DbStatistikMaba[] | null> {
+  const supabase = getBrowserSupabaseClient();
+  if (!supabase) return null;
+  const { data, error } = await supabase
+    .from('statistik_maba')
+    .select('*')
+    .order('sort_order', { ascending: true });
+  if (error) { console.error('Error fetching statistik maba:', error); return null; }
+  return data;
+}
+

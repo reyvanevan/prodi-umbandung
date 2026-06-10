@@ -2,6 +2,7 @@
 import Layout from './Layout.astro';
 import { Calendar, MapPin, Eye } from 'lucide-react';
 import { PRODI_CONFIG } from '../config/prodi.config';
+import { getKegiatanDosen } from '../lib/supabase/db';
 
 interface Props {
   lang: 'id' | 'en';
@@ -9,41 +10,51 @@ interface Props {
 
 const { lang } = Astro.props;
 
-const activities = [
+// ── Fallback static data ────────────────────────────────────────────────────
+type ActivityItem = { title: string; date: string; location: string; desc: string; image: string | null };
+
+const fallbackActivities: ActivityItem[] = [
   {
-    title: lang === 'en'
-      ? "International Conference on Halal Food & Biorefinery 2025"
-      : "Konferensi Internasional Pangan Halal & Biorefinery 2025",
-    date: lang === 'en' ? "March 12, 2025" : "12 Maret 2025",
-    location: "Kuala Lumpur, Malaysia",
+    title: lang === 'en' ? 'International Conference on Halal Food & Biorefinery 2025' : 'Konferensi Internasional Pangan Halal & Biorefinery 2025',
+    date: lang === 'en' ? 'March 12, 2025' : '12 Maret 2025',
+    location: 'Kuala Lumpur, Malaysia',
     desc: lang === 'en'
       ? `${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort} faculty presented research on chitosan-based edible coatings to extend tropical fruits shelf life at a global food science symposium.`
       : `Dosen Teknologi Pangan ${PRODI_CONFIG.universityShort} mempresentasikan riset tentang edible coating berbasis kitosan lokal untuk memperpanjang umur simpan buah tropis pada simposium sains pangan global.`,
-    image: "/assets/kegiatan-d1.png"
+    image: '/assets/kegiatan-d1.png'
   },
   {
-    title: lang === 'en'
-      ? "HACCP & Halal Certification Training for Food MSMEs"
-      : "Workshop Penerapan HACCP & Sertifikasi Halal Asosiasi UMKM Pangan",
-    date: lang === 'en' ? "October 18, 2024" : "18 Oktober 2024",
-    location: "Soreang, Bandung",
+    title: lang === 'en' ? 'HACCP & Halal Certification Training for Food MSMEs' : 'Workshop Penerapan HACCP & Sertifikasi Halal Asosiasi UMKM Pangan',
+    date: lang === 'en' ? 'October 18, 2024' : '18 Oktober 2024',
+    location: 'Soreang, Bandung',
     desc: lang === 'en'
-      ? "A Public Service initiative providing technical guidance on hygiene standardization and critical point analysis to help local food MSMEs achieve halal certification."
-      : "Pengabdian Kepada Masyarakat (PKM) berupa pelatihan teknis standardisasi higienitas sanitasi dan analisis titik kritis haram untuk membantu akselerasi sertifikasi halal UMKM pangan lokal.",
-    image: "/assets/kegiatan-d2.png"
+      ? 'A Public Service initiative providing technical guidance on hygiene standardization and critical point analysis to help local food MSMEs achieve halal certification.'
+      : 'Pengabdian Kepada Masyarakat (PKM) berupa pelatihan teknis standardisasi higienitas sanitasi dan analisis titik kritis haram untuk membantu akselerasi sertifikasi halal UMKM pangan lokal.',
+    image: '/assets/kegiatan-d2.png'
   },
   {
-    title: lang === 'en'
-      ? "Joint Research on Cocoa Shell Bioactive Extraction with BRIN"
-      : "Riset Kolaborasi Pemanfaatan Limbah Kulit Kakao Bersama BRIN",
-    date: lang === 'en' ? "June 04, 2024" : "04 Juni 2024",
-    location: "BRIN Food Processing Lab, Serpong",
+    title: lang === 'en' ? 'Joint Research on Cocoa Shell Bioactive Extraction with BRIN' : 'Riset Kolaborasi Pemanfaatan Limbah Kulit Kakao Bersama BRIN',
+    date: lang === 'en' ? 'June 04, 2024' : '04 Juni 2024',
+    location: 'BRIN Food Processing Lab, Serpong',
     desc: lang === 'en'
       ? `A strategic research collaboration by ${PRODI_CONFIG.acronym} lecturers testing extraction of antioxidant compounds from cocoa shell agricultural waste for functional food applications.`
       : `Kolaborasi riset strategis dosen ${PRODI_CONFIG.acronym} dalam menguji rekayasa ekstraksi senyawa aktif antioksidan dari limbah pertanian kulit biji kakao untuk aplikasi pangan fungsional.`,
-    image: "/assets/kegiatan-d3.png"
+    image: '/assets/kegiatan-d3.png'
   }
 ];
+
+// ── Fetch from DB, fall back to static ──────────────────────────────────────
+const dbActivities = await getKegiatanDosen();
+const activities: ActivityItem[] = (dbActivities && dbActivities.length > 0)
+  ? dbActivities.map(a => ({
+      title: lang === 'en' ? (a.title_en || a.title) : a.title,
+      date: lang === 'en' ? (a.date_text_en || a.date_text) : a.date_text,
+      location: a.location,
+      desc: lang === 'en' ? (a.desc_en || a.desc) : a.desc,
+      image: a.image_url
+    }))
+  : fallbackActivities;
+
 
 const title = lang === 'en'
   ? `Faculty Activities | ${PRODI_CONFIG.degree} ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}`

@@ -2,6 +2,7 @@
 import Layout from './Layout.astro';
 import { Calendar, MapPin, Eye } from 'lucide-react';
 import { PRODI_CONFIG } from '../config/prodi.config';
+import { getKegiatanMahasiswa } from '../lib/supabase/db';
 
 interface Props {
   lang: 'id' | 'en';
@@ -9,43 +10,51 @@ interface Props {
 
 const { lang } = Astro.props;
 
-const activities = [
+// ── Fallback static data ────────────────────────────────────────────────────
+type ActivityItem = { title: string; date: string; location: string; desc: string; image: string | null };
+
+const fallbackActivities: ActivityItem[] = [
   {
-    title: "FOODTECH 2026: Capstone Product & Halal Food Expo",
-    date: lang === 'en' ? "February 24-28, 2026" : "24-28 Februari 2026",
-    location: lang === 'en'
-      ? `${PRODI_CONFIG.universityShort} Rektorat Building, Bandung`
-      : `Gedung Rektorat ${PRODI_CONFIG.universityShort}, Bandung`,
+    title: 'FOODTECH 2026: Capstone Product & Halal Food Expo',
+    date: lang === 'en' ? 'February 24-28, 2026' : '24-28 Februari 2026',
+    location: lang === 'en' ? `${PRODI_CONFIG.universityShort} Rektorat Building, Bandung` : `Gedung Rektorat ${PRODI_CONFIG.universityShort}, Bandung`,
     desc: lang === 'en'
-      ? `The premier graduation project exhibition showcasing the masterpiece innovations of ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort} students, highlighting new food formulations, functional products, and circular biorefinery designs.`
-      : `Pameran karya kelulusan proyek akhir mahasiswa angkatan pertama ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}, menampilkan berbagai formulasi produk pangan baru, makanan/minuman fungsional, dan desain pabrik pangan sirkular.`,
-    image: "/assets/kegiatan-m1.png"
+      ? `The premier graduation project exhibition showcasing the masterpiece innovations of ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort} students.`
+      : `Pameran karya kelulusan proyek akhir mahasiswa angkatan pertama ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}.`,
+    image: '/assets/kegiatan-m1.png'
   },
   {
-    title: lang === 'en'
-      ? "National Food Innovation Competition (NFIC): Local Resource Formulation"
-      : "National Food Innovation Competition (NFIC): Inovasi Produk Pangan Lokal",
-    date: lang === 'en' ? "March 05, 2026" : "05 Maret 2026",
-    location: "Bandung Tech Hall, Bandung",
+    title: lang === 'en' ? 'National Food Innovation Competition (NFIC): Local Resource Formulation' : 'National Food Innovation Competition (NFIC): Inovasi Produk Pangan Lokal',
+    date: lang === 'en' ? 'March 05, 2026' : '05 Maret 2026',
+    location: 'Bandung Tech Hall, Bandung',
     desc: lang === 'en'
-      ? `An intensive national product development competition hosted by ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort} students to formulate functional food from local agricultural resources in 24 hours.`
-      : `Kompetisi inovasi produk pangan fungsional tingkat nasional yang diinisiasi oleh mahasiswa ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort} untuk melatih kemampuan rekayasa formula bahan lokal dalam 24 jam.`,
-    image: "/assets/kegiatan-m2.png"
+      ? `An intensive national product development competition hosted by ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort} students.`
+      : `Kompetisi inovasi produk pangan fungsional tingkat nasional yang diinisiasi oleh mahasiswa ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}.`,
+    image: '/assets/kegiatan-m2.png'
   },
   {
-    title: lang === 'en'
-      ? "HIMATEPA Food Safety Camp: Hygiene & Sanitation Training for MSMEs"
-      : "HIMATEPA Food Safety Camp: Edukasi Sanitasi & Higiene UMKM Pangan",
-    date: lang === 'en' ? "November 14, 2025" : "14 November 2025",
-    location: lang === 'en'
-      ? `${PRODI_CONFIG.universityShort} Campus, Bandung`
-      : `Kampus ${PRODI_CONFIG.universityShort}, Bandung`,
+    title: lang === 'en' ? 'HIMATEPA Food Safety Camp: Hygiene & Sanitation Training for MSMEs' : 'HIMATEPA Food Safety Camp: Edukasi Sanitasi & Higiene UMKM Pangan',
+    date: lang === 'en' ? 'November 14, 2025' : '14 November 2025',
+    location: lang === 'en' ? `${PRODI_CONFIG.universityShort} Campus, Bandung` : `Kampus ${PRODI_CONFIG.universityShort}, Bandung`,
     desc: lang === 'en'
-      ? `A public community service campaign hosted by the HIMATEPA Student Association, introducing food safety, hygienic processing, and halal audit workflows to local culinary MSMEs.`
-      : "Program reguler Himpunan Mahasiswa dalam memberikan penyuluhan serta pendampingan sanitasi higiene pengolahan pangan dan alur pengajuan sertifikasi produk halal bagi UMKM pangan lokal.",
-    image: "/assets/kegiatan-m3.png"
+      ? 'A public community service campaign by HIMATEPA Student Association, introducing food safety and halal audit workflows to local culinary MSMEs.'
+      : 'Program reguler Himpunan Mahasiswa dalam memberikan penyuluhan sanitasi higiene pengolahan pangan dan alur sertifikasi produk halal bagi UMKM pangan lokal.',
+    image: '/assets/kegiatan-m3.png'
   }
 ];
+
+// ── Fetch from DB, fall back to static ──────────────────────────────────────
+const dbActivities = await getKegiatanMahasiswa();
+const activities: ActivityItem[] = (dbActivities && dbActivities.length > 0)
+  ? dbActivities.map(a => ({
+      title: lang === 'en' ? (a.title_en || a.title) : a.title,
+      date: lang === 'en' ? (a.date_text_en || a.date_text) : a.date_text,
+      location: a.location,
+      desc: lang === 'en' ? (a.desc_en || a.desc) : a.desc,
+      image: a.image_url
+    }))
+  : fallbackActivities;
+
 
 const title = lang === 'en'
   ? `Student Activities | ${PRODI_CONFIG.degree} ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}`

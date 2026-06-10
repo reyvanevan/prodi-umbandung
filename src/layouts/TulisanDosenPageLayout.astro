@@ -2,6 +2,7 @@
 import Layout from './Layout.astro';
 import { BookOpen, User, ExternalLink } from 'lucide-react';
 import { PRODI_CONFIG } from '../config/prodi.config';
+import { getPublikasiDosen } from '../lib/supabase/db';
 
 interface Props {
   lang: 'id' | 'en';
@@ -9,64 +10,73 @@ interface Props {
 
 const { lang } = Astro.props;
 
-const publications = [
+// ── Fallback static data ────────────────────────────────────────────────────
+type PublikasiItem = { title: string; author: string; journal: string; year: string; category: string; link: string | null };
+
+const fallbackPublications: PublikasiItem[] = [
   {
     title: lang === 'en'
-      ? "Optimizing Solar-Assisted Fluidized Bed Drying of Nusantara Mocaf Flour"
-      : "Optimasi Pengeringan Terfluidisasi Tepung Mocaf Nusantara Berbasis Energi Surya",
-    author: "Dr. Khairiah, S.P., M.T.",
-    journal: lang === 'en'
-      ? "Journal of Food Technology & Industry Nusantara, Vol. 12 No. 2"
-      : "Jurnal Teknologi & Industri Pangan Nusantara, Vol. 12 No. 2",
-    year: "2025",
-    category: lang === 'en' ? "NATIONAL JOURNAL" : "JURNAL NASIONAL",
-    link: "https://sinta.kemdiktisaintek.go.id/"
+      ? 'Optimizing Solar-Assisted Fluidized Bed Drying of Nusantara Mocaf Flour'
+      : 'Optimasi Pengeringan Terfluidisasi Tepung Mocaf Nusantara Berbasis Energi Surya',
+    author: 'Dr. Khairiah, S.P., M.T.',
+    journal: lang === 'en' ? 'Journal of Food Technology & Industry Nusantara, Vol. 12 No. 2' : 'Jurnal Teknologi & Industri Pangan Nusantara, Vol. 12 No. 2',
+    year: '2025',
+    category: lang === 'en' ? 'NATIONAL JOURNAL' : 'JURNAL NASIONAL',
+    link: 'https://sinta.kemdiktisaintek.go.id/'
   },
   {
     title: lang === 'en'
-      ? "Rapid Detection of Escherichia coli in Fresh Produce Using Electrochemical Sensors"
-      : "Deteksi Cepat Kontaminasi Bakteri Escherichia coli pada Bahan Pangan Basah Menggunakan Sensor Elektrokimia",
-    author: "Dr. Saepul Adnan, S.Si., M.Si.",
-    journal: lang === 'en'
-      ? "National Seminar on Halal Food Innovation (SNIPH)"
-      : "Seminar Nasional Inovasi Pangan Halal (SNIPH)",
-    year: "2024",
-    category: lang === 'en' ? "SEMINAR PROCEEDINGS" : "PROSIDING SEMINAR",
-    link: "https://sinta.kemdiktisaintek.go.id/"
+      ? 'Rapid Detection of Escherichia coli in Fresh Produce Using Electrochemical Sensors'
+      : 'Deteksi Cepat Kontaminasi Bakteri Escherichia coli pada Bahan Pangan Basah Menggunakan Sensor Elektrokimia',
+    author: 'Dr. Saepul Adnan, S.Si., M.Si.',
+    journal: lang === 'en' ? 'National Seminar on Halal Food Innovation (SNIPH)' : 'Seminar Nasional Inovasi Pangan Halal (SNIPH)',
+    year: '2024',
+    category: lang === 'en' ? 'SEMINAR PROCEEDINGS' : 'PROSIDING SEMINAR',
+    link: 'https://sinta.kemdiktisaintek.go.id/'
   },
   {
-    title: "Nutritional Value, Fiber Content, and Sensory Evaluation of Functional Cookies Based on Hanjeli and Red Kidney Bean Flour",
-    author: "Hanif Alamudin Manshur, S.Gz., M.Si.",
-    journal: "International Journal of Food Science and Nutrition Technology",
-    year: "2024",
-    category: lang === 'en' ? "INTERNATIONAL JOURNAL" : "JURNAL INTERNASIONAL",
-    link: "https://sinta.kemdiktisaintek.go.id/"
-  },
-  {
-    title: lang === 'en'
-      ? "Formulation and Emulsion Stability of Chitosan-Orange Peel Essential Oil Edible Coating as Fruit Preservatives"
-      : "Formulasi dan Stabilitas Emulsi Edible Coating Kitosan-Minyak Atsiri Kulit Jeruk sebagai Pengawet Buah Potong",
-    author: "Dr. Khairiah, S.P., M.T. & Dr. Saepul Adnan, S.Si., M.Si.",
-    journal: lang === 'en'
-      ? "UMB Journal of Applied Food Technology, Vol. 5 No. 1"
-      : "Jurnal Aplikasi Teknologi Pangan UMB, Vol. 5 No. 1",
-    year: "2023",
-    category: lang === 'en' ? "NATIONAL JOURNAL" : "JURNAL NASIONAL",
-    link: "https://sinta.kemdiktisaintek.go.id/"
+    title: 'Nutritional Value, Fiber Content, and Sensory Evaluation of Functional Cookies Based on Hanjeli and Red Kidney Bean Flour',
+    author: 'Hanif Alamudin Manshur, S.Gz., M.Si.',
+    journal: 'International Journal of Food Science and Nutrition Technology',
+    year: '2024',
+    category: lang === 'en' ? 'INTERNATIONAL JOURNAL' : 'JURNAL INTERNASIONAL',
+    link: 'https://sinta.kemdiktisaintek.go.id/'
   },
   {
     title: lang === 'en'
-      ? "Principles of Halal Food Technology: Theory, Lab Practice, and Critical Point Analysis"
-      : "Prinsip Teknologi Pangan Halal: Teori, Praktik Laboratorium, dan Analisis Titik Kritis",
-    author: "Hanif Alamudin Manshur, S.Gz., M.Si.",
-    journal: lang === 'en'
-      ? `${PRODI_CONFIG.universityShort} Press Publications (Reference Book)`
-      : `Penerbit ${PRODI_CONFIG.universityShort} Press (Buku Referensi)`,
-    year: "2023",
-    category: lang === 'en' ? "ACADEMIC BOOK" : "BUKU ILMIAH",
-    link: "https://sinta.kemdiktisaintek.go.id/"
+      ? 'Formulation and Emulsion Stability of Chitosan-Orange Peel Essential Oil Edible Coating as Fruit Preservatives'
+      : 'Formulasi dan Stabilitas Emulsi Edible Coating Kitosan-Minyak Atsiri Kulit Jeruk sebagai Pengawet Buah Potong',
+    author: 'Dr. Khairiah, S.P., M.T. & Dr. Saepul Adnan, S.Si., M.Si.',
+    journal: lang === 'en' ? 'UMB Journal of Applied Food Technology, Vol. 5 No. 1' : 'Jurnal Aplikasi Teknologi Pangan UMB, Vol. 5 No. 1',
+    year: '2023',
+    category: lang === 'en' ? 'NATIONAL JOURNAL' : 'JURNAL NASIONAL',
+    link: 'https://sinta.kemdiktisaintek.go.id/'
+  },
+  {
+    title: lang === 'en'
+      ? 'Principles of Halal Food Technology: Theory, Lab Practice, and Critical Point Analysis'
+      : 'Prinsip Teknologi Pangan Halal: Teori, Praktik Laboratorium, dan Analisis Titik Kritis',
+    author: 'Hanif Alamudin Manshur, S.Gz., M.Si.',
+    journal: lang === 'en' ? `${PRODI_CONFIG.universityShort} Press Publications (Reference Book)` : `Penerbit ${PRODI_CONFIG.universityShort} Press (Buku Referensi)`,
+    year: '2023',
+    category: lang === 'en' ? 'ACADEMIC BOOK' : 'BUKU ILMIAH',
+    link: 'https://sinta.kemdiktisaintek.go.id/'
   }
 ];
+
+// ── Fetch from DB, fall back to static ──────────────────────────────────────
+const dbPublikasi = await getPublikasiDosen();
+const publications: PublikasiItem[] = (dbPublikasi && dbPublikasi.length > 0)
+  ? dbPublikasi.map(p => ({
+      title: lang === 'en' ? (p.title_en || p.title) : p.title,
+      author: p.author,
+      journal: lang === 'en' ? (p.journal_en || p.journal) : p.journal,
+      year: p.year,
+      category: lang === 'en' ? (p.category_en || p.category) : p.category,
+      link: p.link
+    }))
+  : fallbackPublications;
+
 
 const title = lang === 'en'
   ? `Faculty Publications | ${PRODI_CONFIG.degree} ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}`
