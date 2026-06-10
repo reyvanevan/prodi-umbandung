@@ -11,9 +11,13 @@ export function HeroSection({ lang }: HeroSectionProps) {
   const [dbTitle, setDbTitle] = useState<string | undefined>(undefined);
   const [dbSubtitle, setDbSubtitle] = useState<string | undefined>(undefined);
   const [heroBgUrl, setHeroBgUrl] = useState<string | undefined>(undefined);
+  const [loading, setLoading] = useState(isSupabaseConfigured);
 
   useEffect(() => {
-    if (!isSupabaseConfigured) return;
+    if (!isSupabaseConfigured) {
+      setLoading(false);
+      return;
+    }
     const loadData = async () => {
       const dbContent = await getSiteContent();
       if (dbContent) {
@@ -25,6 +29,7 @@ export function HeroSection({ lang }: HeroSectionProps) {
         if (contentMap.hero_subtitle) setDbSubtitle(contentMap.hero_subtitle);
         if (contentMap.hero_bg_url) setHeroBgUrl(contentMap.hero_bg_url);
       }
+      setLoading(false);
     };
     loadData();
   }, [lang]);
@@ -48,6 +53,23 @@ export function HeroSection({ lang }: HeroSectionProps) {
                   finalBgUrl.toLowerCase().endsWith('.webm') || 
                   finalBgUrl.toLowerCase().endsWith('.ogg') || 
                   finalBgUrl.startsWith('data:video/');
+
+  if (loading) {
+    return (
+      <section className="relative w-full h-screen overflow-hidden bg-mono-black flex flex-col items-center justify-center px-6">
+        <div className="text-center w-full max-w-4xl space-y-6 animate-pulse">
+          <div className="h-4 bg-white/10 w-48 mx-auto rounded" />
+          <div className="h-16 md:h-20 bg-white/10 w-3/4 mx-auto rounded" />
+          <div className="h-12 md:h-16 bg-white/10 w-1/2 mx-auto rounded" />
+          <div className="h-6 bg-white/10 w-2/3 mx-auto rounded mt-8" />
+          <div className="flex justify-center gap-4 mt-12">
+            <div className="h-12 bg-white/10 w-40 rounded" />
+            <div className="h-12 bg-white/10 w-40 rounded" />
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="relative w-full h-screen overflow-hidden">

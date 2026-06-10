@@ -99,17 +99,30 @@ export async function getPartners(): Promise<DbPartner[] | null> {
   return data;
 }
 
+let cachedSiteContent: DbSiteContent[] | null = null;
+let cachedSiteContentPromise: Promise<DbSiteContent[] | null> | null = null;
+
 export async function getSiteContent(): Promise<DbSiteContent[] | null> {
+  if (cachedSiteContent) return cachedSiteContent;
+  if (cachedSiteContentPromise) return cachedSiteContentPromise;
+
   const supabase = getBrowserSupabaseClient();
   if (!supabase) return null;
-  const { data, error } = await supabase
-    .from('site_content')
-    .select('*');
-  if (error) {
-    console.error('Error fetching site content:', error);
-    return null;
-  }
-  return data;
+
+  cachedSiteContentPromise = (async () => {
+    const { data, error } = await supabase
+      .from('site_content')
+      .select('*');
+    if (error) {
+      console.error('Error fetching site content:', error);
+      cachedSiteContentPromise = null;
+      return null;
+    }
+    cachedSiteContent = data;
+    return data;
+  })();
+
+  return cachedSiteContentPromise;
 }
 
 export async function updateSiteContent(key: string, value: string, valueEn: string | null): Promise<boolean> {
@@ -155,18 +168,31 @@ export interface DbLandingPortfolioItem {
   sort_order: number;
 }
 
+let cachedLandingStats: DbLandingStat[] | null = null;
+let cachedLandingStatsPromise: Promise<DbLandingStat[] | null> | null = null;
+
 export async function getLandingStats(): Promise<DbLandingStat[] | null> {
+  if (cachedLandingStats) return cachedLandingStats;
+  if (cachedLandingStatsPromise) return cachedLandingStatsPromise;
+
   const supabase = getBrowserSupabaseClient();
   if (!supabase) return null;
-  const { data, error } = await supabase
-    .from('landing_stats')
-    .select('*')
-    .order('sort_order', { ascending: true });
-  if (error) {
-    console.error('Error fetching landing stats:', error);
-    return null;
-  }
-  return data;
+
+  cachedLandingStatsPromise = (async () => {
+    const { data, error } = await supabase
+      .from('landing_stats')
+      .select('*')
+      .order('sort_order', { ascending: true });
+    if (error) {
+      console.error('Error fetching landing stats:', error);
+      cachedLandingStatsPromise = null;
+      return null;
+    }
+    cachedLandingStats = data;
+    return data;
+  })();
+
+  return cachedLandingStatsPromise;
 }
 
 export async function getLandingPartners(): Promise<DbLandingPartner[] | null> {

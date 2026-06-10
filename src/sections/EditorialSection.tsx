@@ -11,13 +11,18 @@ interface EditorialSectionProps {
 export function EditorialSection({ lang, quote }: EditorialSectionProps) {
   const [dbQuote, setDbQuote] = useState<string | undefined>(quote);
   const [dbTitle, setDbTitle] = useState<string | undefined>(undefined);
+  const [loading, setLoading] = useState(!quote && isSupabaseConfigured);
 
   useEffect(() => {
     if (quote) {
       setDbQuote(quote);
+      setLoading(false);
       return;
     }
-    if (!isSupabaseConfigured) return;
+    if (!isSupabaseConfigured) {
+      setLoading(false);
+      return;
+    }
 
     const loadData = async () => {
       const dbContent = await getSiteContent();
@@ -31,12 +36,41 @@ export function EditorialSection({ lang, quote }: EditorialSectionProps) {
           setDbTitle(lang === 'en' ? (titleItem.value_en || titleItem.value) : titleItem.value);
         }
       }
+      setLoading(false);
     };
     loadData();
   }, [lang, quote]);
 
   const finalQuote = dbQuote || quote;
   const finalTitle = dbTitle || (lang === 'en' ? 'Our Learning Philosophy' : 'Filosofi Pembelajaran Kami');
+
+  if (loading) {
+    return (
+      <section id="editorial" className="w-full min-h-screen bg-mono-black">
+        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen animate-pulse">
+          <div className="relative h-[60vh] lg:h-auto overflow-hidden bg-neutral-900 rounded" />
+          <div className="flex items-center justify-center p-8 lg:p-16">
+            <div className="max-w-lg w-full space-y-6">
+              <div className="w-12 h-12 bg-white/20 rounded-full" />
+              <div className="h-3 bg-white/20 w-48 rounded" />
+              <div className="space-y-3 pt-4">
+                <div className="h-6 bg-white/20 w-full rounded" />
+                <div className="h-6 bg-white/20 w-5/6 rounded" />
+                <div className="h-6 bg-white/20 w-4/5 rounded" />
+              </div>
+              <div className="flex items-center gap-4 pt-6">
+                <div className="w-12 h-px bg-white/30" />
+                <div className="space-y-2">
+                  <div className="h-4 bg-white/20 w-32 rounded" />
+                  <div className="h-3 bg-white/20 w-24 rounded" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
   return (
     <section id="editorial" className="w-full min-h-screen bg-mono-black">
       <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">

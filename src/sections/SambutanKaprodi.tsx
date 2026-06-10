@@ -17,9 +17,13 @@ export function SambutanKaprodi({ lang, title, p1, p2 }: SambutanKaprodiProps) {
   const [dbKaprodiName, setDbKaprodiName] = useState<string | undefined>(undefined);
   const [dbKaprodiTitle, setDbKaprodiTitle] = useState<string | undefined>(undefined);
   const [dbKaprodiPhoto, setDbKaprodiPhoto] = useState<string | undefined>(undefined);
+  const [loading, setLoading] = useState(!title && !p1 && !p2 && isSupabaseConfigured);
 
   useEffect(() => {
-    if (!isSupabaseConfigured) return;
+    if (!isSupabaseConfigured) {
+      setLoading(false);
+      return;
+    }
 
     const loadData = async () => {
       const dbContent = await getSiteContent();
@@ -36,9 +40,35 @@ export function SambutanKaprodi({ lang, title, p1, p2 }: SambutanKaprodiProps) {
         if (contentMap.kaprodi_title) setDbKaprodiTitle(contentMap.kaprodi_title);
         if (contentMap.kaprodi_photo_url) setDbKaprodiPhoto(contentMap.kaprodi_photo_url);
       }
+      setLoading(false);
     };
     loadData();
   }, [lang, title, p1, p2]);
+
+  if (loading) {
+    return (
+      <section id="profil" className="w-full bg-mono-cream py-24 lg:py-32 border-b border-mono-black/10">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center animate-pulse">
+            <div className="lg:col-span-5 aspect-[3/4] bg-neutral-300 border border-mono-black/10 rounded" />
+            <div className="lg:col-span-7 space-y-6">
+              <div className="h-3 bg-neutral-300 w-48 rounded" />
+              <div className="h-10 bg-neutral-300 w-3/4 rounded" />
+              <div className="space-y-3 pt-4">
+                <div className="h-4 bg-neutral-300 w-full rounded" />
+                <div className="h-4 bg-neutral-300 w-5/6 rounded" />
+                <div className="h-4 bg-neutral-300 w-4/5 rounded" />
+              </div>
+              <div className="space-y-3 pt-2">
+                <div className="h-4 bg-neutral-300 w-full rounded" />
+                <div className="h-4 bg-neutral-300 w-5/6 rounded" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   const defaultTitle = lang === 'en' ? "Head of Department's Welcome" : 'Sambutan Kepala Program Studi';
   const defaultP1 = lang === 'en'
