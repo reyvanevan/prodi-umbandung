@@ -1,0 +1,135 @@
+---
+import Layout from './Layout.astro';
+import { Users, UserCheck, Clock, BarChart3 } from 'lucide-react';
+import { PRODI_CONFIG } from '../config/prodi.config';
+
+interface Props {
+  lang: 'id' | 'en';
+}
+
+const { lang } = Astro.props;
+
+const yearlyMaba = [
+  { year: "2021", count: 42 },
+  { year: "2022", count: 45 },
+  { year: "2023", count: 50 },
+  { year: "2024", count: 55 },
+  { year: "2025", count: 58 },
+];
+
+const title = lang === 'en'
+  ? `Program Statistics | ${PRODI_CONFIG.degree} ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}`
+  : `Statistik Prodi | ${PRODI_CONFIG.degree} ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}`;
+
+const heading = lang === 'en' ? 'Academic Program Statistics' : 'Statistik Akademik Prodi';
+
+const description = lang === 'en'
+  ? `Visualizing data trends of new student admissions, supervisor ratios, and the average duration of graduation for the ${PRODI_CONFIG.degree} ${PRODI_CONFIG.name.en} program at ${PRODI_CONFIG.universityShort}.`
+  : `Visualisasi data statistik mahasiswa baru, rasio dosen pengampu, dan rata-rata masa studi kelulusan program studi ${PRODI_CONFIG.degree} ${PRODI_CONFIG.name.id} ${PRODI_CONFIG.universityShort}.`;
+
+const cards = [
+  {
+    id: "rata-maba",
+    icon: Users,
+    title: lang === 'en' ? "New Student Intake" : "Rata Mahasiswa Baru",
+    desc: lang === 'en'
+      ? `The enrollment rates of new creative students at ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort} show a steady yearly growth, with an average of 50+ students per academic year.`
+      : `Pertumbuhan minat pendaftaran mahasiswa baru ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort} stabil meningkat dari tahun ke tahun dengan rata-rata 50+ mahasiswa baru per angkatan.`,
+    value: "50.6",
+    label: lang === 'en' ? "AVG STUDENTS / YEAR" : "RATA-RATA MABA / TAHUN"
+  },
+  {
+    id: "rasio-dosen",
+    icon: UserCheck,
+    title: lang === 'en' ? "Lecturer-Student Ratio" : "Rasio Dosen & Mahasiswa",
+    desc: lang === 'en'
+      ? `Our active lecturer-to-student ratio is highly optimal, allowing for focused and personalized supervision during intensive studio experiments.`
+      : `Rasio dosen pembimbing dibanding jumlah mahasiswa aktif sangat ideal, memfasilitasi konsultasi studio personal secara maksimal dan intensif.`,
+    value: "1 : 11",
+    label: lang === 'en' ? "DIKTI STANDARD MAX 1:45" : "STANDARD DIKTI MAKSIMAL 1:45"
+  },
+  {
+    id: "rasio-studi",
+    icon: Clock,
+    title: lang === 'en' ? "Study Duration Ratio" : "Rasio Masa Studi",
+    desc: lang === 'en'
+      ? `More than 85% of our students complete their studies on time in 8 semesters (4 years) through well-structured Final Project mentoring.`
+      : `Lebih dari 85% mahasiswa lulus tepat waktu dalam waktu 8 semester (4 tahun) dengan bimbingan Tugas Akhir yang tersistematis.`,
+    value: lang === 'en' ? "3.8 Years" : "3.8 Tahun",
+    label: lang === 'en' ? "AVERAGE GRADUATION TIME" : "RATA-RATA WAKTU LULUS"
+  }
+];
+
+const chartTitle = lang === 'en' ? 'New Student Admission Trends' : 'Trend Penerimaan Mahasiswa Baru';
+const chartLabelSuffix = lang === 'en' ? ' Students' : ' Mhs';
+---
+
+<Layout title={title} lang={lang}>
+  {/* Header Section */}
+  <section class="relative bg-mono-black text-white pt-36 pb-20 border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      <p class="tech-tag text-mono-yellow mb-3">DATA // STATISTICS</p>
+      <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl tracking-wide leading-none">
+        {heading}
+      </h1>
+      <p class="font-sans text-sm text-white/60 max-w-2xl mt-4 leading-relaxed">
+        {description}
+      </p>
+    </div>
+  </section>
+
+  {/* Main Stats Sections */}
+  <section class="py-20 bg-mono-cream min-h-screen space-y-16">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      
+      {/* Grid of the three main statistics sections */}
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+        {cards.map((c) => {
+          const Icon = c.icon;
+          return (
+            <div id={c.id} class="scroll-mt-32 border border-mono-black bg-white p-8 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col justify-between">
+              <div>
+                <div class="p-3 bg-mono-black text-white w-fit shadow-[2px_2px_0px_0px_var(--primary-color)] mb-6">
+                  <Icon class="h-6 w-6" />
+                </div>
+                <h3 class="font-serif text-xl font-bold mb-3 text-mono-black">{c.title}</h3>
+                <p class="font-sans text-xs text-neutral-600 leading-relaxed mb-6">
+                  {c.desc}
+                </p>
+              </div>
+              <div class="border-t border-dotted border-neutral-200 pt-6">
+                <span class="font-serif text-4xl font-bold text-mono-black block mb-1">{c.value}</span>
+                <span class="tech-tag text-[9px] text-mono-yellow font-bold">{c.label}</span>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Visual Chart Graphic (Neo-brutalist styled pure CSS charts) */}
+      <div class="border border-mono-black bg-white p-8 lg:p-12 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+        <div class="flex items-center gap-3 mb-8">
+          <BarChart3 class="h-5 w-5 text-mono-yellow" />
+          <h4 class="font-serif text-2xl font-bold text-mono-black">{chartTitle}</h4>
+        </div>
+        
+        {/* Simple Bar Chart */}
+        <div class="flex flex-col gap-6">
+          {yearlyMaba.map((m, idx) => (
+            <div key={idx} class="flex items-center gap-4">
+              <span class="font-sans font-bold text-xs text-mono-black w-12">{m.year}</span>
+              <div class="flex-1 bg-neutral-100 border border-mono-black h-8 relative overflow-hidden">
+                <div 
+                  class="bg-mono-yellow border-r border-mono-black h-full transition-all duration-1000"
+                  style={{ width: `${(m.count / 65) * 100}%` }}
+                />
+              </div>
+              <span class="font-serif font-bold text-sm text-mono-black w-20 text-right">{m.count}{chartLabelSuffix}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,151 @@
+---
+import Layout from './Layout.astro';
+import { Quote } from 'lucide-react';
+import { PRODI_CONFIG } from '../config/prodi.config';
+
+interface Props {
+  lang: 'id' | 'en';
+}
+
+const { lang } = Astro.props;
+
+const alumni = [
+  {
+    name: "Amelia Rahma, S.Kom.",
+    classOf: lang === 'en' ? "Class of 2019" : "Angkatan 2019",
+    role: "Lead Software Engineer",
+    company: "Gojek Tokopedia (GoTo Group)",
+    quote: lang === 'en' 
+      ? `At ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}, I was taught programming fundamentals, data structures, and solid system architecture. This prepared me to solve complex, large-scale computational challenges in the tech industry.`
+      : `Di ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}, saya diajarkan dasar pemrograman, struktur data, dan arsitektur sistem yang kuat. Ini membekali saya untuk memecahkan masalah komputasi kompleks berskala besar di industri teknologi.`,
+    image: "/assets/alumni-1.png"
+  },
+  {
+    name: "Bagus Pratama, S.Kom.",
+    classOf: lang === 'en' ? "Class of 2020" : "Angkatan 2020",
+    role: "Founder & CEO",
+    company: "TechInovasi Digital (Software House)",
+    quote: lang === 'en'
+      ? `The adaptive curriculum and faculty mentorship at ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort} trained my digital entrepreneurship mindset to establish a digital product development agency upon graduation.`
+      : `Penyusunan kurikulum adaptif dan bimbingan dosen di ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort} melatih mental kewirausahaan digital saya untuk mendirikan agensi pengembangan produk digital selepas lulus.`,
+    image: "/assets/alumni-2.png"
+  },
+  {
+    name: "Risa Fitria, S.Kom.",
+    classOf: lang === 'en' ? "Class of 2019" : "Angkatan 2019",
+    role: "Data Scientist",
+    company: "PT Telekomunikasi Indonesia (Telkom)",
+    quote: lang === 'en'
+      ? `The deep AI computing laboratory facilities and data science curriculum at ${PRODI_CONFIG.acronym} gave me a robust foundation to process big data for strategic business decision making.`
+      : `Fasilitas laboratorium AI dan kurikulum sains data yang mendalam di ${PRODI_CONFIG.acronym} memberikan pondasi kuat bagi saya untuk mengolah big data guna pengambilan keputusan bisnis strategis.`,
+    image: "/assets/alumni-3.png"
+  }
+];
+
+const sectors = [
+  { name: "Software Engineering & App Development", percentage: "45%" },
+  { name: "Data Science & Artificial Intelligence", percentage: "30%" },
+  { name: "Network Security & Cloud Computing", percentage: "15%" },
+  { name: lang === 'en' ? "Education, Research, & IT Consulting" : "Pendidikan, Riset, & IT Consultant", percentage: "10%" }
+];
+
+const title = lang === 'en'
+  ? `Alumni Network | ${PRODI_CONFIG.degree} ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}`
+  : `Alumni ${PRODI_CONFIG.acronym} | ${PRODI_CONFIG.degree} ${PRODI_CONFIG.name.id} ${PRODI_CONFIG.universityShort}`;
+
+const heading = lang === 'en' ? 'Alumni & Careers' : 'Jejak Karier & Alumni';
+
+const description = lang === 'en'
+  ? `Welcome to the ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort} Alumni Registry. Our graduates are scattered globally, excelling as software engineers, startup founders, data scientists, network engineers, and IT consultants.`
+  : `Selamat datang di gerbang jejaring alumni ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}. Alumni kami tersebar secara profesional sebagai software engineer, startup founder, data scientist, network engineer, dan konsultan IT.`;
+
+const section1Title = lang === 'en' ? 'Graduate Career Pathways' : 'Sebaran Sektor Industri Lulusan';
+const section1Desc = lang === 'en'
+  ? `Based on recent graduate tracking data, ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort} alumni enjoy high career flexibility across corporate technology industries as well as starting independent digital ventures.`
+  : `Berdasarkan data pelacakan alumni terbaru, lulusan prodi ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort} memiliki fleksibilitas karier yang tinggi baik di sektor korporasi maupun merintis startup teknologi secara mandiri.`;
+
+const section2Title = lang === 'en' ? 'Featured Alumni Profiles' : 'Profil Alumni Berprestasi';
+---
+
+<Layout title={title} lang={lang}>
+  {/* Header Section */}
+  <section class="relative bg-mono-black text-white pt-36 pb-20 border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      <p class="tech-tag text-mono-yellow mb-3">GRADUATES // NETWORK</p>
+      <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl tracking-wide leading-none">
+        {heading}
+      </h1>
+      <p class="font-sans text-sm text-white/60 max-w-2xl mt-4 leading-relaxed">
+        {description}
+      </p>
+    </div>
+  </section>
+
+  {/* Main Content */}
+  <section class="py-20 bg-mono-cream min-h-screen">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      
+      {/* Statistics Row */}
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-20 items-center">
+        <div class="lg:col-span-5">
+          <p class="tech-tag text-mono-yellow mb-2">CAREER DISTRIBUTION</p>
+          <h2 class="font-serif text-3xl font-bold text-mono-black mb-6">{section1Title}</h2>
+          <p class="font-sans text-xs text-neutral-600 leading-relaxed mb-6">
+            {section1Desc}
+          </p>
+        </div>
+        <div class="lg:col-span-7 border border-mono-black bg-white p-8 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+          <div class="flex flex-col gap-5">
+            {sectors.map((s, idx) => (
+              <div key={idx} class="flex flex-col gap-1.5">
+                <div class="flex justify-between text-xs font-sans font-bold text-mono-black">
+                  <span>{s.name}</span>
+                  <span>{s.percentage}</span>
+                </div>
+                <div class="w-full bg-neutral-100 border border-mono-black h-4 relative overflow-hidden">
+                  <div class="bg-mono-yellow h-full" style={{ width: s.percentage }} />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div class="border-b border-dotted border-mono-black/20 my-16"></div>
+
+      {/* Alumni Profiles */}
+      <div class="mb-12">
+        <p class="tech-tag text-mono-yellow mb-2">SUCCESS STORIES</p>
+        <h2 class="font-serif text-3xl font-bold text-mono-black">{section2Title}</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {alumni.map((al, idx) => (
+          <div key={idx} class="border border-mono-black bg-white p-8 hover:shadow-[6px_6px_0px_0px_var(--primary-color)] transition-all duration-300 flex flex-col justify-between">
+            <div class="relative">
+              <div class="absolute top-0 right-0 opacity-10">
+                <Quote className="h-12 w-12 text-mono-yellow" />
+              </div>
+              <p class="font-sans text-xs italic text-neutral-600 leading-relaxed mb-8 pt-4">
+                "{al.quote}"
+              </p>
+            </div>
+            
+            <div class="flex items-center gap-4 pt-6 border-t border-dotted border-neutral-200">
+              <div class="h-10 w-10 bg-mono-yellow/25 border border-mono-black flex items-center justify-center font-serif font-bold text-mono-black text-sm shrink-0">
+                {al.name.charAt(0)}
+              </div>
+              <div class="flex flex-col min-w-0">
+                <span class="font-serif font-bold text-xs text-mono-black truncate">{al.name}</span>
+                <span class="tech-tag text-[8px] text-mono-black/45 mt-0.5">{al.classOf}</span>
+                <span class="font-sans text-[9px] text-neutral-500 font-bold truncate mt-1">{al.role}</span>
+                <span class="font-sans text-[9px] text-mono-yellow font-bold truncate">{al.company}</span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+</Layout>

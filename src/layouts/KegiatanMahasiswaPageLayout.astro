@@ -1,0 +1,125 @@
+---
+import Layout from './Layout.astro';
+import { Calendar, MapPin, Eye } from 'lucide-react';
+import { PRODI_CONFIG } from '../config/prodi.config';
+
+interface Props {
+  lang: 'id' | 'en';
+}
+
+const { lang } = Astro.props;
+
+const activities = [
+  {
+    title: "INFOTEC 2026: Capstone Project & IoT Showcase",
+    date: lang === 'en' ? "February 24-28, 2026" : "24-28 Februari 2026",
+    location: lang === 'en'
+      ? `${PRODI_CONFIG.universityShort} Rektorat Building, Bandung`
+      : `Gedung Rektorat ${PRODI_CONFIG.universityShort}, Bandung`,
+    desc: lang === 'en'
+      ? `The premier graduation portfolio exhibition showcasing the masterpiece works of ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort} graduates, highlighting various software solutions, mobile applications, smart IoT systems, and machine learning models.`
+      : `Pameran karya kelulusan proyek akhir mahasiswa angkatan pertama ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}, menampilkan berbagai solusi rekayasa perangkat lunak, aplikasi mobile, sistem IoT cerdas, dan model machine learning.`,
+    image: "/assets/kegiatan-m1.png"
+  },
+  {
+    title: lang === 'en'
+      ? "Informatics National Hackathon: Digital Solutions for Society"
+      : "Informatics National Hackathon: Solusi Digital untuk Masyarakat",
+    date: lang === 'en' ? "March 05, 2026" : "05 Maret 2026",
+    location: "Bandung Tech Hall, Bandung",
+    desc: lang === 'en'
+      ? `An intensive national programming competition hosted by ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort} students to practice solving real-world challenges with technology in 24 hours.`
+      : `Kompetisi pemrograman intensif tingkat nasional yang digarap mandiri oleh mahasiswa ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort} untuk melatih kemampuan memecahkan masalah nyata dengan teknologi dalam 24 jam.`,
+    image: "/assets/kegiatan-m2.png"
+  },
+  {
+    title: lang === 'en'
+      ? "DevDay Gathering: Basic Web Development Workshop for Beginners"
+      : "DevDay Gathering: Workshop Web Development untuk Pemula",
+    date: lang === 'en' ? "November 14, 2025" : "14 November 2025",
+    location: lang === 'en'
+      ? `${PRODI_CONFIG.universityShort} Campus, Bandung`
+      : `Kampus ${PRODI_CONFIG.universityShort}, Bandung`,
+    desc: lang === 'en'
+      ? `A public workshop hosted by the ${PRODI_CONFIG.acronym} Student Association introducing basic web development and computational thinking to local high school students.`
+      : "Program reguler Himpunan Mahasiswa dalam memperkenalkan pemrograman web dasar dan logika computational thinking kepada siswa sekolah menengah dan masyarakat luas Bandung.",
+    image: "/assets/kegiatan-m3.png"
+  }
+];
+
+const title = lang === 'en'
+  ? `Student Activities | ${PRODI_CONFIG.degree} ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}`
+  : `Kegiatan Mahasiswa | ${PRODI_CONFIG.degree} ${PRODI_CONFIG.name.id} ${PRODI_CONFIG.universityShort}`;
+
+const heading = lang === 'en' ? 'Student Activities & Creations' : 'Kegiatan & Kreativitas Mahasiswa';
+
+const description = lang === 'en'
+  ? `Explore the vibrant creative student life at ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}. Witness our graduation project showcase (INFOTEC), national hackathons, and programming workshops by the Student Association.`
+  : `Jelajahi dinamika kehidupan kreatif mahasiswa ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}. Mulai dari pameran karya capstone project, hackathon nasional, hingga workshop pemrograman oleh Himpunan Mahasiswa.`;
+
+const docLabel = 'DOKUMENTASI M-0';
+const tagLabel = lang === 'en' ? 'STUDENTS // HIMAPRODI' : 'MAHASISWA / HIMAPRODI';
+const linkLabel = lang === 'en' ? 'MEDIA ARCHIVE' : 'DOKUMENTASI';
+---
+
+<Layout title={title} lang={lang}>
+  {/* Header Section */}
+  <section class="relative bg-mono-black text-white pt-36 pb-20 border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      <p class="tech-tag text-mono-yellow mb-3">GALLERY // STUDENT LIFE</p>
+      <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl tracking-wide leading-none">
+        {heading}
+      </h1>
+      <p class="font-sans text-sm text-white/60 max-w-2xl mt-4 leading-relaxed">
+        {description}
+      </p>
+    </div>
+  </section>
+
+  {/* Main Grid */}
+  <section class="py-20 bg-mono-cream min-h-screen">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {activities.map((act, idx) => (
+          <div key={idx} class="border border-mono-black bg-white hover:shadow-[6px_6px_0px_0px_var(--primary-color)] transition-all duration-300 flex flex-col justify-between">
+            {/* Visual Container */}
+            <div class="bg-neutral-100 aspect-[4/3] border-b border-mono-black relative overflow-hidden flex items-center justify-center">
+              <span class="tech-tag text-mono-black/40 text-[10px]">{docLabel}{idx+1}</span>
+            </div>
+            
+            <div class="p-8 flex-1 flex flex-col justify-between">
+              <div>
+                <div class="flex flex-wrap gap-4 text-[10px] font-sans font-semibold text-neutral-400 mb-4">
+                  <div class="flex items-center gap-1.5">
+                    <Calendar class="h-3.5 w-3.5 text-mono-yellow" />
+                    <span>{act.date}</span>
+                  </div>
+                  <div class="flex items-center gap-1.5">
+                    <MapPin class="h-3.5 w-3.5 text-mono-yellow" />
+                    <span>{act.location}</span>
+                  </div>
+                </div>
+                
+                <h3 class="font-serif text-lg font-bold text-mono-black mb-3 leading-snug">
+                  {act.title}
+                </h3>
+                
+                <p class="font-sans text-xs text-neutral-600 leading-relaxed mb-6">
+                  {act.desc}
+                </p>
+              </div>
+
+              <div class="pt-4 border-t border-dotted border-neutral-200 flex items-center justify-between">
+                <span class="tech-tag text-[9px] text-mono-yellow font-bold">{tagLabel}</span>
+                <span class="flex items-center gap-1 font-sans text-[9px] font-bold text-mono-black/60">
+                  <Eye class="h-3 w-3" />
+                  <span>{linkLabel}</span>
+                </span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

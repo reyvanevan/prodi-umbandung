@@ -1,0 +1,165 @@
+---
+import Layout from './Layout.astro';
+import { BookOpen, User, ExternalLink } from 'lucide-react';
+import { PRODI_CONFIG } from '../config/prodi.config';
+
+interface Props {
+  lang: 'id' | 'en';
+}
+
+const { lang } = Astro.props;
+
+const publications = [
+  {
+    title: lang === 'en'
+      ? "Optimizing Academic Scheduling Using Genetic Algorithms in Higher Education"
+      : "Optimasi Penjadwalan Kuliah Menggunakan Algoritma Genetika di Perguruan Tinggi",
+    author: "M. Yusuf Efendi, S.T., M.T.",
+    journal: lang === 'en'
+      ? "Journal of Computation & Informatics Nusantara, Vol. 8 No. 2"
+      : "Jurnal Komputasi & Informatika Nusantara, Vol. 8 No. 2",
+    year: "2025",
+    category: lang === 'en' ? "NATIONAL JOURNAL" : "JURNAL NASIONAL",
+    link: "https://sinta.kemdiktisaintek.go.id/"
+  },
+  {
+    title: lang === 'en'
+      ? "Analysis of IoT Network Security Using Machine Learning-Based Intrusion Detection Systems"
+      : "Analisis Keamanan Jaringan IoT Menggunakan Intrusion Detection System Berbasis Machine Learning",
+    author: "Rahmat Hidayat, M.T.",
+    journal: lang === 'en'
+      ? "National Seminar on Technology & Informatics Innovation (SNITI)"
+      : "Seminar Nasional Inovasi Teknologi & Informatika (SNITI)",
+    year: "2024",
+    category: lang === 'en' ? "SEMINAR PROCEEDINGS" : "PROSIDING SEMINAR",
+    link: "https://sinta.kemdiktisaintek.go.id/"
+  },
+  {
+    title: "Deep Learning for Real-Time Medical Image Segmentation in Cloud Infrastructures",
+    author: "Dr. Ahmad Fauzi, M.T.",
+    journal: "International Journal of Computer Science & Software Engineering",
+    year: "2024",
+    category: lang === 'en' ? "INTERNATIONAL JOURNAL" : "JURNAL INTERNASIONAL",
+    link: "https://sinta.kemdiktisaintek.go.id/"
+  },
+  {
+    title: lang === 'en'
+      ? "User Perception of Trust in Blockchain-Based E-Commerce in Bandung"
+      : "Persepsi Pengguna Terhadap Kepercayaan E-Commerce Berbasis Blockchain di Bandung",
+    author: "Sarah Amelia, M.T.",
+    journal: lang === 'en'
+      ? "UMB Journal of Information Systems, Vol. 4 No. 1"
+      : "Jurnal Sistem Informasi UMB, Vol. 4 No. 1",
+    year: "2023",
+    category: lang === 'en' ? "NATIONAL JOURNAL" : "JURNAL NASIONAL",
+    link: "https://sinta.kemdiktisaintek.go.id/"
+  },
+  {
+    title: lang === 'en'
+      ? "Cloud Computing & DevOps: Theory and Practical Laboratory Implementation"
+      : "Cloud Computing & DevOps: Teori dan Implementasi Praktis Laboratorium",
+    author: "M. Yusuf Efendi, S.T., M.T. & Rahmat Hidayat, M.T.",
+    journal: lang === 'en'
+      ? `${PRODI_CONFIG.universityShort} Press Publications (Reference Book)`
+      : `Penerbit ${PRODI_CONFIG.universityShort} Press (Buku Referensi)`,
+    year: "2023",
+    category: lang === 'en' ? "ACADEMIC BOOK" : "BUKU ILMIAH",
+    link: "https://sinta.kemdiktisaintek.go.id/"
+  }
+];
+
+const title = lang === 'en'
+  ? `Faculty Publications | ${PRODI_CONFIG.degree} ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}`
+  : `Tulisan Dosen | ${PRODI_CONFIG.degree} ${PRODI_CONFIG.name.id} ${PRODI_CONFIG.universityShort}`;
+
+const heading = lang === 'en' ? 'Faculty Publications & Research' : 'Tulisan & Karya Ilmiah Dosen';
+
+const description = lang === 'en'
+  ? `A directory of scientific papers, journal research, conference proceedings, media articles, and academic books authored by the faculty members of the ${PRODI_CONFIG.degree} ${PRODI_CONFIG.name.en} program, ${PRODI_CONFIG.university}.`
+  : `Daftar publikasi penelitian, artikel ilmiah, jurnal akreditasi, opini media, dan buku referensi akademik yang ditulis oleh dosen-dosen Program Studi ${PRODI_CONFIG.degree} ${PRODI_CONFIG.name.id} ${PRODI_CONFIG.university}.`;
+
+const tabs = [
+  { label: lang === 'en' ? "ALL PAPERS" : "SEMUA KARYA", active: true },
+  { label: lang === 'en' ? "JOURNALS" : "JURNAL", active: false },
+  { label: lang === 'en' ? "PROCEEDINGS" : "PROSIDING", active: false },
+  { label: lang === 'en' ? "BOOKS" : "BUKU", active: false }
+];
+
+const docLinkLabel = lang === 'en' ? "VIEW DOCUMENT / SINTA" : "LIHAT DOKUMEN / SINTA";
+---
+
+<Layout title={title} lang={lang}>
+  {/* Header Section */}
+  <section class="relative bg-mono-black text-white pt-36 pb-20 border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      <p class="tech-tag text-mono-yellow mb-3">PUBLICATIONS // ACADEMIC WRITING</p>
+      <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl tracking-wide leading-none">
+        {heading}
+      </h1>
+      <p class="font-sans text-sm text-white/60 max-w-2xl mt-4 leading-relaxed">
+        {description}
+      </p>
+    </div>
+  </section>
+
+  {/* Main Grid Section */}
+  <section class="py-20 bg-mono-cream min-h-screen">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      
+      {/* Category Tabs */}
+      <div class="flex flex-wrap gap-2.5 mb-12 border-b border-mono-black/10 pb-6">
+        {tabs.map((tab) => (
+          <span class={tab.active 
+            ? "px-4 py-2 border border-mono-black bg-mono-black text-white text-[10px] font-sans font-bold tracking-widest cursor-pointer shadow-[2px_2px_0px_0px_var(--primary-color)]"
+            : "px-4 py-2 border border-mono-black bg-white text-mono-black text-[10px] font-sans font-bold tracking-widest cursor-pointer hover:bg-neutral-100 transition-colors"
+          }>
+            {tab.label}
+          </span>
+        ))}
+      </div>
+
+      {/* Publications Grid */}
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {publications.map((pub, index) => (
+          <div key={index} class="flex flex-col justify-between border border-mono-black bg-white p-8 hover:shadow-[6px_6px_0px_0px_var(--primary-color)] transition-all duration-300">
+            <div>
+              <div class="flex justify-between items-start mb-4">
+                <span class="tech-tag bg-mono-yellow/15 text-mono-yellow border border-mono-yellow/20 px-2.5 py-1 text-[9px] font-bold tracking-wider">
+                  {pub.category}
+                </span>
+                <span class="tech-tag text-mono-black/45 text-[9px]">{pub.year}</span>
+              </div>
+              <h3 class="font-serif text-xl font-bold text-mono-black mb-4 hover:text-mono-yellow transition-colors leading-snug">
+                {pub.title}
+              </h3>
+              
+              <div class="flex flex-col gap-2 font-sans text-xs text-neutral-600 mb-6">
+                <div class="flex items-center gap-2">
+                  <User class="h-3.5 w-3.5 text-mono-yellow shrink-0" />
+                  <span>{pub.author}</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <BookOpen class="h-3.5 w-3.5 text-mono-yellow shrink-0" />
+                  <span class="italic">{pub.journal}</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-4 border-t border-dotted border-neutral-200">
+              <a 
+                href={pub.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 font-sans text-[10px] font-bold tracking-widest text-mono-black hover:text-mono-yellow transition-colors no-underline"
+              >
+                <span>{docLinkLabel}</span>
+                <ExternalLink class="h-3 w-3" />
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+</Layout>
