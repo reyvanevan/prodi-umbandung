@@ -176,18 +176,28 @@ export function NavDrawer({ lang, isOpen, onClose, logoUrl }: NavDrawerProps) {
         {/* Header */}
         <div className="flex items-center justify-between pb-6 border-b border-white/10 shrink-0">
           <div>
-            {logoUrl ? (
+            <div className="flex items-center gap-3">
               <img 
-                src={logoUrl} 
-                alt="Logo Prodi" 
-                className="h-10 w-auto object-contain max-w-[200px]"
+                src="/assets/logo-umb.png" 
+                alt={`Logo ${PRODI_CONFIG.universityShort}`} 
+                className="h-10 w-auto object-contain bg-white/10 rounded p-1"
+                onError={(e) => {
+                  (e.target as HTMLElement).style.display = 'none';
+                }}
               />
-            ) : (
-              <span className="font-serif text-xl tracking-wide">
-                {PRODI_CONFIG.degree} {PRODI_CONFIG.acronym} {PRODI_CONFIG.universityShort}
-              </span>
-            )}
-            <span className="tech-tag block text-white/40 mt-1">
+              {logoUrl ? (
+                <img 
+                  src={logoUrl} 
+                  alt="Logo Prodi" 
+                  className="h-10 w-auto object-contain max-w-[150px]"
+                />
+              ) : (
+                <span className="font-serif text-xl tracking-wide">
+                  {PRODI_CONFIG.degree} {PRODI_CONFIG.acronym} {PRODI_CONFIG.universityShort}
+                </span>
+              )}
+            </div>
+            <span className="tech-tag block text-white/40 mt-2">
               {lang === 'en' ? 'NAVIGATION MENU' : 'MENU NAVIGASI'}
             </span>
           </div>

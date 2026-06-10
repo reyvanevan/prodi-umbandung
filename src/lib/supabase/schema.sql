@@ -47,6 +47,7 @@ create table if not exists public.landing_stats (
   id uuid primary key default gen_random_uuid(),
   number text not null,
   label text not null,
+  label_en text,
   sort_order int not null default 0,
   created_at timestamp with time zone default timezone('utc'::text, now()) not null
 );
@@ -235,3 +236,7 @@ insert into public.dosen (name, img_src, scopus, sinta, scholar, facebook, twitt
   ('Hanif Alamudin Manshur, S.Gz., M.Si.', 'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=300&auto=format&fit=crop', '-', '6704890', '#', '#', '#', '#', '#', 1),
   ('Vritta Amroini Wahyudi, S.Si., M.Si.', 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=300&auto=format&fit=crop', '-', '6640055', '#', '#', '#', '#', '#', 2),
   ('Prof. Dr. Ir. Noor Harini, M.S.', 'https://images.unsplash.com/photo-1580894732444-8fecef2271ff?q=80&w=300&auto=format&fit=crop', '57203912449', '6042313', '#', '#', '#', '#', '#', 3);
+
+-- MIGRATION SCRIPTS (For existing databases)
+-- Run these if your tables already exist and you need to update their columns:
+-- ALTER TABLE public.landing_stats ADD COLUMN IF NOT EXISTS label_en text;

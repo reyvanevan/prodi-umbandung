@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ALUMNI_TESTIMONIALS } from '@/lib/site-data';
+import { getTestimonials } from '@/lib/supabase/db';
+import { isSupabaseConfigured } from '@/lib/supabase/client';
 
 const SQRT_5000 = Math.sqrt(5000);
 
@@ -136,33 +138,48 @@ export const StaggerTestimonials: React.FC<StaggerTestimonialsProps> = ({ lang, 
     },
   ];
 
-  const getInitialList = () => {
-    let list = [];
-    if (testimonialsListProp && testimonialsListProp.length > 0) {
-      list = testimonialsListProp;
-    } else {
-      list = lang === 'en' ? englishTestimonials : ALUMNI_TESTIMONIALS;
-    }
-
-    // Triple the list to hide the wrapper transition on wide screens
-    let finalTestimonials = [...list];
-    if (finalTestimonials.length > 0 && finalTestimonials.length < 10) {
-      finalTestimonials = [
-        ...finalTestimonials,
-        ...finalTestimonials.map((t, i) => ({ ...t, id: t.id + `-dup1-${i}` })),
-        ...finalTestimonials.map((t, i) => ({ ...t, id: t.id + `-dup2-${i}` }))
-      ];
-    }
-
-    return finalTestimonials.map((item, idx) => ({
-      ...item,
-      tempId: item.tempId !== undefined ? item.tempId : idx
-    }));
-  };
-  const [testimonialsList, setTestimonialsList] = useState(getInitialList);
+  const [testimonialsList, setTestimonialsList] = useState<any[]>([]);
 
   useEffect(() => {
-    setTestimonialsList(getInitialList());
+    const loadTestimonials = async () => {
+      let rawList = [];
+      if (testimonialsListProp && testimonialsListProp.length > 0) {
+        rawList = testimonialsListProp;
+      } else if (isSupabaseConfigured) {
+        const dbData = await getTestimonials();
+        if (dbData && dbData.length > 0) {
+          rawList = dbData.map((t) => ({
+            id: t.id,
+            testimonial: lang === 'en' ? (t.testimonial_en || t.testimonial) : t.testimonial,
+            by: lang === 'en' ? (t.by_en || t.by) : t.by,
+            imgSrc: t.img_src,
+          }));
+        }
+      }
+
+      if (rawList.length === 0) {
+        rawList = lang === 'en' ? englishTestimonials : ALUMNI_TESTIMONIALS;
+      }
+
+      // Triple the list to hide the wrapper transition on wide screens
+      let finalTestimonials = [...rawList];
+      if (finalTestimonials.length > 0 && finalTestimonials.length < 10) {
+        finalTestimonials = [
+          ...finalTestimonials,
+          ...finalTestimonials.map((t, i) => ({ ...t, id: t.id + `-dup1-${i}` })),
+          ...finalTestimonials.map((t, i) => ({ ...t, id: t.id + `-dup2-${i}` }))
+        ];
+      }
+
+      setTestimonialsList(
+        finalTestimonials.map((item, idx) => ({
+          ...item,
+          tempId: idx
+        }))
+      );
+    };
+
+    loadTestimonials();
   }, [lang, testimonialsListProp]);
 
   const handleMove = (steps: number) => {

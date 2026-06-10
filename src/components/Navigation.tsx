@@ -187,6 +187,14 @@ export function Navigation({ lang, onOpenMenu, logoUrl }: NavigationProps) {
       >
         {/* Logo */}
         <a href={lang === 'en' ? '/en' : '/'} className="flex items-center gap-3 no-underline shrink-0">
+          <img 
+            src="/assets/logo-umb.png" 
+            alt={`Logo ${PRODI_CONFIG.universityShort}`} 
+            className="h-10 md:h-12 w-auto object-contain"
+            onError={(e) => {
+              (e.target as HTMLElement).style.display = 'none';
+            }}
+          />
           {logoUrl ? (
             <img 
               src={logoUrl} 

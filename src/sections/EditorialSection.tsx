@@ -10,6 +10,7 @@ interface EditorialSectionProps {
 
 export function EditorialSection({ lang, quote }: EditorialSectionProps) {
   const [dbQuote, setDbQuote] = useState<string | undefined>(quote);
+  const [dbTitle, setDbTitle] = useState<string | undefined>(undefined);
 
   useEffect(() => {
     if (quote) {
@@ -25,12 +26,17 @@ export function EditorialSection({ lang, quote }: EditorialSectionProps) {
         if (item) {
           setDbQuote(lang === 'en' ? (item.value_en || item.value) : item.value);
         }
+        const titleItem = dbContent.find((x) => x.key === 'philosophy_title');
+        if (titleItem) {
+          setDbTitle(lang === 'en' ? (titleItem.value_en || titleItem.value) : titleItem.value);
+        }
       }
     };
     loadData();
   }, [lang, quote]);
 
   const finalQuote = dbQuote || quote;
+  const finalTitle = dbTitle || (lang === 'en' ? 'Our Learning Philosophy' : 'Filosofi Pembelajaran Kami');
   return (
     <section id="editorial" className="w-full min-h-screen bg-mono-black">
       <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
@@ -66,6 +72,10 @@ export function EditorialSection({ lang, quote }: EditorialSectionProps) {
                 <path d="M12 24C12 17.3726 17.3726 12 24 12M24 12C30.6274 12 36 17.3726 36 24M24 12V36M12 24C12 30.6274 17.3726 36 24 36M24 36C30.6274 36 36 30.6274 36 24" />
               </svg>
             </div>
+
+            <p className="tech-tag text-mono-yellow mb-4">
+              {finalTitle.toUpperCase()}
+            </p>
 
             <blockquote className="editorial-quote text-white text-2xl md:text-3xl lg:text-4xl mb-8 leading-snug">
               {finalQuote ? (

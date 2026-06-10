@@ -134,6 +134,7 @@ export interface DbLandingStat {
   id: string;
   number: string;
   label: string;
+  label_en?: string | null;
   sort_order: number;
 }
 

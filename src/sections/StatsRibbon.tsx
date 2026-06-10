@@ -47,7 +47,7 @@ export function StatsRibbon({ lang, statsProp }: StatsRibbonProps) {
                 {stat.number}
               </span>
               <span className="tech-tag text-white/60 text-[10px] tracking-widest max-w-[200px] leading-relaxed">
-                {stat.label}
+                {lang === 'en' ? (stat.label_en || stat.label) : stat.label}
               </span>
             </div>
           ))}
