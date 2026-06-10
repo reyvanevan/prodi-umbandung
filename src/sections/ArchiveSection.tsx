@@ -56,7 +56,7 @@ export function ArchiveSection({ lang }: ArchiveSectionProps) {
       </div>
 
       {/* Asymmetric Achievements Grid */}
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:auto-rows-[320px] lg:auto-rows-[380px] grid-flow-row-dense">
         {products.map((product, index) => {
           // Stagger animation delay classes
           const delayClass =
@@ -69,13 +69,13 @@ export function ArchiveSection({ lang }: ArchiveSectionProps) {
           return (
             <div
               key={product.sku + '-' + index}
-              className={`product-card group fade-in-element ${product.gridClass || ''} ${delayClass}`}
+              className={`product-card group fade-in-element ${product.gridClass || ''} ${delayClass} flex flex-col h-full`}
             >
-              <div className={`relative overflow-hidden bg-neutral-100 ${product.aspectRatio} group`}>
+              <div className="relative overflow-hidden bg-neutral-100 aspect-[4/3] md:aspect-auto md:flex-1 md:h-full group">
                 <img
                   src={product.imgSrc}
                   alt={product.name}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 absolute inset-0"
                 />
 
                 {/* Technical Tags Overlay */}
@@ -93,7 +93,7 @@ export function ArchiveSection({ lang }: ArchiveSectionProps) {
                 </a>
               </div>
 
-              <div className="mt-4">
+              <div className="mt-4 flex-shrink-0">
                 <h3 className="font-serif text-xl">{product.name}</h3>
                 <p className="tech-tag text-mono-black/50 mt-1">{product.material}</p>
               </div>
