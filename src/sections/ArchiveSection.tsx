@@ -1,49 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { MONO_PRODUCTS } from '@/lib/site-data';
-import { getLandingPortfolioItems } from '@/lib/supabase/db';
-import { isSupabaseConfigured } from '@/lib/supabase/client';
 import { PRODI_CONFIG } from '@/config/prodi.config';
+import { useLandingPortfolioItems } from '@/hooks/useSupabaseData';
 
 interface ArchiveSectionProps {
   lang: 'id' | 'en';
 }
 
 export function ArchiveSection({ lang }: ArchiveSectionProps) {
-  const [products, setProducts] = useState(MONO_PRODUCTS);
-  const [loading, setLoading] = useState(isSupabaseConfigured);
-
-  useEffect(() => {
-    if (!isSupabaseConfigured) {
-      setLoading(false);
-      return;
-    }
-
-    const loadData = async () => {
-      const fetched = await getLandingPortfolioItems();
-      if (fetched && fetched.length > 0) {
-        const mappedItems = fetched.map((item) => {
-          let aspect = 'aspect-[3/4]';
-          if (item.gridClass && item.gridClass.includes('row-span-2')) {
-            aspect = 'aspect-[4/3] lg:aspect-auto lg:h-full';
-          } else if (item.gridClass && item.gridClass.includes('col-span-2')) {
-            aspect = 'aspect-[16/9] lg:aspect-[21/9]';
-          }
-          return {
-            sku: item.year || 'AWARD',
-            name: item.title,
-            material: item.medium,
-            fabric: item.technique,
-            gridClass: item.gridClass || '',
-            aspectRatio: aspect,
-            imgSrc: item.image,
-          };
-        });
-        setProducts(mappedItems);
-      }
-      setLoading(false);
-    };
-    loadData();
-  }, []);
+  const { portfolioItems, loading } = useLandingPortfolioItems();
+  const products = portfolioItems || MONO_PRODUCTS;
 
   if (loading) {
     return (

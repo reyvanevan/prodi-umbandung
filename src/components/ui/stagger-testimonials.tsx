@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { ALUMNI_TESTIMONIALS } from '@/lib/site-data';
-import { getTestimonials } from '@/lib/supabase/db';
-import { isSupabaseConfigured } from '@/lib/supabase/client';
+import { useTestimonials } from '@/hooks/useSupabaseData';
 
 const SQRT_5000 = Math.sqrt(5000);
 
@@ -138,33 +137,25 @@ export const StaggerTestimonials: React.FC<StaggerTestimonialsProps> = ({ lang, 
     },
   ];
 
+  const { testimonials: fetchedTestimonials, loading } = useTestimonials(lang);
   const [testimonialsList, setTestimonialsList] = useState<any[]>([]);
-  const [loading, setLoading] = useState(!testimonialsListProp && isSupabaseConfigured);
 
   useEffect(() => {
-    const loadTestimonials = async () => {
-      let rawList = [];
-      if (testimonialsListProp && testimonialsListProp.length > 0) {
-        rawList = testimonialsListProp;
-      } else if (isSupabaseConfigured) {
-        const dbData = await getTestimonials();
-        if (dbData && dbData.length > 0) {
-          rawList = dbData.map((t) => ({
-            id: t.id,
-            testimonial: lang === 'en' ? (t.testimonial_en || t.testimonial) : t.testimonial,
-            by: lang === 'en' ? (t.by_en || t.by) : t.by,
-            imgSrc: t.img_src,
-          }));
-        }
-      }
+    let rawList = [];
+    if (testimonialsListProp && testimonialsListProp.length > 0) {
+      rawList = testimonialsListProp;
+    } else if (fetchedTestimonials && fetchedTestimonials.length > 0) {
+      rawList = fetchedTestimonials;
+    }
 
-      if (rawList.length === 0) {
-        rawList = lang === 'en' ? englishTestimonials : ALUMNI_TESTIMONIALS;
-      }
+    if (rawList.length === 0 && !loading) {
+      rawList = lang === 'en' ? englishTestimonials : ALUMNI_TESTIMONIALS;
+    }
 
+    if (rawList.length > 0) {
       // Triple the list to hide the wrapper transition on wide screens
       let finalTestimonials = [...rawList];
-      if (finalTestimonials.length > 0 && finalTestimonials.length < 10) {
+      if (finalTestimonials.length < 10) {
         finalTestimonials = [
           ...finalTestimonials,
           ...finalTestimonials.map((t, i) => ({ ...t, id: t.id + `-dup1-${i}` })),
@@ -178,11 +169,8 @@ export const StaggerTestimonials: React.FC<StaggerTestimonialsProps> = ({ lang, 
           tempId: idx
         }))
       );
-      setLoading(false);
-    };
-
-    loadTestimonials();
-  }, [lang, testimonialsListProp]);
+    }
+  }, [lang, testimonialsListProp, fetchedTestimonials, loading]);
 
   if (loading) {
     return (

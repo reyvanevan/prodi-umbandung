@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { getLandingStats } from '@/lib/supabase/db';
-import { isSupabaseConfigured } from '@/lib/supabase/client';
+import React from 'react';
+import { useLandingStats } from '@/hooks/useSupabaseData';
 
 interface StatsRibbonProps {
   lang: 'id' | 'en';
@@ -8,25 +7,8 @@ interface StatsRibbonProps {
 }
 
 export function StatsRibbon({ lang, statsProp }: StatsRibbonProps) {
-  const [dbStats, setDbStats] = useState<any[] | undefined>(statsProp);
-  const [loading, setLoading] = useState(!statsProp && isSupabaseConfigured);
-
-  useEffect(() => {
-    if (statsProp) return;
-    if (!isSupabaseConfigured) {
-      setLoading(false);
-      return;
-    }
-
-    const loadData = async () => {
-      const fetchedStats = await getLandingStats();
-      if (fetchedStats && fetchedStats.length > 0) {
-        setDbStats(fetchedStats);
-      }
-      setLoading(false);
-    };
-    loadData();
-  }, [statsProp]);
+  const { stats: fetchedStats, loading } = useLandingStats();
+  const dbStats = statsProp || fetchedStats;
 
   const defaultStats = lang === 'en' ? [
     { number: '180+', label: 'ACTIVE INFORMATICS STUDENTS' },

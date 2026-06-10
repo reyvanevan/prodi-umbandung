@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { getPartners, getLandingPartners } from '@/lib/supabase/db';
-import { isSupabaseConfigured } from '@/lib/supabase/client';
+import React from 'react';
 import { PARTNERS } from '@/lib/site-data';
+import { useLandingPartners } from '@/hooks/useSupabaseData';
 
 interface PartnersSectionProps {
   lang: 'id' | 'en';
@@ -9,38 +8,8 @@ interface PartnersSectionProps {
 }
 
 export function PartnersSection({ lang, partnersList }: PartnersSectionProps) {
-  const [dbPartners, setDbPartners] = useState<string[] | undefined>(partnersList);
-  const [loading, setLoading] = useState(!partnersList && isSupabaseConfigured);
-
-  useEffect(() => {
-    if (partnersList) {
-      setDbPartners(partnersList);
-      setLoading(false);
-      return;
-    }
-    if (!isSupabaseConfigured) {
-      setLoading(false);
-      return;
-    }
-
-    const loadData = async () => {
-      // Try landing_partners table first
-      const fetchedLanding = await getLandingPartners();
-      if (fetchedLanding && fetchedLanding.length > 0) {
-        setDbPartners(fetchedLanding.map((item) => item.name));
-        setLoading(false);
-        return;
-      }
-
-      // Fallback to legacy partners table
-      const fetchedPartners = await getPartners();
-      if (fetchedPartners) {
-        setDbPartners(fetchedPartners.map((item) => item.name));
-      }
-      setLoading(false);
-    };
-    loadData();
-  }, [partnersList]);
+  const { partners: fetchedPartners, loading } = useLandingPartners();
+  const dbPartners = partnersList || fetchedPartners;
 
   const finalPartners = dbPartners && dbPartners.length > 0 ? dbPartners : PARTNERS;
   // Triple the array to create a seamless infinite loop on all screen widths

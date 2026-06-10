@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { getSiteContent } from '@/lib/supabase/db';
-import { isSupabaseConfigured } from '@/lib/supabase/client';
+import React from 'react';
 import { PRODI_CONFIG } from '@/config/prodi.config';
+import { useSiteContent } from '@/hooks/useSupabaseData';
 
 interface SambutanKaprodiProps {
   lang: 'id' | 'en';
@@ -11,39 +10,14 @@ interface SambutanKaprodiProps {
 }
 
 export function SambutanKaprodi({ lang, title, p1, p2 }: SambutanKaprodiProps) {
-  const [dbTitle, setDbTitle] = useState<string | undefined>(title);
-  const [dbP1, setDbP1] = useState<string | undefined>(p1);
-  const [dbP2, setDbP2] = useState<string | undefined>(p2);
-  const [dbKaprodiName, setDbKaprodiName] = useState<string | undefined>(undefined);
-  const [dbKaprodiTitle, setDbKaprodiTitle] = useState<string | undefined>(undefined);
-  const [dbKaprodiPhoto, setDbKaprodiPhoto] = useState<string | undefined>(undefined);
-  const [loading, setLoading] = useState(!title && !p1 && !p2 && isSupabaseConfigured);
+  const { contentMap, loading } = useSiteContent(lang);
 
-  useEffect(() => {
-    if (!isSupabaseConfigured) {
-      setLoading(false);
-      return;
-    }
-
-    const loadData = async () => {
-      const dbContent = await getSiteContent();
-      if (dbContent) {
-        const contentMap: Record<string, string> = {};
-        dbContent.forEach((item) => {
-          contentMap[item.key] = lang === 'en' ? (item.value_en || item.value) : item.value;
-        });
-        
-        if (!title && contentMap.sambutan_title) setDbTitle(contentMap.sambutan_title);
-        if (!p1 && contentMap.kaprodi_welcome) setDbP1(contentMap.kaprodi_welcome);
-        if (!p2 && contentMap.kaprodi_welcome_p2) setDbP2(contentMap.kaprodi_welcome_p2);
-        if (contentMap.kaprodi_name) setDbKaprodiName(contentMap.kaprodi_name);
-        if (contentMap.kaprodi_title) setDbKaprodiTitle(contentMap.kaprodi_title);
-        if (contentMap.kaprodi_photo_url) setDbKaprodiPhoto(contentMap.kaprodi_photo_url);
-      }
-      setLoading(false);
-    };
-    loadData();
-  }, [lang, title, p1, p2]);
+  const dbTitle = title || contentMap.sambutan_title;
+  const dbP1 = p1 || contentMap.kaprodi_welcome;
+  const dbP2 = p2 || contentMap.kaprodi_welcome_p2;
+  const dbKaprodiName = contentMap.kaprodi_name;
+  const dbKaprodiTitle = contentMap.kaprodi_title;
+  const dbKaprodiPhoto = contentMap.kaprodi_photo_url;
 
   if (loading) {
     return (

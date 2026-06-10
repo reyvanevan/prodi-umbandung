@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { getSiteContent } from '@/lib/supabase/db';
-import { isSupabaseConfigured } from '@/lib/supabase/client';
+import React from 'react';
 import { PRODI_CONFIG } from '@/config/prodi.config';
+import { useSiteContent } from '@/hooks/useSupabaseData';
 
 interface EditorialSectionProps {
   lang: 'id' | 'en';
@@ -9,37 +8,10 @@ interface EditorialSectionProps {
 }
 
 export function EditorialSection({ lang, quote }: EditorialSectionProps) {
-  const [dbQuote, setDbQuote] = useState<string | undefined>(quote);
-  const [dbTitle, setDbTitle] = useState<string | undefined>(undefined);
-  const [loading, setLoading] = useState(!quote && isSupabaseConfigured);
+  const { contentMap, loading } = useSiteContent(lang);
 
-  useEffect(() => {
-    if (quote) {
-      setDbQuote(quote);
-      setLoading(false);
-      return;
-    }
-    if (!isSupabaseConfigured) {
-      setLoading(false);
-      return;
-    }
-
-    const loadData = async () => {
-      const dbContent = await getSiteContent();
-      if (dbContent) {
-        const item = dbContent.find((x) => x.key === 'philosophy_body');
-        if (item) {
-          setDbQuote(lang === 'en' ? (item.value_en || item.value) : item.value);
-        }
-        const titleItem = dbContent.find((x) => x.key === 'philosophy_title');
-        if (titleItem) {
-          setDbTitle(lang === 'en' ? (titleItem.value_en || titleItem.value) : titleItem.value);
-        }
-      }
-      setLoading(false);
-    };
-    loadData();
-  }, [lang, quote]);
+  const dbQuote = quote || contentMap.philosophy_body;
+  const dbTitle = contentMap.philosophy_title;
 
   const finalQuote = dbQuote || quote;
   const finalTitle = dbTitle || (lang === 'en' ? 'Our Learning Philosophy' : 'Filosofi Pembelajaran Kami');

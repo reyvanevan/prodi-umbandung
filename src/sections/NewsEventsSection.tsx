@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { getNews, getEvents } from '@/lib/supabase/db';
-import { isSupabaseConfigured } from '@/lib/supabase/client';
+import React from 'react';
 import { ACADEMIC_NEWS, ACADEMIC_EVENTS } from '@/lib/site-data';
 import { PRODI_CONFIG } from '@/config/prodi.config';
+import { useNewsAndEvents } from '@/hooks/useSupabaseData';
 
 interface NewsEventsSectionProps {
   lang: 'id' | 'en';
@@ -11,63 +10,10 @@ interface NewsEventsSectionProps {
 }
 
 export function NewsEventsSection({ lang, newsList, eventsList }: NewsEventsSectionProps) {
-  const [dbNews, setDbNews] = useState<any[] | undefined>(newsList);
-  const [dbEvents, setDbEvents] = useState<any[] | undefined>(eventsList);
-  const [loading, setLoading] = useState(!newsList && !eventsList && isSupabaseConfigured);
+  const { news: fetchedNews, events: fetchedEvents, loading } = useNewsAndEvents(lang);
 
-  useEffect(() => {
-    // Sync props to state if props are provided
-    if (newsList) {
-      setDbNews(newsList);
-    }
-    if (eventsList) {
-      setDbEvents(eventsList);
-    }
-
-    if (newsList && eventsList) {
-      setLoading(false);
-      return;
-    }
-    if (!isSupabaseConfigured) {
-      setLoading(false);
-      return;
-    }
-
-    const loadData = async () => {
-      if (!newsList) {
-        const fetchedNews = await getNews();
-        if (fetchedNews) {
-          setDbNews(
-            fetchedNews.map((item) => ({
-              id: item.id,
-              title: lang === 'en' ? (item.title_en || item.title) : item.title,
-              category: lang === 'en' ? (item.category_en || item.category) : item.category,
-              snippet: lang === 'en' ? (item.snippet_en || item.snippet) : item.snippet,
-              date: item.date,
-              imgSrc: item.img_src,
-            }))
-          );
-        }
-      }
-
-      if (!eventsList) {
-        const fetchedEvents = await getEvents();
-        if (fetchedEvents) {
-          setDbEvents(
-            fetchedEvents.map((item) => ({
-              id: item.id,
-              dateDay: item.date_day,
-              dateMonth: item.date_month,
-              title: lang === 'en' ? (item.title_en || item.title) : item.title,
-              location: lang === 'en' ? (item.location_en || item.location) : item.location,
-            }))
-          );
-        }
-      }
-      setLoading(false);
-    };
-    loadData();
-  }, [lang, newsList, eventsList]);
+  const dbNews = newsList || fetchedNews;
+  const dbEvents = eventsList || fetchedEvents;
 
   if (loading) {
     return (

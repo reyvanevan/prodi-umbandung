@@ -1,38 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import { getSiteContent } from '@/lib/supabase/db';
-import { isSupabaseConfigured } from '@/lib/supabase/client';
+import React from 'react';
 import { PRODI_CONFIG } from '@/config/prodi.config';
+import { useSiteContent } from '@/hooks/useSupabaseData';
 
 interface HeroSectionProps {
   lang: 'id' | 'en';
 }
 
 export function HeroSection({ lang }: HeroSectionProps) {
-  const [dbTitle, setDbTitle] = useState<string | undefined>(undefined);
-  const [dbSubtitle, setDbSubtitle] = useState<string | undefined>(undefined);
-  const [heroBgUrl, setHeroBgUrl] = useState<string | undefined>(undefined);
-  const [loading, setLoading] = useState(isSupabaseConfigured);
+  const { contentMap, loading } = useSiteContent(lang);
 
-  useEffect(() => {
-    if (!isSupabaseConfigured) {
-      setLoading(false);
-      return;
-    }
-    const loadData = async () => {
-      const dbContent = await getSiteContent();
-      if (dbContent) {
-        const contentMap: Record<string, string> = {};
-        dbContent.forEach((item) => {
-          contentMap[item.key] = lang === 'en' ? (item.value_en || item.value) : item.value;
-        });
-        if (contentMap.hero_title) setDbTitle(contentMap.hero_title);
-        if (contentMap.hero_subtitle) setDbSubtitle(contentMap.hero_subtitle);
-        if (contentMap.hero_bg_url) setHeroBgUrl(contentMap.hero_bg_url);
-      }
-      setLoading(false);
-    };
-    loadData();
-  }, [lang]);
+  const dbTitle = contentMap.hero_title;
+  const dbSubtitle = contentMap.hero_subtitle;
+  const heroBgUrl = contentMap.hero_bg_url;
 
   // Fallback title logic
   const defaultTitle = lang === 'en' ? PRODI_CONFIG.name.en : PRODI_CONFIG.name.id;
