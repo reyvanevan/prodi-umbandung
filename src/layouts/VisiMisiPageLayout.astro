@@ -2,12 +2,20 @@
 import Layout from './Layout.astro';
 import { Target, Compass, Flag, ShieldCheck } from 'lucide-react';
 import { PRODI_CONFIG } from '../config/prodi.config';
+import { getSiteContent } from '../lib/supabase/db';
 
 interface Props {
   lang: 'id' | 'en';
 }
 
 const { lang } = Astro.props;
+
+// Fetch database site content
+const siteContent = await getSiteContent();
+const contentMap = (siteContent || []).reduce((acc, curr) => {
+  acc[curr.key] = lang === 'en' ? (curr.value_en || curr.value) : curr.value;
+  return acc;
+}, {} as Record<string, string>);
 
 const title = lang === 'en'
   ? `Vision & Mission | ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}`
@@ -19,11 +27,11 @@ const description = lang === 'en'
   ? `The strategic foundation of the ${PRODI_CONFIG.degree} ${PRODI_CONFIG.name.en} program at ${PRODI_CONFIG.universityShort}, integrating modern technology innovation with noble ethical and moral values.`
   : `Landasan strategis penyelenggaraan program studi ${PRODI_CONFIG.degree} ${PRODI_CONFIG.name.id} ${PRODI_CONFIG.universityShort} dalam mengintegrasikan inovasi teknologi modern dengan nilai-nilai moral keislaman.`;
 
-const vision = lang === 'en'
+const defaultVision = lang === 'en'
   ? `To become a leading, globally-recognized center of software engineering education and research that integrates Islamic values and digital technological innovations by 2030.`
   : `Menjadi program studi rekayasa perangkat lunak yang unggul di tingkat nasional, berdaya saing global, terintegrasi dengan nilai-nilai Keislaman serta inovasi teknologi digital pada tahun 2030.`;
 
-const missions = lang === 'en' ? [
+const defaultMissions = lang === 'en' ? [
   "Deliver a high-quality software engineering curriculum that aligns with global computing standards and dynamic tech industry demands.",
   "Conduct innovative, collaborative research in cloud systems, artificial intelligence, and cybersecurity with meaningful academic publications.",
   "Implement digital transformation initiatives and community service programs to support local MSMEs and community sectors.",
@@ -35,7 +43,7 @@ const missions = lang === 'en' ? [
   "Mengintegrasikan etika Keislaman, integritas profesional, dan prinsip moral dalam pembelajaran akademik serta pembinaan karakter."
 ];
 
-const goals = lang === 'en' ? [
+const defaultGoals = lang === 'en' ? [
   {
     title: "Global Professional Competency",
     desc: `To produce graduates of the ${PRODI_CONFIG.acronym} program who master modern programming systems, secure cloud architecture, and hold professional IT certifications.`
@@ -70,6 +78,22 @@ const goals = lang === 'en' ? [
     desc: "Mencetak praktisi rekayasa perangkat lunak yang memiliki kepemimpinan tangguh, etika profesi yang tinggi, serta komitmen terhadap kemaslahatan masyarakat."
   }
 ];
+
+// Resolve final database content or defaults
+const vision = contentMap['visi_misi_vision'] || defaultVision;
+
+const missions = contentMap['visi_misi_missions']
+  ? contentMap['visi_misi_missions'].split('\n').filter(Boolean)
+  : defaultMissions;
+
+const goals = contentMap['visi_misi_goals']
+  ? contentMap['visi_misi_goals'].split('\n').filter(Boolean).map((line, idx) => {
+      const parts = line.split('//');
+      const title = parts[0]?.trim();
+      const desc = parts[1]?.trim() || (defaultGoals[idx] ? defaultGoals[idx].desc : "");
+      return { title, desc };
+    })
+  : defaultGoals;
 ---
 
 <Layout title={title} lang={lang}>

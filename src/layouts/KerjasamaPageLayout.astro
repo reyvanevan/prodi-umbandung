@@ -2,6 +2,7 @@
 import Layout from './Layout.astro';
 import { Handshake, Landmark, Briefcase, GraduationCap } from 'lucide-react';
 import { PRODI_CONFIG } from '../config/prodi.config';
+import { getSiteContent } from '../lib/supabase/db';
 
 interface Props {
   lang: 'id' | 'en';
@@ -9,15 +10,24 @@ interface Props {
 
 const { lang } = Astro.props;
 
+// Fetch database site content
+const siteContent = await getSiteContent();
+const contentMap = (siteContent || []).reduce((acc, curr) => {
+  acc[curr.key] = lang === 'en' ? (curr.value_en || curr.value) : curr.value;
+  return acc;
+}, {} as Record<string, string>);
+
 const title = lang === 'en'
   ? `Partnerships & Cooperation | ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}`
   : `Mitra Kerjasama | ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}`;
 
 const heading = lang === 'en' ? 'Industrial & Academic Synergy' : 'Kemitraan & Sinergi Industri';
 
-const description = lang === 'en'
+const defaultDescription = lang === 'en'
   ? `Exploring global collaborations to support the Tri Dharma of Higher Education, student internships, joint research programs, and professional career transitions.`
   : `Membuka peluang kolaborasi global guna mendukung Tri Dharma Perguruan Tinggi, magang industri mahasiswa, riset bersama, serta penyerapan karir lulusan.`;
+
+const description = contentMap['kerjasama_description'] || defaultDescription;
 
 const categories = [
   {

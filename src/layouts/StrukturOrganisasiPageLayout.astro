@@ -2,12 +2,20 @@
 import Layout from './Layout.astro';
 import { Shield, Users, Mail, UserPlus } from 'lucide-react';
 import { PRODI_CONFIG } from '../config/prodi.config';
+import { getSiteContent } from '../lib/supabase/db';
 
 interface Props {
   lang: 'id' | 'en';
 }
 
 const { lang } = Astro.props;
+
+// Fetch database site content
+const siteContent = await getSiteContent();
+const contentMap = (siteContent || []).reduce((acc, curr) => {
+  acc[curr.key] = lang === 'en' ? (curr.value_en || curr.value) : curr.value;
+  return acc;
+}, {} as Record<string, string>);
 
 const title = lang === 'en'
   ? `Organizational Structure | ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}`
@@ -19,29 +27,31 @@ const description = lang === 'en'
   ? `The academic governance body and operational officers directing the ${PRODI_CONFIG.degree} ${PRODI_CONFIG.name.en} program at ${PRODI_CONFIG.universityShort}.`
   : `Jajaran pimpinan akademik dan pelaksana operasional yang mengarahkan program studi ${PRODI_CONFIG.degree} ${PRODI_CONFIG.name.id} ${PRODI_CONFIG.universityShort}.`;
 
-// Structured hierarchy roles
+// Structured hierarchy roles from database with fallback
 const head = {
-  name: PRODI_CONFIG.headOfDepartment.name,
-  role: lang === 'en' ? "Head of Department" : "Ketua Program Studi",
-  desc: lang === 'en' ? "Responsible for overall strategic development, curriculum planning, and academic partnerships." : "Penanggung jawab utama pengembangan strategis, penjaminan mutu kurikulum, dan kemitraan eksternal prodi.",
+  name: contentMap['kaprodi_name'] || PRODI_CONFIG.headOfDepartment.name,
+  role: contentMap['kaprodi_title'] || (lang === 'en' ? "Head of Department" : "Ketua Program Studi"),
+  desc: lang === 'en'
+    ? (contentMap['kaprodi_welcome'] ? contentMap['kaprodi_welcome'].substring(0, 150) + "..." : "Responsible for overall strategic development, curriculum planning, and academic partnerships.")
+    : (contentMap['kaprodi_welcome'] ? contentMap['kaprodi_welcome'].substring(0, 150) + "..." : "Penanggung jawab utama pengembangan strategis, penjaminan mutu kurikulum, dan kemitraan eksternal prodi."),
   email: PRODI_CONFIG.contact.email,
-  photo: "/assets/kaprodi.png"
+  photo: contentMap['kaprodi_photo_url'] || "/assets/kaprodi.png"
 };
 
 const officers = [
   {
-    name: "Vritta Amroini Wahyudi, S.Si., M.Si.",
-    role: lang === 'en' ? "Secretary of Department" : "Sekretaris Program Studi",
+    name: contentMap['gov_sec_name'] || "Vritta Amroini Wahyudi, S.Si., M.Si.",
+    role: contentMap['gov_sec_role'] || (lang === 'en' ? "Secretary of Department" : "Sekretaris Program Studi"),
     desc: lang === 'en' ? "Directs student administration, lecture schedules, exam coordination, and student records." : "Mengelola administrasi mahasiswa, koordinasi jadwal kuliah, persiapan ujian, dan rekam akademik.",
-    email: "vritta.aw@umbandung.ac.id",
-    photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=300&auto=format&fit=crop"
+    email: contentMap['gov_sec_email'] || "vritta.aw@umbandung.ac.id",
+    photo: contentMap['gov_sec_photo'] || "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=300&auto=format&fit=crop"
   },
   {
-    name: "Hanif Alamudin Manshur, S.Gz., M.Si.",
-    role: lang === 'en' ? "Head of Computing Laboratories" : "Kepala Laboratorium Komputasi",
+    name: contentMap['gov_lab_name'] || "Hanif Alamudin Manshur, S.Gz., M.Si.",
+    role: contentMap['gov_lab_role'] || (lang === 'en' ? "Head of Computing Laboratories" : "Kepala Laboratorium Komputasi"),
     desc: lang === 'en' ? "Manages servers, software licensing, studio resources, network infrastructures, and laboratory assistants." : "Mengelola workstation, lisensi perangkat lunak, infrastruktur jaringan studio, serta koordinasi asisten lab.",
-    email: "hanif.am@umbandung.ac.id",
-    photo: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=300&auto=format&fit=crop"
+    email: contentMap['gov_lab_email'] || "hanif.am@umbandung.ac.id",
+    photo: contentMap['gov_lab_photo'] || "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=300&auto=format&fit=crop"
   }
 ];
 

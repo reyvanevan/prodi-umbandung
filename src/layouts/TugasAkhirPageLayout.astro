@@ -2,6 +2,7 @@
 import Layout from './Layout.astro';
 import { ClipboardCheck, Download, Calendar, BookOpen, AlertCircle } from 'lucide-react';
 import { PRODI_CONFIG } from '../config/prodi.config';
+import { getSiteContent } from '../lib/supabase/db';
 
 interface Props {
   lang: 'id' | 'en';
@@ -9,18 +10,27 @@ interface Props {
 
 const { lang } = Astro.props;
 
+// Fetch database site content
+const siteContent = await getSiteContent();
+const contentMap = (siteContent || []).reduce((acc, curr) => {
+  acc[curr.key] = lang === 'en' ? (curr.value_en || curr.value) : curr.value;
+  return acc;
+}, {} as Record<string, string>);
+
 const title = lang === 'en'
   ? `Final Project Guidelines | ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}`
   : `Panduan Tugas Akhir | ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}`;
 
 const heading = lang === 'en' ? 'Final Project & Thesis Portal' : 'Portal Tugas Akhir & Skripsi';
 
-const description = lang === 'en'
+const defaultDescription = lang === 'en'
   ? `Access guidelines, academic prerequisites, research workflows, and download templates required to successfully complete your capstone final project.`
   : `Akses panduan akademik, persyaratan kelayakan, alur pengajuan proposal, serta berkas unduhan template untuk menyelesaikan Tugas Akhir (Skripsi) Anda.`;
 
+const description = contentMap['tugas_akhir_description'] || defaultDescription;
+
 // 1. Prerequisites
-const prerequisites = lang === 'en' ? [
+const defaultPrerequisites = lang === 'en' ? [
   "Successfully completed a minimum of 110 academic credits (SKS).",
   "No 'D' or 'E' grades for core Software Engineering / Computing courses.",
   "Minimum GPA (IPK) of 2.00.",
@@ -31,6 +41,10 @@ const prerequisites = lang === 'en' ? [
   "IPK Kumulatif minimal 2.00.",
   "Telah memasukkan mata kuliah 'Seminar Proposal Tugas Akhir' di KRS berjalan."
 ];
+
+const prerequisites = contentMap['tugas_akhir_prereq_desc']
+  ? contentMap['tugas_akhir_prereq_desc'].split('\n').filter(Boolean)
+  : defaultPrerequisites;
 
 // 2. Thesis Workflow Steps
 const steps = lang === 'en' ? [

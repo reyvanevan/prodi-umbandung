@@ -229,7 +229,35 @@ insert into public.site_content (key, value, value_en) values
   ('kaprodi_title', 'Ketua Program Studi Teknik Informatika', 'Head of Informatics Engineering Department'),
   ('sambutan_title', 'Sambutan Kepala Program Studi', 'Head of Department''s Welcome'),
   ('philosophy_title', 'Filosofi Pembelajaran Kami', 'Our Learning Philosophy'),
-  ('philosophy_body', 'Kami percaya bahwa pemrograman bukan hanya tentang mengetik baris kode, melainkan tentang membangun solusi komputasi yang efisien, etis, dan memberikan dampak nyata bagi masyarakat.', 'We believe programming is not just about writing lines of code, but about building efficient, ethical computing solutions that deliver real impact to society.');
+  ('philosophy_body', 'Kami percaya bahwa pemrograman bukan hanya tentang mengetik baris kode, melainkan tentang membangun solusi komputasi yang efisien, etis, dan memberikan dampak nyata bagi masyarakat.', 'We believe programming is not just about writing lines of code, but about building efficient, ethical computing solutions that deliver real impact to society.'),
+  ('visi_misi_vision', 'Menjadi program studi rekayasa perangkat lunak yang unggul di tingkat nasional, berdaya saing global, terintegrasi dengan nilai-nilai Keislaman serta inovasi teknologi digital pada tahun 2030.', 'To become a leading, globally-recognized center of software engineering education and research that integrates Islamic values and digital technological innovations by 2030.'),
+  ('visi_misi_missions', 'Menyelenggarakan pendidikan rekayasa perangkat lunak berkualitas tinggi yang selaras dengan standar komputasi global dan kebutuhan dinamis industri teknologi.
+Melaksanakan riset inovatif dan kolaboratif di bidang sistem awan, kecerdasan buatan, dan keamanan siber dengan publikasi akademis yang berdampak.
+Mengimplementasikan program pengabdian masyarakat berbasis transformasi digital untuk memberdayakan UMKM lokal dan sektor sosial kemasyarakatan.
+Mengintegrasikan etika Keislaman, integritas profesional, dan prinsip moral dalam pembelajaran akademik serta pembinaan karakter.', 'Deliver a high-quality software engineering curriculum that aligns with global computing standards and dynamic tech industry demands.
+Conduct innovative, collaborative research in cloud systems, artificial intelligence, and cybersecurity with meaningful academic publications.
+Implement digital transformation initiatives and community service programs to support local MSMEs and community sectors.
+Integrate Islamic ethics, professional integrity, and moral principles into academic learning and character development.'),
+  ('visi_misi_goals', 'Kompetensi Profesional Global
+Output Riset yang Inovatif
+Ekosistem Digital Berkelanjutan
+Karakter Islami & Kepemimpinan', 'Global Professional Competency
+Innovative Research Output
+Sustainable Digital Ecosystems
+Islamic Character & Leadership'),
+  ('gov_sec_name', 'Vritta Amroini Wahyudi, S.Si., M.Si.', 'Vritta Amroini Wahyudi, S.Si., M.Si.'),
+  ('gov_sec_role', 'Sekretaris Program Studi', 'Secretary of Department'),
+  ('gov_sec_email', 'vritta.aw@umbandung.ac.id', 'vritta.aw@umbandung.ac.id'),
+  ('gov_sec_photo', 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=300&auto=format&fit=crop', 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=300&auto=format&fit=crop'),
+  ('gov_lab_name', 'Hanif Alamudin Manshur, S.Gz., M.Si.', 'Hanif Alamudin Manshur, S.Gz., M.Si.'),
+  ('gov_lab_role', 'Kepala Laboratorium Komputasi', 'Head of Computing Laboratories'),
+  ('gov_lab_email', 'hanif.am@umbandung.ac.id', 'hanif.am@umbandung.ac.id'),
+  ('gov_lab_photo', 'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=300&auto=format&fit=crop', 'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=300&auto=format&fit=crop'),
+  ('kurikulum_description', 'Pelajari kurikulum adaptif kami yang disusun berdasarkan standar komputasi internasional (ACM/IEEE), sertifikasi profesi industri, serta skema Merdeka Belajar Kampus Merdeka (MBKM).', 'Explore our modern, adaptive curriculum structured around international computing standards (ACM/IEEE), industry certifications, and MBKM learning path designs.'),
+  ('kurikulum_internship_desc', 'Mahasiswa kami difasilitasi untuk mengkonversikan pengalaman kerja lapangan / magang industri riil hingga 20 SKS akademik di bawah skema MBKM Kemendikbud, bermitra dengan startup dan BUMN teknologi terkemuka.', 'Our students are eligible to convert real-world industrial experiences into up to 20 academic credits under the Kemendikbud MBKM schema, collaborating with global and national technology enterprises.'),
+  ('tugas_akhir_description', 'Akses panduan akademik, persyaratan kelayakan, alur pengajuan proposal, serta berkas unduhan template untuk menyelesaikan Tugas Akhir (Skripsi) Anda.', 'Access guidelines, academic prerequisites, research workflows, and download templates required to successfully complete your capstone final project.'),
+  ('tugas_akhir_prereq_desc', 'Telah menempuh dan lulus minimal 110 SKS mata kuliah akademik, tidak memiliki nilai D/E untuk core courses, IPK Kumulatif minimal 2.00, serta menyertakan Seminar Proposal di KRS berjalan.', 'Successfully completed a minimum of 110 academic credits (SKS), no D or E grades for core courses, minimum GPA of 2.00, and enrolled in Thesis Proposal Seminar in the current KRS.'),
+  ('kerjasama_description', 'Membuka peluang kolaborasi global guna mendukung Tri Dharma Perguruan Tinggi, magang industri mahasiswa, riset bersama, serta penyerapan karir lulusan.', 'Exploring global collaborations to support the Tri Dharma of Higher Education, student internships, joint research programs, and professional career transitions.');
 
 -- Seed Dosen
 insert into public.dosen (name, img_src, scopus, sinta, scholar, facebook, twitter, tiktok, instagram, sort_order) values

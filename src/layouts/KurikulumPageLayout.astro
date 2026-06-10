@@ -2,6 +2,7 @@
 import Layout from './Layout.astro';
 import { BookOpen, GraduationCap, Award, Compass } from 'lucide-react';
 import { PRODI_CONFIG } from '../config/prodi.config';
+import { getSiteContent } from '../lib/supabase/db';
 
 interface Props {
   lang: 'id' | 'en';
@@ -9,15 +10,24 @@ interface Props {
 
 const { lang } = Astro.props;
 
+// Fetch database site content
+const siteContent = await getSiteContent();
+const contentMap = (siteContent || []).reduce((acc, curr) => {
+  acc[curr.key] = lang === 'en' ? (curr.value_en || curr.value) : curr.value;
+  return acc;
+}, {} as Record<string, string>);
+
 const title = lang === 'en'
   ? `Curriculum & Academic Structure | ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}`
   : `Kurikulum & Akademik | ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}`;
 
 const heading = lang === 'en' ? 'Academic Program Curriculum' : 'Kurikulum & Capaian Pembelajaran';
 
-const description = lang === 'en'
+const defaultDescription = lang === 'en'
   ? `Explore our modern, adaptive curriculum structured around international computing standards (ACM/IEEE), industry certifications, and MBKM learning path designs.`
   : `Pelajari kurikulum adaptif kami yang disusun berdasarkan standar komputasi internasional (ACM/IEEE), sertifikasi profesi industri, serta skema Merdeka Belajar Kampus Merdeka (MBKM).`;
+
+const description = contentMap['kurikulum_description'] || defaultDescription;
 
 // 1. Graduate Profiles
 const profiles = lang === 'en' ? [
@@ -155,9 +165,10 @@ const semesters = [
 ];
 
 const internshipTitle = lang === 'en' ? 'MBKM & Internship Framework' : 'Skema Magang Industri & MBKM';
-const internshipDesc = lang === 'en'
+const defaultInternshipDesc = lang === 'en'
   ? "Our students are eligible to convert real-world industrial experiences into up to 20 academic credits under the Kemendikbud MBKM schema, collaborating with global and national technology enterprises."
   : "Mahasiswa kami difasilitasi untuk mengkonversikan pengalaman kerja lapangan / magang industri riil hingga 20 SKS akademik di bawah skema MBKM Kemendikbud, bermitra dengan startup dan BUMN teknologi terkemuka.";
+const internshipDesc = contentMap['kurikulum_internship_desc'] || defaultInternshipDesc;
 ---
 
 <Layout title={title} lang={lang}>
