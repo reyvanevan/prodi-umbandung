@@ -1,0 +1,187 @@
+---
+import Layout from './Layout.astro';
+import { ClipboardCheck, Download, Calendar, BookOpen, AlertCircle } from 'lucide-react';
+import { PRODI_CONFIG } from '../config/prodi.config';
+
+interface Props {
+  lang: 'id' | 'en';
+}
+
+const { lang } = Astro.props;
+
+const title = lang === 'en'
+  ? `Final Project Guidelines | ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}`
+  : `Panduan Tugas Akhir | ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}`;
+
+const heading = lang === 'en' ? 'Final Project & Thesis Portal' : 'Portal Tugas Akhir & Skripsi';
+
+const description = lang === 'en'
+  ? `Access guidelines, academic prerequisites, research workflows, and download templates required to successfully complete your capstone final project.`
+  : `Akses panduan akademik, persyaratan kelayakan, alur pengajuan proposal, serta berkas unduhan template untuk menyelesaikan Tugas Akhir (Skripsi) Anda.`;
+
+// 1. Prerequisites
+const prerequisites = lang === 'en' ? [
+  "Successfully completed a minimum of 110 academic credits (SKS).",
+  "No 'D' or 'E' grades for core Software Engineering / Computing courses.",
+  "Minimum GPA (IPK) of 2.00.",
+  "Currently enrolled in the 'Thesis Proposal Seminar' course."
+] : [
+  "Telah menempuh dan lulus minimal 110 SKS mata kuliah akademik.",
+  "Tidak memiliki nilai 'D' atau 'E' untuk mata kuliah wajib Rekayasa Perangkat Lunak / Inti Komputasi.",
+  "IPK Kumulatif minimal 2.00.",
+  "Telah memasukkan mata kuliah 'Seminar Proposal Tugas Akhir' di KRS berjalan."
+];
+
+// 2. Thesis Workflow Steps
+const steps = lang === 'en' ? [
+  { num: "01", title: "Topic Submission", desc: "Submit your research title and abstract online to the academic committee." },
+  { num: "02", title: "Advisor Assignment", desc: "Get assigned primary and secondary academic advisors based on research alignment." },
+  { num: "03", title: "Proposal Seminar", desc: "Defend your research design and methodologies in front of a review board." },
+  { num: "04", title: "Mentorship & Coding", desc: "Develop the software solution and compile the thesis under advisor supervision." },
+  { num: "05", title: "Final Defense (Sidang)", desc: "Conduct a live defense of the completed codebase and scientific thesis write-up." }
+] : [
+  { num: "01", title: "Pengajuan Topik", desc: "Mengajukan draf judul dan ringkasan ide penelitian secara online kepada tim prodi." },
+  { num: "02", title: "Penunjukan Pembimbing", desc: "Menerima penetapan Dosen Pembimbing Utama dan Pendamping sesuai dengan topik riset." },
+  { num: "03", title: "Seminar Proposal", desc: "Mempresentasikan rencana riset dan desain perangkat lunak di hadapan dewan penguji." },
+  { num: "04", title: "Bimbingan & Coding", desc: "Mengembangkan produk perangkat lunak dan menyusun buku laporan akhir dengan bimbingan berkala." },
+  { num: "05", title: "Sidang Akhir (Pendadaran)", desc: "Mempertahankan fungsionalitas aplikasi dan naskah ilmiah di depan dewan penguji." }
+];
+
+// 3. Document Templates for Download
+const templates = lang === 'en' ? [
+  { name: "Thesis Book LaTeX / Word Template", size: "2.4 MB", type: "ZIP" },
+  { name: "Final Project Proposal Form", size: "120 KB", type: "PDF" },
+  { name: "Journal Publication Template", size: "450 KB", type: "DOCX" },
+  { name: "Thesis Consultation Logbook", size: "85 KB", type: "PDF" }
+] : [
+  { name: "Template Buku Skripsi LaTeX / Word", size: "2.4 MB", type: "ZIP" },
+  { name: "Form Pengajuan Proposal TA", size: "120 KB", type: "PDF" },
+  { name: "Template Jurnal Ilmiah Prodi", size: "450 KB", type: "DOCX" },
+  { name: "Kartu Kendali Bimbingan (Logbook)", size: "85 KB", type: "PDF" }
+];
+
+// 4. Sample Research Topics
+const sampleTopics = lang === 'en' ? [
+  "Optimization of microservices network protocols using secure gRPC tunnels.",
+  "Developing automated ML pipelines for early plant disease identification via edge nodes.",
+  "Securing public electronic health record databases via decentralized smart contracts.",
+  "Comparative analysis of Flutter vs native Swift/Kotlin render pipelines under intense resource load."
+] : [
+  "Optimasi protokol jaringan arsitektur microservices menggunakan secure gRPC tunnel.",
+  "Pengembangan pipeline ML otomatis untuk identifikasi penyakit tanaman via perangkat edge.",
+  "Pengamanan basis data rekam medis elektronik publik via smart contract terdesentralisasi.",
+  "Analisis perbandingan performa render pipeline Flutter vs native Swift/Kotlin pada beban memori tinggi."
+];
+---
+
+<Layout title={title} lang={lang}>
+  {/* Header Section */}
+  <section class="relative bg-mono-black text-white pt-36 pb-20 border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      <p class="tech-tag text-mono-yellow mb-3">REQUISITES // THESIS</p>
+      <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl tracking-wide leading-none">
+        {heading}
+      </h1>
+      <p class="font-sans text-sm text-white/60 max-w-2xl mt-4 leading-relaxed">
+        {description}
+      </p>
+    </div>
+  </section>
+
+  {/* Main Guidelines Grid */}
+  <section class="py-20 bg-mono-cream min-h-screen space-y-16">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      
+      {/* 1. Prerequisites and Downloads Column */}
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16 items-start">
+        {/* Prerequisites */}
+        <div class="lg:col-span-7 border border-mono-black bg-white p-8 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+          <p class="tech-tag text-mono-yellow mb-3">ELIGIBILITY // PERSYARATAN</p>
+          <h2 class="font-serif text-2xl text-mono-black mb-8 border-b border-neutral-100 pb-4 flex items-center gap-3">
+            <ClipboardCheck class="h-6 w-6 text-mono-black" />
+            <span>{lang === 'en' ? 'Academic Eligibility Criteria' : 'Kriteria Kelayakan Akademik'}</span>
+          </h2>
+          
+          <ul class="space-y-4">
+            {prerequisites.map((p) => (
+              <li class="flex gap-3 items-start">
+                <AlertCircle class="h-4.5 w-4.5 text-mono-yellow shrink-0 mt-0.5" />
+                <p class="font-sans text-xs text-neutral-700 leading-relaxed">
+                  {p}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Downloadable templates */}
+        <div class="lg:col-span-5 border border-mono-black bg-white p-8 shadow-[4px_4px_0px_0px_var(--primary-color)]">
+          <p class="tech-tag text-mono-yellow mb-3">RESOURCES // DOWNLOADS</p>
+          <h2 class="font-serif text-2xl text-mono-black mb-8 border-b border-neutral-100 pb-4 flex items-center gap-3">
+            <Download class="h-6 w-6 text-mono-black" />
+            <span>{lang === 'en' ? 'Templates & Forms' : 'Berkas & Dokumen TA'}</span>
+          </h2>
+          
+          <div class="space-y-4">
+            {templates.map((t) => (
+              <div class="flex items-center justify-between border-b border-dashed border-neutral-200 pb-3 last:border-0 last:pb-0">
+                <div>
+                  <h4 class="font-serif text-xs font-bold text-mono-black">{t.name}</h4>
+                  <span class="tech-tag text-[8px] text-neutral-500 mt-1 block">{t.size} // {t.type}</span>
+                </div>
+                <button 
+                  onClick="alert('Template download is initiated.')"
+                  class="border border-mono-black bg-neutral-50 hover:bg-mono-black hover:text-white p-2 transition-colors shrink-0"
+                >
+                  <Download class="h-4 w-4" />
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* 2. Flowchart Timeline (Vertical/Horizontal timeline) */}
+      <div class="border border-mono-black bg-white p-8 lg:p-12 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] mb-16">
+        <p class="tech-tag text-mono-yellow mb-2">TIMELINE // WORKFLOW</p>
+        <h3 class="font-serif text-2xl font-bold text-mono-black mb-12 flex items-center gap-3">
+          <Calendar class="h-6 w-6 text-mono-black" />
+          <span>{lang === 'en' ? 'Thesis Defense Milestones' : 'Tahapan Sidang & Bimbingan'}</span>
+        </h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
+          {steps.map((s) => (
+            <div class="border border-neutral-200 bg-neutral-50/50 p-6 flex flex-col justify-between hover:border-mono-black transition-colors">
+              <div>
+                <span class="font-serif text-3xl font-extrabold text-mono-black/15 block mb-2">{s.num}</span>
+                <h4 class="font-serif text-sm font-bold text-mono-black mb-2">{s.title}</h4>
+                <p class="font-sans text-[10px] text-neutral-500 leading-relaxed">{s.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* 3. Sample Research Fields (Neo-brutalist callout) */}
+      <div class="border border-mono-black bg-mono-black text-white p-8 lg:p-12 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+        <p class="tech-tag text-white/50 mb-2">RESEARCH // SAMPLE TOPICS</p>
+        <h3 class="font-serif text-2xl text-white mb-8 flex items-center gap-3">
+          <BookOpen class="h-6 w-6 text-mono-yellow" />
+          <span>{lang === 'en' ? 'Recommended Thesis Research Areas' : 'Rekomendasi Judul & Bidang Riset'}</span>
+        </h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {sampleTopics.map((topic, idx) => (
+            <div class="border border-white/10 bg-white/5 p-6 hover:bg-white/10 transition-colors flex items-start gap-4">
+              <span class="tech-tag text-[9px] bg-mono-yellow text-mono-black px-2 py-0.5 mt-0.5 shrink-0">TOPIC 0{idx+1}</span>
+              <p class="font-sans text-xs text-white/80 leading-relaxed">
+                {topic}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  </section>
+</Layout>

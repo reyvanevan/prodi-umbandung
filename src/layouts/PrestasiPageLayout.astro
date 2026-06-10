@@ -1,0 +1,182 @@
+---
+import Layout from './Layout.astro';
+import { Award, Trophy, Bookmark, Sparkles } from 'lucide-react';
+import { PRODI_CONFIG } from '../config/prodi.config';
+
+interface Props {
+  lang: 'id' | 'en';
+}
+
+const { lang } = Astro.props;
+
+const title = lang === 'en'
+  ? `Achievements & Recognition | ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}`
+  : `Prestasi & Penghargaan | ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}`;
+
+const heading = lang === 'en' ? 'Program & Student Achievements' : 'Galeri Prestasi & Penghargaan';
+
+const description = lang === 'en'
+  ? `Celebrating academic excellences, research breakthroughs, national hackathon podiums, and professional accolades of our students and faculty members.`
+  : `Apresiasi atas pencapaian akademik terbaik, hibah riset, podium kejuaraan hackathon nasional, dan pengakuan profesional mahasiswa serta dosen.`;
+
+// 1. Department/Prodi Achievements
+const prodiAchievements = lang === 'en' ? [
+  {
+    title: "National BAN-PT 'Baik Sekali' Accreditation",
+    year: "2024",
+    desc: "Achieved the superior 'Baik Sekali' standard for educational infrastructure and curriculum alignment."
+  },
+  {
+    title: "AWS Academy Partner Certification",
+    year: "2023",
+    desc: "Authorized cloud computing training certification integration for all active undergraduate students."
+  },
+  {
+    title: "Kemendikbud Research Grant Awardee",
+    year: "2024",
+    desc: "Received strategic research funding for developing AI-based community diagnosis web tools."
+  }
+] : [
+  {
+    title: "Akreditasi Nasional BAN-PT 'Baik Sekali'",
+    year: "2024",
+    desc: "Berhasil memperoleh predikat akreditasi 'Baik Sekali' atas kelayakan sarana pendidikan dan kesesuaian kurikulum."
+  },
+  {
+    title: "Sertifikasi Kemitraan AWS Academy",
+    year: "2023",
+    desc: "Otorisasi integrasi materi kurikulum komputasi awan berstandar industri bagi seluruh mahasiswa aktif."
+  },
+  {
+    title: "Penerima Hibah Riset Kemendikbudristek",
+    year: "2024",
+    desc: "Memperoleh pendanaan riset nasional untuk pengembangan alat diagnosis berbasis kecerdasan buatan."
+  }
+];
+
+// 2. Student Competition Wins
+const studentWins = lang === 'en' ? [
+  {
+    title: "1st Place Winner // National IoT Hackathon",
+    competitor: "Aditya Pratama & Team",
+    year: "2024",
+    host: "Ministry of Communication and Informatics (Kominfo)",
+    desc: "Constructed an automated solar-powered agricultural greenhouse monitoring system under 48 hours."
+  },
+  {
+    title: "Best UX Design // National IT Exhibition",
+    competitor: "Siti Rahma & Team",
+    year: "2023",
+    host: "Institut Teknologi Bandung (ITB)",
+    desc: "Designed an inclusive neo-brutalist mobile interface helper for visually impaired students."
+  },
+  {
+    title: "2nd Runner Up // International Programming Contest",
+    competitor: "Rifqi Fauzan",
+    year: "2024",
+    host: "Muhammadiyah International Association",
+    desc: "Solved complex mathematical computing problems under intense algorithmic time limits."
+  }
+] : [
+  {
+    title: "Juara I // Hackathon IoT Nasional",
+    competitor: "Aditya Pratama & Tim",
+    year: "2024",
+    host: "Kementerian Komunikasi & Informatika (Kominfo)",
+    desc: "Merancang sistem pemantauan rumah kaca pertanian otomatis bertenaga surya dalam waktu 48 jam."
+  },
+  {
+    title: "Desain UX Terbaik // IT Exhibition",
+    competitor: "Siti Rahma & Tim",
+    year: "2023",
+    host: "Institut Teknologi Bandung (ITB)",
+    desc: "Merancang antarmuka seluler neo-brutalis ramah disabilitas untuk membantu mahasiswa tunanetra."
+  },
+  {
+    title: "Juara Harapan II // Kontes Pemrograman Internasional",
+    competitor: "Rifqi Fauzan",
+    year: "2024",
+    host: "Asosiasi Internasional Muhammadiyah",
+    desc: "Memecahkan persoalan komputasi matematika kompleks di bawah batas waktu algoritma yang ketat."
+  }
+];
+---
+
+<Layout title={title} lang={lang}>
+  {/* Header Section */}
+  <section class="relative bg-mono-black text-white pt-36 pb-20 border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      <p class="tech-tag text-mono-yellow mb-3">GALLERY // AWARDS</p>
+      <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl tracking-wide leading-none">
+        {heading}
+      </h1>
+      <p class="font-sans text-sm text-white/60 max-w-2xl mt-4 leading-relaxed">
+        {description}
+      </p>
+    </div>
+  </section>
+
+  {/* Main Achievements Display */}
+  <section class="py-20 bg-mono-cream min-h-screen space-y-20">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      
+      {/* 1. Department/Institutional Awards */}
+      <div class="mb-20">
+        <div class="flex items-center gap-3 mb-8">
+          <Bookmark class="h-6 w-6 text-mono-yellow" />
+          <h2 class="font-serif text-2xl md:text-3xl text-mono-black font-bold">
+            {lang === 'en' ? 'Institutional Accreditations & Milestones' : 'Penghargaan & Akreditasi Program Studi'}
+          </h2>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {prodiAchievements.map((pa) => (
+            <div class="border border-mono-black bg-white p-8 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col justify-between hover:shadow-[6px_6px_0px_0px_var(--primary-color)] transition-all">
+              <div>
+                <span class="tech-tag text-[9px] text-mono-yellow font-bold block mb-3">{pa.year} // INSTITUTIONAL</span>
+                <h3 class="font-serif text-lg font-bold text-mono-black mb-3">{pa.title}</h3>
+                <p class="font-sans text-xs text-neutral-600 leading-relaxed mb-6">
+                  {pa.desc}
+                </p>
+              </div>
+              <div class="border-t border-dashed border-neutral-100 pt-4 flex items-center gap-2 text-mono-black/45">
+                <Award class="h-4.5 w-4.5" />
+                <span class="font-serif text-[10px] uppercase font-bold tracking-wider">{PRODI_CONFIG.acronym} {PRODI_CONFIG.universityShort}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* 2. Student Competition Success Grid */}
+      <div>
+        <div class="flex items-center gap-3 mb-8">
+          <Trophy class="h-6 w-6 text-mono-yellow" />
+          <h2 class="font-serif text-2xl md:text-3xl text-mono-black font-bold">
+            {lang === 'en' ? 'Student Competition Honor Roll' : 'Prestasi Kompetisi & Kejuaraan Mahasiswa'}
+          </h2>
+        </div>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {studentWins.map((sw) => (
+            <div class="border border-mono-black bg-white p-8 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col justify-between hover:shadow-[6px_6px_0px_0px_var(--primary-color)] transition-all">
+              <div>
+                <span class="tech-tag text-[9px] text-mono-yellow font-bold block mb-3">{sw.year} // COMPETITION WINNER</span>
+                <h3 class="font-serif text-lg font-bold text-mono-black mb-1">{sw.title}</h3>
+                <span class="tech-tag text-[8px] text-neutral-500 block mb-4">{sw.competitor}</span>
+                <p class="font-sans text-xs text-neutral-600 leading-relaxed mb-6">
+                  {sw.desc}
+                </p>
+              </div>
+              <div class="border-t border-dotted border-neutral-200 pt-4 flex items-center justify-between text-neutral-500 font-sans text-[9px]">
+                <span class="font-bold uppercase tracking-wider">{sw.host}</span>
+                <Sparkles class="h-3.5 w-3.5 text-mono-yellow" />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  </section>
+</Layout>

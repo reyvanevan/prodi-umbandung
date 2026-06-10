@@ -1,0 +1,156 @@
+---
+import Layout from './Layout.astro';
+import { Target, Compass, Flag, ShieldCheck } from 'lucide-react';
+import { PRODI_CONFIG } from '../config/prodi.config';
+
+interface Props {
+  lang: 'id' | 'en';
+}
+
+const { lang } = Astro.props;
+
+const title = lang === 'en'
+  ? `Vision & Mission | ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}`
+  : `Visi & Misi | ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}`;
+
+const heading = lang === 'en' ? 'Vision, Mission & Goals' : 'Visi, Misi & Tujuan Akademik';
+
+const description = lang === 'en'
+  ? `The strategic foundation of the ${PRODI_CONFIG.degree} ${PRODI_CONFIG.name.en} program at ${PRODI_CONFIG.universityShort}, integrating modern technology innovation with noble ethical and moral values.`
+  : `Landasan strategis penyelenggaraan program studi ${PRODI_CONFIG.degree} ${PRODI_CONFIG.name.id} ${PRODI_CONFIG.universityShort} dalam mengintegrasikan inovasi teknologi modern dengan nilai-nilai moral keislaman.`;
+
+const vision = lang === 'en'
+  ? `To become a leading, globally-recognized center of software engineering education and research that integrates Islamic values and digital technological innovations by 2030.`
+  : `Menjadi program studi rekayasa perangkat lunak yang unggul di tingkat nasional, berdaya saing global, terintegrasi dengan nilai-nilai Keislaman serta inovasi teknologi digital pada tahun 2030.`;
+
+const missions = lang === 'en' ? [
+  "Deliver a high-quality software engineering curriculum that aligns with global computing standards and dynamic tech industry demands.",
+  "Conduct innovative, collaborative research in cloud systems, artificial intelligence, and cybersecurity with meaningful academic publications.",
+  "Implement digital transformation initiatives and community service programs to support local MSMEs and community sectors.",
+  "Integrate Islamic ethics, professional integrity, and moral principles into academic learning and character development."
+] : [
+  "Menyelenggarakan pendidikan rekayasa perangkat lunak berkualitas tinggi yang selaras dengan standar komputasi global dan kebutuhan dinamis industri teknologi.",
+  "Melaksanakan riset inovatif dan kolaboratif di bidang sistem awan, kecerdasan buatan, dan keamanan siber dengan publikasi akademis yang berdampak.",
+  "Mengimplementasikan program pengabdian masyarakat berbasis transformasi digital untuk memberdayakan UMKM lokal dan sektor sosial kemasyarakatan.",
+  "Mengintegrasikan etika Keislaman, integritas profesional, dan prinsip moral dalam pembelajaran akademik serta pembinaan karakter."
+];
+
+const goals = lang === 'en' ? [
+  {
+    title: "Global Professional Competency",
+    desc: `To produce graduates of the ${PRODI_CONFIG.acronym} program who master modern programming systems, secure cloud architecture, and hold professional IT certifications.`
+  },
+  {
+    title: "Innovative Research Output",
+    desc: "To generate scientific publications in reputable national journals and international conferences, with patents/copyrights for software products."
+  },
+  {
+    title: "Sustainable Digital Ecosystems",
+    desc: "To establish strategic partnerships with global tech enterprises, enabling seamless internship placements and rapid graduate career absorption."
+  },
+  {
+    title: "Islamic Character & Leadership",
+    desc: "To nurture software engineering practitioners who possess strong leadership skills, high professional ethics, and a commitment to societal well-being."
+  }
+] : [
+  {
+    title: "Kompetensi Profesional Global",
+    desc: `Menghasilkan lulusan program studi ${PRODI_CONFIG.acronym} yang menguasai sistem pemrograman modern, arsitektur cloud yang aman, serta memiliki sertifikasi profesi IT.`
+  },
+  {
+    title: "Output Riset yang Inovatif",
+    desc: "Menghasilkan publikasi ilmiah di jurnal nasional terakreditasi dan konferensi internasional, serta hak kekayaan intelektual (HKI) atas produk perangkat lunak."
+  },
+  {
+    title: "Ekosistem Digital Berkelanjutan",
+    desc: "Membangun kemitraan strategis dengan perusahaan teknologi global untuk mendukung magang industri mahasiswa dan penyerapan lulusan yang cepat."
+  },
+  {
+    title: "Karakter Islami & Kepemimpinan",
+    desc: "Mencetak praktisi rekayasa perangkat lunak yang memiliki kepemimpinan tangguh, etika profesi yang tinggi, serta komitmen terhadap kemaslahatan masyarakat."
+  }
+];
+---
+
+<Layout title={title} lang={lang}>
+  {/* Header Section */}
+  <section class="relative bg-mono-black text-white pt-36 pb-20 border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      <p class="tech-tag text-mono-yellow mb-3">DEPARTMENT // STRATEGY</p>
+      <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl tracking-wide leading-none">
+        {heading}
+      </h1>
+      <p class="font-sans text-sm text-white/60 max-w-2xl mt-4 leading-relaxed">
+        {description}
+      </p>
+    </div>
+  </section>
+
+  {/* Content Section */}
+  <section class="py-20 bg-mono-cream min-h-screen">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      
+      {/* Vision Card (Neo-brutalist big callout) */}
+      <div class="border border-mono-black bg-white p-8 lg:p-12 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] mb-12 relative overflow-hidden">
+        <div class="absolute top-0 right-0 p-8 opacity-5">
+          <Compass class="h-40 w-40 text-mono-yellow" />
+        </div>
+        
+        <p class="tech-tag text-mono-yellow mb-3">VISION // VISI UTAMA</p>
+        <h2 class="font-serif text-3xl md:text-4xl text-mono-black mb-6 border-b border-dashed border-neutral-200 pb-4">
+          {lang === 'en' ? 'Our Strategic Vision' : 'Visi Utama Program Studi'}
+        </h2>
+        <blockquote class="font-serif text-xl md:text-2xl lg:text-3xl text-neutral-800 leading-snug italic max-w-4xl">
+          "{vision}"
+        </blockquote>
+      </div>
+
+      {/* Mission & Goals Row */}
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        {/* Mission List */}
+        <div class="lg:col-span-6 border border-mono-black bg-white p-8 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+          <p class="tech-tag text-mono-yellow mb-3">MISSION // MISI OPERASIONAL</p>
+          <h2 class="font-serif text-2xl text-mono-black mb-8 border-b border-neutral-100 pb-4 flex items-center gap-3">
+            <Flag class="h-6 w-6 text-mono-black" />
+            <span>{lang === 'en' ? 'Operational Mission' : 'Misi Penyelenggaraan'}</span>
+          </h2>
+          
+          <ul class="space-y-6">
+            {missions.map((m, idx) => (
+              <li class="flex gap-4">
+                <div class="h-8 w-8 rounded-none bg-mono-black text-white flex items-center justify-center font-serif text-sm font-bold shrink-0">
+                  0{idx+1}
+                </div>
+                <p class="font-sans text-sm text-neutral-700 leading-relaxed pt-0.5">
+                  {m}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Goals Grid */}
+        <div class="lg:col-span-6 space-y-6">
+          <div class="border border-mono-black bg-mono-black text-white p-8 shadow-[4px_4px_0px_0px_var(--primary-color)]">
+            <p class="tech-tag text-white/50 mb-2">GOALS // TARGET CAPAIAN</p>
+            <h2 class="font-serif text-2xl text-white flex items-center gap-3">
+              <Target class="h-6 w-6 text-mono-yellow" />
+              <span>{lang === 'en' ? 'Program Educational Goals' : 'Tujuan Program Pendidikan'}</span>
+            </h2>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {goals.map((g, idx) => (
+              <div class="border border-mono-black bg-white p-6 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">
+                <span class="tech-tag text-[9px] text-mono-yellow font-bold block mb-2">GOAL 0{idx+1}</span>
+                <h4 class="font-serif text-base font-bold text-mono-black mb-2">{g.title}</h4>
+                <p class="font-sans text-xs text-neutral-600 leading-relaxed">{g.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</Layout>

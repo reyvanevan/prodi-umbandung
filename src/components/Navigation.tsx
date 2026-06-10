@@ -48,29 +48,29 @@ export function Navigation({ lang, onOpenMenu, logoUrl }: NavigationProps) {
     {
       label: 'ABOUT US',
       submenu: [
-        { label: 'Program Achievements', href: '/en/#aktivitas-prestasi' },
-        { label: 'Vision & Mission', href: '/en/#profil' },
+        { label: 'Program Achievements', href: '/en/prestasi' },
+        { label: 'Vision & Mission', href: '/en/visi-misi' },
         {
           label: 'Faculty & Staff Profile',
           href: '#',
           items: [
-            { label: 'Organizational Structure', href: '/en/#struktur-organisasi' },
+            { label: 'Organizational Structure', href: '/en/struktur-organisasi' },
             { label: 'Faculty, Lab Tech & Staff', href: '/en/dosen' },
           ],
         },
-        { label: 'Cooperation', href: '/en/#mitra-kerjasama' },
+        { label: 'Cooperation', href: '/en/kerjasama' },
       ],
     },
     {
       label: 'ACADEMICS',
       submenu: [
-        { label: 'Study Program Curriculum', href: '/en/#tujuan-pendidikan' },
-        { label: 'Prospectus', href: '/en/#info-singkat' },
-        { label: 'Graduate Profile', href: '/en/#tujuan-pendidikan' },
-        { label: 'Graduate Learning Outcomes (PLO)', href: '/en/#tujuan-pendidikan' },
+        { label: 'Study Program Curriculum', href: '/en/kurikulum' },
+        { label: 'Prospectus', href: '/en/kurikulum' },
+        { label: 'Graduate Profile', href: '/en/kurikulum' },
+        { label: 'Graduate Learning Outcomes (PLO)', href: '/en/kurikulum' },
         { label: 'Research & Publications', href: '/en/tulisan-dosen' },
-        { label: 'Internship', href: '/en/#tujuan-pendidikan' },
-        { label: 'Final Project / Thesis', href: '/en/#tugas-akhir' },
+        { label: 'Internship', href: '/en/kurikulum' },
+        { label: 'Final Project / Thesis', href: '/en/tugas-akhir' },
         { label: 'Lecture Schedule', href: '/en/statistik' },
         { label: 'Learning Management System (LMS)', href: 'https://lms.umbandung.ac.id', isExternal: true },
       ],
@@ -86,8 +86,8 @@ export function Navigation({ lang, onOpenMenu, logoUrl }: NavigationProps) {
     {
       label: 'STUDENTS & ALUMNI',
       submenu: [
-        { label: 'Student Achievements', href: '/en/#aktivitas-prestasi' },
-        { label: 'Final Project', href: '/en/#tugas-akhir' },
+        { label: 'Student Achievements', href: '/en/prestasi' },
+        { label: 'Final Project', href: '/en/tugas-akhir' },
         { label: 'Alumni', href: '/en/alumni' },
       ],
     },
@@ -106,29 +106,29 @@ export function Navigation({ lang, onOpenMenu, logoUrl }: NavigationProps) {
     {
       label: 'TENTANG KAMI',
       submenu: [
-        { label: 'Prestasi Program Studi', href: '/#aktivitas-prestasi' },
-        { label: 'Visi & Misi', href: '/#profil' },
+        { label: 'Prestasi Program Studi', href: '/prestasi' },
+        { label: 'Visi & Misi', href: '/visi-misi' },
         {
           label: 'Profil SDM',
           href: '#',
           items: [
-            { label: 'Struktur Organisasi', href: '/#struktur-organisasi' },
+            { label: 'Struktur Organisasi', href: '/struktur-organisasi' },
             { label: 'Dosen, Laboran dan Karyawan', href: '/dosen' },
           ],
         },
-        { label: 'Kerjasama', href: '/#mitra-kerjasama' },
+        { label: 'Kerjasama', href: '/kerjasama' },
       ],
     },
     {
       label: 'AKADEMIK',
       submenu: [
-        { label: 'Kurikulum Program Studi', href: '/#tujuan-pendidikan' },
-        { label: 'Prospectus', href: '/#info-singkat' },
-        { label: 'Profil Lulusan', href: '/#tujuan-pendidikan' },
-        { label: 'Capaian Pembelajaran Lulusan (CPL)', href: '/#tujuan-pendidikan' },
+        { label: 'Kurikulum Program Studi', href: '/kurikulum' },
+        { label: 'Prospectus', href: '/kurikulum' },
+        { label: 'Profil Lulusan', href: '/kurikulum' },
+        { label: 'Capaian Pembelajaran Lulusan (CPL)', href: '/kurikulum' },
         { label: 'Riset & Publikasi', href: '/tulisan-dosen' },
-        { label: 'Magang', href: '/#tujuan-pendidikan' },
-        { label: 'Tugas Akhir / Skripsi', href: '/#tugas-akhir' },
+        { label: 'Magang', href: '/kurikulum' },
+        { label: 'Tugas Akhir / Skripsi', href: '/tugas-akhir' },
         { label: 'Jadwal Kuliah', href: '/statistik' },
         { label: 'Learning Management System (LMS)', href: 'https://lms.umbandung.ac.id', isExternal: true },
       ],
@@ -144,8 +144,8 @@ export function Navigation({ lang, onOpenMenu, logoUrl }: NavigationProps) {
     {
       label: 'MAHASISWA DAN ALUMNI',
       submenu: [
-        { label: 'Prestasi Mahasiswa', href: '/#aktivitas-prestasi' },
-        { label: 'Tugas Akhir', href: '/#tugas-akhir' },
+        { label: 'Prestasi Mahasiswa', href: '/prestasi' },
+        { label: 'Tugas Akhir', href: '/tugas-akhir' },
         { label: 'Alumni', href: '/alumni' },
       ],
     },

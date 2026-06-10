@@ -39,11 +39,11 @@ export function Footer({ lang = 'id' }: FooterProps) {
             id: 'about',
             name: 'ABOUT US',
             items: [
-              { name: 'Program Achievements', href: '/en/#aktivitas-prestasi' },
-              { name: 'Vision & Mission', href: '/en/#profil' },
-              { name: 'Organizational Structure', href: '/en/#struktur-organisasi' },
+              { name: 'Program Achievements', href: '/en/prestasi' },
+              { name: 'Vision & Mission', href: '/en/visi-misi' },
+              { name: 'Organizational Structure', href: '/en/struktur-organisasi' },
               { name: 'Faculty, Lab Tech & Staff', href: '/en/dosen' },
-              { name: 'Cooperation', href: '/en/#mitra-kerjasama' },
+              { name: 'Cooperation', href: '/en/kerjasama' },
             ],
           },
           {
@@ -59,8 +59,8 @@ export function Footer({ lang = 'id' }: FooterProps) {
             id: 'students',
             name: 'STUDENTS & ALUMNI',
             items: [
-              { name: 'Student Achievements', href: '/en/#aktivitas-prestasi' },
-              { name: 'Final Project', href: '/en/#tugas-akhir' },
+              { name: 'Student Achievements', href: '/en/prestasi' },
+              { name: 'Final Project', href: '/en/tugas-akhir' },
               { name: 'Alumni', href: '/en/alumni' },
             ],
           },
@@ -77,11 +77,11 @@ export function Footer({ lang = 'id' }: FooterProps) {
             id: 'about',
             name: 'TENTANG KAMI',
             items: [
-              { name: 'Prestasi Program Studi', href: '/#aktivitas-prestasi' },
-              { name: 'Visi & Misi', href: '/#profil' },
-              { name: 'Struktur Organisasi', href: '/#struktur-organisasi' },
+              { name: 'Prestasi Program Studi', href: '/prestasi' },
+              { name: 'Visi & Misi', href: '/visi-misi' },
+              { name: 'Struktur Organisasi', href: '/struktur-organisasi' },
               { name: 'Dosen, Laboran dan Karyawan', href: '/dosen' },
-              { name: 'Kerjasama', href: '/#mitra-kerjasama' },
+              { name: 'Kerjasama', href: '/kerjasama' },
             ],
           },
           {
@@ -97,8 +97,8 @@ export function Footer({ lang = 'id' }: FooterProps) {
             id: 'students',
             name: 'MAHASISWA & ALUMNI',
             items: [
-              { name: 'Prestasi Mahasiswa', href: '/#aktivitas-prestasi' },
-              { name: 'Tugas Akhir', href: '/#tugas-akhir' },
+              { name: 'Prestasi Mahasiswa', href: '/prestasi' },
+              { name: 'Tugas Akhir', href: '/tugas-akhir' },
               { name: 'Alumni', href: '/alumni' },
             ],
           },

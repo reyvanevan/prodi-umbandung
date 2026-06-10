@@ -1,0 +1,161 @@
+---
+import Layout from './Layout.astro';
+import { Handshake, Landmark, Briefcase, GraduationCap } from 'lucide-react';
+import { PRODI_CONFIG } from '../config/prodi.config';
+
+interface Props {
+  lang: 'id' | 'en';
+}
+
+const { lang } = Astro.props;
+
+const title = lang === 'en'
+  ? `Partnerships & Cooperation | ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}`
+  : `Mitra Kerjasama | ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}`;
+
+const heading = lang === 'en' ? 'Industrial & Academic Synergy' : 'Kemitraan & Sinergi Industri';
+
+const description = lang === 'en'
+  ? `Exploring global collaborations to support the Tri Dharma of Higher Education, student internships, joint research programs, and professional career transitions.`
+  : `Membuka peluang kolaborasi global guna mendukung Tri Dharma Perguruan Tinggi, magang industri mahasiswa, riset bersama, serta penyerapan karir lulusan.`;
+
+const categories = [
+  {
+    icon: Briefcase,
+    title: lang === 'en' ? "Industrial & Corporate Partners" : "Mitra Industri & Korporasi",
+    desc: lang === 'en' ? "Direct links for internships, curriculum reviews, professional certification programs, and recruitment." : "Jalur penyerapan magang, tinjauan praktisi industri terhadap kurikulum, sertifikasi profesi, dan rekrutmen lulusan.",
+    partners: [
+      "PT GoTo Gojek Tokopedia Tbk",
+      "PT Indonesia Digital Teknologi",
+      "Amazon Web Services (AWS) Academy",
+      "Google Developer Groups Bandung",
+      "PT Telekomunikasi Indonesia Tbk"
+    ]
+  },
+  {
+    icon: GraduationCap,
+    title: lang === 'en' ? "Academic & University Networks" : "Kemitraan Akademik & Universitas",
+    desc: lang === 'en' ? "Joint scientific publications, credit-transfer systems, guest lecturer exchanges, and collaborative laboratory studies." : "Publikasi ilmiah bersama, pertukaran kredit mahasiswa (MBKM), dosen tamu internasional, dan riset lab kolaboratif.",
+    partners: [
+      "Institut Teknologi Bandung (ITB) - Rekayasa Perangkat Lunak",
+      "Universitas Indonesia (UI) - Rumpun Ilmu Komputer",
+      "Universitas Muhammadiyah Yogyakarta (UMY)",
+      "Universitas Gadjah Mada (UGM)"
+    ]
+  },
+  {
+    icon: Landmark,
+    title: lang === 'en' ? "Government & Public Institutions" : "Mitra Lembaga Publik & Pemerintah",
+    desc: lang === 'en' ? "Empowering regional digitalization, national security services, government research grants, and public policy coding." : "Digitalisasi daerah, riset keamanan siber instansi pemerintah, pengabdian masyarakat, dan hibah pengabdian sosial.",
+    partners: [
+      "Kementerian Komunikasi dan Informatika RI (Kominfo)",
+      "Asosiasi Telekomunikasi Indonesia (ATSI)",
+      "Dinas Komunikasi dan Informatika Provinsi Jawa Barat",
+      "Kementerian Pendidikan, Kebudayaan, Riset, dan Teknologi"
+    ]
+  }
+];
+
+const cooperationFlowTitle = lang === 'en' ? 'How We Collaborate' : 'Alur Kerjasama Kemitraan';
+const cooperationFlowSteps = lang === 'en' ? [
+  { step: "01", title: "Inquiry & Alignment", desc: "Initial dialogue to identify mutual collaboration interests." },
+  { step: "02", title: "Drafting MoA / MoU", desc: "Formulating legal and technical scopes for implementation." },
+  { step: "03", title: "Signing & Launch", desc: "Official executive signing and formal launch of projects." },
+  { step: "04", title: "Annual Review", desc: "Evaluating operational benchmarks and extending partnerships." }
+] : [
+  { step: "01", title: "Inisiasi & Penjajakan", desc: "Diskusi awal mengenai tujuan dan keselarasan minat kolaborasi." },
+  { step: "02", title: "Penyusunan MoU/MoA", desc: "Perumusan draf hukum dan teknis pelaksanaan program kerja." },
+  { step: "03", title: "Tanda Tangan & Rilis", desc: "Penandatanganan resmi oleh pimpinan dan peluncuran program." },
+  { step: "04", title: "Evaluasi Tahunan", desc: "Tinjauan berkala terhadap realisasi program dan perpanjangan kerjasama." }
+];
+---
+
+<Layout title={title} lang={lang}>
+  {/* Header Section */}
+  <section class="relative bg-mono-black text-white pt-36 pb-20 border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      <p class="tech-tag text-mono-yellow mb-3">EXTERNAL // COOPERATION</p>
+      <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl tracking-wide leading-none">
+        {heading}
+      </h1>
+      <p class="font-sans text-sm text-white/60 max-w-2xl mt-4 leading-relaxed">
+        {description}
+      </p>
+    </div>
+  </section>
+
+  {/* Main Partnerships Grid */}
+  <section class="py-20 bg-mono-cream min-h-screen">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      
+      {/* Dynamic Intro Card */}
+      <div class="border border-mono-black bg-white p-8 md:p-12 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] mb-16 flex flex-col md:flex-row gap-8 items-center justify-between">
+        <div class="max-w-xl">
+          <p class="tech-tag text-mono-yellow mb-2">PARTNERSHIP ENQUIRY</p>
+          <h2 class="font-serif text-2xl md:text-3xl text-mono-black mb-4">
+            {lang === 'en' ? 'Build Future Innovations with Us' : 'Bangun Inovasi Masa Depan Bersama Kami'}
+          </h2>
+          <p class="font-sans text-xs text-neutral-600 leading-relaxed">
+            {lang === 'en'
+              ? `We welcome industry enterprises, government offices, and research institutes to establish MoUs and secure internships for students at ${PRODI_CONFIG.acronym}.`
+              : `Kami menyambut hangat kedatangan mitra industri, instansi pemerintah, maupun lembaga riset untuk menjalin kesepakatan kerjasama demi kesuksesan akademik dan riset.`}
+          </p>
+        </div>
+        <a 
+          href={`mailto:${PRODI_CONFIG.contact.email}`}
+          class="shrink-0 border border-mono-black bg-mono-black text-white hover:bg-mono-yellow hover:text-mono-black px-8 py-4 font-sans text-xs font-bold tracking-widest shadow-[4px_4px_0px_0px_var(--primary-color)] transition-all duration-300 flex items-center gap-3"
+        >
+          <Handshake className="h-4 w-4" />
+          <span>{lang === 'en' ? 'CONTACT FOR PARTNERSHIP' : 'HUBUNGI KERJASAMA'}</span>
+        </a>
+      </div>
+
+      {/* Partner Categories */}
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-20">
+        {categories.map((c) => {
+          const Icon = c.icon;
+          return (
+            <div class="border border-mono-black bg-white p-8 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col justify-between">
+              <div>
+                <div class="p-3 bg-mono-black text-white w-fit shadow-[2px_2px_0px_0px_var(--primary-color)] mb-6">
+                  <Icon class="h-6 w-6" />
+                </div>
+                <h3 class="font-serif text-lg font-bold text-mono-black mb-3">{c.title}</h3>
+                <p class="font-sans text-xs text-neutral-500 leading-relaxed mb-6">
+                  {c.desc}
+                </p>
+              </div>
+              <div class="border-t border-dotted border-neutral-200 pt-6 space-y-3">
+                {c.partners.map((partner) => (
+                  <div class="flex items-start gap-2.5">
+                    <div class="h-1.5 w-1.5 rounded-full bg-mono-yellow shrink-0 mt-1.5" />
+                    <span class="font-sans text-xs font-medium text-mono-black leading-tight">{partner}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Flow Block */}
+      <div class="border border-mono-black bg-white p-8 lg:p-12 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+        <p class="tech-tag text-mono-yellow mb-2">OPERATIONAL WORKFLOW</p>
+        <h3 class="font-serif text-2xl font-bold text-mono-black mb-10">{cooperationFlowTitle}</h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+          {cooperationFlowSteps.map((s, idx) => (
+            <div class="relative flex flex-col justify-between">
+              <div>
+                <span class="font-serif text-4xl font-extrabold text-mono-yellow/30 block mb-3">{s.step}</span>
+                <h4 class="font-serif text-base font-bold text-mono-black mb-2">{s.title}</h4>
+                <p class="font-sans text-[11px] text-neutral-500 leading-relaxed">{s.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  </section>
+</Layout>
