@@ -13,6 +13,7 @@ interface NewsEventsSectionProps {
 export function NewsEventsSection({ lang, newsList, eventsList }: NewsEventsSectionProps) {
   const [dbNews, setDbNews] = useState<any[] | undefined>(newsList);
   const [dbEvents, setDbEvents] = useState<any[] | undefined>(eventsList);
+  const [loading, setLoading] = useState(!newsList && !eventsList && isSupabaseConfigured);
 
   useEffect(() => {
     // Sync props to state if props are provided
@@ -23,8 +24,14 @@ export function NewsEventsSection({ lang, newsList, eventsList }: NewsEventsSect
       setDbEvents(eventsList);
     }
 
-    if (newsList && eventsList) return;
-    if (!isSupabaseConfigured) return;
+    if (newsList && eventsList) {
+      setLoading(false);
+      return;
+    }
+    if (!isSupabaseConfigured) {
+      setLoading(false);
+      return;
+    }
 
     const loadData = async () => {
       if (!newsList) {
@@ -57,9 +64,50 @@ export function NewsEventsSection({ lang, newsList, eventsList }: NewsEventsSect
           );
         }
       }
+      setLoading(false);
     };
     loadData();
   }, [lang, newsList, eventsList]);
+
+  if (loading) {
+    return (
+      <section id="berita-agenda" className="w-full py-24 lg:py-32 bg-mono-cream border-b border-mono-black/10">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 animate-pulse">
+            {/* News Stream skeleton */}
+            <div className="lg:col-span-7 space-y-12">
+              <div className="h-3 bg-neutral-300 w-48 rounded" />
+              <div className="h-10 bg-neutral-300 w-64 rounded" />
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="flex flex-col md:flex-row gap-6 pb-8 border-b border-mono-black/10 last:border-b-0">
+                  <div className="w-full md:w-48 aspect-[4/3] bg-neutral-300 rounded shrink-0" />
+                  <div className="flex-1 space-y-3">
+                    <div className="h-4 bg-neutral-300 w-24 rounded" />
+                    <div className="h-6 bg-neutral-300 w-3/4 rounded" />
+                    <div className="h-4 bg-neutral-300 w-full rounded" />
+                  </div>
+                </div>
+              ))}
+            </div>
+            {/* Events timeline skeleton */}
+            <div className="lg:col-span-5 space-y-8">
+              <div className="h-3 bg-neutral-300 w-48 rounded" />
+              <div className="h-10 bg-neutral-300 w-64 rounded" />
+              {[1, 2, 3].map((i) => (
+                <div key={i} className="flex gap-6 p-6 border border-mono-black/10 bg-white">
+                  <div className="w-16 h-16 bg-neutral-300 rounded shrink-0" />
+                  <div className="flex-1 space-y-3">
+                    <div className="h-5 bg-neutral-300 w-3/4 rounded" />
+                    <div className="h-3 bg-neutral-300 w-24 rounded" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   const defaultNews = lang === 'en' ? [
     {

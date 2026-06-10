@@ -10,19 +10,25 @@ interface PartnersSectionProps {
 
 export function PartnersSection({ lang, partnersList }: PartnersSectionProps) {
   const [dbPartners, setDbPartners] = useState<string[] | undefined>(partnersList);
+  const [loading, setLoading] = useState(!partnersList && isSupabaseConfigured);
 
   useEffect(() => {
     if (partnersList) {
       setDbPartners(partnersList);
+      setLoading(false);
       return;
     }
-    if (!isSupabaseConfigured) return;
+    if (!isSupabaseConfigured) {
+      setLoading(false);
+      return;
+    }
 
     const loadData = async () => {
       // Try landing_partners table first
       const fetchedLanding = await getLandingPartners();
       if (fetchedLanding && fetchedLanding.length > 0) {
         setDbPartners(fetchedLanding.map((item) => item.name));
+        setLoading(false);
         return;
       }
 
@@ -31,6 +37,7 @@ export function PartnersSection({ lang, partnersList }: PartnersSectionProps) {
       if (fetchedPartners) {
         setDbPartners(fetchedPartners.map((item) => item.name));
       }
+      setLoading(false);
     };
     loadData();
   }, [partnersList]);
@@ -38,6 +45,25 @@ export function PartnersSection({ lang, partnersList }: PartnersSectionProps) {
   const finalPartners = dbPartners && dbPartners.length > 0 ? dbPartners : PARTNERS;
   // Triple the array to create a seamless infinite loop on all screen widths
   const repeatedPartners = [...finalPartners, ...finalPartners, ...finalPartners];
+
+  if (loading) {
+    return (
+      <section id="mitra-kerjasama" className="w-full bg-white py-20 lg:py-28 border-b border-mono-black/10 overflow-hidden">
+        <div className="max-w-5xl mx-auto px-6 animate-pulse">
+          <div className="h-3 bg-neutral-200 w-48 mx-auto rounded mb-3" />
+          <div className="h-8 bg-neutral-200 w-80 mx-auto rounded mb-8" />
+          <div className="mx-auto my-6 h-px max-w-lg bg-mono-black/15" />
+          <div className="flex justify-center gap-12 py-4">
+            <div className="h-6 bg-neutral-100 w-24 rounded" />
+            <div className="h-6 bg-neutral-100 w-28 rounded" />
+            <div className="h-6 bg-neutral-100 w-20 rounded" />
+            <div className="h-6 bg-neutral-100 w-32 rounded" />
+          </div>
+          <div className="mx-auto my-6 h-px max-w-lg bg-mono-black/15" />
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="mitra-kerjasama" className="w-full bg-white py-20 lg:py-28 border-b border-mono-black/10 overflow-hidden">

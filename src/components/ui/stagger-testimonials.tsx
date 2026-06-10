@@ -139,6 +139,7 @@ export const StaggerTestimonials: React.FC<StaggerTestimonialsProps> = ({ lang, 
   ];
 
   const [testimonialsList, setTestimonialsList] = useState<any[]>([]);
+  const [loading, setLoading] = useState(!testimonialsListProp && isSupabaseConfigured);
 
   useEffect(() => {
     const loadTestimonials = async () => {
@@ -177,10 +178,43 @@ export const StaggerTestimonials: React.FC<StaggerTestimonialsProps> = ({ lang, 
           tempId: idx
         }))
       );
+      setLoading(false);
     };
 
     loadTestimonials();
   }, [lang, testimonialsListProp]);
+
+  if (loading) {
+    return (
+      <div
+        className="relative w-full overflow-hidden bg-white border-b border-mono-black/10 flex flex-col items-center justify-center"
+        style={{ height: 650 }}
+      >
+        <div className="absolute top-12 left-1/2 -translate-x-1/2 text-center z-10 pointer-events-none animate-pulse">
+          <p className="tech-tag text-mono-black/70 mb-2">SUCCESS STORIES // ALUMNI NETWORK</p>
+          <h2 className="font-serif text-3xl md:text-4xl tracking-wide text-mono-black">
+            {lang === 'en' ? 'Alumni Testimonials' : 'Testimoni Alumni'}
+          </h2>
+        </div>
+        <div
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-neutral-100 border-2 border-mono-black/10 p-8 animate-pulse flex flex-col justify-between"
+          style={{
+            width: cardSize,
+            height: cardSize,
+            clipPath: `polygon(50px 0%, calc(100% - 50px) 0%, 100% 50px, 100% 100%, calc(100% - 50px) 100%, 50px 100%, 0 100%, 0 0)`,
+          }}
+        >
+          <div className="h-14 w-12 bg-neutral-200" />
+          <div className="space-y-3">
+            <div className="h-5 bg-neutral-200 w-full rounded" />
+            <div className="h-5 bg-neutral-200 w-5/6 rounded" />
+            <div className="h-5 bg-neutral-200 w-4/5 rounded" />
+          </div>
+          <div className="h-3 bg-neutral-200 w-32 rounded mt-4" />
+        </div>
+      </div>
+    );
+  }
 
   const handleMove = (steps: number) => {
     const newList = [...testimonialsList];

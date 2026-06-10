@@ -10,9 +10,13 @@ interface ArchiveSectionProps {
 
 export function ArchiveSection({ lang }: ArchiveSectionProps) {
   const [products, setProducts] = useState(MONO_PRODUCTS);
+  const [loading, setLoading] = useState(isSupabaseConfigured);
 
   useEffect(() => {
-    if (!isSupabaseConfigured) return;
+    if (!isSupabaseConfigured) {
+      setLoading(false);
+      return;
+    }
 
     const loadData = async () => {
       const fetched = await getLandingPortfolioItems();
@@ -36,9 +40,30 @@ export function ArchiveSection({ lang }: ArchiveSectionProps) {
         });
         setProducts(mappedItems);
       }
+      setLoading(false);
     };
     loadData();
   }, []);
+
+  if (loading) {
+    return (
+      <section id="archive" className="w-full py-24 lg:py-32 px-6 lg:px-12 bg-white border-b border-mono-black/10">
+        <div className="mb-16 max-w-7xl mx-auto animate-pulse">
+          <div className="h-3 bg-neutral-200 w-48 rounded mb-3" />
+          <div className="h-14 bg-neutral-200 w-96 rounded" />
+        </div>
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6 animate-pulse">
+          {[1, 2, 3].map((i) => (
+            <div key={i} className="space-y-4">
+              <div className="bg-neutral-100 aspect-[3/4] rounded" />
+              <div className="h-6 bg-neutral-200 w-3/4 rounded" />
+              <div className="h-3 bg-neutral-200 w-24 rounded" />
+            </div>
+          ))}
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="archive" className="w-full py-24 lg:py-32 px-6 lg:px-12 bg-white border-b border-mono-black/10">
