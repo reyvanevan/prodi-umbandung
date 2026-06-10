@@ -218,13 +218,13 @@ insert into public.landing_portfolio_items (image, title, medium, technique, yea
 
 -- Seed site_content
 insert into public.site_content (key, value, value_en) values
-  ('hero_title', 'Teknologi Pangan UMB Bandung', 'Food Technology UMB Bandung'),
+  ('hero_title', 'Teknologi Pangan', 'Food Technology UMB Bandung'),
   ('hero_subtitle', 'Mencetak Ahli Pangan Halalan Thayyiban Berbasis Inovasi Sains & Technopreneurship Pangan Nusantara.', 'Producing Halalan Thayyiban Food Technology Experts Based on Science Innovation & Nusantara Food Technopreneurship.'),
   ('kaprodi_welcome', 'Selamat datang di portal resmi Program Studi S1 Teknologi Pangan Universitas Muhammadiyah Bandung. Kami berkomitmen untuk menghasilkan lulusan ahli pangan yang profesional, inovatif, dan berkarakter Islami, yang mampu bersaing secara global dalam mengembangkan potensi pangan lokal Nusantara menjadi produk bertaraf internasional.', 'Welcome to the official portal of the S1 Food Technology Program at Universitas Muhammadiyah Bandung. We are committed to producing professional, innovative, and Islamic-character food technology graduates who can compete globally in developing the potential of local Nusantara food into international-standard products.'),
   ('kaprodi_welcome_p2', 'Fokus pengembangan kami terletak pada integrasi sains pangan modern dengan prinsip kehalalan, sistem biorefinery berkelanjutan, dan jiwa kewirausahaan — menciptakan ahli pangan yang berdampak nyata bagi ketahanan dan kedaulatan pangan bangsa.', 'Our development focus lies in integrating modern food science with halal principles, sustainable biorefinery systems, and an entrepreneurial spirit — creating food technology experts who make a real impact on national food security and sovereignty.'),
   ('kaprodi_photo_url', '/assets/kaprodi.png', '/assets/kaprodi.png'),
-  ('logo_prodi_url', '', ''),
-  ('hero_bg_url', '/assets/hero-mono-stigma.png', '/assets/hero-mono-stigma.png'),
+  ('logo_prodi_url', 'https://zcdgydrmbxcpycxxmkhj.supabase.co/storage/v1/object/public/prodi-assets/uploads/1781076834806-WhatsApp_Image_2026_06_09_at_18.36.57_removebg_preview.png', 'https://zcdgydrmbxcpycxxmkhj.supabase.co/storage/v1/object/public/prodi-assets/uploads/1781076834806-WhatsApp_Image_2026_06_09_at_18.36.57_removebg_preview.png'),
+  ('hero_bg_url', 'https://zcdgydrmbxcpycxxmkhj.supabase.co/storage/v1/object/public/prodi-assets/uploads/1781076732515-192281_892475127_medium.mp4', 'https://zcdgydrmbxcpycxxmkhj.supabase.co/storage/v1/object/public/prodi-assets/uploads/1781076732515-192281_892475127_medium.mp4'),
   ('kaprodi_name', 'Dr. Khairiah, S.P., M.T.', 'Dr. Khairiah, S.P., M.T.'),
   ('kaprodi_title', 'Ketua Program Studi Teknologi Pangan', 'Head of Food Technology Department'),
   ('sambutan_title', 'Sambutan Kepala Program Studi', 'Head of Department''s Welcome'),
