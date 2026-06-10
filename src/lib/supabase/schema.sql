@@ -227,7 +227,7 @@ insert into public.site_content (key, value, value_en) values
   ('hero_bg_url', '/assets/hero-mono-stigma.png', '/assets/hero-mono-stigma.png'),
   ('kaprodi_name', 'M. Yusuf Efendi, S.T., M.T.', 'M. Yusuf Efendi, S.T., M.T.'),
   ('kaprodi_title', 'Ketua Program Studi Teknik Informatika', 'Head of Informatics Engineering Department'),
-  ('sambutan_title', 'Sambutan Kepala Program Studi', 'Head of Department\'s Welcome'),
+  ('sambutan_title', 'Sambutan Kepala Program Studi', 'Head of Department''s Welcome'),
   ('philosophy_title', 'Filosofi Pembelajaran Kami', 'Our Learning Philosophy'),
   ('philosophy_body', 'Kami percaya bahwa pemrograman bukan hanya tentang mengetik baris kode, melainkan tentang membangun solusi komputasi yang efisien, etis, dan memberikan dampak nyata bagi masyarakat.', 'We believe programming is not just about writing lines of code, but about building efficient, ethical computing solutions that deliver real impact to society.');
 
