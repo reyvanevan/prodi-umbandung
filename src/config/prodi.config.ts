@@ -41,36 +41,36 @@ export interface ProdiConfig {
 }
 
 export const PRODI_CONFIG: ProdiConfig = {
-  acronym: 'IF',
+  acronym: 'KTF',
   name: {
-    id: 'Teknik Informatika',
-    en: 'Informatics Engineering',
+    id: 'Kriya Tekstil dan Fashion',
+    en: 'Textile and Fashion Design',
   },
   degree: 'S1',
-  degreeTitle: 'S.Kom.',
+  degreeTitle: 'S.Sn.',
   degreeTitleFull: {
-    id: 'Sarjana Komputer',
-    en: 'Bachelor of Computer Science',
+    id: 'Sarjana Seni',
+    en: 'Bachelor of Applied Arts',
   },
   faculty: {
-    id: 'Fakultas Sains dan Teknologi',
-    en: 'Faculty of Science and Technology',
+    id: 'Fakultas Sosial dan Humaniora',
+    en: 'Faculty of Social Sciences and Humanities',
   },
   university: 'Universitas Muhammadiyah Bandung',
   universityShort: 'UMB',
   theme: {
-    primaryColor: '#0B2545',
+    primaryColor: '#CC7722',
     primaryTailwind: 'mono-yellow',
   },
   contact: {
-    email: 'if@umbandung.ac.id',
+    email: 'ktf@umbandung.ac.id',
     phone: '+62 22 783 0000',
     address: 'Jl. Soekarno-Hatta No. 752, Cipadung Kidul, Panyileukan, Kota Bandung, Jawa Barat 40614',
-    instagram: 'if.umbandung',
-    youtube: '@ifumbandung',
+    instagram: 'kriyatekstilfashion.umb',
+    youtube: '@kriyatekstilfashionumb',
   },
   headOfDepartment: {
-    name: 'M. Yusuf Efendi, S.T., M.T.',
+    name: 'Dra. Saftiyaningsih Ken Atik, M.Ds.',
     degree: 'Ketua Program Studi',
   },
   videoProfileUrl: 'https://www.youtube.com/watch?v=12ER7lJyZOc&feature=youtu.be',

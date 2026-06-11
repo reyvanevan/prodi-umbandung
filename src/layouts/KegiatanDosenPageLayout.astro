@@ -15,30 +15,30 @@ type ActivityItem = { title: string; date: string; location: string; desc: strin
 
 const fallbackActivities: ActivityItem[] = [
   {
-    title: lang === 'en' ? 'International Conference on Halal Food & Biorefinery 2025' : 'Konferensi Internasional Pangan Halal & Biorefinery 2025',
+    title: lang === 'en' ? 'International Contemporary Craft Exhibition 2025' : 'Pameran Seni Kriya Kontemporer Internasional 2025',
     date: lang === 'en' ? 'March 12, 2025' : '12 Maret 2025',
     location: 'Kuala Lumpur, Malaysia',
     desc: lang === 'en'
-      ? `${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort} faculty presented research on chitosan-based edible coatings to extend tropical fruits shelf life at a global food science symposium.`
-      : `Dosen Teknologi Pangan ${PRODI_CONFIG.universityShort} mempresentasikan riset tentang edible coating berbasis kitosan lokal untuk memperpanjang umur simpan buah tropis pada simposium sains pangan global.`,
+      ? `${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort} faculty presented innovative handwoven art installations combining traditional bamboo split and organic dyes at the Southeast Asian craft symposium.`
+      : `Dosen Kriya Tekstil dan Fashion ${PRODI_CONFIG.universityShort} mempresentasikan karya instalasi serat tenun inovatif berbahan bambu dan pewarna alami pada simposium kriya Asia Tenggara.`,
     image: '/assets/kegiatan-d1.png'
   },
   {
-    title: lang === 'en' ? 'HACCP & Halal Certification Training for Food MSMEs' : 'Workshop Penerapan HACCP & Sertifikasi Halal Asosiasi UMKM Pangan',
+    title: lang === 'en' ? 'Organic Ecoprint Workshop for Craft and Fashion MSMEs' : 'Pelatihan Ecoprint Organik bagi Pelaku UMKM Kriya & Fashion',
     date: lang === 'en' ? 'October 18, 2024' : '18 Oktober 2024',
     location: 'Soreang, Bandung',
     desc: lang === 'en'
-      ? 'A Public Service initiative providing technical guidance on hygiene standardization and critical point analysis to help local food MSMEs achieve halal certification.'
-      : 'Pengabdian Kepada Masyarakat (PKM) berupa pelatihan teknis standardisasi higienitas sanitasi dan analisis titik kritis haram untuk membantu akselerasi sertifikasi halal UMKM pangan lokal.',
+      ? 'A Public Service initiative providing training on eco-friendly leaf printing on silk fabrics to help local crafters create sustainable commercial products.'
+      : 'Pengabdian Kepada Masyarakat (PKM) berupa workshop pembuatan cetak daun (ecoprint) pada media sutra untuk mendorong komersialisasi produk ramah lingkungan.',
     image: '/assets/kegiatan-d2.png'
   },
   {
-    title: lang === 'en' ? 'Joint Research on Cocoa Shell Bioactive Extraction with BRIN' : 'Riset Kolaborasi Pemanfaatan Limbah Kulit Kakao Bersama BRIN',
+    title: lang === 'en' ? 'Collaborative Research on Fiber Extraction with BRIN' : 'Kolaborasi Riset Ekstraksi Serat Alam Hayati Bersama BRIN',
     date: lang === 'en' ? 'June 04, 2024' : '04 Juni 2024',
-    location: 'BRIN Food Processing Lab, Serpong',
+    location: 'BRIN Materials Lab, Serpong',
     desc: lang === 'en'
-      ? `A strategic research collaboration by ${PRODI_CONFIG.acronym} lecturers testing extraction of antioxidant compounds from cocoa shell agricultural waste for functional food applications.`
-      : `Kolaborasi riset strategis dosen ${PRODI_CONFIG.acronym} dalam menguji rekayasa ekstraksi senyawa aktif antioksidan dari limbah pertanian kulit biji kakao untuk aplikasi pangan fungsional.`,
+      ? `A strategic research collaboration by ${PRODI_CONFIG.acronym} lecturers studying extraction of pineapple leaf fibers for premium structural woven fabric applications.`
+      : `Kolaborasi riset strategis dosen ${PRODI_CONFIG.acronym} dalam mengekstrak serat daun nanas untuk pengembangan bahan baku benang tenun premium.`,
     image: '/assets/kegiatan-d3.png'
   }
 ];
@@ -63,8 +63,8 @@ const title = lang === 'en'
 const heading = lang === 'en' ? 'Faculty Activities & Initiatives' : 'Kegiatan & Pengabdian Dosen';
 
 const description = lang === 'en'
-  ? `Documentation of academic endeavors, halal food symposiums, applied community service, and collaborative food science research conducted by the faculty of ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}.`
-  : `Dokumentasi kiprah akademik, konferensi pangan internasional, pengabdian masyarakat terapan, dan riset sains pangan kolaboratif yang dilakukan oleh jajaran dosen ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}.`;
+  ? `Documentation of academic endeavors, contemporary design exhibitions, applied community service, and collaborative craft science research conducted by the faculty of ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}.`
+  : `Dokumentasi kiprah akademik, pameran desain kontemporer, pengabdian masyarakat terapan, dan riset kriya tekstil kolaboratif yang dilakukan oleh jajaran dosen ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}.`;
 
 const docLabel = 'DOKUMENTASI D-0';
 const tagLabel = lang === 'en' ? 'FACULTY / RESEARCH' : 'FAKULTAS / PKM';

@@ -152,54 +152,54 @@ create policy "Allow admin write access for statistik_maba" on public.statistik_
 insert into public.prestasi (type, title, title_en, year, "desc", desc_en, host, host_en, competitor, image_url, sort_order)
 select * from (values
   ('prodi', 'Akreditasi Nasional BAN-PT ''Baik Sekali''', 'National BAN-PT ''Baik Sekali'' Accreditation', '2024',
-   'Berhasil memperoleh predikat akreditasi ''Baik Sekali'' atas standar sarana laboratorium dan kesesuaian kurikulum Teknologi Pangan Halal.',
-   'Achieved the superior ''Baik Sekali'' standard for laboratory facilities and curriculum alignment in Halal Food Technology.',
+   'Berhasil memperoleh predikat akreditasi ''Baik Sekali'' atas standar sarana laboratorium dan kesesuaian kurikulum Kriya Tekstil dan Fashion.',
+   'Achieved the superior ''Baik Sekali'' standard for laboratory facilities and curriculum alignment in Textile & Fashion Craft.',
    null, null, null, 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=600&auto=format&fit=crop', 1),
-  ('prodi', 'Sertifikasi ISO 17025 Laboratorium Pangan Halal', 'Halal Food Lab ISO 17025 Certification', '2023',
-   'Laboratorium resmi terakreditasi untuk pengujian keamanan pangan, nutrisi, dan komposisi kimia bahan pertanian lokal.',
-   'Officially certified laboratory for testing food safety, nutrition, and chemical composition of local agricultural materials.',
+  ('prodi', 'Kerjasama Pameran Eksklusif dengan Rumah Batik Komar', 'Exhibition Partnership with Rumah Batik Komar', '2023',
+   'Menjalin kerjasama pameran bersama dan program laboratorium studio untuk melestarikan warisan batik tradisional Jawa Barat.',
+   'Established a joint showcase and studio laboratory program to preserve traditional West Java batik heritage.',
    null, null, null, 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=600&auto=format&fit=crop', 2),
-  ('prodi', 'Penerima Hibah Riset Kemendikbudristek Biorefinery Sirkular', 'Kemendikbud Research Grant on Circular Biorefinery', '2024',
-   'Memperoleh pendanaan riset nasional untuk pemanfaatan limbah pertanian lokal menjadi kemasan pangan fungsional.',
-   'Received national funding for utilizing local agricultural waste into functional food packaging.',
+  ('prodi', 'Penerima Hibah Riset Kemendikbudristek Pewarnaan Alami Berkelanjutan', 'Kemendikbud Research Grant on Sustainable Natural Dyes', '2024',
+   'Memperoleh pendanaan riset nasional untuk penelitian ekstraksi zat warna alami lokal dan aplikasinya pada tenun serat alam.',
+   'Received national funding for research on local organic dye extraction and its application on handwoven textiles.',
    null, null, null, 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=600&auto=format&fit=crop', 3),
-  ('mahasiswa', 'Juara I Medali Emas // Kompetisi Inovasi Pangan Nasional', '1st Place Gold Medal // National Food Innovation Competition', '2024',
-   'Mengembangkan produk biskuit fungsional padat gizi berbasis tepung hanjeli dan kacang merah lokal.',
-   'Developed a nutrient-dense functional biscuit from local Hanjeli seeds and red kidney beans.',
-   'Kementerian Pertanian (Kementan)', 'Ministry of Agriculture (Kementan)', 'Aditya Pratama & Tim',
-   'https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=600&auto=format&fit=crop', 4),
-  ('mahasiswa', 'Produk Fungsional Terbaik // Pameran Hari Pangan Sedunia', 'Best Functional Product // World Food Day Exhibition', '2023',
-   'Membuat kemasan aktif edible film ramah lingkungan berbahan pati tapioka dan ekstrak kulit manggis.',
-   'Created edible active packaging films using cassava starch and mangosteen peel extract.',
-   'Perhimpunan Ahli Teknologi Pangan Indonesia (PATPI)', 'PATPI', 'Siti Rahma & Tim',
-   'https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=600&auto=format&fit=crop', 5),
-  ('mahasiswa', 'Pemenang Penghargaan Wirausaha Halal Muda', 'Winner of Young Halal Technopreneur Award', '2024',
-   'Penghargaan atas perancangan model bisnis dan sistem produksi skala industri bumbu organik lokal.',
-   'Recognized for developing a startup model focused on scale-up production of local organic condiments.',
-   'Halal Science Center & MUI', 'Halal Science Center & MUI', 'Rifqi Fauzan',
-   'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=600&auto=format&fit=crop', 6)
+  ('mahasiswa', 'Juara I Medali Emas // Kompetisi Desain Mode Nasional', '1st Place Gold Medal // National Fashion Design Competition', '2024',
+   'Mengembangkan gaun malam berkelanjutan berkonsep zero-waste dengan teknik pewarnaan ecoprint organik lokal.',
+   'Developed a sustainable zero-waste evening gown featuring local organic ecoprint techniques.',
+   'Indonesian Fashion Chamber (IFC)', 'Indonesian Fashion Chamber (IFC)', 'Naila Putri & Tim',
+   '/assets/portfolio-organic-gown.jpg', 4),
+  ('mahasiswa', 'Karya Kontemporer Terbaik // Pameran Kriya & Tekstil Nasional', 'Best Contemporary Work // National Craft & Textile Exhibition', '2023',
+   'Membuat karya tapestri struktur kontemporer yang memanfaatkan limbah benang katun dan anyaman bambu alami.',
+   'Created a contemporary structural tapestry utilizing waste cotton threads and natural bamboo splits.',
+   'Asosiasi Eksportir dan Produsen Handicraft Indonesia (ASEPHI)', 'ASEPHI', 'Daniel Wijaya',
+   '/assets/portfolio-songket.jpg', 5),
+  ('mahasiswa', 'Pemenang Penghargaan Wirausaha Muda Kreatif', 'Winner of Young Creativepreneur Award', '2024',
+   'Penghargaan atas perancangan startup produk streetwear ramah lingkungan dengan pewarnaan ekstrak tumbuhan.',
+   'Recognized for developing an eco-friendly local streetwear startup utilizing plant-based dye prints.',
+   'Kementerian Pariwisata dan Ekonomi Kreatif (Kemenparekraf)', 'Kementerian Pariwisata dan Ekonomi Kreatif (Kemenparekraf)', 'Farah Amalia',
+   '/assets/portfolio-ready-to-wear.jpg', 6)
 ) as v(type, title, title_en, year, "desc", desc_en, host, host_en, competitor, image_url, sort_order)
 where not exists (select 1 from public.prestasi limit 1);
 
 -- Seed publikasi_dosen
 insert into public.publikasi_dosen (title, title_en, author, journal, journal_en, year, category, category_en, link, sort_order)
 select * from (values
-  ('Optimasi Pengeringan Terfluidisasi Tepung Mocaf Nusantara Berbasis Energi Surya',
-   'Optimizing Solar-Assisted Fluidized Bed Drying of Nusantara Mocaf Flour',
-   'Dr. Khairiah, S.P., M.T.',
-   'Jurnal Teknologi & Industri Pangan Nusantara, Vol. 12 No. 2',
-   'Journal of Food Technology & Industry Nusantara, Vol. 12 No. 2',
+  ('Pengembangan Metode Ecoprint Organik Berkelanjutan pada Kain Sutra Menggunakan Flora Lokal',
+   'Development of Sustainable Organic Ecoprint Methods on Silk Fabric Using Local Flora',
+   'Dra. Saftiyaningsih Ken Atik, M.Ds.',
+   'Jurnal Kriya & Tekstil Nusantara, Vol. 8 No. 2',
+   'Journal of Nusantara Textile & Craft, Vol. 8 No. 2',
    '2025', 'JURNAL NASIONAL', 'NATIONAL JOURNAL', 'https://sinta.kemdiktisaintek.go.id/', 1),
-  ('Deteksi Cepat Kontaminasi Bakteri Escherichia coli pada Bahan Pangan Basah Menggunakan Sensor Elektrokimia',
-   'Rapid Detection of Escherichia coli in Fresh Produce Using Electrochemical Sensors',
-   'Dr. Saepul Adnan, S.Si., M.Si.',
-   'Seminar Nasional Inovasi Pangan Halal (SNIPH)',
-   'National Seminar on Halal Food Innovation (SNIPH)',
+  ('Analisis Struktur Tenun Songket Jawa Barat: Evolusi Motif dan Teknik Pembuatan',
+   'Structure Analysis of Handwoven Songket in West Java: Evolution of Motif and Techniques',
+   'Dr. Komarudin Kudiya, S.IP., M.Ds.',
+   'Seminar Nasional Desain & Kriya Kontemporer (SENDIK)',
+   'National Seminar on Contemporary Craft & Design',
    '2024', 'PROSIDING SEMINAR', 'SEMINAR PROCEEDINGS', 'https://sinta.kemdiktisaintek.go.id/', 2),
-  ('Nutritional Value, Fiber Content, and Sensory Evaluation of Functional Cookies Based on Hanjeli and Red Kidney Bean Flour',
+  ('Exploration of Natural Color Pigments from Banana Pseudo-Stem for Ready-to-Wear Textiles',
    null,
-   'Hanif Alamudin Manshur, S.Gz., M.Si.',
-   'International Journal of Food Science and Nutrition Technology',
+   'Ghaida Nasya Putri, S.Ds., M.Ds.',
+   'International Journal of Sustainable Fashion and Design Studies',
    null,
    '2024', 'JURNAL INTERNASIONAL', 'INTERNATIONAL JOURNAL', 'https://sinta.kemdiktisaintek.go.id/', 3)
 ) as v(title, title_en, author, journal, journal_en, year, category, category_en, link, sort_order)
@@ -208,20 +208,20 @@ where not exists (select 1 from public.publikasi_dosen limit 1);
 -- Seed kegiatan_dosen
 insert into public.kegiatan_dosen (title, title_en, date_text, date_text_en, location, "desc", desc_en, image_url, sort_order)
 select * from (values
-  ('Konferensi Internasional Pangan Halal & Biorefinery 2025', 'International Conference on Halal Food & Biorefinery 2025',
+  ('Pameran Seni Kriya Kontemporer Internasional 2025', 'International Contemporary Craft Exhibition 2025',
    '12 Maret 2025', 'March 12, 2025', 'Kuala Lumpur, Malaysia',
-   'Dosen Teknologi Pangan mempresentasikan riset tentang edible coating berbasis kitosan lokal untuk memperpanjang umur simpan buah tropis.',
-   'Faculty presented research on chitosan-based edible coatings to extend tropical fruits shelf life at a global food science symposium.',
+   'Dosen Kriya Tekstil dan Fashion mempresentasikan karya instalasi serat tenun inovatif berbahan bambu dan pewarna alami pada simposium kriya Asia Tenggara.',
+   'Faculty presented innovative handwoven art installations combining traditional bamboo split and organic dyes at the Southeast Asian craft symposium.',
    '/assets/kegiatan-d1.png', 1),
-  ('Workshop Penerapan HACCP & Sertifikasi Halal Asosiasi UMKM Pangan', 'HACCP & Halal Certification Training for Food MSMEs',
+  ('Pelatihan Ecoprint Organik bagi Pelaku UMKM Kriya & Fashion', 'Organic Ecoprint Workshop for Craft and Fashion MSMEs',
    '18 Oktober 2024', 'October 18, 2024', 'Soreang, Bandung',
-   'PKM berupa pelatihan teknis standardisasi higienitas sanitasi dan analisis titik kritis haram untuk membantu UMKM pangan lokal.',
-   'A Public Service initiative providing technical guidance on hygiene standardization and critical point analysis to help food MSMEs.',
+   'PKM berupa workshop pembuatan cetak daun (ecoprint) pada media sutra untuk mendorong komersialisasi produk ramah lingkungan.',
+   'A Public Service initiative providing training on eco-friendly leaf printing on silk fabrics to help local crafters create sustainable commercial products.',
    '/assets/kegiatan-d2.png', 2),
-  ('Riset Kolaborasi Pemanfaatan Limbah Kulit Kakao Bersama BRIN', 'Joint Research on Cocoa Shell Bioactive Extraction with BRIN',
-   '04 Juni 2024', 'June 04, 2024', 'BRIN Food Processing Lab, Serpong',
-   'Kolaborasi riset dosen dalam menguji rekayasa ekstraksi senyawa aktif antioksidan dari limbah pertanian kulit kakao untuk aplikasi pangan fungsional.',
-   'A strategic research collaboration testing extraction of antioxidant compounds from cocoa shell waste for functional food applications.',
+  ('Riset Kolaborasi Ekstraksi Serat Alam Hayati Bersama BRIN', 'Collaborative Research on Fiber Extraction with BRIN',
+   '04 Juni 2024', 'June 04, 2024', 'BRIN Materials Lab, Serpong',
+   'Kolaborasi riset dosen dalam mengekstrak serat daun nanas untuk pengembangan bahan baku benang tenun premium.',
+   'A strategic research collaboration by lecturers studying extraction of pineapple leaf fibers for premium structural woven fabric applications.',
    '/assets/kegiatan-d3.png', 3)
 ) as v(title, title_en, date_text, date_text_en, location, "desc", desc_en, image_url, sort_order)
 where not exists (select 1 from public.kegiatan_dosen limit 1);
@@ -229,20 +229,20 @@ where not exists (select 1 from public.kegiatan_dosen limit 1);
 -- Seed kegiatan_mahasiswa
 insert into public.kegiatan_mahasiswa (title, title_en, date_text, date_text_en, location, "desc", desc_en, image_url, sort_order)
 select * from (values
-  ('FOODTECH 2026: Capstone Product & Halal Food Expo', 'FOODTECH 2026: Capstone Product & Halal Food Expo',
+  ('KTF Fashion Show & Art Exhibition 2026', 'KTF Fashion Show & Art Exhibition 2026',
    '24-28 Februari 2026', 'February 24-28, 2026', 'Gedung Rektorat UMB, Bandung',
-   'Pameran karya kelulusan proyek akhir mahasiswa angkatan pertama, menampilkan formulasi produk pangan baru dan desain pabrik pangan sirkular.',
-   'The premier graduation project exhibition showcasing the masterpiece innovations of students, highlighting new food formulations and circular biorefinery designs.',
+   'Pameran karya kelulusan tugas akhir mahasiswa angkatan pertama, menampilkan inovasi surface & structure design serta koleksi busana siap pakai bertema Nusantara.',
+   'The premier graduation project exhibition showcasing the masterpiece innovations of students, highlighting surface & structure textile designs and Nusantara streetwear collections.',
    '/assets/kegiatan-m1.png', 1),
-  ('National Food Innovation Competition (NFIC): Inovasi Produk Pangan Lokal', 'National Food Innovation Competition (NFIC): Local Resource Formulation',
+  ('National Textile Craft Hackathon: Eksperimen Material Serat Alam', 'National Textile Craft Hackathon: Natural Fiber Material Experimentation',
    '05 Maret 2026', 'March 05, 2026', 'Bandung Tech Hall, Bandung',
-   'Kompetisi inovasi produk pangan fungsional tingkat nasional untuk melatih kemampuan rekayasa formula bahan lokal dalam 24 jam.',
-   'An intensive national product development competition to formulate functional food from local agricultural resources in 24 hours.',
+   'Kompetisi inovasi kriya tekstil tingkat nasional untuk menciptakan produk fungsional berbahan dasar limbah serat alam lokal dalam 24 jam.',
+   'An intensive national craft design competition to create functional lifestyle products from local natural fiber waste in 24 hours.',
    '/assets/kegiatan-m2.png', 2),
-  ('HIMATEPA Food Safety Camp: Edukasi Sanitasi & Higiene UMKM Pangan', 'HIMATEPA Food Safety Camp: Hygiene & Sanitation Training for MSMEs',
+  ('HIMAKRIYA Eco-Fashion Camp: Edukasi Pewarnaan Alam untuk Pengrajin Lokal', 'HIMAKRIYA Eco-Fashion Camp: Natural Dyeing Training for Local Crafters',
    '14 November 2025', 'November 14, 2025', 'Kampus UMB, Bandung',
-   'Program reguler Himpunan Mahasiswa memberikan penyuluhan sanitasi higiene pengolahan pangan dan alur sertifikasi produk halal bagi UMKM pangan lokal.',
-   'A public community service campaign by HIMATEPA, introducing food safety and halal audit workflows to local culinary MSMEs.',
+   'Program reguler Himpunan Mahasiswa memberikan penyuluhan teknik pewarnaan alam ramah lingkungan dan teknik mordanting serat bagi pengrajin lokal.',
+   'A public community service campaign by HIMAKRIYA, introducing sustainable natural dyeing and mordanting methods to local textile crafters.',
    '/assets/kegiatan-m3.png', 3)
 ) as v(title, title_en, date_text, date_text_en, location, "desc", desc_en, image_url, sort_order)
 where not exists (select 1 from public.kegiatan_mahasiswa limit 1);
@@ -250,17 +250,17 @@ where not exists (select 1 from public.kegiatan_mahasiswa limit 1);
 -- Seed alumni
 insert into public.alumni (name, class_of, class_of_en, role, company, quote, quote_en, image_url, sort_order)
 select * from (values
-  ('Amelia Rahma, S.TP.', 'Angkatan 2019', 'Class of 2019', 'Lead R&D Specialist', 'PT Garudafood Putra Putri Jaya Tbk',
-   'Di sini, saya diajarkan kimia pangan, evaluasi sensoris, dan desain pabrik pangan secara mendalam. Ini sangat membantu saya memimpin formulasi produk baru bersertifikasi halal.',
-   'Here, I was taught food chemistry, sensory evaluation, and factory design in depth. This greatly helped me lead new halal-certified food product formulations.',
+  ('Amelia Rahma, S.Ds.', 'Angkatan 2019', 'Class of 2019', 'Lead Fashion Designer', 'PT Dan Liris (Tekstil & Fashion)',
+   'Di prodi KTF, saya diajarkan secara mendalam tentang surface & structure design serta konstruksi pola. Ini sangat membantu karir saya memimpin tim desain koleksi busana siap pakai.',
+   'At KTF, I was taught surface & structure design and pattern drafting in depth. This greatly helped my career in leading ready-to-wear fashion collection design teams.',
    '/assets/alumni-1.png', 1),
-  ('Bagus Pratama, S.TP.', 'Angkatan 2020', 'Class of 2020', 'Founder & CEO', 'Bumi Halal Nusantara (Food Startup)',
-   'Kurikulum technopreneurship pangan dan riset inovasi bahan lokal melatih mental bisnis saya untuk mendirikan usaha pengolahan pangan berkelanjutan.',
-   'The food technopreneurship curriculum and research on local crops shaped my business mindset to build a sustainable circular food business.',
+  ('Bagus Pratama, S.Ds.', 'Angkatan 2020', 'Class of 2020', 'Founder & Creative Director', 'Bumi Serat Nusantara (Craft Studio)',
+   'Kurikulum creativepreneurship mode dan eksplorasi material serat lokal mematangkan mental bisnis saya untuk mendirikan studio kriya tekstil mandiri berbasis eco-fashion.',
+   'The fashion creativepreneurship curriculum and local fiber material exploration matured my business mindset to establish an independent eco-fashion textile craft studio.',
    '/assets/alumni-2.png', 2),
-  ('Risa Fitria, S.TP.', 'Angkatan 2019', 'Class of 2019', 'QA/QC & Halal Auditor', 'PT Indofood Sukses Makmur Tbk',
-   'Integrasi sertifikasi HACCP dan sistem jaminan halal secara langsung di mata kuliah memberikan saya keunggulan kompetitif yang kuat di industri pangan multinasional.',
-   'Integrating HACCP and Halal assurance directly into the curriculum gave me a strong edge to excel in international food processing companies.',
+  ('Risa Fitria, S.Ds.', 'Angkatan 2019', 'Class of 2019', 'Visual Merchandiser Lead', 'PT Mitra Adiperkasa Tbk',
+   'Studi tren fashion, moodboard, dan penataan display visual produk kriya-busana di perkuliahan memberi saya portofolio kuat untuk bersaing di industri retail fashion multinasional.',
+   'Studying fashion trends, moodboards, and visual merchandising layouts in class gave me a strong portfolio to excel in multinational fashion retail industries.',
    '/assets/alumni-3.png', 3)
 ) as v(name, class_of, class_of_en, role, company, quote, quote_en, image_url, sort_order)
 where not exists (select 1 from public.alumni limit 1);
@@ -268,10 +268,10 @@ where not exists (select 1 from public.alumni limit 1);
 -- Seed alumni_sectors
 insert into public.alumni_sectors (name, name_en, percentage, sort_order)
 select * from (values
-  ('Industri Pengolahan & Manufaktur Pangan', 'Food Processing & Manufacturing Industry', '45%', 1),
-  ('Riset, QA/QC, & Pengembangan Produk (R&D)', 'Research, QA/QC, & Product Development (R&D)', '30%', 2),
-  ('Wirausaha Pangan & Technopreneurship', 'Food Startups & Technopreneurship', '15%', 3),
-  ('Lembaga Sertifikasi Halal & Auditor Regulasi Pangan', 'Halal Certification & Food Regulatory Auditing', '10%', 4)
+  ('Industri Fashion & Konveksi Busana', 'Fashion & Garment Manufacturing Industry', '45%', 1),
+  ('Desainer Tekstil, Surface & Structure (R&D)', 'Textile, Surface & Structure Designer (R&D)', '30%', 2),
+  ('Wirausaha Kriya Mandiri & Brand Fashion', 'Craft Studios & Independent Fashion Brands', '15%', 3),
+  ('Stylist, Merchandiser, & Pengarah Seni Visual', 'Fashion Styling, Visual Merchandising, & Art Direction', '10%', 4)
 ) as v(name, name_en, percentage, sort_order)
 where not exists (select 1 from public.alumni_sectors limit 1);
 

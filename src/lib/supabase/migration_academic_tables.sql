@@ -86,59 +86,59 @@ create policy "Allow admin write access for tugas_akhir_steps" on public.tugas_a
 -- (hanya diisi jika tabel masih kosong)
 insert into public.kurikulum_courses (semester, name, name_en, credits, sort_order)
 select * from (values
-  ('I', 'Pengantar Teknologi Pangan', 'Introduction to Food Technology', 2, 1),
-  ('I', 'Kimia Dasar', 'General Chemistry', 3, 2),
-  ('I', 'Biologi Umum', 'General Biology', 3, 3),
-  ('II', 'Kimia Organik', 'Organic Chemistry', 3, 4),
-  ('II', 'Mikrobiologi Umum', 'General Microbiology', 3, 5),
-  ('II', 'Matematika Pangan', 'Food Mathematics', 2, 6),
-  ('III', 'Kimia Pangan', 'Food Chemistry', 3, 7),
-  ('III', 'Mikrobiologi Pangan', 'Food Microbiology', 3, 8),
-  ('III', 'Biokimia Pangan', 'Food Biochemistry', 3, 9),
-  ('IV', 'Analisis Pangan', 'Food Analysis', 3, 10),
-  ('IV', 'Satuan Operasi Industri Pangan', 'Unit Operations in Food Industry', 3, 11),
-  ('IV', 'Bahan Tambahan Pangan', 'Food Additives', 2, 12),
-  ('V', 'Teknologi Pengolahan Pangan', 'Food Processing Technology', 4, 13),
-  ('V', 'Sensoris Pangan', 'Food Sensory Evaluation', 3, 14),
-  ('V', 'Peraturan & Undang-Undang Pangan', 'Food Regulations & Laws', 2, 15),
-  ('VI', 'Sistem Jaminan Produk Halal', 'Halal Product Assurance System', 3, 16),
-  ('VI', 'Manajemen Mutu & Keamanan Pangan', 'Food Quality & Safety Management', 3, 17),
-  ('VI', 'Desain & Inovasi Produk Pangan', 'Food Product Design & Innovation', 3, 18),
-  ('VII', 'Metodologi Penelitian Pangan', 'Food Research Methodology', 2, 19),
+  ('I', 'Pengantar Seni Kriya & Desain', 'Introduction to Craft & Design', 3, 1),
+  ('I', 'Nirmana 2D', '2D Design Principles (Nirmana)', 3, 2),
+  ('I', 'Menggambar Rupa', 'Figure Drawing', 3, 3),
+  ('II', 'Nirmana 3D', '3D Design Principles (Nirmana)', 3, 4),
+  ('II', 'Sejarah Tekstil & Mode', 'History of Textiles & Fashion', 3, 5),
+  ('II', 'Pengetahuan Serat & Tekstil', 'Fiber & Textile Science', 2, 6),
+  ('III', 'Desain Permukaan (Batik & Shibori)', 'Surface Design (Batik & Shibori)', 3, 7),
+  ('III', 'Desain Struktur (Tenun & Anyam)', 'Structure Design (Weaving & Basketry)', 3, 8),
+  ('III', 'Ilustrasi Fashion', 'Fashion Illustration', 3, 9),
+  ('IV', 'Pola & Konstruksi Busana', 'Pattern Drafting & Garment Construction', 3, 10),
+  ('IV', 'Teknik Pewarnaan Alami', 'Natural Dyeing Techniques', 3, 11),
+  ('IV', 'Tekstil Kontemporer', 'Contemporary Textiles', 2, 12),
+  ('V', 'Desain Mode (Ready-to-Wear)', 'Fashion Design (Ready-to-Wear)', 4, 13),
+  ('V', 'Trend Forecasting & Fashion Styling', 'Trend Forecasting & Fashion Styling', 3, 14),
+  ('V', 'Fotografi Produk & Mode', 'Product & Fashion Photography', 2, 15),
+  ('VI', 'Sustainable Fashion & Circular Craft', 'Sustainable Fashion & Circular Craft', 3, 16),
+  ('VI', 'Creativepreneurship & Portofolio', 'Creativepreneurship & Portfolio', 3, 17),
+  ('VI', 'Eksperimen Material Tekstil', 'Textile Material Experimentation', 3, 18),
+  ('VII', 'Metodologi Penelitian Seni & Desain', 'Art & Design Research Methodology', 2, 19),
   ('VII', 'Seminar Proposal Tugas Akhir', 'Final Project Proposal Seminar', 1, 20),
-  ('VII', 'Magang Industri Pangan', 'Food Industry Internship', 4, 21),
-  ('VIII', 'Tugas Akhir / Skripsi', 'Final Project / Undergraduate Thesis', 6, 22)
+  ('VII', 'Magang Industri Kreatif / Fashion Studio', 'Creative Industry / Fashion Studio Internship', 4, 21),
+  ('VIII', 'Tugas Akhir / Karya Mandiri & Skripsi', 'Final Capstone Project / Thesis', 6, 22)
 ) as v(semester, name, name_en, credits, sort_order)
 where not exists (select 1 from public.kurikulum_courses limit 1);
 
 -- 9. Seed Data Awal - CPL / PLOs
 insert into public.kurikulum_plos (code, type, type_en, text, text_en, sort_order)
 select * from (values
-  ('CPL-01', 'Sikap & Nilai Keislaman', 'Islamic Attitude & Values', 'Mampu menginternalisasikan nilai-nilai Islam, etika profesi pangan, dan prinsip kehalalan dalam kehidupan bermasyarakat dan dunia industri.', 'Able to internalize Islamic values, food professional ethics, and halal principles in community life and the industrial world.', 1),
-  ('CPL-02', 'Penguasaan Pengetahuan Sains Pangan', 'Food Science Knowledge Mastery', 'Menguasai konsep sains pangan, kimia pangan, mikrobiologi pangan, analisis pangan, gizi, dan rekayasa proses pengolahan pangan secara mendalam.', 'Mastering food science concepts, food chemistry, food microbiology, food analysis, nutrition, and food processing engineering deeply.', 2),
-  ('CPL-03', 'Keterampilan Kerja Khusus', 'Specific Work Skills', 'Mampu mengaplikasikan ilmu teknologi pangan dalam merancang produk pangan halal, aman, bermutu, dan mengelola sistem penjaminan mutu (HACCP & Sertifikasi Halal).', 'Able to apply food technology science to design halal, safe, and quality food products, and manage quality assurance systems (HACCP & Halal Certification).', 3),
-  ('CPL-04', 'Technopreneurship & Inovasi', 'Technopreneurship & Innovation', 'Mampu mengidentifikasi peluang bisnis pangan berbasis pangan lokal Nusantara dengan pendekatan technopreneurship sirkular berkelanjutan.', 'Able to identify food business opportunities based on local Nusantara food with a sustainable circular technopreneurship approach.', 4)
+  ('CPL-01', 'Sikap & Nilai Keislaman', 'Islamic Attitude & Values', 'Mampu menginternalisasikan nilai-nilai Islam, etika profesi desain, dan prinsip keberlanjutan dalam kehidupan bermasyarakat dan dunia industri kreatif.', 'Able to internalize Islamic values, design professional ethics, and sustainability principles in community life and the creative industry.', 1),
+  ('CPL-02', 'Penguasaan Pengetahuan Kriya & Mode', 'Craft & Fashion Knowledge Mastery', 'Menguasai konsep sejarah kriya, teori warna, trend forecasting, material serat, serta teknik konstruksi tekstil secara mendalam.', 'Mastering craft history concepts, color theory, trend forecasting, fiber materials, and textile construction techniques deeply.', 2),
+  ('CPL-03', 'Keterampilan Kerja Khusus Desain', 'Specific Design Work Skills', 'Mampu merancang karya kriya tekstil (surface dan structure) serta koleksi busana yang inovatif berbasis kearifan lokal dan ramah lingkungan.', 'Able to design textile craft works (surface and structure) and innovative fashion collections based on local wisdom and eco-friendly principles.', 3),
+  ('CPL-04', 'Creativepreneurship & Inovasi', 'Creativepreneurship & Innovation', 'Mampu mengidentifikasi peluang pasar dan membangun bisnis kreatif mandiri (brand fashion/kriya) berbasis technopreneurship budaya.', 'Able to identify market opportunities and build independent creative businesses (fashion/craft brand) based on cultural technopreneurship.', 4)
 ) as v(code, type, type_en, text, text_en, sort_order)
 where not exists (select 1 from public.kurikulum_plos limit 1);
 
 -- 10. Seed Data Awal - Profil Lulusan
 insert into public.kurikulum_profiles (title, title_en, "desc", desc_en, sort_order)
 select * from (values
-  ('QA/QC & Food Safety Specialist', 'QA/QC & Food Safety Specialist', 'Profesional yang mampu menjamin mutu, keamanan, dan kehalalan produk pangan dari bahan baku hingga produk jadi di industri makanan dan minuman.', 'Professionals capable of ensuring the quality, safety, and halal integrity of food products from raw materials to finished products in the food and beverage industry.', 1),
-  ('R&D & Product Development Specialist', 'R&D & Product Development Specialist', 'Inovator yang mampu merancang formulasi baru, diversifikasi pangan lokal Nusantara, serta rekayasa kemasan pangan bernilai gizi tinggi.', 'Innovators capable of designing new formulations, diversifying local Nusantara food, and engineering high-nutrition food packaging.', 2),
-  ('Halal Food Auditor / Consultant', 'Halal Food Auditor / Consultant', 'Ahli bersertifikasi yang mendampingi industri pangan dan UMKM dalam mengaudit, menyusun dokumen Sistem Jaminan Produk Halal (SJPH).', 'Certified experts assisting the food industry and MSMEs in auditing and compiling Halal Product Assurance System documents.', 3),
-  ('Food Technopreneur', 'Food Technopreneur', 'Wirausahawan mandiri yang mengembangkan bisnis pengolahan pangan lokal yang inovatif dengan mengedepankan aspek halal dan keberlanjutan.', 'Independent entrepreneurs developing innovative local food processing businesses prioritizing halal and sustainability aspects.', 4)
+  ('Fashion / Textile Designer', 'Fashion / Textile Designer', 'Profesional yang merancang motif tekstil atau koleksi busana siap pakai untuk industri fashion nasional dan global.', 'Professionals who design textile motifs or ready-to-wear fashion collections for the national and global fashion industry.', 1),
+  ('Contemporary Craft Artist / Maker', 'Contemporary Craft Artist / Maker', 'Seniman kriya independen yang menciptakan karya seni serat, instalasi tekstil, serta produk kerajinan tangan bernilai seni tinggi.', 'Independent craft artists who create fiber art, textile installations, and high-value handmade craft products.', 2),
+  ('Fashion Stylist & Visual Merchandiser', 'Fashion Stylist & Visual Merchandiser', 'Ahli yang menyusun konsep visual untuk photoshoot, pameran produk di butik, dan pengarah gaya mode media.', 'Experts who curate visual concepts for photo shoots, boutique product exhibitions, and media fashion styling.', 3),
+  ('Creativepreneur (Craft & Fashion)', 'Creativepreneur (Craft & Fashion)', 'Wirausahawan mandiri yang mendirikan brand fashion ramah lingkungan atau bisnis kriya berbasis pemberdayaan komunitas lokal.', 'Independent entrepreneurs who establish eco-friendly fashion brands or craft businesses based on local community empowerment.', 4)
 ) as v(title, title_en, "desc", desc_en, sort_order)
 where not exists (select 1 from public.kurikulum_profiles limit 1);
 
 -- 11. Seed Data Awal - Tahapan Tugas Akhir
 insert into public.tugas_akhir_steps (num, title, title_en, "desc", desc_en, sort_order)
 select * from (values
-  ('01', 'Pengajuan Judul & Proposal', 'Title & Proposal Submission', 'Mahasiswa mengajukan draf rencana penelitian beserta calon dosen pembimbing ke prodi untuk dievaluasi kesesuaian topiknya.', 'Students submit research plan drafts along with prospective advisors to the department for topic suitability evaluation.', 1),
-  ('02', 'Seminar Proposal', 'Proposal Seminar', 'Pemaparan rencana penelitian di hadapan dosen penguji untuk mendapat masukan metodologi ilmiah dan kelayakan riset.', 'Presentation of research plans before examiners to receive scientific methodology feedback and research feasibility validation.', 2),
-  ('03', 'Penelitian Laboratorium & Analisis', 'Lab Research & Analysis', 'Pelaksanaan eksperimen, analisis laboratorium (fisik, kimia, mikrobiologi, atau organoleptik) sesuai metodologi proposal.', 'Conducting experiments and laboratory analyses (physical, chemical, microbiological, or organoleptic) per proposal methodology.', 3),
-  ('04', 'Sidang Tugas Akhir', 'Undergraduate Thesis Defense', 'Ujian lisan komprehensif untuk mempertahankan hasil penelitian, analisis data, dan kesimpulan di hadapan dewan penguji.', 'Comprehensive oral exam to defend research results, data analysis, and conclusions before the board of examiners.', 4),
-  ('05', 'Revisi & Pengumpulan Berkas', 'Revision & Submission', 'Penyempurnaan draf naskah skripsi berdasarkan masukan penguji serta pengunggahan manuskrip ke repositori institusi.', 'Perfecting the thesis draft per examiners'' feedback and uploading the final manuscript to the institutional repository.', 5)
+  ('01', 'Pengajuan Konsep Karya & Proposal', 'Concept & Proposal Submission', 'Mahasiswa mengajukan draf rencana karya kriya/busana beserta outline konsep visual untuk dievaluasi oleh prodi.', 'Students submit craft/fashion research drafts along with a visual concept outline to the department for evaluation.', 1),
+  ('02', 'Seminar Proposal Desain', 'Design Proposal Seminar', 'Pemaparan rencana desain, moodboard, sketsa awal, dan pemilihan material di hadapan dosen penguji.', 'Presentation of design plans, moodboard, initial sketches, and material selection before examiners.', 2),
+  ('03', 'Pengerjaan Studio & Eksperimen', 'Studio Work & Experimentation', 'Proses pembuatan karya (weaving, dyeing, sewing) and eksperimen material di studio kriya.', 'Fabrication process (weaving, dyeing, sewing) and material experimentation in the craft studio.', 3),
+  ('04', 'Sidang Karya & Pameran', 'Undergraduate Thesis & Exhibition Defense', 'Pertanggungjawaban hasil karya, konsep teoritis, dan display pameran di hadapan dewan penguji.', 'Defending the completed work, theoretical concept, and exhibition display before the board of examiners.', 4),
+  ('05', 'Revisi & Pengarsipan Portofolio', 'Revision & Portfolio Archiving', 'Penyempurnaan laporan tertulis dan dokumentasi karya foto resolusi tinggi untuk portofolio digital lulusan.', 'Perfecting the written report and high-resolution work documentation for the graduate''s digital portfolio.', 5)
 ) as v(num, title, title_en, "desc", desc_en, sort_order)
 where not exists (select 1 from public.tugas_akhir_steps limit 1);
 

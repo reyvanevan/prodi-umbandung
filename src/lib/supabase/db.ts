@@ -1,4 +1,4 @@
-import { getBrowserSupabaseClient } from './client';
+import { getSupabaseClient } from './client';
 
 export interface DbNews {
   id: string;
@@ -44,7 +44,7 @@ export interface DbSiteContent {
 }
 
 export async function getNews(): Promise<DbNews[] | null> {
-  const supabase = getBrowserSupabaseClient();
+  const supabase = getSupabaseClient();
   if (!supabase) return null;
   const { data, error } = await supabase
     .from('news')
@@ -58,7 +58,7 @@ export async function getNews(): Promise<DbNews[] | null> {
 }
 
 export async function getEvents(): Promise<DbEvent[] | null> {
-  const supabase = getBrowserSupabaseClient();
+  const supabase = getSupabaseClient();
   if (!supabase) return null;
   const { data, error } = await supabase
     .from('events')
@@ -72,7 +72,7 @@ export async function getEvents(): Promise<DbEvent[] | null> {
 }
 
 export async function getTestimonials(): Promise<DbTestimonial[] | null> {
-  const supabase = getBrowserSupabaseClient();
+  const supabase = getSupabaseClient();
   if (!supabase) return null;
   const { data, error } = await supabase
     .from('testimonials')
@@ -86,7 +86,7 @@ export async function getTestimonials(): Promise<DbTestimonial[] | null> {
 }
 
 export async function getPartners(): Promise<DbPartner[] | null> {
-  const supabase = getBrowserSupabaseClient();
+  const supabase = getSupabaseClient();
   if (!supabase) return null;
   const { data, error } = await supabase
     .from('partners')
@@ -106,7 +106,7 @@ export async function getSiteContent(): Promise<DbSiteContent[] | null> {
   if (cachedSiteContent) return cachedSiteContent;
   if (cachedSiteContentPromise) return cachedSiteContentPromise;
 
-  const supabase = getBrowserSupabaseClient();
+  const supabase = getSupabaseClient();
   if (!supabase) return null;
 
   cachedSiteContentPromise = (async () => {
@@ -126,7 +126,7 @@ export async function getSiteContent(): Promise<DbSiteContent[] | null> {
 }
 
 export async function updateSiteContent(key: string, value: string, valueEn: string | null): Promise<boolean> {
-  const supabase = getBrowserSupabaseClient();
+  const supabase = getSupabaseClient();
   if (!supabase) return false;
   const { error } = await supabase
     .from('site_content')
@@ -175,7 +175,7 @@ export async function getLandingStats(): Promise<DbLandingStat[] | null> {
   if (cachedLandingStats) return cachedLandingStats;
   if (cachedLandingStatsPromise) return cachedLandingStatsPromise;
 
-  const supabase = getBrowserSupabaseClient();
+  const supabase = getSupabaseClient();
   if (!supabase) return null;
 
   cachedLandingStatsPromise = (async () => {
@@ -196,7 +196,7 @@ export async function getLandingStats(): Promise<DbLandingStat[] | null> {
 }
 
 export async function getLandingPartners(): Promise<DbLandingPartner[] | null> {
-  const supabase = getBrowserSupabaseClient();
+  const supabase = getSupabaseClient();
   if (!supabase) return null;
   const { data, error } = await supabase
     .from('landing_partners')
@@ -210,7 +210,7 @@ export async function getLandingPartners(): Promise<DbLandingPartner[] | null> {
 }
 
 export async function getLandingPortfolioItems(): Promise<DbLandingPortfolioItem[] | null> {
-  const supabase = getBrowserSupabaseClient();
+  const supabase = getSupabaseClient();
   if (!supabase) return null;
   const { data, error } = await supabase
     .from('landing_portfolio_items')
@@ -238,7 +238,7 @@ export interface DbDosen {
 }
 
 export async function getDosen(): Promise<DbDosen[] | null> {
-  const supabase = getBrowserSupabaseClient();
+  const supabase = getSupabaseClient();
   if (!supabase) return null;
   const { data, error } = await supabase
     .from('dosen')
@@ -290,7 +290,7 @@ export interface DbTaStep {
 }
 
 export async function getKurikulumCourses(): Promise<DbKurikulumCourse[] | null> {
-  const supabase = getBrowserSupabaseClient();
+  const supabase = getSupabaseClient();
   if (!supabase) return null;
   const { data, error } = await supabase
     .from('kurikulum_courses')
@@ -305,7 +305,7 @@ export async function getKurikulumCourses(): Promise<DbKurikulumCourse[] | null>
 }
 
 export async function getKurikulumPlos(): Promise<DbKurikulumPlo[] | null> {
-  const supabase = getBrowserSupabaseClient();
+  const supabase = getSupabaseClient();
   if (!supabase) return null;
   const { data, error } = await supabase
     .from('kurikulum_plos')
@@ -319,7 +319,7 @@ export async function getKurikulumPlos(): Promise<DbKurikulumPlo[] | null> {
 }
 
 export async function getKurikulumProfiles(): Promise<DbKurikulumProfile[] | null> {
-  const supabase = getBrowserSupabaseClient();
+  const supabase = getSupabaseClient();
   if (!supabase) return null;
   const { data, error } = await supabase
     .from('kurikulum_profiles')
@@ -333,7 +333,7 @@ export async function getKurikulumProfiles(): Promise<DbKurikulumProfile[] | nul
 }
 
 export async function getTaSteps(): Promise<DbTaStep[] | null> {
-  const supabase = getBrowserSupabaseClient();
+  const supabase = getSupabaseClient();
   if (!supabase) return null;
   const { data, error } = await supabase
     .from('tugas_akhir_steps')
@@ -364,7 +364,7 @@ export interface DbPrestasi {
 }
 
 export async function getPrestasi(): Promise<DbPrestasi[] | null> {
-  const supabase = getBrowserSupabaseClient();
+  const supabase = getSupabaseClient();
   if (!supabase) return null;
   const { data, error } = await supabase
     .from('prestasi')
@@ -391,7 +391,7 @@ export interface DbPublikasiDosen {
 }
 
 export async function getPublikasiDosen(): Promise<DbPublikasiDosen[] | null> {
-  const supabase = getBrowserSupabaseClient();
+  const supabase = getSupabaseClient();
   if (!supabase) return null;
   const { data, error } = await supabase
     .from('publikasi_dosen')
@@ -417,7 +417,7 @@ export interface DbKegiatanDosen {
 }
 
 export async function getKegiatanDosen(): Promise<DbKegiatanDosen[] | null> {
-  const supabase = getBrowserSupabaseClient();
+  const supabase = getSupabaseClient();
   if (!supabase) return null;
   const { data, error } = await supabase
     .from('kegiatan_dosen')
@@ -443,7 +443,7 @@ export interface DbKegiatanMahasiswa {
 }
 
 export async function getKegiatanMahasiswa(): Promise<DbKegiatanMahasiswa[] | null> {
-  const supabase = getBrowserSupabaseClient();
+  const supabase = getSupabaseClient();
   if (!supabase) return null;
   const { data, error } = await supabase
     .from('kegiatan_mahasiswa')
@@ -477,7 +477,7 @@ export interface DbAlumniSector {
 }
 
 export async function getAlumni(): Promise<DbAlumni[] | null> {
-  const supabase = getBrowserSupabaseClient();
+  const supabase = getSupabaseClient();
   if (!supabase) return null;
   const { data, error } = await supabase
     .from('alumni')
@@ -488,7 +488,7 @@ export async function getAlumni(): Promise<DbAlumni[] | null> {
 }
 
 export async function getAlumniSectors(): Promise<DbAlumniSector[] | null> {
-  const supabase = getBrowserSupabaseClient();
+  const supabase = getSupabaseClient();
   if (!supabase) return null;
   const { data, error } = await supabase
     .from('alumni_sectors')
@@ -508,7 +508,7 @@ export interface DbStatistikMaba {
 }
 
 export async function getStatistikMaba(): Promise<DbStatistikMaba[] | null> {
-  const supabase = getBrowserSupabaseClient();
+  const supabase = getSupabaseClient();
   if (!supabase) return null;
   const { data, error } = await supabase
     .from('statistik_maba')
