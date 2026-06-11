@@ -2,6 +2,7 @@
 import Layout from './Layout.astro';
 import { Users, UserCheck, Clock, BarChart3 } from 'lucide-react';
 import { PRODI_CONFIG } from '../config/prodi.config';
+import { getStatistikMaba } from '../lib/supabase/db';
 
 interface Props {
   lang: 'id' | 'en';
@@ -9,13 +10,22 @@ interface Props {
 
 const { lang } = Astro.props;
 
-const yearlyMaba = [
-  { year: "2021", count: 42 },
-  { year: "2022", count: 45 },
-  { year: "2023", count: 50 },
-  { year: "2024", count: 55 },
-  { year: "2025", count: 58 },
+// ── Fallback + DB fetch ────────────────────────────────────────────────────
+const fallbackMaba = [
+  { year: '2021', count: 42 },
+  { year: '2022', count: 45 },
+  { year: '2023', count: 50 },
+  { year: '2024', count: 55 },
+  { year: '2025', count: 58 },
 ];
+
+const dbMaba = await getStatistikMaba();
+const yearlyMaba = (dbMaba && dbMaba.length > 0)
+  ? dbMaba.map(m => ({ year: m.year, count: m.count }))
+  : fallbackMaba;
+
+const maxCount = Math.max(...yearlyMaba.map(m => m.count), 65);
+
 
 const title = lang === 'en'
   ? `Program Statistics | ${PRODI_CONFIG.degree} ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}`
@@ -121,7 +131,7 @@ const chartLabelSuffix = lang === 'en' ? ' Students' : ' Mhs';
               <div class="flex-1 bg-neutral-100 border border-mono-black h-8 relative overflow-hidden">
                 <div 
                   class="bg-mono-yellow border-r border-mono-black h-full transition-all duration-1000"
-                  style={{ width: `${(m.count / 65) * 100}%` }}
+                  style={{ width: `${(m.count / maxCount) * 100}%` }}
                 />
               </div>
               <span class="font-serif font-bold text-sm text-mono-black w-20 text-right">{m.count}{chartLabelSuffix}</span>

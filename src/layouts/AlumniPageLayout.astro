@@ -2,6 +2,7 @@
 import Layout from './Layout.astro';
 import { Quote } from 'lucide-react';
 import { PRODI_CONFIG } from '../config/prodi.config';
+import { getAlumni, getAlumniSectors } from '../lib/supabase/db';
 
 interface Props {
   lang: 'id' | 'en';
@@ -9,45 +10,71 @@ interface Props {
 
 const { lang } = Astro.props;
 
-const alumni = [
+// ── Fallback static data ────────────────────────────────────────────────────
+type AlumniItem = { name: string; classOf: string; role: string; company: string; quote: string; image: string | null };
+type SectorItem = { name: string; percentage: string };
+
+const fallbackAlumni: AlumniItem[] = [
   {
-    name: "Amelia Rahma, S.TP.",
-    classOf: lang === 'en' ? "Class of 2019" : "Angkatan 2019",
-    role: "Lead R&D Specialist",
-    company: "PT Garudafood Putra Putri Jaya Tbk",
-    quote: lang === 'en' 
-      ? `At ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}, I was taught food chemistry, sensory evaluation, and factory design. This practical training prepared me to lead halal food formulations in the food manufacturing industry.`
-      : `Di ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}, saya diajarkan kimia pangan, evaluasi sensoris, dan desain pabrik pangan secara mendalam. Ini sangat membantu saya memimpin formulasi produk baru bersertifikasi halal secara industri.`,
-    image: "/assets/alumni-1.png"
+    name: 'Amelia Rahma, S.TP.',
+    classOf: lang === 'en' ? 'Class of 2019' : 'Angkatan 2019',
+    role: 'Lead R&D Specialist',
+    company: 'PT Garudafood Putra Putri Jaya Tbk',
+    quote: lang === 'en'
+      ? `At ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}, I was taught food chemistry, sensory evaluation, and factory design.`
+      : `Di ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}, saya diajarkan kimia pangan, evaluasi sensoris, dan desain pabrik pangan secara mendalam.`,
+    image: '/assets/alumni-1.png'
   },
   {
-    name: "Bagus Pratama, S.TP.",
-    classOf: lang === 'en' ? "Class of 2020" : "Angkatan 2020",
-    role: "Founder & CEO",
-    company: "Bumi Halal Nusantara (Food Startup)",
+    name: 'Bagus Pratama, S.TP.',
+    classOf: lang === 'en' ? 'Class of 2020' : 'Angkatan 2020',
+    role: 'Founder & CEO',
+    company: 'Bumi Halal Nusantara (Food Startup)',
     quote: lang === 'en'
-      ? `The food technopreneurship curriculum and research on local crops at ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort} shaped my business mindset to build a sustainable circular food business upon graduation.`
-      : `Penyusunan kurikulum technopreneurship pangan dan riset inovasi bahan lokal di ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort} melatih mental bisnis saya untuk mendirikan usaha pengolahan pangan berkelanjutan selepas lulus.`,
-    image: "/assets/alumni-2.png"
+      ? `The food technopreneurship curriculum at ${PRODI_CONFIG.acronym} shaped my business mindset to build a sustainable circular food business.`
+      : `Kurikulum technopreneurship pangan di ${PRODI_CONFIG.acronym} melatih mental bisnis saya untuk mendirikan usaha pengolahan pangan berkelanjutan.`,
+    image: '/assets/alumni-2.png'
   },
   {
-    name: "Risa Fitria, S.TP.",
-    classOf: lang === 'en' ? "Class of 2019" : "Angkatan 2019",
-    role: "QA/QC & Halal Auditor",
-    company: "PT Indofood Sukses Makmur Tbk",
+    name: 'Risa Fitria, S.TP.',
+    classOf: lang === 'en' ? 'Class of 2019' : 'Angkatan 2019',
+    role: 'QA/QC & Halal Auditor',
+    company: 'PT Indofood Sukses Makmur Tbk',
     quote: lang === 'en'
-      ? `Integrating food safety standards like HACCP and Halal assurance directly into the curriculum gave me a strong edge to excel in international food processing companies.`
-      : `Integrasi sertifikasi HACCP dan sistem jaminan halal secara langsung di mata kuliah memberikan saya keunggulan kompetitif yang kuat saat memulai karier di industri manufaktur pangan multinasional.`,
-    image: "/assets/alumni-3.png"
+      ? 'Integrating HACCP and Halal assurance directly into the curriculum gave me a strong edge in international food processing companies.'
+      : 'Integrasi HACCP dan sistem jaminan halal di mata kuliah memberikan saya keunggulan kompetitif di industri manufaktur pangan multinasional.',
+    image: '/assets/alumni-3.png'
   }
 ];
 
-const sectors = [
-  { name: lang === 'en' ? "Food Processing & Manufacturing Industry" : "Industri Pengolahan & Manufaktur Pangan", percentage: "45%" },
-  { name: lang === 'en' ? "Research, QA/QC, & Product Development (R&D)" : "Riset, QA/QC, & Pengembangan Produk (R&D)", percentage: "30%" },
-  { name: lang === 'en' ? "Food Startups & Technopreneurship" : "Wirausaha Pangan & Technopreneurship", percentage: "15%" },
-  { name: lang === 'en' ? "Halal Certification & Food Regulatory Auditing" : "Lembaga Sertifikasi Halal & Auditor Regulasi Pangan", percentage: "10%" }
+const fallbackSectors: SectorItem[] = [
+  { name: lang === 'en' ? 'Food Processing & Manufacturing Industry' : 'Industri Pengolahan & Manufaktur Pangan', percentage: '45%' },
+  { name: lang === 'en' ? 'Research, QA/QC, & Product Development (R&D)' : 'Riset, QA/QC, & Pengembangan Produk (R&D)', percentage: '30%' },
+  { name: lang === 'en' ? 'Food Startups & Technopreneurship' : 'Wirausaha Pangan & Technopreneurship', percentage: '15%' },
+  { name: lang === 'en' ? 'Halal Certification & Food Regulatory Auditing' : 'Lembaga Sertifikasi Halal & Auditor Regulasi Pangan', percentage: '10%' }
 ];
+
+// ── Fetch from DB, fall back to static ──────────────────────────────────────
+const [dbAlumni, dbSectors] = await Promise.all([getAlumni(), getAlumniSectors()]);
+
+const alumni: AlumniItem[] = (dbAlumni && dbAlumni.length > 0)
+  ? dbAlumni.map(a => ({
+      name: a.name,
+      classOf: lang === 'en' ? (a.class_of_en || a.class_of) : a.class_of,
+      role: a.role,
+      company: a.company,
+      quote: lang === 'en' ? (a.quote_en || a.quote) : a.quote,
+      image: a.image_url
+    }))
+  : fallbackAlumni;
+
+const sectors: SectorItem[] = (dbSectors && dbSectors.length > 0)
+  ? dbSectors.map(s => ({
+      name: lang === 'en' ? (s.name_en || s.name) : s.name,
+      percentage: s.percentage
+    }))
+  : fallbackSectors;
+
 
 const title = lang === 'en'
   ? `Alumni Network | ${PRODI_CONFIG.degree} ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.universityShort}`
