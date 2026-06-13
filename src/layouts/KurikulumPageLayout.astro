@@ -191,6 +191,7 @@ if (dbCourses && dbCourses.length > 0) {
   semOrder.forEach(s => {
     grouped[s] = [];
   });
+  grouped["Pilihan"] = [];
   
   dbCourses.forEach(c => {
     const s = c.semester;
@@ -214,6 +215,20 @@ if (dbCourses && dbCourses.length > 0) {
       }))
     };
   });
+
+  if (grouped["Pilihan"] && grouped["Pilihan"].length > 0) {
+    const sortedElectives = grouped["Pilihan"].sort((a, b) => a.sort_order - b.sort_order);
+    semesters.push({
+      sem: "Pilihan",
+      courses: sortedElectives.map(c => ({
+        id: c.id,
+        name_en: c.name_en || c.name,
+        name_id: c.name,
+        credits: c.credits,
+        rps_url: c.rps_url || null
+      }))
+    });
+  }
 }
 
 const internshipTitle = lang === 'en' ? 'MBKM & Internship Framework' : 'Skema Magang Industri & MBKM';
@@ -297,7 +312,9 @@ const internshipDesc = contentMap['kurikulum_internship_desc'] || defaultInterns
             <div class="border border-mono-black bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] overflow-hidden">
               <div class="bg-mono-black text-white px-6 py-3.5 flex justify-between items-center border-b border-mono-black">
                 <h3 class="font-serif text-base font-bold tracking-wider">
-                  {lang === 'en' ? `SEMESTER ${s.sem}` : `SEMESTER ${s.sem}`}
+                  {s.sem === 'Pilihan' 
+                    ? (lang === 'en' ? 'ELECTIVE COURSES' : 'MATA KULIAH PILIHAN') 
+                    : (lang === 'en' ? `SEMESTER ${s.sem}` : `SEMESTER ${s.sem}`)}
                 </h3>
                 <span class="tech-tag text-[9px] text-mono-yellow">
                   {s.courses.reduce((acc, c) => acc + c.credits, 0)} {lang === 'en' ? 'CREDITS' : 'SKS'}
