@@ -71,29 +71,6 @@ const officers = [
   }
 ];
 
-const boards = lang === 'en' ? [
-  {
-    title: "Academic Advisory Council",
-    members: ["Prof. Dr. Ir. Noor Harini, M.S.", "Dr. H. Ahmad Dahlan, M.T."],
-    desc: "Provides advisory supervision on curriculum alignment, learning resources quality, and accreditation guidelines."
-  },
-  {
-    title: "Student Association Representative (HIMA)",
-    members: ["Daffa Zaidan (Chairman of HIMATEPA)", "Naila Putri (Secretary of HIMATEPA)"],
-    desc: "Coordinates student community affairs, co-curricular food expos, food safety workshops, and academic feedback channels."
-  }
-] : [
-  {
-    title: "Dewan Penasehat Akademik",
-    members: ["Prof. Dr. Ir. Noor Harini, M.S.", "Dr. H. Ahmad Dahlan, M.T."],
-    desc: "Memberikan arahan strategis penyesuaian kurikulum, pengawasan penjaminan mutu pengajaran, serta persiapan akreditasi."
-  },
-  {
-    title: "Himpunan Mahasiswa (HIMATEPA)",
-    members: ["Daffa Zaidan (Ketua Himpunan)", "Naila Putri (Sekretaris Himpunan)"],
-    desc: "Mengkoordinasikan kegiatan ekstrakurikuler mahasiswa, pameran pangan, pengabdian masyarakat sanitasi pangan, dan aspirasi kemahasiswaan."
-  }
-];
 ---
 
 <Layout title={title} lang={lang}>
@@ -186,31 +163,6 @@ const boards = lang === 'en' ? [
         ))}
       </div>
 
-      {/* 3. Advisory & Student Boards */}
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        {boards.map((b) => (
-          <div class="border border-mono-black bg-white p-8 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] flex flex-col justify-between">
-            <div>
-              <p class="tech-tag text-mono-black/40 text-[9px] tracking-widest mb-2">BOARD // COMMITTEE</p>
-              <h3 class="font-serif text-xl font-bold text-mono-black mb-4 pb-2 border-b border-neutral-100">
-                {b.title}
-              </h3>
-              <p class="font-sans text-xs text-neutral-600 leading-relaxed mb-6">
-                {b.desc}
-              </p>
-            </div>
-            
-            <div class="bg-neutral-50 border border-dashed border-neutral-200 p-4 space-y-2">
-              {b.members.map((m) => (
-                <div class="flex items-center gap-2.5">
-                  <div class="h-1.5 w-1.5 rounded-full bg-mono-yellow shrink-0" />
-                  <span class="font-serif text-xs font-bold text-mono-black">{m}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
 
     </div>
   </section>
