@@ -307,7 +307,7 @@ const internshipDesc = contentMap['kurikulum_internship_desc'] || defaultInterns
           </h2>
         </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div id="curriculum-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8">
           {semesters.map((s) => (
             <div class="border border-mono-black bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] overflow-hidden">
               <div class="bg-mono-black text-white px-6 py-3.5 flex justify-between items-center border-b border-mono-black">
@@ -374,9 +374,9 @@ const internshipDesc = contentMap['kurikulum_internship_desc'] || defaultInterns
     </div>
   </section>
 
-  <script is:inline define:vars={{ supabaseUrl: import.meta.env.PUBLIC_SUPABASE_URL, supabaseKey: import.meta.env.PUBLIC_SUPABASE_ANON_KEY }}>
+  <script is:inline define:vars={{ supabaseUrl: import.meta.env.PUBLIC_SUPABASE_URL, supabaseKey: import.meta.env.PUBLIC_SUPABASE_ANON_KEY, lang }}>
     if (supabaseUrl && supabaseKey) {
-      fetch(`${supabaseUrl}/rest/v1/kurikulum_courses?select=id,rps_url`, {
+      fetch(`${supabaseUrl}/rest/v1/kurikulum_courses?select=*`, {
         headers: {
           'apikey': supabaseKey,
           'Authorization': `Bearer ${supabaseKey}`
@@ -384,30 +384,104 @@ const internshipDesc = contentMap['kurikulum_internship_desc'] || defaultInterns
       })
       .then(res => res.json())
       .then(data => {
-        if (Array.isArray(data)) {
-          data.forEach(item => {
-            const container = document.querySelector(`.rps-btn-container[data-course-id="${item.id}"]`);
-            if (container) {
-              if (item.rps_url) {
-                container.innerHTML = `
-                  <a 
-                    href="${item.rps_url}" 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    class="tech-tag text-[9px] bg-mono-black text-white hover:bg-transparent hover:text-mono-black border border-mono-black px-2 py-0.5 shrink-0 transition-colors inline-flex items-center gap-1 no-underline"
-                  >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
-                    <span>RPS</span>
-                  </a>
-                `;
-              } else {
-                container.innerHTML = '';
-              }
+        if (Array.isArray(data) && data.length > 0) {
+          const semOrder = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII"];
+          const grouped = {};
+          semOrder.forEach(s => {
+            grouped[s] = [];
+          });
+          grouped["Pilihan"] = [];
+          
+          data.forEach(c => {
+            const s = c.semester;
+            if (grouped[s]) {
+              grouped[s].push(c);
+            } else {
+              grouped[s] = [c];
             }
           });
+          
+          const semestersList = semOrder.map(s => {
+            const sortedCourses = (grouped[s] || []).sort((a, b) => a.sort_order - b.sort_order);
+            return {
+              sem: s,
+              courses: sortedCourses
+            };
+          });
+
+          if (grouped["Pilihan"] && grouped["Pilihan"].length > 0) {
+            const sortedElectives = grouped["Pilihan"].sort((a, b) => a.sort_order - b.sort_order);
+            semestersList.push({
+              sem: "Pilihan",
+              courses: sortedElectives
+            });
+          }
+
+          const gridContainer = document.getElementById('curriculum-grid');
+          if (gridContainer) {
+            let htmlContent = '';
+            semestersList.forEach(s => {
+              const totalCredits = s.courses.reduce((acc, c) => acc + c.credits, 0);
+              const title = s.sem === 'Pilihan' 
+                ? (lang === 'en' ? 'ELECTIVE COURSES' : 'MATA KULIAH PILIHAN') 
+                : `SEMESTER ${s.sem}`;
+              const creditsLabel = lang === 'en' ? 'CREDITS' : 'SKS';
+
+              let coursesHtml = '';
+              s.courses.forEach(c => {
+                const name = lang === 'en' ? (c.name_en || c.name) : c.name;
+                const rpsHtml = c.rps_url 
+                  ? `<a 
+                      href="${c.rps_url}" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      class="tech-tag text-[9px] bg-mono-black text-white hover:bg-transparent hover:text-mono-black border border-mono-black px-2 py-0.5 shrink-0 transition-colors inline-flex items-center gap-1 no-underline"
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                      <span>RPS</span>
+                    </a>`
+                  : '';
+
+                coursesHtml += `
+                  <div class="px-6 py-4 flex justify-between items-center gap-4 hover:bg-neutral-50 transition-colors">
+                    <div class="flex flex-col gap-1">
+                      <span class="text-xs font-bold text-mono-black leading-tight">
+                        ${name}
+                      </span>
+                    </div>
+                    <div class="flex items-center gap-2 shrink-0">
+                      <div class="rps-btn-container" data-course-id="${c.id}">
+                        ${rpsHtml}
+                      </div>
+                      <span class="tech-tag text-[9px] bg-neutral-100 text-neutral-500 border border-neutral-200 px-2 py-0.5 shrink-0">
+                        ${c.credits} SKS
+                      </span>
+                    </div>
+                  </div>
+                `;
+              });
+
+              htmlContent += `
+                <div class="border border-mono-black bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] overflow-hidden">
+                  <div class="bg-mono-black text-white px-6 py-3.5 flex justify-between items-center border-b border-mono-black">
+                    <h3 class="font-serif text-base font-bold tracking-wider">
+                      ${title}
+                    </h3>
+                    <span class="tech-tag text-[9px] text-mono-yellow">
+                      ${totalCredits} ${creditsLabel}
+                    </span>
+                  </div>
+                  <div class="divide-y divide-neutral-100 font-sans">
+                    ${coursesHtml}
+                  </div>
+                </div>
+              `;
+            });
+            gridContainer.innerHTML = htmlContent;
+          }
         }
       })
-      .catch(err => console.error('Error syncing RPS links dynamically:', err));
+      .catch(err => console.error('Error syncing curriculum dynamically:', err));
     }
   </script>
 </Layout>
