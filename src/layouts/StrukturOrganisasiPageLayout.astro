@@ -52,6 +52,13 @@ const officers = [
     desc: lang === 'en' ? "Manages servers, software licensing, studio resources, network infrastructures, and laboratory assistants." : "Mengelola workstation, lisensi perangkat lunak, infrastruktur jaringan studio, serta koordinasi asisten lab.",
     email: contentMap['gov_lab_email'] || "hanif.am@umbandung.ac.id",
     photo: contentMap['gov_lab_photo'] || "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=300&auto=format&fit=crop"
+  },
+  {
+    name: contentMap['gov_upm_name'] || "Indra Hidayat, S.Ds., M.Sn.",
+    role: contentMap['gov_upm_role'] || (lang === 'en' ? "Quality Assurance Unit" : "Unit Penjaminan Mutu"),
+    desc: lang === 'en' ? "Monitors educational standards, evaluates learning quality, and oversees academic audits." : "Memantau standar pendidikan, mengevaluasi mutu pembelajaran, dan mengawasi audit mutu akademik.",
+    email: contentMap['gov_upm_email'] || "indra.h@umbandung.ac.id",
+    photo: contentMap['gov_upm_photo'] || "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=300&auto=format&fit=crop"
   }
 ];
 
@@ -136,8 +143,8 @@ const boards = lang === 'en' ? [
         <div class="w-0.5 h-12 bg-mono-black/25 border-dashed border-l-2"></div>
       </div>
 
-      {/* 2. Level 2: Officers (Secretary & Lab Head) */}
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+      {/* 2. Level 2: Officers (Secretary, Lab Head, & UPM) */}
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
         {officers.map((o) => (
           <div class="border border-mono-black bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] grid grid-cols-1 sm:grid-cols-12 overflow-hidden">
             {/* Photo */}
