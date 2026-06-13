@@ -19,10 +19,6 @@ export const isSupabaseConfigured = Boolean(
 );
 
 export function getBrowserSupabaseClient(): SupabaseClient | null {
-  if (typeof window === 'undefined') {
-    return null;
-  }
-
   if (!isSupabaseConfigured) {
     return null;
   }

@@ -208,7 +208,8 @@ if (dbCourses && dbCourses.length > 0) {
       courses: sortedCourses.map(c => ({
         name_en: c.name_en || c.name,
         name_id: c.name,
-        credits: c.credits
+        credits: c.credits,
+        rps_url: c.rps_url || null
       }))
     };
   });
@@ -304,9 +305,22 @@ const internshipDesc = contentMap['kurikulum_internship_desc'] || defaultInterns
               <div class="divide-y divide-neutral-100 font-sans">
                 {s.courses.map((c) => (
                   <div class="px-6 py-4 flex justify-between items-center gap-4 hover:bg-neutral-50 transition-colors">
-                    <span class="text-xs font-bold text-mono-black leading-tight">
-                      {lang === 'en' ? c.name_en : c.name_id}
-                    </span>
+                    <div class="flex flex-col gap-1">
+                      <span class="text-xs font-bold text-mono-black leading-tight">
+                        {lang === 'en' ? c.name_en : c.name_id}
+                      </span>
+                      {c.rps_url && (
+                        <a 
+                          href={c.rps_url} 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          class="inline-flex items-center gap-1 text-[10px] text-mono-yellow font-bold hover:underline"
+                        >
+                          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                          <span>RPS</span>
+                        </a>
+                      )}
+                    </div>
                     <span class="tech-tag text-[9px] bg-neutral-100 text-neutral-500 border border-neutral-200 px-2 py-0.5 shrink-0">
                       {c.credits} SKS
                     </span>

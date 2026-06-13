@@ -105,6 +105,7 @@ create table if not exists public.kurikulum_courses (
   name_en text,
   credits int not null,
   sort_order int not null default 0,
+  rps_url text,
   created_at timestamp with time zone default timezone('utc'::text, now()) not null
 );
 
