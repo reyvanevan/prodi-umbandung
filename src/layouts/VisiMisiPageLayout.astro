@@ -94,6 +94,24 @@ const goals = contentMap['visi_misi_goals']
       return { title, desc };
     })
   : defaultGoals;
+
+const defaultStrategies = lang === 'en' ? [
+  "Institutional strengthening of the Food Technology Study Program at Universitas Muhammadiyah Bandung with Islamic character.",
+  "Enhancing the quality and quantity of research and community services focusing on local and halal food technology engineering.",
+  "Improving graduates' competencies as food technopreneurs, practitioners, auditors, and regulators.",
+  "Consolidation of laboratory infrastructure and facilities supporting food technology learning and innovation.",
+  "Launching strategic collaboration networks with various stakeholders."
+] : [
+  "Penguatan kelembagaan Program Studi Teknologi Pangan Universitas Muhammadiyah Bandung yang berkarakter Islami.",
+  "Peningkatan kualitas dan kuantitas penelitian serta pengabdian kepada masyarakat yang berfokus pada rekayasa teknologi pangan lokal dan halal.",
+  "Meningkatnya kompetensi lulusan Program Studi Teknologi Pangan sebagai teknopreneur, praktisi, auditor, dan regulator pangan.",
+  "Pemantapan sarana dan prasarana laboratorium yang mendukung pembelajaran dan inovasi teknologi pangan.",
+  "Pembukaan jaringan kerja sama strategis dengan berbagai pihak."
+];
+
+const strategies = contentMap['visi_misi_strategies']
+  ? contentMap['visi_misi_strategies'].split('\n').filter(Boolean)
+  : defaultStrategies;
 ---
 
 <Layout title={title} lang={lang}>
@@ -175,6 +193,27 @@ const goals = contentMap['visi_misi_goals']
         </div>
       </div>
 
+      {/* Strategies Section */}
+      <div class="mt-12 border border-mono-black bg-white p-8 lg:p-12 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
+        <p class="tech-tag text-mono-yellow mb-3">STRATEGY // STRATEGI PENCAPAIAN</p>
+        <h2 class="font-serif text-2xl lg:text-3xl text-mono-black mb-8 border-b border-neutral-100 pb-4 flex items-center gap-3">
+          <ShieldCheck class="h-6 w-6 text-mono-black" />
+          <span>{lang === 'en' ? 'Achievement Strategy' : 'Strategi Pencapaian'}</span>
+        </h2>
+        <div id="strategies-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {strategies.map((s, idx) => (
+            <div class="p-5 border border-mono-black bg-neutral-50/50 flex gap-4 hover:bg-neutral-50 transition-colors">
+              <div class="h-8 w-8 rounded-none bg-mono-black text-white flex items-center justify-center font-serif text-sm font-bold shrink-0 shadow-[2px_2px_0px_0px_var(--primary-color)]">
+                {String.fromCharCode(97 + idx)}
+              </div>
+              <p class="font-sans text-xs text-neutral-700 leading-relaxed pt-0.5">
+                {s}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -245,6 +284,25 @@ const goals = contentMap['visi_misi_goals']
                   </div>
                 `;
               }).join('');
+            }
+          }
+
+          // Update Strategies
+          const strategiesVal = contentMap['visi_misi_strategies'];
+          if (strategiesVal) {
+            const containerEl = document.getElementById('strategies-container');
+            if (containerEl) {
+              const lines = strategiesVal.split('\n').filter(Boolean);
+              containerEl.innerHTML = lines.map((s, idx) => `
+                <div class="p-5 border border-mono-black bg-neutral-50/50 flex gap-4 hover:bg-neutral-50 transition-colors">
+                  <div class="h-8 w-8 rounded-none bg-mono-black text-white flex items-center justify-center font-serif text-sm font-bold shrink-0 shadow-[2px_2px_0px_0px_var(--primary-color)]">
+                    ${String.fromCharCode(97 + idx)}
+                  </div>
+                  <p class="font-sans text-xs text-neutral-700 leading-relaxed pt-0.5">
+                    ${s}
+                  </p>
+                </div>
+              `).join('');
             }
           }
         } catch (e) {
