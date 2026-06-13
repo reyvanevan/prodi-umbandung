@@ -74,7 +74,7 @@ export const PRODI_CONFIG: ProdiConfig = {
     degree: 'Ketua Program Studi',
   },
   videoProfileUrl: 'https://www.youtube.com/watch?v=12ER7lJyZOc&feature=youtu.be',
-  sintaUrl: '#',
+  sintaUrl: 'https://sinta.kemdiktisaintek.go.id/departments/authors/4508/B1E2C1BA-7DA9-4D94-AD8D-03A55689849E/00F7C6DB-046D-499C-B6A9-4EBE970BB955',
   portals: {
     id: [
       { label: 'PORTAL IGRACIAS', href: 'https://igracias.umbandung.ac.id' },

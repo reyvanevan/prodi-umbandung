@@ -287,11 +287,13 @@ export function Footer({ lang = 'id' }: FooterProps) {
                         Main UMB Website
                       </a>
                     </li>
-                    <li className="flow-root">
-                      <a href="https://sinta.kemdiktisaintek.go.id/departments/authors/4508/B1E2C1BA-7DA9-4D94-AD8D-03A55689849E/00F7C6DB-046D-499C-B6A9-4EBE970BB955" target="_blank" rel="noopener noreferrer" className="font-sans text-xs text-mono-black/65 hover:text-mono-yellow transition-colors no-underline tracking-wide">
-                        SINTA KTF UMB
-                      </a>
-                    </li>
+                    {PRODI_CONFIG.sintaUrl && PRODI_CONFIG.sintaUrl !== '#' && (
+                      <li className="flow-root">
+                        <a href={PRODI_CONFIG.sintaUrl} target="_blank" rel="noopener noreferrer" className="font-sans text-xs text-mono-black/65 hover:text-mono-yellow transition-colors no-underline tracking-wide">
+                          SINTA {PRODI_CONFIG.acronym} {PRODI_CONFIG.universityShort}
+                        </a>
+                      </li>
+                    )}
                     <li className="flow-root">
                       <a href="https://pmb.umbandung.ac.id" target="_blank" rel="noopener noreferrer" className="font-sans text-xs text-mono-black/65 hover:text-mono-yellow transition-colors no-underline tracking-wide">
                         PMB Portal
