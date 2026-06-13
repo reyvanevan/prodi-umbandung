@@ -34,6 +34,7 @@ export interface ProdiConfig {
   };
   videoProfileUrl?: string;
   sintaUrl?: string;
+  fstWebsiteUrl?: string;
   portals: {
     id: { label: string; href: string }[];
     en: { label: string; href: string }[];
@@ -47,10 +48,10 @@ export const PRODI_CONFIG: ProdiConfig = {
     en: 'Textile and Fashion Design',
   },
   degree: 'S1',
-  degreeTitle: 'S.Sn.',
+  degreeTitle: 'S.T.P.',
   degreeTitleFull: {
-    id: 'Sarjana Seni',
-    en: 'Bachelor of Applied Arts',
+    id: 'Sarjana Teknologi Pangan',
+    en: 'Bachelor of Food Technology',
   },
   faculty: {
     id: 'Fakultas Sosial dan Humaniora',
@@ -75,6 +76,7 @@ export const PRODI_CONFIG: ProdiConfig = {
   },
   videoProfileUrl: 'https://www.youtube.com/watch?v=12ER7lJyZOc&feature=youtu.be',
   sintaUrl: 'https://sinta.kemdiktisaintek.go.id/departments/authors/4508/B1E2C1BA-7DA9-4D94-AD8D-03A55689849E/00F7C6DB-046D-499C-B6A9-4EBE970BB955',
+  fstWebsiteUrl: 'https://fst.umbandung.ac.id',
   portals: {
     id: [
       { label: 'PORTAL IGRACIAS', href: 'https://igracias.umbandung.ac.id' },

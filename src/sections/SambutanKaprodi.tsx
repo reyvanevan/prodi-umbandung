@@ -45,7 +45,7 @@ export function SambutanKaprodi({ lang, title, p1, p2 }: SambutanKaprodiProps) {
     );
   }
 
-  const defaultTitle = lang === 'en' ? "Head of Department's Welcome" : 'Sambutan Kepala Program Studi';
+  const defaultTitle = lang === 'en' ? "Head of Study Program's Welcome" : 'Sambutan Kepala Program Studi';
   const defaultP1 = lang === 'en'
     ? `Welcome to the official portal of the ${PRODI_CONFIG.degree} Program in ${PRODI_CONFIG.name.en} at ${PRODI_CONFIG.university}. We are committed to shaping future technology leaders and software engineers who master modern computing, programming systems, and artificial intelligence.`
     : `Selamat datang di portal resmi Program Studi ${PRODI_CONFIG.degree} ${PRODI_CONFIG.name.id} ${PRODI_CONFIG.university}. Kami berkomitmen untuk mencetak pemimpin teknologi dan rekayasawan perangkat lunak masa depan yang menguasai komputasi modern, sistem pemrograman, dan kecerdasan buatan.`;
@@ -75,7 +75,7 @@ export function SambutanKaprodi({ lang, title, p1, p2 }: SambutanKaprodiProps) {
             {/* Overlay name badge */}
             <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-mono-black/90 via-mono-black/60 to-transparent p-6 text-white pt-16">
               <span className="tech-tag text-white/50 text-[9px] tracking-widest block mb-1">
-                {lang === 'en' ? 'HEAD OF DEPARTMENT' : 'KAPRODI'}
+                {lang === 'en' ? 'HEAD OF STUDY PROGRAM' : 'KAPRODI'}
               </span>
               <h3 className="font-serif text-2xl mb-1">{finalName}</h3>
               <p className="tech-tag text-white/40 text-[9px] tracking-wide">{finalRole}</p>
@@ -85,7 +85,7 @@ export function SambutanKaprodi({ lang, title, p1, p2 }: SambutanKaprodiProps) {
           {/* Welcome Text (7 columns) */}
           <div className="lg:col-span-7 fade-in-element delay-200">
             <p className="tech-tag text-mono-yellow mb-3">
-              {lang === 'en' ? 'WELCOME // HEAD OF DEPARTMENT' : 'WELCOME // HEAD OF DEPARTMENT'}
+              {lang === 'en' ? 'WELCOME // HEAD OF STUDY PROGRAM' : 'WELCOME // HEAD OF STUDY PROGRAM'}
             </p>
             <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl tracking-wide mb-8 leading-tight">
               {finalTitle}

@@ -303,8 +303,8 @@ insert into public.site_content (key, value, value_en) values
   ('logo_prodi_url', '', ''),
   ('hero_bg_url', '/assets/hero-mono-stigma.png', '/assets/hero-mono-stigma.png'),
   ('kaprodi_name', 'Dra. Saftiyaningsih Ken Atik, M.Ds.', 'Dra. Saftiyaningsih Ken Atik, M.Ds.'),
-  ('kaprodi_title', 'Ketua Program Studi Kriya Tekstil dan Fashion', 'Head of Textile and Fashion Design Department'),
-  ('sambutan_title', 'Sambutan Kepala Program Studi', 'Head of Department''s Welcome'),
+  ('kaprodi_title', 'Ketua Program Studi Kriya Tekstil dan Fashion', 'Head of Study Program'),
+  ('sambutan_title', 'Sambutan Kepala Program Studi', 'Head of Study Program''s Welcome'),
   ('philosophy_title', 'Filosofi Pembelajaran Kami', 'Our Learning Philosophy'),
   ('philosophy_body', 'Kami percaya bahwa kriya tekstil dan fashion bukan hanya tentang estetika visual, melainkan tentang mengekspresikan nilai budaya, inovasi material yang ramah lingkungan, serta memberikan dampak nyata bagi industri kreatif.', 'We believe that textile craft and fashion are not just about visual aesthetics, but about expressing cultural values, sustainable material innovation, and delivering real impact to the creative industry.'),
   ('visi_misi_vision', 'Menjadi program studi kriya tekstil dan fashion yang unggul dan inovatif dalam pengembangan seni kriya dan desain mode berbasis kearifan lokal Nusantara serta berdaya saing global pada tahun 2030.', 'To become a leading and innovative textile craft and fashion study program in developing craft arts and fashion design based on Nusantara local wisdom with global competitiveness by 2030.'),
@@ -332,7 +332,13 @@ Islamic Character & Creativepreneurship'),
   ('kurikulum_internship_desc', 'Mahasiswa difasilitasi untuk magang industri atau di studio desainer terkemuka di bawah skema MBKM hingga 20 SKS.', 'Students are facilitated to intern in creative industries or leading designer studios under the MBKM scheme for up to 20 credits.'),
   ('tugas_akhir_description', 'Akses panduan akademik, persyaratan kelayakan, alur pengajuan proposal karya kriya dan busana, serta template Tugas Akhir (Skripsi/Karya Mandiri).', 'Access academic guidelines, prerequisites, project proposals, and templates required to complete your final project (Thesis/Creative Work).'),
   ('tugas_akhir_prereq_desc', 'Telah menempuh minimal 110 SKS, tidak memiliki nilai D/E untuk mata kuliah inti kriya, IPK Kumulatif minimal 2.00, serta mengajukan outline konsep karya.', 'Successfully completed a minimum of 110 academic credits (SKS), no D/E grades for core craft courses, minimum GPA of 2.00, and submitted a creative design outline.'),
-  ('kerjasama_description', 'Membuka peluang kolaborasi industri kreatif guna mendukung magang mahasiswa, pameran bersama, serta penyerapan karir lulusan.', 'Exploring collaborations with creative industries to support student internships, joint exhibitions, and professional career transitions.');
+  ('kerjasama_description', 'Membuka peluang kolaborasi industri kreatif guna mendukung magang mahasiswa, pameran bersama, serta penyerapan karir lulusan.', 'Exploring collaborations with creative industries to support student internships, joint exhibitions, and professional career transitions.'),
+  ('info_singkat_degree_title', 'S.T.P.', 'S.T.P.'),
+  ('info_singkat_degree_name', 'Sarjana Teknologi Pangan (S1)', 'Sarjana Teknologi Pangan (S1)'),
+  ('info_singkat_sks_title', '144 SKS', '144 SKS'),
+  ('info_singkat_sks_desc', 'SKS Perkuliahan dan Praktikum', 'SKS Perkuliahan dan Praktikum'),
+  ('info_singkat_duration_title', '4 Tahun', '4 Years'),
+  ('info_singkat_duration_desc', '8 Semester Perkuliahan Akademik', '8 Academic Semesters (Fast track available)');
 
 -- Seed Dosen
 insert into public.dosen (name, img_src, scopus, sinta, scholar, facebook, twitter, tiktok, instagram, sort_order) values

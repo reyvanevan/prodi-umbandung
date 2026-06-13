@@ -287,10 +287,10 @@ export function Footer({ lang = 'id' }: FooterProps) {
                         Main UMB Website
                       </a>
                     </li>
-                    {PRODI_CONFIG.sintaUrl && PRODI_CONFIG.sintaUrl !== '#' && (
+                    {PRODI_CONFIG.fstWebsiteUrl && PRODI_CONFIG.fstWebsiteUrl !== '#' && (
                       <li className="flow-root">
-                        <a href={PRODI_CONFIG.sintaUrl} target="_blank" rel="noopener noreferrer" className="font-sans text-xs text-mono-black/65 hover:text-mono-yellow transition-colors no-underline tracking-wide">
-                          SINTA {PRODI_CONFIG.acronym} {PRODI_CONFIG.universityShort}
+                        <a href={PRODI_CONFIG.fstWebsiteUrl} target="_blank" rel="noopener noreferrer" className="font-sans text-xs text-mono-black/65 hover:text-mono-yellow transition-colors no-underline tracking-wide">
+                          FST Website
                         </a>
                       </li>
                     )}
