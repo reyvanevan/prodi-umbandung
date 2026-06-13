@@ -24,45 +24,45 @@ const title = lang === 'en'
 const heading = lang === 'en' ? 'Academic Program Curriculum' : 'Kurikulum & Capaian Pembelajaran';
 
 const defaultDescription = lang === 'en'
-  ? `Explore our structured, adaptive curriculum focusing on creative textile techniques, fashion styling, circular sustainability, and entrepreneurship.`
-  : `Pelajari struktur kurikulum adaptif kami yang dirancang untuk membekali mahasiswa dengan keahlian teknik tekstil kreatif, desain mode, keberlanjutan sirkular, dan wirausaha kreatif.`;
+  ? `Explore our structured, adaptive curriculum focusing on halal food science, circular food biorefinery, safety regulations, and food technopreneurship.`
+  : `Pelajari struktur kurikulum adaptif kami yang dirancang untuk membekali mahasiswa dengan keahlian sains pangan halal, biorefinery pangan sirkular, regulasi keamanan, dan wirausaha pangan.`;
 
 const description = contentMap['kurikulum_description'] || defaultDescription;
 
 // 1. Graduate Profiles (Fallbacks)
 const fallbackProfiles = lang === 'en' ? [
   {
-    title: "Fashion / Textile Designer",
-    desc: "Professionals who design textile patterns, fabrics, and ready-to-wear fashion collections for industries and independent brands."
+    title: "Food Industry Quality Assurance & Quality Control (QA/QC)",
+    desc: "Professionals who ensure that raw materials and finished food products meet regulatory, safety, and halal quality standards."
   },
   {
-    title: "Contemporary Craft Artist & Maker",
-    desc: "Independent artists creating fiber art, installations, and high-value handmade design objects for exhibitions and galleries."
+    title: "Food Research & Development (R&D) Specialist",
+    desc: "Innovators who design and formulate new food products, optimize processes, and explore local food biodiversity."
   },
   {
-    title: "Fashion Stylist & Visual Merchandiser",
-    desc: "Experts curating visual identities, directing photo shoots, styling media content, and designing boutique store displays."
+    title: "Food Processing Supervisor & Analyst",
+    desc: "Experts in supervising manufacturing lines, managing production workflows, and analyzing safety risks in food processing."
   },
   {
-    title: "Creativepreneur (Craft & Fashion)",
-    desc: "Entrepreneurs establishing sustainable fashion labels, handicraft studios, or textile craft businesses based on local culture."
+    title: "Food Technopreneur",
+    desc: "Entrepreneurs who build food startups, small-to-medium enterprises, or consulting services utilizing halal food technology and local wisdom."
   }
 ] : [
   {
-    title: "Fashion / Textile Designer",
-    desc: "Profesional yang merancang motif tekstil, material kain, dan koleksi busana siap pakai untuk industri maupun brand mandiri."
+    title: "Quality Assurance & Quality Control (QA/QC) Industri Pangan",
+    desc: "Profesional yang menjamin bahan baku dan produk pangan akhir memenuhi standar regulasi, keamanan, serta mutu kehalalan."
   },
   {
-    title: "Contemporary Craft Artist & Maker",
-    desc: "Seniman kriya mandiri yang menciptakan karya seni serat, instalasi, dan produk kerajinan bernilai seni tinggi untuk galeri dan pameran."
+    title: "Spesialis Riset & Pengembangan Produk (R&D)",
+    desc: "Inovator yang merancang formulasi produk pangan baru, mengoptimalkan proses, dan mengeksplorasi keanekaragaman pangan lokal."
   },
   {
-    title: "Fashion Stylist & Visual Merchandiser",
-    desc: "Ahli tata gaya busana untuk media/photoshoot, pengarah konsep visual brand, serta perancang display butik retail fashion."
+    title: "Supervisor & Analis Proses Pengolahan Pangan",
+    desc: "Ahli dalam mengawasi lini manufaktur, mengelola alur kerja produksi, dan menganalisis risiko keamanan pada pengolahan pangan."
   },
   {
-    title: "Creativepreneur (Kriya & Fashion)",
-    desc: "Wirausahawan kreatif yang membangun brand fashion ramah lingkungan, studio kriya, atau bisnis kreatif berbasis pemberdayaan lokal."
+    title: "Teknopreneur Bidang Pangan (Food Entrepreneur)",
+    desc: "Wirausahawan yang membangun startup pangan, UMKM, atau jasa konsultan dengan memanfaatkan teknologi pangan halal dan kearifan lokal."
   }
 ];
 
@@ -76,15 +76,15 @@ const profiles = (dbProfiles && dbProfiles.length > 0)
 
 // 2. Program Learning Outcomes (PLO/CPL) (Fallbacks)
 const fallbackPlos = lang === 'en' ? [
-  { code: "CPL-01", type: "Islamic Values & Ethics", text: "Incorporate Islamic values, professional design ethics, and sustainability principles in community and creative industries." },
-  { code: "CPL-02", type: "Craft & Fashion Theory", text: "Master concepts of art history, color theory, textile fibers, and garment construction techniques deeply." },
-  { code: "CPL-03", type: "Design & Technical Skills", text: "Design innovative textile crafts (surface and structure) and fashion collections based on local culture and eco-friendly design." },
-  { code: "CPL-04", type: "Creativepreneurship", text: "Identify market opportunities and build independent cultural-tech creative business brands in craft/fashion." }
+  { code: "CPL-01", type: "Islamic Values & Ethics", text: "Incorporate Islamic values, professional ethics, and sustainability principles in food industries." },
+  { code: "CPL-02", type: "Food Science Theory", text: "Master concepts of food chemistry, food microbiology, food analysis, and engineering principles deeply." },
+  { code: "CPL-03", type: "Processing & Technical Skills", text: "Design innovative food processing systems that ensure food safety, quality, and halal compliance based on local resources." },
+  { code: "CPL-04", type: "Food Technopreneurship", text: "Identify market opportunities and build independent food business brands based on sustainable food technology." }
 ] : [
-  { code: "CPL-01", type: "Nilai Islam & Etika", text: "Menginternalisasikan nilai-nilai Keislaman, etika profesi desain, dan prinsip keberlanjutan dalam kehidupan bermasyarakat dan industri kreatif." },
-  { code: "CPL-02", type: "Teori Kriya & Mode", text: "Menguasai konsep sejarah kriya, teori warna, trend forecasting, serat tekstil, serta teknik konstruksi sandang secara mendalam." },
-  { code: "CPL-03", type: "Keterampilan Desain", text: "Mampu merancang karya kriya tekstil (surface & structure) serta koleksi busana yang inovatif berbasis kearifan lokal dan ramah lingkungan." },
-  { code: "CPL-04", type: "Creativepreneurship", text: "Mampu mengidentifikasi peluang pasar dan membangun bisnis kreatif mandiri (brand kriya/fashion) berbasis technopreneurship budaya." }
+  { code: "CPL-01", type: "Nilai Islam & Etika", text: "Menginternalisasikan nilai-nilai Keislaman, etika profesi, dan prinsip keberlanjutan dalam industri pangan." },
+  { code: "CPL-02", type: "Teori Sains Pangan", text: "Menguasai konsep kimia pangan, mikrobiologi pangan, analisis pangan, dan prinsip teknik pangan secara mendalam." },
+  { code: "CPL-03", type: "Keterampilan Pengolahan", text: "Mampu merancang sistem pengolahan pangan inovatif yang menjamin keamanan, mutu, dan kehalalan produk berbasis pangan lokal." },
+  { code: "CPL-04", type: "Food Technopreneurship", text: "Mampu mengidentifikasi peluang pasar dan membangun bisnis pangan mandiri berbasis teknologi pangan berkelanjutan." }
 ];
 
 const dbPlos = await getKurikulumPlos();
@@ -101,84 +101,83 @@ const fallbackSemesters = [
   {
     sem: "I",
     courses: [
-      { name_en: "Introduction to Art & Design", name_id: "Pengantar Seni & Desain", credits: 3 },
-      { name_en: "Drawing Fundamentals", name_id: "Dasar Rupa & Menggambar", credits: 3 },
-      { name_en: "Textile Fibers & Materials", name_id: "Serat & Material Tekstil", credits: 3 },
+      { name_en: "Basic Chemistry", name_id: "Kimia Dasar", credits: 3 },
+      { name_en: "Basic Physics", name_id: "Fisika Dasar", credits: 3 },
+      { name_en: "Biology Fundamentals", name_id: "Dasar Biologi", credits: 3 },
+      { name_en: "Calculus", name_id: "Kalkulus", credits: 3 },
       { name_en: "Islamic Studies I", name_id: "Studi Islam I", credits: 2 },
-      { name_en: "English Language I", name_id: "Bahasa Inggris I", credits: 2 },
-      { name_en: "Color Theory & Practice", name_id: "Teori & Praktik Warna", credits: 3 },
-      { name_en: "Introduction to Creativepreneurship", name_id: "Pengantar Creativepreneurship", credits: 2 }
+      { name_en: "English Language I", name_id: "Bahasa Inggris I", credits: 2 }
     ]
   },
   {
     sem: "II",
     courses: [
-      { name_en: "Surface Design I (Batik)", name_id: "Surface Design I (Batik)", credits: 3 },
-      { name_en: "Structure Design I (Weaving)", name_id: "Structure Design I (Tenun)", credits: 3 },
-      { name_en: "Fashion Illustration", name_id: "Ilustrasi Mode", credits: 3 },
-      { name_en: "History of Nusantara Art & Craft", name_id: "Sejarah Seni & Kriya Nusantara", credits: 3 },
-      { name_en: "Islamic Studies II", name_id: "Studi Islam II", credits: 2 },
+      { name_en: "Organic Chemistry", name_id: "Kimia Organik", credits: 3 },
+      { name_en: "Food Industry Introduction", name_id: "Pengantar Industri Pangan", credits: 2 },
+      { name_en: "Basic Biochemistry", name_id: "Biokimia Dasar", credits: 3 },
       { name_en: "Civic Education", name_id: "Pendidikan Kewarganegaraan", credits: 2 },
-      { name_en: "Textile Dyeing Technology", name_id: "Teknologi Pewarnaan Tekstil", credits: 3 }
+      { name_en: "Islamic Studies II", name_id: "Studi Islam II", credits: 2 },
+      { name_en: "Basic Statistics", name_id: "Statistika Dasar", credits: 3 },
+      { name_en: "Analytical Chemistry", name_id: "Kimia Analisis", credits: 3 }
     ]
   },
   {
     sem: "III",
     courses: [
-      { name_en: "Surface Design II (Ecoprint & Dye)", name_id: "Surface Design II (Ecoprint & Celup)", credits: 3 },
-      { name_en: "Structure Design II (Knit & Tapestry)", name_id: "Structure Design II (Rajut & Tapestri)", credits: 3 },
-      { name_en: "Pattern Drafting & Sewing", name_id: "Pola & Teknik Menjahit", credits: 3 },
-      { name_en: "Textile Motif Development", name_id: "Pengembangan Motif Tekstil", credits: 3 },
-      { name_en: "Fashion History & Trends", name_id: "Sejarah & Tren Fashion", credits: 3 },
-      { name_en: "Islamic Studies III", name_id: "Studi Islam III", credits: 2 }
+      { name_en: "Food Chemistry", name_id: "Kimia Pangan", credits: 3 },
+      { name_en: "Food Microbiology", name_id: "Mikrobiologi Pangan", credits: 3 },
+      { name_en: "Unit Operations in Food Processing", name_id: "Operasi Satuan Industri Pangan", credits: 3 },
+      { name_en: "Islamic Studies III", name_id: "Studi Islam III", credits: 2 },
+      { name_en: "Food Nutrition", name_id: "Gizi Pangan", credits: 3 },
+      { name_en: "Food Biochemistry", name_id: "Biokimia Pangan", credits: 3 }
     ]
   },
   {
     sem: "IV",
     courses: [
-      { name_en: "Draping & Fashion Construction", name_id: "Draping & Konstruksi Mode", credits: 3 },
-      { name_en: "Digital Textile & Motif Design", name_id: "Desain Motif & Tekstil Digital", credits: 4 },
-      { name_en: "Traditional Textile Crafts", name_id: "Kriya Tekstil Tradisional", credits: 3 },
-      { name_en: "Creative Industry Business", name_id: "Bisnis Industri Kreatif", credits: 2 },
-      { name_en: "Sustainable Fashion & Craft", name_id: "Fashion & Kriya Berkelanjutan", credits: 3 },
-      { name_en: "Research Methods for Design", name_id: "Metode Penelitian Desain", credits: 3 }
+      { name_en: "Food Analysis", name_id: "Analisis Pangan", credits: 3 },
+      { name_en: "Food Processing Technology I", name_id: "Teknologi Pengolahan Pangan I", credits: 3 },
+      { name_en: "Food Packaging & Labeling", name_id: "Pengemasan & Pelabelan Pangan", credits: 3 },
+      { name_en: "Food Sanitation & Hygiene", name_id: "Sanitasi & Higiene Pangan", credits: 2 },
+      { name_en: "Food Laws & Regulations", name_id: "Hukum & Regulasi Pangan", credits: 2 },
+      { name_en: "Research Methods", name_id: "Metodologi Penelitian", credits: 2 }
     ]
   },
   {
     sem: "V",
     courses: [
-      { name_en: "Contemporary Craft Art Study", name_id: "Kajian Seni Kriya Kontemporer", credits: 3 },
-      { name_en: "Visual Merchandising & Display", name_id: "Visual Merchandising & Display", credits: 3 },
-      { name_en: "Textile Product Development", name_id: "Pengembangan Produk Tekstil", credits: 3 },
-      { name_en: "Fashion Styling & Photoshoot", name_id: "Fashion Styling & Photoshoot", credits: 3 },
-      { name_en: "Elective Course I (Embroidery)", name_id: "Mata Kuliah Pilihan I (Sulam)", credits: 3 },
+      { name_en: "Food Quality Management", name_id: "Manajemen Mutu Pangan", credits: 3 },
+      { name_en: "Food Processing Technology II", name_id: "Teknologi Pengolahan Pangan II", credits: 3 },
+      { name_en: "Food Sensory Evaluation", name_id: "Evaluasi Sensoris Pangan", credits: 3 },
+      { name_en: "Halal Food Guarantee System", name_id: "Sistem Jaminan Produk Halal", credits: 3 },
+      { name_en: "Food Product Development", name_id: "Pengembangan Produk Pangan", credits: 3 },
       { name_en: "Islamic Studies IV", name_id: "Studi Islam IV", credits: 2 }
     ]
   },
   {
     sem: "VI",
     courses: [
-      { name_en: "Art & Design Research Seminar", name_id: "Seminar Penelitian Seni & Desain", credits: 2 },
-      { name_en: "Creative Portfolio & Branding", name_id: "Portofolio Kreatif & Branding", credits: 3 },
-      { name_en: "Creative Industry Internship (MBKM)", name_id: "Magang Industri Kreatif (MBKM)", credits: 6 },
-      { name_en: "Elective Course II (Macrame)", name_id: "Mata Kuliah Pilihan II (Makrame)", credits: 3 },
-      { name_en: "Elective Course III (Lace)", name_id: "Mata Kuliah Pilihan III (Renda)", credits: 3 }
+      { name_en: "Food Biotechnology", name_id: "Bioteknologi Pangan", credits: 3 },
+      { name_en: "Food Process Engineering", name_id: "Rekayasa Proses Pangan", credits: 3 },
+      { name_en: "Industrial Internship (MBKM)", name_id: "Magang Industri (MBKM)", credits: 6 },
+      { name_en: "Academic Seminar", name_id: "Seminar Akademik", credits: 2 },
+      { name_en: "Waste Treatment Technology", name_id: "Teknologi Pengolahan Limbah", credits: 3 }
     ]
   },
   {
     sem: "VII",
     courses: [
-      { name_en: "Brand Incubation & Startup", name_id: "Inkubasi Brand & Startup", credits: 2 },
-      { name_en: "Design Professional Ethics", name_id: "Etika Profesi Desain", credits: 2 },
+      { name_en: "Food Technopreneurship", name_id: "Teknopreneurship Pangan", credits: 3 },
+      { name_en: "Professional Ethics", name_id: "Etika Profesi", credits: 2 },
       { name_en: "Final Project Proposal", name_id: "Proposal Tugas Akhir", credits: 2 },
-      { name_en: "Elective Course IV (Leather Craft)", name_id: "Mata Kuliah Pilihan IV (Kriya Kulit)", credits: 3 },
-      { name_en: "Elective Course V (Jewelry Design)", name_id: "Mata Kuliah Pilihan V (Desain Perhiasan)", credits: 3 }
+      { name_en: "Elective Course I", name_id: "Mata Kuliah Pilihan I", credits: 3 },
+      { name_en: "Elective Course II", name_id: "Mata Kuliah Pilihan II", credits: 3 }
     ]
   },
   {
     sem: "VIII",
     courses: [
-      { name_en: "Final Design Exhibition & Thesis", name_id: "Sidang Karya & Skripsi Tugas Akhir", credits: 6 }
+      { name_en: "Undergrad Thesis & Viva", name_id: "Sidang Karya & Skripsi Tugas Akhir", credits: 6 }
     ]
   }
 ];

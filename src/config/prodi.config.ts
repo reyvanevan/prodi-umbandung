@@ -42,10 +42,10 @@ export interface ProdiConfig {
 }
 
 export const PRODI_CONFIG: ProdiConfig = {
-  acronym: 'KTF',
+  acronym: 'TP',
   name: {
-    id: 'Kriya Tekstil dan Fashion',
-    en: 'Textile and Fashion Design',
+    id: 'Teknologi Pangan',
+    en: 'Food Technology',
   },
   degree: 'S1',
   degreeTitle: 'S.T.P.',
@@ -54,8 +54,8 @@ export const PRODI_CONFIG: ProdiConfig = {
     en: 'Bachelor of Food Technology',
   },
   faculty: {
-    id: 'Fakultas Sosial dan Humaniora',
-    en: 'Faculty of Social Sciences and Humanities',
+    id: 'Fakultas Sains dan Teknologi',
+    en: 'Faculty of Science and Technology',
   },
   university: 'Universitas Muhammadiyah Bandung',
   universityShort: 'UMB',
@@ -64,14 +64,14 @@ export const PRODI_CONFIG: ProdiConfig = {
     primaryTailwind: 'mono-yellow',
   },
   contact: {
-    email: 'ktf@umbandung.ac.id',
+    email: 'pangan@umbandung.ac.id',
     phone: '+62 22 783 0000',
     address: 'Jl. Soekarno-Hatta No. 752, Cipadung Kidul, Panyileukan, Kota Bandung, Jawa Barat 40614',
-    instagram: 'kriyatekstilfashion.umb',
-    youtube: '@kriyatekstilfashionumb',
+    instagram: 'teknologipangan.umb',
+    youtube: '@teknologipanganumb',
   },
   headOfDepartment: {
-    name: 'Dra. Saftiyaningsih Ken Atik, M.Ds.',
+    name: 'Dr. Dewi Werdayani, S.Pd., M.Pd.',
     degree: 'Ketua Program Studi',
   },
   videoProfileUrl: 'https://www.youtube.com/watch?v=12ER7lJyZOc&feature=youtu.be',
