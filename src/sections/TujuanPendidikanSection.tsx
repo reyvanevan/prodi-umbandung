@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { cn } from '@/lib/utils';
 import { Target, Home, BookOpen } from 'lucide-react';
 import { PRODI_CONFIG } from '@/config/prodi.config';
+import { useSiteContent } from '@/hooks/useSupabaseData';
 
 interface TujuanPendidikanSectionProps {
   lang: 'id' | 'en';
@@ -11,59 +12,123 @@ type TabType = 'tujuan' | 'fasilitas' | 'kurikulum';
 
 export function TujuanPendidikanSection({ lang }: TujuanPendidikanSectionProps) {
   const [activeTab, setActiveTab] = useState<TabType>('tujuan');
+  const { contentMap, loading } = useSiteContent(lang);
+
+  if (loading) {
+    return (
+      <section id="tujuan-pendidikan" className="w-full py-24 lg:py-32 bg-mono-cream border-b border-mono-black/10">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 animate-pulse">
+          {/* Section Header Skeleton */}
+          <div className="mb-16">
+            <div className="h-3 bg-neutral-300 w-32 mb-3 rounded" />
+            <div className="h-10 bg-neutral-300 w-64 rounded" />
+          </div>
+
+          {/* Tab Buttons Skeleton */}
+          <div className="grid grid-cols-3 gap-3 mb-12">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="h-16 bg-neutral-300 border border-mono-black/10 rounded" />
+            ))}
+          </div>
+
+          {/* Content Skeleton */}
+          <div className="bg-white border border-mono-black p-8 lg:p-12 shadow-[6px_6px_0px_0px_rgba(0,0,0,0.05)] min-h-[400px] space-y-6">
+            <div className="pb-4 border-b border-mono-black/10">
+              <div className="h-8 bg-neutral-300 w-48 mb-2 rounded" />
+              <div className="h-3 bg-neutral-300 w-64 rounded" />
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {[1, 2].map((i) => (
+                <div key={i} className="space-y-3">
+                  <div className="h-5 bg-neutral-300 w-1/2 rounded" />
+                  <div className="h-4 bg-neutral-300 w-full rounded" />
+                  <div className="h-4 bg-neutral-300 w-5/6 rounded" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   const content = {
     tujuan: {
       title: lang === 'en' ? 'Educational Objectives (PEO & PLO)' : 'Tujuan Pendidikan (PEO & PLO)',
       subtitle: lang === 'en' ? 'Preparing ready-to-compete food technology professionals.' : 'Mempersiapkan profesional teknologi pangan yang siap bersaing.',
-      items: lang === 'en' ? [
+      items: [
         {
-          title: 'Program Educational Objectives (PEO)',
-          desc: `To produce graduates of ${PRODI_CONFIG.name.en} ${PRODI_CONFIG.degree} program who possess high competency in food processing, quality control, and food product development based on local resources with entrepreneurial spirit.`,
+          title: contentMap.kurikulum_peo_title || 'Program Educational Objectives (PEO)',
+          desc: contentMap.kurikulum_peo_desc || (lang === 'en'
+            ? `To produce graduates of ${PRODI_CONFIG.name.en} ${PRODI_CONFIG.degree} program who possess high competency in food processing, quality control, and food product development based on local resources with entrepreneurial spirit.`
+            : `Menghasilkan sarjana Teknologi Pangan ${PRODI_CONFIG.degree} yang memiliki kompetensi unggul dalam pengolahan, pengawasan mutu, dan pengembangan produk pangan berbasis sumber daya lokal dengan semangat kewirausahaan.`),
         },
         {
-          title: 'Program Learning Outcomes (PLO)',
-          desc: `Graduates are capable of applying food science and technology principles to solve problems in food systems sustainably and managing safe and halal food production processes.`,
-        }
-      ] : [
-        {
-          title: 'Program Educational Objectives (PEO)',
-          desc: `Menghasilkan sarjana Teknologi Pangan ${PRODI_CONFIG.degree} yang memiliki kompetensi unggul dalam pengolahan, pengawasan mutu, dan pengembangan produk pangan berbasis sumber daya lokal dengan semangat kewirausahaan.`,
-        },
-        {
-          title: 'Program Learning Outcomes (PLO)',
-          desc: `Lulusan mampu menerapkan prinsip sains dan teknologi pangan untuk memecahkan masalah dalam sistem pangan secara berkelanjutan serta mengelola proses produksi pangan yang aman dan halal.`,
+          title: contentMap.kurikulum_plo_title || 'Program Learning Outcomes (PLO)',
+          desc: contentMap.kurikulum_plo_desc || (lang === 'en'
+            ? `Graduates are capable of applying food science and technology principles to solve problems in food systems sustainably and managing safe and halal food production processes.`
+            : `Lulusan mampu menerapkan prinsip sains dan teknologi pangan untuk memecahkan masalah dalam sistem pangan secara berkelanjutan serta mengelola proses produksi pangan yang aman dan halal.`),
         }
       ]
     },
     fasilitas: {
       title: lang === 'en' ? 'Food Laboratories & Pilot Plant' : 'Laboratorium & Pilot Plant Pangan',
       subtitle: lang === 'en' ? 'Hands-on practice facilities with food industry standards.' : 'Fasilitas praktik langsung dengan standar industri pangan.',
-      items: lang === 'en' ? [
-        { name: 'Food Chemistry & Biochemistry Lab', desc: 'Facilities for chemical content testing, nutritional analysis, and biochemical characterization of food ingredients.' },
-        { name: 'Food Microbiology & Safety Lab', desc: 'Laboratory for microbial contamination analysis, food fermentation, and food safety testing.' },
-        { name: 'Sensory & Product Development Lab', desc: 'Organoleptic test room with standardized sensory booths for testing taste, aroma, color, and texture.' },
-        { name: 'Food Processing Pilot Plant', desc: 'Semi-industrial food processing facility equipped with pasteurization, drying, and packaging tools.' }
-      ] : [
-        { name: 'Lab Kimia & Biokimia Pangan', desc: 'Fasilitas pengujian kandungan kimia, analisis gizi, dan karakteristik biokimia bahan pangan.' },
-        { name: 'Lab Mikrobiologi & Keamanan Pangan', desc: 'Laboratorium untuk analisis cemaran mikroba, fermentasi makanan, serta pengujian keamanan pangan.' },
-        { name: 'Lab Sensoris & Pengembangan Produk', desc: 'Ruang uji organoleptik dengan bilik sensoris terstandar untuk pengujian rasa, aroma, warna, dan tekstur.' },
-        { name: 'Pilot Plant Pengolahan Pangan', desc: 'Fasilitas pengolahan pangan semi-industri dilengkapi dengan alat pasteurisasi, pengeringan, dan pengemasan.' }
+      items: [
+        { 
+          name: contentMap.kurikulum_facility_1_name || (lang === 'en' ? 'Food Chemistry & Biochemistry Lab' : 'Lab Kimia & Biokimia Pangan'), 
+          desc: contentMap.kurikulum_facility_1_desc || (lang === 'en' 
+            ? 'Facilities for chemical content testing, nutritional analysis, and biochemical characterization of food ingredients.' 
+            : 'Fasilitas pengujian kandungan kimia, analisis gizi, dan karakteristik biokimia bahan pangan.') 
+        },
+        { 
+          name: contentMap.kurikulum_facility_2_name || (lang === 'en' ? 'Food Microbiology & Safety Lab' : 'Lab Mikrobiologi & Keamanan Pangan'), 
+          desc: contentMap.kurikulum_facility_2_desc || (lang === 'en' 
+            ? 'Laboratory for microbial contamination analysis, food fermentation, and food safety testing.' 
+            : 'Laboratorium untuk analisis cemaran mikroba, fermentasi makanan, serta pengujian keamanan pangan.') 
+        },
+        { 
+          name: contentMap.kurikulum_facility_3_name || (lang === 'en' ? 'Sensory & Product Development Lab' : 'Lab Sensoris & Pengembangan Produk'), 
+          desc: contentMap.kurikulum_facility_3_desc || (lang === 'en' 
+            ? 'Organoleptic test room with standardized sensory booths for testing taste, aroma, color, and texture.' 
+            : 'Ruang uji organoleptik dengan bilik sensoris terstandar untuk pengujian rasa, aroma, warna, dan tekstur.') 
+        },
+        { 
+          name: contentMap.kurikulum_facility_4_name || (lang === 'en' ? 'Food Processing Pilot Plant' : 'Pilot Plant Pengolahan Pangan'), 
+          desc: contentMap.kurikulum_facility_4_desc || (lang === 'en' 
+            ? 'Semi-industrial food processing facility equipped with pasteurization, drying, and packaging tools.' 
+            : 'Fasilitas pengolahan pangan semi-industri dilengkapi dengan alat pasteurisasi, pengeringan, dan pengemasan.') 
+        }
       ]
     },
     kurikulum: {
       title: lang === 'en' ? 'Academic Curriculum Structure' : 'Struktur Kurikulum Akademik',
       subtitle: lang === 'en' ? 'Step-by-step progress from basic food science to graduation capstone.' : 'Tahapan perkuliahan terstruktur dari sains dasar hingga karya kelulusan.',
-      semesters: lang === 'en' ? [
-        { title: 'Semesters 1-2: Basic Food Science', desc: 'Introduction to Food Technology, General Chemistry, Cell Biology, General Physics, and Basic Microbiology.' },
-        { title: 'Semesters 3-4: Chemistry & Analysis', desc: 'Food Chemistry, Food Microbiology, Food Analysis, Unit Operations, and Food Biochemistry.' },
-        { title: 'Semesters 5-6: Processing & Packaging', desc: 'Food Processing Technology, Food Safety & Sanitation, Sensory Evaluation, and Industrial Internship Programs.' },
-        { title: 'Semesters 7-8: Quality & Capstone', desc: 'Food Quality Assurance, Food Plant Design, Food Entrepreneurship, Seminar, and Thesis Defense.' }
-      ] : [
-        { title: 'Semester 1-2: Sains Dasar Pangan', desc: 'Pengantar Teknologi Pangan, Kimia Dasar, Biologi Sel, Fisika Dasar, Matematika, dan Mikrobiologi Dasar.' },
-        { title: 'Semester 3-4: Kimia & Analisis Pangan', desc: 'Kimia Pangan, Mikrobiologi Pangan, Analisis Pangan, Satuan Operasi Industri Pangan, dan Biokimia Pangan.' },
-        { title: 'Semester 5-6: Pengolahan & Pengemasan', desc: 'Teknologi Pengolahan Pangan, Keamanan & Sanitasi Pangan, Evaluasi Sensoris, Pengemasan Pangan, dan Magang Industri.' },
-        { title: 'Semester 7-8: Penjaminan Mutu & Capstone', desc: 'Jaminan Mutu Pangan, Perancangan Pabrik Pangan, Kewirausahaan Pangan, Seminar, dan Sidang Tugas Akhir.' }
+      semesters: [
+        { 
+          title: contentMap.kurikulum_semester_1_2_title || (lang === 'en' ? 'Semesters 1-2: Basic Food Science' : 'Semester 1-2: Sains Dasar Pangan'), 
+          desc: contentMap.kurikulum_semester_1_2_desc || (lang === 'en' 
+            ? 'Introduction to Food Technology, General Chemistry, Cell Biology, General Physics, and Basic Microbiology.' 
+            : 'Pengantar Teknologi Pangan, Kimia Dasar, Biologi Sel, Fisika Dasar, Matematika, dan Mikrobiologi Dasar.') 
+        },
+        { 
+          title: contentMap.kurikulum_semester_3_4_title || (lang === 'en' ? 'Semesters 3-4: Chemistry & Analysis' : 'Semester 3-4: Kimia & Analisis Pangan'), 
+          desc: contentMap.kurikulum_semester_3_4_desc || (lang === 'en' 
+            ? 'Food Chemistry, Food Microbiology, Food Analysis, Unit Operations, and Food Biochemistry.' 
+            : 'Kimia Pangan, Mikrobiologi Pangan, Analisis Pangan, Satuan Operasi Industri Pangan, dan Biokimia Pangan.') 
+        },
+        { 
+          title: contentMap.kurikulum_semester_5_6_title || (lang === 'en' ? 'Semesters 5-6: Processing & Packaging' : 'Semester 5-6: Pengolahan & Pengemasan'), 
+          desc: contentMap.kurikulum_semester_5_6_desc || (lang === 'en' 
+            ? 'Food Processing Technology, Food Safety & Sanitation, Sensory Evaluation, and Industrial Internship Programs.' 
+            : 'Teknologi Pengolahan Pangan, Keamanan & Sanitasi Pangan, Evaluasi Sensoris, Pengemasan Pangan, dan Magang Industri.') 
+        },
+        { 
+          title: contentMap.kurikulum_semester_7_8_title || (lang === 'en' ? 'Semesters 7-8: Quality & Capstone' : 'Semester 7-8: Penjaminan Mutu & Capstone'), 
+          desc: contentMap.kurikulum_semester_7_8_desc || (lang === 'en' 
+            ? 'Food Quality Assurance, Food Plant Design, Food Entrepreneurship, Seminar, and Thesis Defense.' 
+            : 'Jaminan Mutu Pangan, Perancangan Pabrik Pangan, Kewirausahaan Pangan, Seminar, dan Sidang Tugas Akhir.') 
+        }
       ]
     }
   };
