@@ -15,55 +15,55 @@ export function TujuanPendidikanSection({ lang }: TujuanPendidikanSectionProps) 
   const content = {
     tujuan: {
       title: lang === 'en' ? 'Educational Objectives (PEO & PLO)' : 'Tujuan Pendidikan (PEO & PLO)',
-      subtitle: lang === 'en' ? 'Preparing ready-to-compete engineering professionals.' : 'Mempersiapkan profesional rekayasa yang siap bersaing.',
+      subtitle: lang === 'en' ? 'Preparing ready-to-compete food technology professionals.' : 'Mempersiapkan profesional teknologi pangan yang siap bersaing.',
       items: lang === 'en' ? [
         {
           title: 'Program Educational Objectives (PEO)',
-          desc: `To produce graduates of ${PRODI_CONFIG.acronym} ${PRODI_CONFIG.degree} program who possess high integrity, global technological competence, innovative digital entrepreneurship spirit based on local values.`,
+          desc: `To produce graduates of ${PRODI_CONFIG.name.en} ${PRODI_CONFIG.degree} program who possess high competency in food processing, quality control, and food product development based on local resources with entrepreneurial spirit.`,
         },
         {
           title: 'Program Learning Outcomes (PLO)',
-          desc: `Graduates are capable of conducting research-based software engineering, designing secure and scaleable system architectures, and directing technological initiatives with ethical awareness.`,
+          desc: `Graduates are capable of applying food science and technology principles to solve problems in food systems sustainably and managing safe and halal food production processes.`,
         }
       ] : [
         {
           title: 'Program Educational Objectives (PEO)',
-          desc: `Menghasilkan sarjana ${PRODI_CONFIG.name.id} ${PRODI_CONFIG.degree} yang berintegritas tinggi, kompeten secara teknologi di tingkat global, serta memiliki jiwa kewirausahaan digital inovatif berbasis kearifan budaya lokal.`,
+          desc: `Menghasilkan sarjana Teknologi Pangan ${PRODI_CONFIG.degree} yang memiliki kompetensi unggul dalam pengolahan, pengawasan mutu, dan pengembangan produk pangan berbasis sumber daya lokal dengan semangat kewirausahaan.`,
         },
         {
           title: 'Program Learning Outcomes (PLO)',
-          desc: `Lulusan mampu melakukan rekayasa perangkat lunak berbasis riset, merancang arsitektur sistem yang aman dan terukur, serta mengarahkan inisiatif teknologi dengan kesadaran etis.`,
+          desc: `Lulusan mampu menerapkan prinsip sains dan teknologi pangan untuk memecahkan masalah dalam sistem pangan secara berkelanjutan serta mengelola proses produksi pangan yang aman dan halal.`,
         }
       ]
     },
     fasilitas: {
-      title: lang === 'en' ? 'Computing Laboratories & Studios' : 'Laboratorium & Studio Komputasi',
-      subtitle: lang === 'en' ? 'Hands-on practice facilities with industry standards.' : 'Fasilitas praktik langsung dengan standar industri.',
+      title: lang === 'en' ? 'Food Laboratories & Pilot Plant' : 'Laboratorium & Pilot Plant Pangan',
+      subtitle: lang === 'en' ? 'Hands-on practice facilities with food industry standards.' : 'Fasilitas praktik langsung dengan standar industri pangan.',
       items: lang === 'en' ? [
-        { name: 'Software Engineering Studio', desc: 'Space for developing web, mobile, and enterprise-grade software products with collaboration tools.' },
-        { name: 'AI & Data Science Laboratory', desc: 'Equipped with high-performance computing resources and GPU nodes for training deep learning models.' },
-        { name: 'Network & Cybersecurity Lab', desc: 'Equipped with routers, switches, and firewalls for simulating secure networks and penetration testing.' },
-        { name: 'Digital Innovation & IoT Lab', desc: 'Microcontrollers, sensors, and hardware fabrication tools for engineering smart physical devices.' }
+        { name: 'Food Chemistry & Biochemistry Lab', desc: 'Facilities for chemical content testing, nutritional analysis, and biochemical characterization of food ingredients.' },
+        { name: 'Food Microbiology & Safety Lab', desc: 'Laboratory for microbial contamination analysis, food fermentation, and food safety testing.' },
+        { name: 'Sensory & Product Development Lab', desc: 'Organoleptic test room with standardized sensory booths for testing taste, aroma, color, and texture.' },
+        { name: 'Food Processing Pilot Plant', desc: 'Semi-industrial food processing facility equipped with pasteurization, drying, and packaging tools.' }
       ] : [
-        { name: 'Studio Rekayasa Perangkat Lunak', desc: 'Ruang kolaboratif untuk merancang produk perangkat lunak web, mobile, dan enterprise dengan standar industri.' },
-        { name: 'Laboratorium AI & Sains Data', desc: 'Dilengkapi workstation berspesifikasi tinggi dan GPU untuk melatih model machine learning dan deep learning.' },
-        { name: 'Lab Jaringan & Keamanan Siber', desc: 'Menyediakan perangkat router, switch, dan sistem simulasi keamanan siber untuk uji penetrasi.' },
-        { name: 'Lab Inovasi Digital & IoT', desc: 'Menyediakan mikrokontroler, sensor, dan peralatan pendukung untuk perakitan sistem cerdas terintegrasi.' }
+        { name: 'Lab Kimia & Biokimia Pangan', desc: 'Fasilitas pengujian kandungan kimia, analisis gizi, dan karakteristik biokimia bahan pangan.' },
+        { name: 'Lab Mikrobiologi & Keamanan Pangan', desc: 'Laboratorium untuk analisis cemaran mikroba, fermentasi makanan, serta pengujian keamanan pangan.' },
+        { name: 'Lab Sensoris & Pengembangan Produk', desc: 'Ruang uji organoleptik dengan bilik sensoris terstandar untuk pengujian rasa, aroma, warna, dan tekstur.' },
+        { name: 'Pilot Plant Pengolahan Pangan', desc: 'Fasilitas pengolahan pangan semi-industri dilengkapi dengan alat pasteurisasi, pengeringan, dan pengemasan.' }
       ]
     },
     kurikulum: {
       title: lang === 'en' ? 'Academic Curriculum Structure' : 'Struktur Kurikulum Akademik',
-      subtitle: lang === 'en' ? 'Step-by-step progress from fundamentals to graduation portfolio.' : 'Tahapan perkuliahan terstruktur dari dasar hingga karya kelulusan.',
+      subtitle: lang === 'en' ? 'Step-by-step progress from basic food science to graduation capstone.' : 'Tahapan perkuliahan terstruktur dari sains dasar hingga karya kelulusan.',
       semesters: lang === 'en' ? [
-        { title: 'Semesters 1-2: Foundations', desc: 'Introduction to Programming, Discrete Mathematics, Algorithms & Data Structures, Linear Algebra, Database Systems.' },
-        { title: 'Semesters 3-4: Core Specialization', desc: 'Object-Oriented Programming, Computer Networks, Operating Systems, Software Engineering, Web Development.' },
-        { title: 'Semesters 5-6: Advanced IT & Industry', desc: 'Artificial Intelligence, Machine Learning, Cloud Computing, Professional Internship (MBKM), Mobile Application Development.' },
-        { title: 'Semesters 7-8: Capstone Showcase', desc: 'Research Methodology, Pre-Thesis Studio, Capstone Project & Exhibition, Thesis Defense.' }
+        { title: 'Semesters 1-2: Basic Food Science', desc: 'Introduction to Food Technology, General Chemistry, Cell Biology, General Physics, and Basic Microbiology.' },
+        { title: 'Semesters 3-4: Chemistry & Analysis', desc: 'Food Chemistry, Food Microbiology, Food Analysis, Unit Operations, and Food Biochemistry.' },
+        { title: 'Semesters 5-6: Processing & Packaging', desc: 'Food Processing Technology, Food Safety & Sanitation, Sensory Evaluation, and Industrial Internship Programs.' },
+        { title: 'Semesters 7-8: Quality & Capstone', desc: 'Food Quality Assurance, Food Plant Design, Food Entrepreneurship, Seminar, and Thesis Defense.' }
       ] : [
-        { title: 'Semester 1-2: Fondasi Dasar', desc: 'Pengantar Pemrograman, Matematika Diskrit, Algoritma & Struktur Data, Aljabar Linear, Sistem Basis Data.' },
-        { title: 'Semester 3-4: Inti Spesialisasi', desc: 'Pemrograman Berorientasi Objek, Jaringan Komputer, Sistem Operasi, Rekayasa Perangkat Lunak, Pengembangan Web.' },
-        { title: 'Semester 5-6: IT Lanjut & Industri', desc: 'Kecerdasan Buatan, Pembelajaran Mesin, Komputasi Awan, Magang Industri / MBKM, Pengembangan Aplikasi Mobile.' },
-        { title: 'Semester 7-8: Capstone & Karya Akhir', desc: 'Metodologi Penelitian, Pra-Tugas Akhir, Capstone Project Showcase, Sidang Tugas Akhir.' }
+        { title: 'Semester 1-2: Sains Dasar Pangan', desc: 'Pengantar Teknologi Pangan, Kimia Dasar, Biologi Sel, Fisika Dasar, Matematika, dan Mikrobiologi Dasar.' },
+        { title: 'Semester 3-4: Kimia & Analisis Pangan', desc: 'Kimia Pangan, Mikrobiologi Pangan, Analisis Pangan, Satuan Operasi Industri Pangan, dan Biokimia Pangan.' },
+        { title: 'Semester 5-6: Pengolahan & Pengemasan', desc: 'Teknologi Pengolahan Pangan, Keamanan & Sanitasi Pangan, Evaluasi Sensoris, Pengemasan Pangan, dan Magang Industri.' },
+        { title: 'Semester 7-8: Penjaminan Mutu & Capstone', desc: 'Jaminan Mutu Pangan, Perancangan Pabrik Pangan, Kewirausahaan Pangan, Seminar, dan Sidang Tugas Akhir.' }
       ]
     }
   };

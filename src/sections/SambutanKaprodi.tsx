@@ -70,7 +70,7 @@ export function SambutanKaprodi({ lang, title, p1, p2 }: SambutanKaprodiProps) {
             <img 
               src={finalPhoto} 
               alt={finalName}
-              className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+              className="w-full h-full object-cover transition-all duration-700"
             />
             {/* Overlay name badge */}
             <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-mono-black/90 via-mono-black/60 to-transparent p-6 text-white pt-16">
