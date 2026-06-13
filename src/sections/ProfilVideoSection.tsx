@@ -1,11 +1,14 @@
 import React from 'react';
 import { PRODI_CONFIG } from '@/config/prodi.config';
+import { useSiteContent } from '@/hooks/useSupabaseData';
 
 interface ProfilVideoSectionProps {
   lang: 'id' | 'en';
 }
 
 export function ProfilVideoSection({ lang }: ProfilVideoSectionProps) {
+  const { contentMap } = useSiteContent(lang);
+
   // Helper to extract YouTube video ID from URL
   const getYoutubeId = (url?: string) => {
     if (!url) return '12ER7lJyZOc';
@@ -14,7 +17,8 @@ export function ProfilVideoSection({ lang }: ProfilVideoSectionProps) {
     return (match && match[2].length === 11) ? match[2] : '12ER7lJyZOc';
   };
 
-  const videoId = getYoutubeId(PRODI_CONFIG.videoProfileUrl);
+  const videoUrl = contentMap.hero_video_url || PRODI_CONFIG.videoProfileUrl;
+  const videoId = getYoutubeId(videoUrl);
   const embedUrl = `https://www.youtube.com/embed/${videoId}`;
 
   return (
