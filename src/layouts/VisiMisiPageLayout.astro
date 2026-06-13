@@ -28,54 +28,54 @@ const description = lang === 'en'
   : `Landasan strategis penyelenggaraan program studi ${PRODI_CONFIG.degree} ${PRODI_CONFIG.name.id} ${PRODI_CONFIG.universityShort} dalam mengintegrasikan inovasi teknologi modern dengan nilai-nilai moral keislaman.`;
 
 const defaultVision = lang === 'en'
-  ? `To become a leading and innovative program in developing halal food science and technology based on Nusantara food diversity through sustainable circular biorefinery to produce professional graduates and technopreneurs with Islamic character.`
-  : `Menjadi program studi unggul dan inovatif dalam mengembangkan keilmuan sains dan teknologi pangan halal berbasis keanekaragaman pangan Nusantara melalui sistem biorefinery sirkular berkelanjutan guna menghasilkan lulusan profesional dan teknopreneur berkarakter Islami.`;
+  ? `To become a leading and innovative study program in developing halal food science and technology based on Nusantara food biodiversity through sustainable circular biorefinery systems to produce professional graduates and technopreneurs with Islamic character who are globally competitive and have a broad impact on society.`
+  : `Menjadi program studi unggul dan inovatif dalam mengembangkan keilmuan sains dan teknologi pangan halal berbasis keanekaragaman pangan Nusantara melalui sistem biorefinery sirkular berkelanjutan guna menghasilkan lulusan profesional dan teknopreneur berkarakter islami yang berdaya saing global dan berdampak luas bagi masyarakat.`;
 
 const defaultMissions = lang === 'en' ? [
-  "Deliver high-quality education in local food science and technology, food halality, circular biorefinery, and technopreneurship.",
-  "Conduct innovative food science research focusing on Nusantara food diversity to produce safe, high-quality, and halal food products.",
-  "Implement community services to empower local food MSMEs and improve public food security.",
-  "Integrate Islamic values, professional food ethics, and halality principles into all academic aspects."
+  "Deliver high-quality education and teaching in the field of local food science and technology, food halality, sustainable circular biorefinery systems, and technopreneurship to produce graduates with Islamic character.",
+  "Conduct research in innovative food science and technology, focusing on exploration based on Nusantara food biodiversity through sustainable circular biorefinery systems to produce safe, high-quality, and halal food products that impact society.",
+  "Implement community service through downstreaming of research results, delivery of scientific knowledge, and application of sustainable circular biorefinery systems to solve food problems and improve community welfare.",
+  "Integrate Al-Islam and Kemuhammadiyahan values thoroughly in all education, research, and community service activities."
 ] : [
-  "Menyelenggarakan pendidikan dan pengajaran berkualitas di bidang sains dan teknologi pangan lokal, kehalalan pangan, sistem biorefinery sirkular berkelanjutan, dan technopreneurship.",
-  "Menyelenggarakan penelitian di bidang sains dan teknologi pangan yang inovatif, berfokus pada eksplorasi berbasis keanekaragaman pangan Nusantara.",
-  "Melaksanakan pengabdian kepada masyarakat berbasis ilmu pangan untuk pemberdayaan UMKM pangan lokal.",
-  "Mengintegrasikan nilai-nilai Keislaman, etika profesi pangan, dan prinsip kehalalan dalam seluruh aspek pembelajaran."
+  "Menyelenggarakan pendidikan dan pengajaran berkualitas di bidang sains dan teknologi pangan lokal, kehalalan pangan, sistem biorefinery sirkular berkelanjutan, dan teknopreneur dalam menghasilkan lulusan yang berkarakter islami.",
+  "Menyelenggarakan penelitian di bidang sains dan teknologi pangan yang inovatif, berfokus pada eksplorasi berbasis keanekaragaman pangan Nusantara melalui sistem biorefinery sirkular berkelanjutan untuk menghasilkan produk pangan yang aman, bermutu, dan halal, serta berdampak pada masyarakat.",
+  "Melaksanakan pengabdian kepada masyarakat melalui hilirisasi hasil riset, penyampaian pengetahuan ilmiah, dan penerapan sistem biorefinery sirkular berkelanjutan untuk menyelesaikan permasalahan pangan dan meningkatkan kesejahteraan masyarakat.",
+  "Mengintegrasikan nilai-nilai Al-Islam dan Kemuhammadiyahan secara menyeluruh dalam setiap kegiatan pendidikan, penelitian, dan pengabdian kepada masyarakat."
 ];
 
 const defaultGoals = lang === 'en' ? [
   {
-    title: "Global Professional Food Competency",
-    desc: `To produce graduates of the ${PRODI_CONFIG.acronym} program who master food processing, food analysis, and safety standard regulation.`
+    title: "Food Competency & Professionalism",
+    desc: `Produce competent, professional, competitive Food Technology graduates with Islamic character who are able to integrate local food science and technology through sustainable circular biorefinery systems.`
   },
   {
-    title: "Local-Based Food Research Innovation",
-    desc: "To generate innovative research exploring Indonesian agricultural biodiversity and local food resources."
+    title: "Local Food Research & Innovation",
+    desc: "Produce innovative research in food science and technology engineering oriented towards exploration based on Nusantara food biodiversity through sustainable circular biorefinery systems in developing safe, high-quality, and halal local food innovations."
   },
   {
-    title: "Food Circular Biorefinery",
-    desc: "To implement sustainable food processing systems that minimize waste and optimize resource recovery."
+    title: "Community Solutions & Welfare",
+    desc: "Provide real solutions to problems in the fields of food, food safety, and nutrition that impact improving living standards and community welfare through the application of sustainable circular biorefinery systems."
   },
   {
-    title: "Islamic Character & Halalan Thayyiban",
-    desc: "To produce halal food experts and entrepreneurs who uphold professional ethics and Islamic values."
+    title: "Islamic Character & Technopreneurship",
+    desc: "Produce graduates who have Islamic character, noble morals, and a technopreneurial spirit."
   }
 ] : [
   {
-    title: "Kompetensi Profesional Pangan Global",
-    desc: `Menghasilkan lulusan program studi ${PRODI_CONFIG.acronym} yang menguasai pengolahan pangan, analisis pangan, dan regulasi standar keamanan pangan.`
+    title: "Kompetensi & Profesionalisme Pangan",
+    desc: `Menghasilkan lulusan sarjana Teknologi Pangan yang kompeten, profesional, berdaya saing, dan berkarakter Islami yang mampu mengintegrasikan sains dan teknologi pangan lokal melalui sistem biorefinery sirkular berkelanjutan.`
   },
   {
-    title: "Inovasi Riset Pangan Berbasis Lokal",
-    desc: "Menghasilkan penelitian inovatif mengeksplorasi keanekaragaman hayati pertanian Indonesia dan sumber pangan lokal."
+    title: "Riset & Inovasi Pangan Lokal",
+    desc: "Menghasilkan penelitian inovatif di bidang sains dan rekayasa teknologi pangan yang berorientasi pada eksplorasi berbasis keanekaragaman pangan Nusantara melalui sistem biorefinery sirkular berkelanjutan dalam pengembangan inovasi pangan lokal yang aman, bermutu, dan halal."
   },
   {
-    title: "Biorefinery Sirkular Pangan",
-    desc: "Menerapkan sistem pengolahan pangan berkelanjutan yang meminimalkan limbah dan mengoptimalkan pemulihan sumber daya."
+    title: "Solusi Kemasyarakatan & Kesejahteraan",
+    desc: "Memberikan solusi nyata atas permasalahan di bidang pangan, keamanan pangan, dan gizi yang berdampak pada peningkatan taraf hidup dan kesejahteraan masyarakat melalui penerapan sistem biorefinery sirkular berkelanjutan."
   },
   {
-    title: "Karakter Islami & Halalan Thayyiban",
-    desc: "Mencetak ahli pangan dan wirausahawan halal yang menjunjung tinggi etika profesi dan nilai-nilai Islami."
+    title: "Karakter Islami & Teknopreneur",
+    desc: "Menghasilkan lulusan yang berkarakter Islami, berakhlak karimah, dan berjiwa teknopreneur."
   }
 ];
 
