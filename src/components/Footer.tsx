@@ -10,6 +10,17 @@ interface FooterProps {
 
 export function Footer({ lang = 'id' }: FooterProps) {
   const [logoUrl, setLogoUrl] = useState<string | null>(null);
+  const [contactInfo, setContactInfo] = useState({
+    email: PRODI_CONFIG.contact.email,
+    phone: PRODI_CONFIG.contact.phone,
+    address: PRODI_CONFIG.contact.address,
+    workHours: 'Senin - Jumat | 08:00 - 16:00 WIB',
+    instagram: PRODI_CONFIG.contact.instagram ? `https://instagram.com/${PRODI_CONFIG.contact.instagram}` : '',
+    youtube: PRODI_CONFIG.videoProfileUrl || '',
+    whatsapp: '',
+    linkedin: '',
+    univWebsite: 'https://umbandung.ac.id'
+  });
 
   useEffect(() => {
     if (isSupabaseConfigured) {
@@ -19,6 +30,28 @@ export function Footer({ lang = 'id' }: FooterProps) {
           if (logoItem?.value) {
             setLogoUrl(logoItem.value);
           }
+
+          const emailVal = dbContent.find((item) => item.key === 'footer_email')?.value;
+          const phoneVal = dbContent.find((item) => item.key === 'footer_phone')?.value;
+          const addressVal = dbContent.find((item) => item.key === 'footer_address')?.value;
+          const workHoursVal = dbContent.find((item) => item.key === 'footer_work_hours')?.value;
+          const instagramVal = dbContent.find((item) => item.key === 'footer_social_instagram')?.value;
+          const youtubeVal = dbContent.find((item) => item.key === 'footer_social_youtube')?.value;
+          const whatsappVal = dbContent.find((item) => item.key === 'footer_social_whatsapp')?.value;
+          const linkedinVal = dbContent.find((item) => item.key === 'footer_social_linkedin')?.value;
+          const univVal = dbContent.find((item) => item.key === 'footer_social_univ')?.value;
+
+          setContactInfo((prev) => ({
+            email: emailVal || prev.email,
+            phone: phoneVal || prev.phone,
+            address: addressVal || prev.address,
+            workHours: workHoursVal || prev.workHours,
+            instagram: instagramVal || prev.instagram,
+            youtube: youtubeVal || prev.youtube,
+            whatsapp: whatsappVal || prev.whatsapp,
+            linkedin: linkedinVal || prev.linkedin,
+            univWebsite: univVal || prev.univWebsite
+          }));
         }
       });
     }
@@ -174,41 +207,49 @@ export function Footer({ lang = 'id' }: FooterProps) {
             <p className="tech-tag text-mono-black/40 tracking-wider">CONTACT & INFO</p>
             
             <div className="flex flex-col gap-4 font-sans text-xs text-mono-black/70">
-              <div className="flex items-start gap-3.5">
-                <Mail className="h-4 w-4 text-mono-yellow shrink-0 mt-0.5" strokeWidth={2} />
-                <div className="flex flex-col">
-                  <span className="font-bold text-mono-black mb-0.5">Email</span>
-                  <a href={`mailto:${PRODI_CONFIG.contact.email}`} className="hover:text-mono-yellow transition-colors no-underline">
-                    {PRODI_CONFIG.contact.email}
-                  </a>
+              {contactInfo.email && (
+                <div className="flex items-start gap-3.5">
+                  <Mail className="h-4 w-4 text-mono-yellow shrink-0 mt-0.5" strokeWidth={2} />
+                  <div className="flex flex-col">
+                    <span className="font-bold text-mono-black mb-0.5">Email</span>
+                    <a href={`mailto:${contactInfo.email}`} className="hover:text-mono-yellow transition-colors no-underline">
+                      {contactInfo.email}
+                    </a>
+                  </div>
                 </div>
-              </div>
+              )}
 
-              <div className="flex items-start gap-3.5">
-                <Phone className="h-4 w-4 text-mono-yellow shrink-0 mt-0.5" strokeWidth={2} />
-                <div className="flex flex-col">
-                  <span className="font-bold text-mono-black mb-0.5">{lang === 'en' ? 'Phone' : 'Telepon'}</span>
-                  <span>{PRODI_CONFIG.contact.phone} ({PRODI_CONFIG.acronym} Helpdesk)</span>
+              {contactInfo.phone && (
+                <div className="flex items-start gap-3.5">
+                  <Phone className="h-4 w-4 text-mono-yellow shrink-0 mt-0.5" strokeWidth={2} />
+                  <div className="flex flex-col">
+                    <span className="font-bold text-mono-black mb-0.5">{lang === 'en' ? 'Phone' : 'Telepon'}</span>
+                    <span>{contactInfo.phone} ({PRODI_CONFIG.acronym} Helpdesk)</span>
+                  </div>
                 </div>
-              </div>
+              )}
 
-              <div className="flex items-start gap-3.5">
-                <MapPin className="h-4 w-4 text-mono-yellow shrink-0 mt-0.5" strokeWidth={2} />
-                <div className="flex flex-col">
-                  <span className="font-bold text-mono-black mb-0.5">{lang === 'en' ? 'Address' : 'Lokasi'}</span>
-                  <span className="leading-relaxed">
-                    {PRODI_CONFIG.contact.address}
-                  </span>
+              {contactInfo.address && (
+                <div className="flex items-start gap-3.5">
+                  <MapPin className="h-4 w-4 text-mono-yellow shrink-0 mt-0.5" strokeWidth={2} />
+                  <div className="flex flex-col">
+                    <span className="font-bold text-mono-black mb-0.5">{lang === 'en' ? 'Address' : 'Lokasi'}</span>
+                    <span className="leading-relaxed">
+                      {contactInfo.address}
+                    </span>
+                  </div>
                 </div>
-              </div>
+              )}
 
-              <div className="flex items-start gap-3.5">
-                <Clock className="h-4 w-4 text-mono-yellow shrink-0 mt-0.5" strokeWidth={2} />
-                <div className="flex flex-col">
-                  <span className="font-bold text-mono-black mb-0.5">{lang === 'en' ? 'Working Hours' : 'Jam Operasional'}</span>
-                  <span>Senin - Jumat | 08:00 - 16:00 WIB</span>
+              {contactInfo.workHours && (
+                <div className="flex items-start gap-3.5">
+                  <Clock className="h-4 w-4 text-mono-yellow shrink-0 mt-0.5" strokeWidth={2} />
+                  <div className="flex flex-col">
+                    <span className="font-bold text-mono-black mb-0.5">{lang === 'en' ? 'Working Hours' : 'Jam Operasional'}</span>
+                    <span>{contactInfo.workHours}</span>
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           </div>
 
@@ -270,58 +311,70 @@ export function Footer({ lang = 'id' }: FooterProps) {
       <div className="flex flex-col md:flex-row items-center justify-between gap-6 max-w-7xl mx-auto py-4">
         {/* Social Links */}
         <div className="flex flex-wrap items-center justify-center gap-4">
-          <a
-            aria-label="Email Prodi"
-            href={`mailto:${PRODI_CONFIG.contact.email}`}
-            className={socialItemClass}
-          >
-            <Mail className="h-5 w-5" strokeWidth={1.5} />
-          </a>
-          <a
-            aria-label="Instagram"
-            href={`https://instagram.com/${PRODI_CONFIG.contact.instagram}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={socialItemClass}
-          >
-            <Instagram className="h-5 w-5" strokeWidth={1.5} />
-          </a>
-          <a
-            aria-label="YouTube Channel"
-            href={PRODI_CONFIG.videoProfileUrl || "https://youtube.com/"}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={socialItemClass}
-          >
-            <Youtube className="h-5 w-5" strokeWidth={1.5} />
-          </a>
-          <a
-            aria-label="WhatsApp Group"
-            href="https://wa.me/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={socialItemClass}
-          >
-            <MessageSquare className="h-5 w-5" strokeWidth={1.5} />
-          </a>
-          <a
-            aria-label="LinkedIn"
-            href="https://linkedin.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={socialItemClass}
-          >
-            <Linkedin className="h-5 w-5" strokeWidth={1.5} />
-          </a>
-          <a
-            aria-label="Website Universitas"
-            href="https://umbandung.ac.id"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={socialItemClass}
-          >
-            <Globe className="h-5 w-5" strokeWidth={1.5} />
-          </a>
+          {contactInfo.email && (
+            <a
+              aria-label="Email Prodi"
+              href={`mailto:${contactInfo.email}`}
+              className={socialItemClass}
+            >
+              <Mail className="h-5 w-5" strokeWidth={1.5} />
+            </a>
+          )}
+          {contactInfo.instagram && contactInfo.instagram !== '#' && (
+            <a
+              aria-label="Instagram"
+              href={contactInfo.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={socialItemClass}
+            >
+              <Instagram className="h-5 w-5" strokeWidth={1.5} />
+            </a>
+          )}
+          {contactInfo.youtube && contactInfo.youtube !== '#' && (
+            <a
+              aria-label="YouTube Channel"
+              href={contactInfo.youtube}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={socialItemClass}
+            >
+              <Youtube className="h-5 w-5" strokeWidth={1.5} />
+            </a>
+          )}
+          {contactInfo.whatsapp && contactInfo.whatsapp !== '#' && (
+            <a
+              aria-label="WhatsApp Group"
+              href={contactInfo.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={socialItemClass}
+            >
+              <MessageSquare className="h-5 w-5" strokeWidth={1.5} />
+            </a>
+          )}
+          {contactInfo.linkedin && contactInfo.linkedin !== '#' && (
+            <a
+              aria-label="LinkedIn"
+              href={contactInfo.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={socialItemClass}
+            >
+              <Linkedin className="h-5 w-5" strokeWidth={1.5} />
+            </a>
+          )}
+          {contactInfo.univWebsite && contactInfo.univWebsite !== '#' && (
+            <a
+              aria-label="Website Universitas"
+              href={contactInfo.univWebsite}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={socialItemClass}
+            >
+              <Globe className="h-5 w-5" strokeWidth={1.5} />
+            </a>
+          )}
         </div>
 
         {/* Back to Top Widget */}

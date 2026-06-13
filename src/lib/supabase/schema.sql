@@ -286,6 +286,15 @@ insert into public.landing_portfolio_items (image, title, medium, technique, yea
 
 -- Seed site_content
 insert into public.site_content (key, value, value_en) values
+  ('footer_email', 'kriya@umbandung.ac.id', 'kriya@umbandung.ac.id'),
+  ('footer_phone', '+62 812-3456-7890', '+62 812-3456-7890'),
+  ('footer_address', 'Gedung K.H. Ahmad Dahlan, Lantai 4, Jl. Soekarno-Hatta No. 752, Bandung 40286', 'K.H. Ahmad Dahlan Building, 4th Floor, Jl. Soekarno-Hatta No. 752, Bandung 40286'),
+  ('footer_work_hours', 'Senin - Jumat | 08:00 - 16:00 WIB', 'Monday - Friday | 08:00 - 16:00 WIB'),
+  ('footer_social_instagram', 'https://instagram.com/kriya.umbandung', 'https://instagram.com/kriya.umbandung'),
+  ('footer_social_youtube', 'https://youtube.com/@kriya.umbandung', 'https://youtube.com/@kriya.umbandung'),
+  ('footer_social_whatsapp', '', ''),
+  ('footer_social_linkedin', '', ''),
+  ('footer_social_univ', 'https://umbandung.ac.id', 'https://umbandung.ac.id'),
   ('hero_title', 'Kriya Tekstil dan Fashion UMB', 'Textile and Fashion Design UMB'),
   ('hero_subtitle', 'Mencetak Creativepreneur dan Desainer Kriya Kontemporer Berbasis Nilai Islam & Kearifan Lokal.', 'Creating Creativepreneurs and Contemporary Craft Designers based on Islamic Values & Local Indigenous.'),
   ('kaprodi_welcome', 'Selamat datang di portal resmi Program Studi S1 Kriya Tekstil dan Fashion Universitas Muhammadiyah Bandung. Kami berkomitmen untuk menghasilkan desainer, kriya, dan wirausahawan kreatif masa depan yang menguasai teknik tekstil, desain mode, dan seni kriya kontemporer.', 'Welcome to the official portal of the S1 Program in Textile and Fashion Design at Universitas Muhammadiyah Bandung. We are committed to shaping future designers, crafters, and creative entrepreneurs who master textile techniques, fashion design, and contemporary craft arts.'),
