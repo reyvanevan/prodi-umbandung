@@ -40,6 +40,7 @@ const head = {
 
 const officers = [
   {
+    key: 'gov_sec',
     name: contentMap['gov_sec_name'] || "Vritta Amroini Wahyudi, S.Si., M.Si.",
     role: contentMap['gov_sec_role'] || (lang === 'en' ? "Secretary of Study Program" : "Sekretaris Program Studi"),
     desc: lang === 'en' ? "Directs student administration, lecture schedules, exam coordination, and student records." : "Mengelola administrasi mahasiswa, koordinasi jadwal kuliah, persiapan ujian, dan rekam akademik.",
@@ -47,6 +48,7 @@ const officers = [
     photo: contentMap['gov_sec_photo'] || "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=300&auto=format&fit=crop"
   },
   {
+    key: 'gov_upm',
     name: contentMap['gov_upm_name'] || "Indra Hidayat, S.Ds., M.Sn.",
     role: contentMap['gov_upm_role'] || (lang === 'en' ? "Quality Assurance Unit" : "Unit Penjaminan Mutu"),
     desc: lang === 'en' ? "Monitors educational standards, evaluates learning quality, and oversees academic audits." : "Memantau standar pendidikan, mengevaluasi mutu pembelajaran, dan mengawasi audit mutu akademik.",
@@ -104,6 +106,7 @@ const boards = lang === 'en' ? [
           {/* Avatar side */}
           <div class="md:col-span-4 bg-neutral-100 aspect-square md:aspect-auto relative overflow-hidden min-h-[200px]">
             <img 
+              id="kaprodi-photo"
               src={head.photo} 
               alt={head.name} 
               className="absolute inset-0 w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
@@ -112,18 +115,18 @@ const boards = lang === 'en' ? [
           {/* Content side */}
           <div class="md:col-span-8 p-8 flex flex-col justify-between">
             <div>
-              <span class="tech-tag bg-mono-black text-white px-2 py-0.5 text-[9px] tracking-widest inline-block mb-3">
+              <span id="kaprodi-role" class="tech-tag bg-mono-black text-white px-2 py-0.5 text-[9px] tracking-widest inline-block mb-3">
                 {head.role.toUpperCase()}
               </span>
-              <h3 class="font-serif text-2xl font-bold text-mono-black mb-1">{head.name}</h3>
-              <p class="font-sans text-xs text-neutral-600 leading-relaxed mb-6">
+              <h3 id="kaprodi-name" class="font-serif text-2xl font-bold text-mono-black mb-1">{head.name}</h3>
+              <p id="kaprodi-desc" class="font-sans text-xs text-neutral-600 leading-relaxed mb-6">
                 {head.desc}
               </p>
             </div>
             
             <div class="border-t border-dotted border-neutral-200 pt-4 flex items-center gap-2">
               <Mail className="h-4 w-4 text-mono-yellow shrink-0" />
-              <a href={`mailto:${head.email}`} class="font-sans text-xs text-mono-black hover:underline truncate">
+              <a id="kaprodi-email" href={`mailto:${head.email}`} class="font-sans text-xs text-mono-black hover:underline truncate">
                 {head.email}
               </a>
             </div>
@@ -139,27 +142,28 @@ const boards = lang === 'en' ? [
       {/* 2. Level 2: Officers (Secretary & UPM) */}
       <div class="grid grid-cols-1 lg:grid-cols-2 max-w-5xl mx-auto gap-8 mb-16">
         {officers.map((o) => (
-          <div class="border border-mono-black bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] grid grid-cols-1 sm:grid-cols-12 overflow-hidden">
+          <div data-officer-key={o.key} class="border border-mono-black bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] grid grid-cols-1 sm:grid-cols-12 overflow-hidden">
             {/* Photo */}
             <div class="sm:col-span-4 bg-neutral-100 aspect-square sm:aspect-auto relative overflow-hidden min-h-[160px]">
               <img 
                 src={o.photo} 
                 alt={o.name} 
+                data-field="photo"
                 className="absolute inset-0 w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
               />
             </div>
             {/* Bio */}
             <div class="sm:col-span-8 p-6 flex flex-col justify-between">
               <div>
-                <span class="tech-tag text-mono-yellow text-[9px] tracking-wide block mb-2">{o.role.toUpperCase()}</span>
-                <h4 class="font-serif text-lg font-bold text-mono-black mb-2">{o.name}</h4>
-                <p class="font-sans text-xs text-neutral-500 leading-relaxed mb-4">
+                <span data-field="role" class="tech-tag text-mono-yellow text-[9px] tracking-wide block mb-2">{o.role.toUpperCase()}</span>
+                <h4 data-field="name" class="font-serif text-lg font-bold text-mono-black mb-2">{o.name}</h4>
+                <p data-field="desc" class="font-sans text-xs text-neutral-500 leading-relaxed mb-4">
                   {o.desc}
                 </p>
               </div>
               <div class="border-t border-dashed border-neutral-200 pt-3 flex items-center gap-2">
                 <Mail className="h-3 w-3 text-mono-black/55 shrink-0" />
-                <a href={`mailto:${o.email}`} class="font-sans text-[11px] text-mono-black hover:underline truncate">
+                <a href={`mailto:${o.email}`} data-field="email" class="font-sans text-[11px] text-mono-black hover:underline truncate">
                   {o.email}
                 </a>
               </div>
@@ -196,4 +200,89 @@ const boards = lang === 'en' ? [
 
     </div>
   </section>
+
+  {/* Client-side dynamic update from Supabase */}
+  <script define:vars={{
+    supabaseUrl: import.meta.env.PUBLIC_SUPABASE_URL,
+    supabaseKey: import.meta.env.PUBLIC_SUPABASE_ANON_KEY,
+    lang
+  }}>
+    if (supabaseUrl && supabaseKey && !supabaseUrl.includes('your-project-ref.supabase.co')) {
+      const fetchContent = async () => {
+        try {
+          const res = await fetch(`${supabaseUrl}/rest/v1/site_content`, {
+            headers: {
+              'apikey': supabaseKey,
+              'Authorization': `Bearer ${supabaseKey}`
+            }
+          });
+          if (!res.ok) return;
+          const data = await res.json();
+          
+          const contentMap = {};
+          data.forEach(item => {
+            contentMap[item.key] = lang === 'en' ? (item.value_en || item.value) : item.value;
+          });
+
+          // Update Kaprodi
+          const kaprodiName = contentMap['kaprodi_name'];
+          const kaprodiRole = contentMap['kaprodi_title'];
+          const kaprodiWelcome = contentMap['kaprodi_welcome'];
+          const kaprodiPhoto = contentMap['kaprodi_photo_url'];
+
+          if (kaprodiName) {
+            const el = document.getElementById('kaprodi-name');
+            if (el) el.textContent = kaprodiName;
+          }
+          if (kaprodiRole) {
+            const el = document.getElementById('kaprodi-role');
+            if (el) el.textContent = kaprodiRole.toUpperCase();
+          }
+          if (kaprodiWelcome) {
+            const el = document.getElementById('kaprodi-desc');
+            if (el) el.textContent = kaprodiWelcome.substring(0, 150) + '...';
+          }
+          if (kaprodiPhoto) {
+            const el = document.getElementById('kaprodi-photo');
+            if (el) el.setAttribute('src', kaprodiPhoto);
+          }
+
+          // Update other officers (Secretary & UPM)
+          ['gov_sec', 'gov_upm'].forEach(prefix => {
+            const card = document.querySelector(`[data-officer-key="${prefix}"]`);
+            if (!card) return;
+
+            const nameVal = contentMap[`${prefix}_name`];
+            const roleVal = contentMap[`${prefix}_role`];
+            const emailVal = contentMap[`${prefix}_email`];
+            const photoVal = contentMap[`${prefix}_photo`];
+
+            if (nameVal) {
+              const el = card.querySelector('[data-field="name"]');
+              if (el) el.textContent = nameVal;
+            }
+            if (roleVal) {
+              const el = card.querySelector('[data-field="role"]');
+              if (el) el.textContent = roleVal.toUpperCase();
+            }
+            if (emailVal) {
+              const el = card.querySelector('[data-field="email"]');
+              if (el) {
+                el.textContent = emailVal;
+                el.setAttribute('href', `mailto:${emailVal}`);
+              }
+            }
+            if (photoVal) {
+              const el = card.querySelector('[data-field="photo"]');
+              if (el) el.setAttribute('src', photoVal);
+            }
+          });
+        } catch (e) {
+          console.error('Failed to sync live governance content:', e);
+        }
+      };
+      // Fetch instantly on client side
+      fetchContent();
+    }
+  </script>
 </Layout>

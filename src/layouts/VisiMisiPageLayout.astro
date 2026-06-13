@@ -122,7 +122,7 @@ const goals = contentMap['visi_misi_goals']
         <h2 class="font-serif text-3xl md:text-4xl text-mono-black mb-6 border-b border-dashed border-neutral-200 pb-4">
           {lang === 'en' ? 'Our Strategic Vision' : 'Visi Utama Program Studi'}
         </h2>
-        <blockquote class="font-serif text-xl md:text-2xl lg:text-3xl text-neutral-800 leading-snug italic max-w-4xl">
+        <blockquote id="vision-text" class="font-serif text-xl md:text-2xl lg:text-3xl text-neutral-800 leading-snug italic max-w-4xl">
           "{vision}"
         </blockquote>
       </div>
@@ -137,7 +137,7 @@ const goals = contentMap['visi_misi_goals']
             <span>{lang === 'en' ? 'Operational Mission' : 'Misi Penyelenggaraan'}</span>
           </h2>
           
-          <ul class="space-y-6">
+          <ul id="mission-list" class="space-y-6">
             {missions.map((m, idx) => (
               <li class="flex gap-4">
                 <div class="h-8 w-8 rounded-none bg-mono-black text-white flex items-center justify-center font-serif text-sm font-bold shrink-0">
@@ -161,7 +161,7 @@ const goals = contentMap['visi_misi_goals']
             </h2>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div id="goals-container" class="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {goals.map((g, idx) => (
               <div class="border border-mono-black bg-white p-6 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">
                 <span class="tech-tag text-[9px] text-mono-yellow font-bold block mb-2">GOAL 0{idx+1}</span>
@@ -175,4 +175,81 @@ const goals = contentMap['visi_misi_goals']
 
     </div>
   </section>
+
+  {/* Client-side dynamic update from Supabase */}
+  <script define:vars={{
+    supabaseUrl: import.meta.env.PUBLIC_SUPABASE_URL,
+    supabaseKey: import.meta.env.PUBLIC_SUPABASE_ANON_KEY,
+    lang
+  }}>
+    if (supabaseUrl && supabaseKey && !supabaseUrl.includes('your-project-ref.supabase.co')) {
+      const fetchContent = async () => {
+        try {
+          const res = await fetch(`${supabaseUrl}/rest/v1/site_content`, {
+            headers: {
+              'apikey': supabaseKey,
+              'Authorization': `Bearer ${supabaseKey}`
+            }
+          });
+          if (!res.ok) return;
+          const data = await res.json();
+          
+          const contentMap = {};
+          data.forEach(item => {
+            contentMap[item.key] = lang === 'en' ? (item.value_en || item.value) : item.value;
+          });
+
+          // Update Vision
+          const visionVal = contentMap['visi_misi_vision'];
+          if (visionVal) {
+            const el = document.getElementById('vision-text');
+            if (el) el.textContent = `"${visionVal}"`;
+          }
+
+          // Update Missions
+          const missionsVal = contentMap['visi_misi_missions'];
+          if (missionsVal) {
+            const listEl = document.getElementById('mission-list');
+            if (listEl) {
+              const items = missionsVal.split('\n').filter(Boolean);
+              listEl.innerHTML = items.map((m, idx) => `
+                <li class="flex gap-4">
+                  <div class="h-8 w-8 rounded-none bg-mono-black text-white flex items-center justify-center font-serif text-sm font-bold shrink-0">
+                    0${idx+1}
+                  </div>
+                  <p class="font-sans text-sm text-neutral-700 leading-relaxed pt-0.5">
+                    ${m}
+                  </p>
+                </li>
+              `).join('');
+            }
+          }
+
+          // Update Goals
+          const goalsVal = contentMap['visi_misi_goals'];
+          if (goalsVal) {
+            const containerEl = document.getElementById('goals-container');
+            if (containerEl) {
+              const lines = goalsVal.split('\n').filter(Boolean);
+              containerEl.innerHTML = lines.map((line, idx) => {
+                const parts = line.split('//');
+                const title = parts[0]?.trim() || '';
+                const desc = parts[1]?.trim() || '';
+                return `
+                  <div class="border border-mono-black bg-white p-6 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]">
+                    <span class="tech-tag text-[9px] text-mono-yellow font-bold block mb-2">GOAL 0${idx+1}</span>
+                    <h4 class="font-serif text-base font-bold text-mono-black mb-2">${title}</h4>
+                    <p class="font-sans text-xs text-neutral-600 leading-relaxed">${desc}</p>
+                  </div>
+                `;
+              }).join('');
+            }
+          }
+        } catch (e) {
+          console.error('Failed to sync live vision/mission content:', e);
+        }
+      };
+      fetchContent();
+    }
+  </script>
 </Layout>
