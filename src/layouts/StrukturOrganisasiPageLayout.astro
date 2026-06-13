@@ -2,7 +2,7 @@
 import Layout from './Layout.astro';
 import { Shield, Users, Mail, UserPlus } from 'lucide-react';
 import { PRODI_CONFIG } from '../config/prodi.config';
-import { getSiteContent } from '../lib/supabase/db';
+import { getSiteContent, getDosen } from '../lib/supabase/db';
 
 interface Props {
   lang: 'id' | 'en';
@@ -10,8 +10,12 @@ interface Props {
 
 const { lang } = Astro.props;
 
-// Fetch database site content
-const siteContent = await getSiteContent();
+// Fetch database site content and lecturers
+const [siteContent, dosenList] = await Promise.all([
+  getSiteContent(),
+  getDosen()
+]);
+
 const contentMap = (siteContent || []).reduce((acc, curr) => {
   acc[curr.key] = lang === 'en' ? (curr.value_en || curr.value) : curr.value;
   return acc;
@@ -27,33 +31,43 @@ const description = lang === 'en'
   ? `The academic governance body and operational officers directing the ${PRODI_CONFIG.degree} ${PRODI_CONFIG.name.en} program at ${PRODI_CONFIG.universityShort}.`
   : `Jajaran pimpinan akademik dan pelaksana operasional yang mengarahkan program studi ${PRODI_CONFIG.degree} ${PRODI_CONFIG.name.id} ${PRODI_CONFIG.universityShort}.`;
 
+// Helper to resolve profile photo from Dosen table
+const getDosenPhoto = (name: string, fallbackPhoto: string) => {
+  const linked = (dosenList || []).find(d => d.name === name);
+  return (linked && linked.img_src) ? linked.img_src : fallbackPhoto;
+};
+
 // Structured hierarchy roles from database with fallback
+const headName = contentMap['kaprodi_name'] || PRODI_CONFIG.headOfDepartment.name;
 const head = {
-  name: contentMap['kaprodi_name'] || PRODI_CONFIG.headOfDepartment.name,
+  name: headName,
   role: contentMap['kaprodi_title'] || (lang === 'en' ? "Head of Study Program" : "Ketua Program Studi"),
   desc: lang === 'en'
     ? (contentMap['kaprodi_welcome'] ? contentMap['kaprodi_welcome'].substring(0, 150) + "..." : "Responsible for overall strategic development, curriculum planning, and academic partnerships.")
     : (contentMap['kaprodi_welcome'] ? contentMap['kaprodi_welcome'].substring(0, 150) + "..." : "Penanggung jawab utama pengembangan strategis, penjaminan mutu kurikulum, dan kemitraan eksternal prodi."),
   email: PRODI_CONFIG.contact.email,
-  photo: contentMap['kaprodi_photo_url'] || "/assets/kaprodi.png"
+  photo: getDosenPhoto(headName, contentMap['kaprodi_photo_url'] || "/assets/kaprodi.png")
 };
+
+const secName = contentMap['gov_sec_name'] || "Vritta Amroini Wahyudi, S.Si., M.Si.";
+const upmName = contentMap['gov_upm_name'] || "Indra Hidayat, S.Ds., M.Sn.";
 
 const officers = [
   {
     key: 'gov_sec',
-    name: contentMap['gov_sec_name'] || "Vritta Amroini Wahyudi, S.Si., M.Si.",
+    name: secName,
     role: contentMap['gov_sec_role'] || (lang === 'en' ? "Secretary of Study Program" : "Sekretaris Program Studi"),
     desc: lang === 'en' ? "Directs student administration, lecture schedules, exam coordination, and student records." : "Mengelola administrasi mahasiswa, koordinasi jadwal kuliah, persiapan ujian, dan rekam akademik.",
     email: contentMap['gov_sec_email'] || "vritta.aw@umbandung.ac.id",
-    photo: contentMap['gov_sec_photo'] || "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=300&auto=format&fit=crop"
+    photo: getDosenPhoto(secName, contentMap['gov_sec_photo'] || "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=300&auto=format&fit=crop")
   },
   {
     key: 'gov_upm',
-    name: contentMap['gov_upm_name'] || "Indra Hidayat, S.Ds., M.Sn.",
+    name: upmName,
     role: contentMap['gov_upm_role'] || (lang === 'en' ? "Quality Assurance Unit" : "Unit Penjaminan Mutu"),
     desc: lang === 'en' ? "Monitors educational standards, evaluates learning quality, and oversees academic audits." : "Memantau standar pendidikan, mengevaluasi mutu pembelajaran, dan mengawasi audit mutu akademik.",
     email: contentMap['gov_upm_email'] || "indra.h@umbandung.ac.id",
-    photo: contentMap['gov_upm_photo'] || "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=300&auto=format&fit=crop"
+    photo: getDosenPhoto(upmName, contentMap['gov_upm_photo'] || "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=300&auto=format&fit=crop")
   }
 ];
 
@@ -210,25 +224,39 @@ const boards = lang === 'en' ? [
     if (supabaseUrl && supabaseKey && !supabaseUrl.includes('your-project-ref.supabase.co')) {
       const fetchContent = async () => {
         try {
-          const res = await fetch(`${supabaseUrl}/rest/v1/site_content`, {
-            headers: {
-              'apikey': supabaseKey,
-              'Authorization': `Bearer ${supabaseKey}`
-            }
-          });
-          if (!res.ok) return;
-          const data = await res.json();
+          const [resContent, resDosen] = await Promise.all([
+            fetch(`${supabaseUrl}/rest/v1/site_content`, {
+              headers: {
+                'apikey': supabaseKey,
+                'Authorization': `Bearer ${supabaseKey}`
+              }
+            }),
+            fetch(`${supabaseUrl}/rest/v1/dosen`, {
+              headers: {
+                'apikey': supabaseKey,
+                'Authorization': `Bearer ${supabaseKey}`
+              }
+            })
+          ]);
+          
+          if (!resContent.ok || !resDosen.ok) return;
+          const [data, dosenList] = await Promise.all([resContent.json(), resDosen.json()]);
           
           const contentMap = {};
           data.forEach(item => {
             contentMap[item.key] = lang === 'en' ? (item.value_en || item.value) : item.value;
           });
 
+          const getLivePhoto = (name, photoKey) => {
+            const linked = dosenList.find(d => d.name === name);
+            return (linked && linked.img_src) ? linked.img_src : contentMap[photoKey];
+          };
+
           // Update Kaprodi
           const kaprodiName = contentMap['kaprodi_name'];
           const kaprodiRole = contentMap['kaprodi_title'];
           const kaprodiWelcome = contentMap['kaprodi_welcome'];
-          const kaprodiPhoto = contentMap['kaprodi_photo_url'];
+          const kaprodiPhoto = getLivePhoto(kaprodiName, 'kaprodi_photo_url');
 
           if (kaprodiName) {
             const el = document.getElementById('kaprodi-name');
@@ -255,7 +283,7 @@ const boards = lang === 'en' ? [
             const nameVal = contentMap[`${prefix}_name`];
             const roleVal = contentMap[`${prefix}_role`];
             const emailVal = contentMap[`${prefix}_email`];
-            const photoVal = contentMap[`${prefix}_photo`];
+            const photoVal = getLivePhoto(nameVal, `${prefix}_photo`);
 
             if (nameVal) {
               const el = card.querySelector('[data-field="name"]');

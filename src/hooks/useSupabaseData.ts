@@ -12,7 +12,8 @@ import {
   getKurikulumCourses,
   getKurikulumPlos,
   getKurikulumProfiles,
-  getTaSteps
+  getTaSteps,
+  getDosen
 } from '@/lib/supabase/db';
 
 /**
@@ -31,12 +32,34 @@ export function useSiteContent(lang: 'id' | 'en') {
 
     const loadData = async () => {
       try {
-        const dbContent = await getSiteContent();
+        const [dbContent, dbDosen] = await Promise.all([
+          getSiteContent(),
+          getDosen()
+        ]);
         if (dbContent) {
           const mapped: Record<string, string> = {};
           dbContent.forEach((item) => {
             mapped[item.key] = lang === 'en' ? (item.value_en || item.value) : item.value;
           });
+
+          // Resolve photos for name-photo relations automatically
+          const KEY_RELATIONS = {
+            'kaprodi_name': 'kaprodi_photo_url',
+            'gov_sec_name': 'gov_sec_photo',
+            'gov_upm_name': 'gov_upm_photo'
+          };
+          if (dbDosen) {
+            Object.entries(KEY_RELATIONS).forEach(([nameKey, photoKey]) => {
+              const nameVal = mapped[nameKey];
+              if (nameVal) {
+                const linkedDosen = dbDosen.find(d => d.name === nameVal);
+                if (linkedDosen && linkedDosen.img_src) {
+                  mapped[photoKey] = linkedDosen.img_src;
+                }
+              }
+            });
+          }
+
           setContentMap(mapped);
         }
       } catch (err) {
