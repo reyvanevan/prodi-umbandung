@@ -84,6 +84,14 @@ export function DosenListSection({ lang }: DosenListSectionProps) {
             {name}
           </h3>
 
+          {/* Bidang Keahlian */}
+          {isDosen && (item.expertise || item.expertise_en) && (
+            <p className="text-xs text-neutral-500 text-center mb-3 font-sans italic">
+              {lang === 'en' ? 'Expertise: ' : 'Bidang Keahlian: '}
+              {lang === 'en' ? (item.expertise_en || item.expertise) : (item.expertise || item.expertise_en)}
+            </p>
+          )}
+
           {/* Role Badge */}
           <p className="text-xs font-medium text-[#E54B64] tracking-wide mb-4 font-mono uppercase bg-[#E54B64]/5 px-2.5 py-1 rounded-full border border-[#E54B64]/10">
             {getRoleText(item)}

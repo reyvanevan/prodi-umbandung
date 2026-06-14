@@ -237,6 +237,8 @@ export interface DbDosen {
   category: 'dosen' | 'karyawan_laboran';
   role: string | null;
   role_en: string | null;
+  expertise: string | null;
+  expertise_en: string | null;
   sort_order: number;
 }
 

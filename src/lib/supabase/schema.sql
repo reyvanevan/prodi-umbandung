@@ -96,6 +96,8 @@ create table if not exists public.dosen (
   category text not null default 'dosen',
   role text,
   role_en text,
+  expertise text,
+  expertise_en text,
   sort_order int not null default 0,
   created_at timestamp with time zone default timezone('utc'::text, now()) not null
 );

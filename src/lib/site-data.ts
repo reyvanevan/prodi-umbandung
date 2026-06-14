@@ -221,6 +221,8 @@ export interface DosenItem {
   category?: 'dosen' | 'karyawan_laboran';
   role?: string;
   role_en?: string;
+  expertise?: string;
+  expertise_en?: string;
 }
 
 export const ACADEMIC_DOSEN: DosenItem[] = [
@@ -238,6 +240,8 @@ export const ACADEMIC_DOSEN: DosenItem[] = [
     category: 'dosen',
     role: 'Dosen Utama',
     role_en: 'Senior Lecturer',
+    expertise: 'Analisis Sensori & Pengolahan Pangan',
+    expertise_en: 'Sensory Analysis & Food Processing',
   },
   {
     id: 'dosen-2',
@@ -253,6 +257,8 @@ export const ACADEMIC_DOSEN: DosenItem[] = [
     category: 'dosen',
     role: 'Dosen Utama',
     role_en: 'Senior Lecturer',
+    expertise: 'Mikrobiologi Pangan & Bioteknologi',
+    expertise_en: 'Food Microbiology & Biotechnology',
   },
   {
     id: 'dosen-3',
@@ -268,6 +274,8 @@ export const ACADEMIC_DOSEN: DosenItem[] = [
     category: 'dosen',
     role: 'Dosen Lektor',
     role_en: 'Lecturer',
+    expertise: 'Keamanan Pangan & Sanitasi Industri',
+    expertise_en: 'Food Safety & Industrial Sanitation',
   },
   {
     id: 'staff-1',
