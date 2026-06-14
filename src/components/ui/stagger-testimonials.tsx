@@ -37,7 +37,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
         transform: `
           translate(-50%, -50%) 
           translateX(${(cardSize / 1.4) * position}px)
-          translateY(${isCenter ? -65 : position % 2 ? 15 : -15}px)
+          translateY(${isCenter ? -30 : position % 2 ? 15 : -15}px)
           rotate(${isCenter ? 0 : position % 2 ? 3.5 : -3.5}deg)
           scale(${isCenter ? 1.05 : 0.88})
         `,
@@ -187,7 +187,7 @@ export const StaggerTestimonials: React.FC<StaggerTestimonialsProps> = ({ lang, 
     return (
       <div
         className="relative w-full overflow-hidden bg-white border-b border-mono-black/10 flex flex-col items-center justify-center"
-        style={{ height: 650 }}
+        style={{ height: 700 }}
       >
         <div className="absolute top-12 left-1/2 -translate-x-1/2 text-center z-10 pointer-events-none animate-pulse">
           <p className="tech-tag text-mono-black/70 mb-2">SUCCESS STORIES // ALUMNI NETWORK</p>
@@ -236,7 +236,7 @@ export const StaggerTestimonials: React.FC<StaggerTestimonialsProps> = ({ lang, 
   return (
     <div
       className="relative w-full overflow-hidden bg-white border-b border-mono-black/10"
-      style={{ height: 650 }}
+      style={{ height: 700 }}
     >
       <div className="absolute top-12 left-1/2 -translate-x-1/2 text-center z-10 pointer-events-none">
         <p className="tech-tag text-mono-black/70 mb-2">SUCCESS STORIES // ALUMNI NETWORK</p>
