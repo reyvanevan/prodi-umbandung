@@ -13,7 +13,8 @@ import {
   getKurikulumPlos,
   getKurikulumProfiles,
   getTaSteps,
-  getDosen
+  getDosen,
+  type DbDosen
 } from '@/lib/supabase/db';
 
 /**
@@ -460,4 +461,38 @@ export function useTaSteps(lang: 'id' | 'en') {
   }, [lang]);
 
   return { steps, loading, error };
+}
+
+/**
+ * Reusable hook to fetch Lecturers and Staff list.
+ */
+export function useDosen(lang: 'id' | 'en') {
+  const [dosen, setDosen] = useState<DbDosen[] | null>(null);
+  const [loading, setLoading] = useState(isSupabaseConfigured);
+  const [error, setError] = useState<any>(null);
+
+  useEffect(() => {
+    if (!isSupabaseConfigured) {
+      setLoading(false);
+      return;
+    }
+
+    const loadData = async () => {
+      try {
+        const dbData = await getDosen();
+        if (dbData) {
+          setDosen(dbData);
+        }
+      } catch (err) {
+        console.error('Error in useDosen hook:', err);
+        setError(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadData();
+  }, [lang]);
+
+  return { dosen, loading, error };
 }

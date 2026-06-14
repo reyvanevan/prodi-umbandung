@@ -234,6 +234,9 @@ export interface DbDosen {
   twitter: string | null;
   tiktok: string | null;
   instagram: string | null;
+  category: 'dosen' | 'karyawan_laboran';
+  role: string | null;
+  role_en: string | null;
   sort_order: number;
 }
 

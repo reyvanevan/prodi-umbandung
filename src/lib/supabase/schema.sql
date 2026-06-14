@@ -93,6 +93,9 @@ create table if not exists public.dosen (
   twitter text,
   tiktok text,
   instagram text,
+  category text not null default 'dosen',
+  role text,
+  role_en text,
   sort_order int not null default 0,
   created_at timestamp with time zone default timezone('utc'::text, now()) not null
 );
