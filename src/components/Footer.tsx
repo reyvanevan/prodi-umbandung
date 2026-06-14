@@ -156,30 +156,35 @@ export function Footer({ lang = 'id' }: FooterProps) {
       <div className="relative mx-auto max-w-7xl pb-10 border-b border-dotted border-mono-black/20">
         <div className="flex flex-col md:flex-row gap-8 items-start md:items-center justify-between">
           <div className="flex items-center gap-4">
-            <img 
-              src="/assets/logo-umb.png" 
-              alt={`Logo ${PRODI_CONFIG.universityShort}`} 
-              className="h-16 w-auto object-contain"
-              onError={(e) => {
-                (e.target as HTMLElement).style.display = 'none';
-              }}
-            />
-            {logoUrl ? (
+            <div className="flex items-center gap-3">
               <img 
-                src={logoUrl} 
-                alt="Logo Prodi" 
+                src="/assets/logo-umb.png" 
+                alt={`Logo ${PRODI_CONFIG.universityShort}`} 
                 className="h-16 w-auto object-contain"
+                onError={(e) => {
+                  (e.target as HTMLElement).style.display = 'none';
+                }}
               />
-            ) : (
+              {logoUrl && (
+                <img 
+                  src={logoUrl} 
+                  alt="Logo Prodi" 
+                  className="h-16 w-auto object-contain"
+                />
+              )}
+            </div>
+            
+            <div className="flex items-center gap-3">
+              <div className="h-10 w-[1px] bg-mono-black/15" />
               <div className="flex flex-col">
-                <span className="font-serif text-2xl tracking-wide text-mono-black">
+                <span className="font-serif text-xl md:text-2xl leading-tight tracking-wide text-mono-black">
                   {PRODI_CONFIG.degree} {PRODI_CONFIG.acronym} {PRODI_CONFIG.universityShort}
                 </span>
-                <span className="tech-tag text-mono-yellow font-bold mt-1 text-[10px] tracking-wider">
+                <span className="tech-tag text-mono-yellow font-bold mt-0.5 text-[10px] md:text-[11px] tracking-wider">
                   {lang === 'en' ? PRODI_CONFIG.name.en.toUpperCase() : PRODI_CONFIG.name.id.toUpperCase()}
                 </span>
               </div>
-            )}
+            </div>
           </div>
           
           <p className="bg-transparent text-xs leading-5 text-mono-black/60 max-w-3xl md:ml-8 border-l-0 md:border-l md:border-mono-black/15 md:pl-8 py-1 m-0">

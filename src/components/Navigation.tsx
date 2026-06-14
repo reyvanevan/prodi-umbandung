@@ -207,36 +207,41 @@ export function Navigation({
       >
         {/* Logo */}
         <a href={lang === 'en' ? '/en' : '/'} className="flex items-center gap-3 no-underline shrink-0">
-          <img 
-            src="/assets/logo-umb.png" 
-            alt={`Logo ${PRODI_CONFIG.universityShort}`} 
-            className="h-10 md:h-12 w-auto object-contain"
-            onError={(e) => {
-              (e.target as HTMLElement).style.display = 'none';
-            }}
-          />
-          {logoUrl ? (
+          <div className="flex items-center gap-2">
             <img 
-              src={logoUrl} 
-              alt="Logo Prodi" 
-              className={logoHeight ? 'w-auto' : 'h-10 md:h-12 w-auto'}
-              style={{
-                height: logoHeight ? `${logoHeight}px` : undefined,
-                padding: logoPadding ? `${logoPadding}px` : '0px',
-                borderRadius: logoRadius ? `${logoRadius}px` : '0px',
-                objectFit: (logoObjectFit || 'contain') as any,
+              src="/assets/logo-umb.png" 
+              alt={`Logo ${PRODI_CONFIG.universityShort}`} 
+              className="h-10 md:h-12 w-auto object-contain"
+              onError={(e) => {
+                (e.target as HTMLElement).style.display = 'none';
               }}
             />
-          ) : (
-            <div className="flex flex-col">
-              <span className={`font-serif text-xl tracking-wide transition-colors ${textClass}`}>
+            {logoUrl && (
+              <img 
+                src={logoUrl} 
+                alt="Logo Prodi" 
+                className={logoHeight ? 'w-auto' : 'h-10 md:h-12 w-auto'}
+                style={{
+                  height: logoHeight ? `${logoHeight}px` : undefined,
+                  padding: logoPadding ? `${logoPadding}px` : '0px',
+                  borderRadius: logoRadius ? `${logoRadius}px` : '0px',
+                  objectFit: (logoObjectFit || 'contain') as any,
+                }}
+              />
+            )}
+          </div>
+          
+          <div className="flex items-center gap-2.5">
+            <div className="hidden sm:block h-8 w-[1px] bg-slate-200 dark:bg-white/20" />
+            <div className="hidden sm:flex flex-col">
+              <span className={`font-serif text-sm md:text-base leading-tight tracking-wide transition-colors ${textClass}`}>
                 {PRODI_CONFIG.degree} {PRODI_CONFIG.acronym} {PRODI_CONFIG.universityShort}
               </span>
-              <span className={`tech-tag transition-colors mt-0.5 ${subtextClass}`}>
+              <span className={`tech-tag text-[9px] md:text-[10px] tracking-wider transition-colors mt-0.5 ${subtextClass}`}>
                 {lang === 'en' ? PRODI_CONFIG.name.en.toUpperCase() : PRODI_CONFIG.name.id.toUpperCase()}
               </span>
             </div>
-          )}
+          </div>
         </a>
 
         {/* Desktop Menu */}

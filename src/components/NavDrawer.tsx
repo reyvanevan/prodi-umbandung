@@ -200,31 +200,41 @@ export function NavDrawer({
         <div className="flex items-center justify-between pb-6 border-b border-white/10 shrink-0">
           <div>
             <div className="flex items-center gap-3">
-              <img 
-                src="/assets/logo-umb.png" 
-                alt={`Logo ${PRODI_CONFIG.universityShort}`} 
-                className="h-10 w-auto object-contain bg-white/10 rounded p-1"
-                onError={(e) => {
-                  (e.target as HTMLElement).style.display = 'none';
-                }}
-              />
-              {logoUrl ? (
+              <div className="flex items-center gap-2">
                 <img 
-                  src={logoUrl} 
-                  alt="Logo Prodi" 
-                  className={logoHeight ? 'w-auto max-w-[150px]' : 'h-10 w-auto object-contain max-w-[150px]'}
-                  style={{
-                    height: logoHeight ? `${logoHeight}px` : undefined,
-                    padding: logoPadding ? `${logoPadding}px` : '0px',
-                    borderRadius: logoRadius ? `${logoRadius}px` : '0px',
-                    objectFit: (logoObjectFit || 'contain') as any,
+                  src="/assets/logo-umb.png" 
+                  alt={`Logo ${PRODI_CONFIG.universityShort}`} 
+                  className="h-10 w-auto object-contain bg-white/10 rounded p-1"
+                  onError={(e) => {
+                    (e.target as HTMLElement).style.display = 'none';
                   }}
                 />
-              ) : (
-                <span className="font-serif text-xl tracking-wide">
-                  {PRODI_CONFIG.degree} {PRODI_CONFIG.acronym} {PRODI_CONFIG.universityShort}
-                </span>
-              )}
+                {logoUrl && (
+                  <img 
+                    src={logoUrl} 
+                    alt="Logo Prodi" 
+                    className={logoHeight ? 'w-auto max-w-[150px]' : 'h-10 w-auto object-contain max-w-[150px]'}
+                    style={{
+                      height: logoHeight ? `${logoHeight}px` : undefined,
+                      padding: logoPadding ? `${logoPadding}px` : '0px',
+                      borderRadius: logoRadius ? `${logoRadius}px` : '0px',
+                      objectFit: (logoObjectFit || 'contain') as any,
+                    }}
+                  />
+                )}
+              </div>
+              
+              <div className="flex items-center gap-2">
+                <div className="h-6 w-[1px] bg-white/20" />
+                <div className="flex flex-col">
+                  <span className="font-serif text-sm leading-tight tracking-wide text-white">
+                    {PRODI_CONFIG.degree} {PRODI_CONFIG.acronym} {PRODI_CONFIG.universityShort}
+                  </span>
+                  <span className="tech-tag text-[9px] tracking-wider text-white/60 mt-0.5">
+                    {lang === 'en' ? PRODI_CONFIG.name.en.toUpperCase() : PRODI_CONFIG.name.id.toUpperCase()}
+                  </span>
+                </div>
+              </div>
             </div>
             <span className="tech-tag block text-white/40 mt-2">
               {lang === 'en' ? 'NAVIGATION MENU' : 'MENU NAVIGASI'}
