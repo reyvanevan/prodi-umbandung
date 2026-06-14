@@ -24,9 +24,21 @@ interface NavigationProps {
   lang: 'id' | 'en';
   onOpenMenu: () => void;
   logoUrl?: string | null;
+  logoHeight?: string | null;
+  logoPadding?: string | null;
+  logoRadius?: string | null;
+  logoObjectFit?: string | null;
 }
 
-export function Navigation({ lang, onOpenMenu, logoUrl }: NavigationProps) {
+export function Navigation({
+  lang,
+  onOpenMenu,
+  logoUrl,
+  logoHeight,
+  logoPadding,
+  logoRadius,
+  logoObjectFit,
+}: NavigationProps) {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -207,7 +219,13 @@ export function Navigation({ lang, onOpenMenu, logoUrl }: NavigationProps) {
             <img 
               src={logoUrl} 
               alt="Logo Prodi" 
-              className="h-10 md:h-12 w-auto object-contain"
+              className={logoHeight ? 'w-auto' : 'h-10 md:h-12 w-auto'}
+              style={{
+                height: logoHeight ? `${logoHeight}px` : undefined,
+                padding: logoPadding ? `${logoPadding}px` : '0px',
+                borderRadius: logoRadius ? `${logoRadius}px` : '0px',
+                objectFit: (logoObjectFit || 'contain') as any,
+              }}
             />
           ) : (
             <div className="flex flex-col">

@@ -26,9 +26,22 @@ interface NavDrawerProps {
   isOpen: boolean;
   onClose: () => void;
   logoUrl?: string | null;
+  logoHeight?: string | null;
+  logoPadding?: string | null;
+  logoRadius?: string | null;
+  logoObjectFit?: string | null;
 }
 
-export function NavDrawer({ lang, isOpen, onClose, logoUrl }: NavDrawerProps) {
+export function NavDrawer({
+  lang,
+  isOpen,
+  onClose,
+  logoUrl,
+  logoHeight,
+  logoPadding,
+  logoRadius,
+  logoObjectFit,
+}: NavDrawerProps) {
   const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
   const [openSubSubmenu, setOpenSubSubmenu] = useState<string | null>(null);
 
@@ -199,7 +212,13 @@ export function NavDrawer({ lang, isOpen, onClose, logoUrl }: NavDrawerProps) {
                 <img 
                   src={logoUrl} 
                   alt="Logo Prodi" 
-                  className="h-10 w-auto object-contain max-w-[150px]"
+                  className={logoHeight ? 'w-auto max-w-[150px]' : 'h-10 w-auto object-contain max-w-[150px]'}
+                  style={{
+                    height: logoHeight ? `${logoHeight}px` : undefined,
+                    padding: logoPadding ? `${logoPadding}px` : '0px',
+                    borderRadius: logoRadius ? `${logoRadius}px` : '0px',
+                    objectFit: (logoObjectFit || 'contain') as any,
+                  }}
                 />
               ) : (
                 <span className="font-serif text-xl tracking-wide">
